@@ -1,0 +1,167 @@
+backend:
+  name: github
+  repo: clmschwartz-droid/ouvidorias-portal
+  branch: main
+  # A autenticação OAuth será configurada depois que a estrutura editorial
+  # estiver validada no branch decap-setup.
+
+publish_mode: editorial_workflow
+locale: pt
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: "noticias"
+    label: "Notícias e Cursos"
+    label_singular: "Notícia, curso ou evento"
+    folder: "_data/noticias"
+    create: true
+    extension: "yml"
+    format: "yaml"
+    identifier_field: "title"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{tipo}} — {{title}}"
+    sortable_fields: ["date", "title", "tipo"]
+    view_filters:
+      - label: "Notícias"
+        field: "tipo"
+        pattern: "Notícia"
+      - label: "Cursos"
+        field: "tipo"
+        pattern: "Curso"
+      - label: "Eventos"
+        field: "tipo"
+        pattern: "Evento"
+    fields:
+      - { label: "Tipo", name: "tipo", widget: "select", options: ["Notícia", "Curso", "Evento"] }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Subtítulo ou linha fina", name: "subtitulo", widget: "string", required: false }
+      - { label: "Texto", name: "texto", widget: "text" }
+      - { label: "Veículo ou organizador", name: "fonte", widget: "string", required: false }
+      - { label: "Local", name: "local", widget: "string", required: false }
+      - { label: "Link externo", name: "link", widget: "string", required: false, hint: "Cole a URL completa, começando por https://" }
+      - label: "PDF ou arquivo"
+        name: "arquivo"
+        widget: "file"
+        required: false
+        media_folder: "/noticias"
+        public_folder: "/noticias"
+        choose_url: false
+        media_library:
+          config:
+            max_file_size: 15000000
+      - { label: "Texto do botão do PDF", name: "arquivo_label", widget: "string", required: false, default: "Abrir documento" }
+      - { label: "Destaque", name: "destaque", widget: "boolean", required: false, default: false }
+
+  - name: "bibliografia"
+    label: "Bibliografia"
+    label_singular: "Referência bibliográfica"
+    folder: "_data/bibliografia"
+    create: true
+    extension: "yml"
+    format: "yaml"
+    identifier_field: "title"
+    slug: "{{slug}}"
+    summary: "{{autores}} — {{title}} ({{ano}})"
+    sortable_fields: ["autores", "title", "ano"]
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Autor(es)", name: "autores", widget: "string" }
+      - { label: "Ano", name: "ano", widget: "number", value_type: "int", min: 1600, max: 2100, required: false }
+      - { label: "Referência completa", name: "referencia", widget: "text" }
+      - { label: "Link externo", name: "link", widget: "string", required: false, hint: "Cole a URL completa, começando por https://" }
+      - label: "Texto integral em PDF"
+        name: "arquivo"
+        widget: "file"
+        required: false
+        media_folder: "/textos-integrais"
+        public_folder: "/textos-integrais"
+        choose_url: false
+        media_library:
+          config:
+            max_file_size: 15000000
+
+  - name: "documentos"
+    label: "Documentos"
+    label_singular: "Documento"
+    folder: "_data/documentos"
+    create: true
+    extension: "yml"
+    format: "yaml"
+    identifier_field: "title"
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["date", "title", "categoria"]
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Categoria", name: "categoria", widget: "string", required: false, hint: "Ex.: Carta de Curitiba, Declarações internacionais, Documentos históricos" }
+      - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+      - { label: "Descrição", name: "descricao", widget: "text" }
+      - { label: "Link externo", name: "link", widget: "string", required: false }
+      - label: "PDF ou arquivo"
+        name: "arquivo"
+        widget: "file"
+        required: false
+        media_folder: "/documentos"
+        public_folder: "/documentos"
+        choose_url: false
+        media_library:
+          config:
+            max_file_size: 15000000
+
+  - name: "legislacao"
+    label: "Legislação"
+    label_singular: "Norma"
+    folder: "_data/legislacao"
+    create: true
+    extension: "yml"
+    format: "yaml"
+    identifier_field: "title"
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["date", "title", "tipo"]
+    fields:
+      - { label: "Título para exibição", name: "title", widget: "string", hint: "Ex.: Lei nº 13.460/2017" }
+      - { label: "Tipo de norma", name: "tipo", widget: "select", options: ["Constituição", "Emenda Constitucional", "Lei", "Lei Complementar", "Decreto", "Portaria", "Resolução", "Instrução Normativa", "Projeto de Lei", "Outro"] }
+      - { label: "Número", name: "numero", widget: "string", required: false }
+      - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+      - { label: "Ente ou órgão", name: "orgao", widget: "string", required: false }
+      - { label: "Descrição ou ementa curta", name: "descricao", widget: "text" }
+      - { label: "Link oficial", name: "link", widget: "string", required: false }
+      - label: "PDF ou arquivo"
+        name: "arquivo"
+        widget: "file"
+        required: false
+        media_folder: "/legislacao"
+        public_folder: "/legislacao"
+        choose_url: false
+        media_library:
+          config:
+            max_file_size: 15000000
+
+  - name: "multimidia"
+    label: "Multimídia"
+    label_singular: "Conteúdo multimídia"
+    folder: "_data/multimidia"
+    create: true
+    extension: "yml"
+    format: "yaml"
+    identifier_field: "title"
+    slug: "{{slug}}"
+    summary: "{{tipo}} — {{title}}"
+    sortable_fields: ["date", "title", "tipo"]
+    fields:
+      - { label: "Tipo", name: "tipo", widget: "select", options: ["Vídeo", "Podcast", "Entrevista", "Áudio", "Outro"] }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+      - { label: "Descrição", name: "descricao", widget: "text" }
+      - { label: "Plataforma", name: "plataforma", widget: "string", required: false, hint: "Ex.: YouTube, Spotify" }
+      - { label: "URL", name: "url", widget: "string", hint: "Cole a URL completa do vídeo, episódio ou áudio." }
+      - { label: "Destaque", name: "destaque", widget: "boolean", required: false, default: false }
