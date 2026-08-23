@@ -1,0 +1,337 @@
+/*
+ * Portal das Ouvidorias Públicas do Brasil — identidade visual 2026
+ * Camada exclusivamente visual. A estrutura, o conteúdo e o JavaScript do portal permanecem intactos.
+ */
+:root {
+  --opb-blue: #5d9aa9;
+  --opb-blue-dark: #315f69;
+  --opb-blue-deep: #244950;
+  --opb-ink: #111313;
+  --opb-text: #252b2c;
+  --opb-muted: #667173;
+  --opb-paper: #f5f6f3;
+  --opb-card: #ffffff;
+  --opb-line: #d9dedc;
+  --opb-soft: #eaf1f1;
+  --opb-shadow: 0 12px 34px rgba(17, 19, 19, .065);
+}
+
+html { background: var(--opb-paper); }
+body {
+  background: var(--opb-paper) !important;
+  color: var(--opb-text) !important;
+  letter-spacing: -.006em;
+}
+::selection { background: var(--opb-blue); color: var(--opb-ink); }
+
+/* Navegação */
+body > nav {
+  background: var(--opb-ink) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 12px 0 32px rgba(17,19,19,.08) !important;
+}
+body > nav > div:first-child {
+  border-color: rgba(255,255,255,.10) !important;
+  background: var(--opb-ink);
+}
+body > nav > div:first-child img {
+  width: 46px !important;
+  height: 56px !important;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,.25));
+}
+body > nav > div:first-child h1 {
+  color: #fff !important;
+  font-size: .88rem !important;
+  line-height: 1.18 !important;
+  letter-spacing: -.02em;
+  font-weight: 650 !important;
+}
+body > nav .nav-link {
+  color: #c9d0d0 !important;
+  background: transparent !important;
+  border: 1px solid transparent;
+  border-right: 0 !important;
+  border-radius: 10px !important;
+  font-weight: 450;
+  transition: color .16s ease, background-color .16s ease, transform .16s ease, border-color .16s ease;
+}
+body > nav .nav-link:hover {
+  color: #fff !important;
+  background: rgba(255,255,255,.07) !important;
+  transform: translateX(2px);
+}
+body > nav .nav-link.active {
+  color: var(--opb-ink) !important;
+  background: var(--opb-blue) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.20);
+}
+body > nav .nav-link.active i,
+body > nav .nav-link.active span { color: var(--opb-ink) !important; }
+body > nav [data-target="mapa"],
+body > nav [data-target="mapa"] i,
+body > nav [data-target="mapa"] span { color: inherit !important; background: transparent !important; }
+body > nav [data-target="mapa"].active,
+body > nav [data-target="mapa"].active i,
+body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; background: var(--opb-blue) !important; }
+body > nav [data-target="inscreva-se"] {
+  background: rgba(93,154,169,.16) !important;
+  color: #d7ecef !important;
+  border-color: rgba(93,154,169,.25) !important;
+}
+body > nav [data-target="inscreva-se"]:hover { background: rgba(93,154,169,.27) !important; }
+body > nav [data-target="inscreva-se"].active { background: var(--opb-blue) !important; color: var(--opb-ink) !important; }
+body > nav .uppercase.tracking-wider {
+  color: #758183 !important;
+  letter-spacing: .14em !important;
+  font-size: .64rem !important;
+  font-weight: 700 !important;
+}
+body > nav > div:last-child {
+  color: #6f7a7b !important;
+  border-color: rgba(255,255,255,.09) !important;
+}
+
+/* Área de leitura */
+#main-content { background: var(--opb-paper) !important; }
+.section-content:not(#mapa) { padding-top: clamp(1.75rem, 4vw, 3.25rem) !important; padding-bottom: 4rem !important; }
+.section-content > h2 {
+  color: var(--opb-ink) !important;
+  font-size: clamp(1.9rem, 3.1vw, 2.45rem) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -.035em !important;
+  font-weight: 720 !important;
+}
+.section-content > h2 + p {
+  color: var(--opb-muted) !important;
+  border-bottom-color: var(--opb-line) !important;
+  line-height: 1.65 !important;
+}
+.section-content p { line-height: 1.7; }
+.section-content a:not(.nav-link) { text-underline-offset: 3px; }
+.section-content a.text-sky-700,
+.section-content a.text-blue-700,
+.section-content a.text-indigo-700 { color: var(--opb-blue-dark) !important; }
+.section-content .bg-white.rounded-xl,
+.section-content details.bg-white {
+  border-color: var(--opb-line) !important;
+  box-shadow: var(--opb-shadow) !important;
+}
+.section-content details { overflow: clip; }
+.section-content details > summary { transition: background-color .15s ease; }
+.section-content details > summary:hover { background: #f8faf9; }
+.section-content details[open] { border-color: rgba(93,154,169,.65) !important; }
+.section-content details[open] > summary { background: var(--opb-soft); }
+.section-content .border-slate-100,
+.section-content .border-slate-200,
+.section-content .border-slate-300 { border-color: var(--opb-line) !important; }
+
+/* Home */
+#home { max-width: 72rem !important; }
+#home > div:first-child {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 390px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: min(38%, 25rem) !important;
+  color: var(--opb-ink) !important;
+  background-color: var(--opb-blue) !important;
+  background-image:
+    radial-gradient(circle at 108% -18%, var(--opb-ink) 0 31%, transparent 31.4%),
+    radial-gradient(circle at -8% 122%, rgba(17,19,19,.94) 0 23%, transparent 23.4%) !important;
+  border: 1px solid rgba(17,19,19,.13);
+  border-radius: 24px !important;
+  box-shadow: 0 22px 58px rgba(17,19,19,.13) !important;
+}
+#home > div:first-child::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: 3.5%;
+  width: min(29%, 265px);
+  aspect-ratio: 2863 / 3508;
+  transform: translateY(-50%);
+  background: url("favicon-ouvidorias.png") center / contain no-repeat;
+  opacity: .98;
+  filter: drop-shadow(0 12px 20px rgba(17,19,19,.11));
+}
+#home > div:first-child h2 {
+  color: var(--opb-ink) !important;
+  font-size: clamp(2.35rem, 5vw, 4.15rem) !important;
+  line-height: .98 !important;
+  letter-spacing: -.055em !important;
+  font-weight: 760 !important;
+  max-width: 700px;
+}
+#home > div:first-child p {
+  color: #17343a !important;
+  max-width: 640px !important;
+  font-size: clamp(1rem, 1.7vw, 1.16rem) !important;
+  line-height: 1.6 !important;
+}
+#home > div:first-child button {
+  border-radius: 999px !important;
+  min-height: 46px;
+  padding-inline: 1.25rem !important;
+  box-shadow: none !important;
+}
+#home > div:first-child button:first-child {
+  background: var(--opb-ink) !important;
+  color: #fff !important;
+  border: 1px solid var(--opb-ink) !important;
+}
+#home > div:first-child button:first-child:hover { background: #2b3030 !important; }
+#home > div:first-child button:last-child {
+  background: rgba(255,255,255,.16) !important;
+  color: var(--opb-ink) !important;
+  border-color: rgba(17,19,19,.55) !important;
+}
+#home > div:first-child button:last-child:hover { background: rgba(255,255,255,.31) !important; }
+#home > .grid > div {
+  position: relative;
+  border: 1px solid var(--opb-line) !important;
+  border-top: 3px solid var(--opb-blue) !important;
+  border-radius: 17px !important;
+  box-shadow: 0 9px 28px rgba(17,19,19,.055) !important;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+#home > .grid > div:hover { transform: translateY(-3px); box-shadow: 0 15px 38px rgba(17,19,19,.09) !important; }
+#home > .grid > div > div:first-child {
+  background: var(--opb-soft) !important;
+  color: var(--opb-blue-dark) !important;
+  border: 1px solid rgba(93,154,169,.26);
+  border-radius: 12px !important;
+}
+#home > .grid h3 { color: var(--opb-ink); letter-spacing: -.018em; }
+#home > .grid p { color: var(--opb-muted) !important; }
+
+/* Destaques editoriais e botões */
+[style*="background-color:#4B9DAB"],
+[style*="background-color: #4B9DAB"] { background-color: var(--opb-blue-dark) !important; }
+.section-content a[class*="text-white"],
+.section-content button[class*="text-white"] { text-decoration: none; }
+#noticias .bg-white > div[style*="background-color"] {
+  background: var(--opb-ink) !important;
+  color: #fff !important;
+  letter-spacing: .13em !important;
+}
+#noticias span.bg-slate-100 {
+  background: var(--opb-soft) !important;
+  border-color: rgba(93,154,169,.24) !important;
+  color: #3e5053 !important;
+}
+
+/* Fundamentos, Modelos e acervo */
+#fundamentos .grid > div,
+#modelos .bg-white,
+#entidades .bg-white,
+#documentos .bg-white,
+#legislacao .bg-white,
+#bibliografia .bg-white,
+#multimidia .bg-white { border-color: var(--opb-line) !important; }
+#fundamentos .grid > div { border-radius: 16px !important; }
+#fundamentos .grid > div i { color: var(--opb-blue-dark) !important; }
+#modelos table { border-color: var(--opb-line) !important; }
+#modelos th { background: var(--opb-ink) !important; color: #fff !important; }
+#modelos tr:nth-child(even) td { background: #f8faf9; }
+
+/* Mapa */
+#mapa { background: var(--opb-paper) !important; }
+#mapa > div:first-child { border-color: var(--opb-line) !important; }
+#mapa .actbtn {
+  border-color: var(--opb-line) !important;
+  background: #f8faf9 !important;
+  border-radius: 12px !important;
+}
+#mapa .actbtn:hover { border-color: rgba(93,154,169,.65) !important; background: #fff !important; }
+#mapa .actbtn.on,
+#mapa .tabbtn.active { background: var(--opb-blue-dark) !important; border-color: var(--opb-blue-dark) !important; color: #fff !important; }
+#mapa .actbtn.on span, #mapa .actbtn.on p, #mapa .actbtn.on i { color: #fff !important; }
+#mapa .tabbtn { border-radius: 999px !important; }
+#mapa h2, #mapa h3 { color: var(--opb-ink) !important; }
+
+/* Inscreva-se */
+#inscreva-se > div:first-child {
+  position: relative;
+  overflow: hidden;
+  background: var(--opb-ink) !important;
+  border: 1px solid #252a2a;
+  border-radius: 22px !important;
+  box-shadow: 0 18px 42px rgba(17,19,19,.11) !important;
+}
+#inscreva-se > div:first-child::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -55px;
+  top: -65px;
+  border-radius: 50%;
+  background: var(--opb-blue);
+  opacity: .75;
+}
+#inscreva-se > div:first-child h2 { color: #fff !important; position: relative; z-index: 1; }
+#inscreva-se > div:first-child p { color: #c7dfe3 !important; position: relative; z-index: 1; }
+
+/* Quem somos */
+#quem-somos { max-width: 58rem !important; }
+#quem-somos img { filter: saturate(.9); }
+
+/* Interação e acessibilidade */
+button:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 3px solid rgba(93,154,169,.65) !important;
+  outline-offset: 3px !important;
+}
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent !important; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #aeb8b7 !important; }
+body > nav .custom-scrollbar::-webkit-scrollbar-thumb { background: #455052 !important; }
+
+@media (min-width: 768px) {
+  body > nav { width: 17.5rem !important; }
+  body > nav .nav-link { padding-top: .66rem !important; padding-bottom: .66rem !important; }
+}
+@media (max-width: 1024px) {
+  #home > div:first-child { padding-right: 34% !important; }
+  #home > div:first-child::after { width: 27%; right: 2.5%; }
+}
+@media (max-width: 767px) {
+  body > nav {
+    box-shadow: 0 8px 24px rgba(17,19,19,.13) !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+  }
+  body > nav > div:first-child { padding: .65rem 1rem !important; }
+  body > nav > div:first-child img { width: 34px !important; height: 42px !important; }
+  body > nav > div:first-child h1 { font-size: .8rem !important; }
+  body > nav .nav-link { border-radius: 999px !important; padding: .62rem .8rem !important; }
+  body > nav .nav-link:hover { transform: none; }
+  body > nav .nav-link.active { border-bottom: 0 !important; }
+  .section-content:not(#mapa) { padding-top: 1.45rem !important; padding-bottom: 3rem !important; }
+  #home > div:first-child {
+    min-height: 430px;
+    padding: 2rem 1.6rem 8.5rem !important;
+    justify-content: flex-start;
+    background-image:
+      radial-gradient(circle at 112% -14%, var(--opb-ink) 0 24%, transparent 24.4%),
+      radial-gradient(circle at -12% 118%, rgba(17,19,19,.94) 0 18%, transparent 18.4%) !important;
+  }
+  #home > div:first-child::after {
+    width: 108px;
+    top: auto;
+    bottom: 10px;
+    right: 22px;
+    transform: none;
+  }
+  #home > div:first-child h2 { font-size: clamp(2.25rem, 10vw, 3.2rem) !important; max-width: 100%; }
+  #home > div:first-child p { font-size: .98rem !important; max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
