@@ -335,3 +335,55 @@ body > nav .custom-scrollbar::-webkit-scrollbar-thumb { background: #455052 !imp
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* PRIMEIRA REVISÃO — correções solicitadas */
+/* Hero: a massa preta inferior passa para a direita e não invade a palavra “Nacional”. */
+#home > div:first-child {
+  background-image:
+    radial-gradient(circle at 108% -18%, var(--opb-ink) 0 31%, transparent 31.4%),
+    radial-gradient(circle at 114% 128%, rgba(17,19,19,.94) 0 23%, transparent 23.4%) !important;
+}
+#home > div:first-child h2,
+#home > div:first-child p,
+#home > div:first-child > .flex { position: relative; z-index: 2; }
+
+/* Mapa Interativo no menu: mesmo contraste e peso dos demais itens quando inativo. */
+body > nav [data-target="mapa"] {
+  color: #c9d0d0 !important;
+  background: transparent !important;
+}
+body > nav [data-target="mapa"] i,
+body > nav [data-target="mapa"] span { color: inherit !important; background: transparent !important; }
+body > nav [data-target="mapa"]:hover {
+  color: #fff !important;
+  background: rgba(255,255,255,.07) !important;
+}
+body > nav [data-target="mapa"].active {
+  color: var(--opb-ink) !important;
+  background: var(--opb-blue) !important;
+}
+body > nav [data-target="mapa"].active i,
+body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; background: transparent !important; }
+
+/* Os cards da home não simulam mais um link enquanto ainda não forem links reais. */
+#home > .grid > div { transition: box-shadow .16s ease !important; cursor: default; }
+#home > .grid > div:hover { transform: none !important; box-shadow: 0 9px 28px rgba(17,19,19,.055) !important; }
+
+/* Notícias e cursos: textos menores sobem um degrau de legibilidade. */
+#noticias .text-sm { font-size: .96rem !important; line-height: 1.62 !important; }
+#noticias details .text-xs,
+#noticias p.text-xs,
+#noticias ul.text-xs { font-size: .82rem !important; line-height: 1.58 !important; }
+#noticias span.text-\[11px\] { font-size: .72rem !important; }
+
+@media (max-width: 767px) {
+  #home > div:first-child {
+    background-image:
+      radial-gradient(circle at 112% -14%, var(--opb-ink) 0 24%, transparent 24.4%),
+      radial-gradient(circle at 116% 122%, rgba(17,19,19,.92) 0 18%, transparent 18.4%) !important;
+  }
+  #noticias .text-sm { font-size: .94rem !important; }
+  #noticias details .text-xs,
+  #noticias p.text-xs,
+  #noticias ul.text-xs { font-size: .80rem !important; }
+}
