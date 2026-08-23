@@ -1,0 +1,90 @@
+name: Aplicar identidade visual (branch visual-maceio)
+
+on:
+  push:
+    branches: [visual-maceio]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout da branch
+        uses: actions/checkout@v4
+        with:
+          ref: visual-maceio
+
+      - name: Aplicar camada visual ao index sem alterar conteúdo
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          # A folha visual fica separada da estrutura e do conteúdo do portal.
+          if 'href="visual-maceio.css"' not in s:
+              marker = '    </style>\n</head>'
+              if marker not in s:
+                  raise SystemExit('Bloco de estilo/head esperado não encontrado.')
+              s = s.replace(
+                  marker,
+                  '    </style>\n    <link rel="stylesheet" href="visual-maceio.css">\n    <meta name="theme-color" content="#111313">\n</head>',
+                  1,
+              )
+
+          # O cabeçalho passa a usar o arquivo de marca já existente na raiz,
+          # eliminando apenas a cópia base64 redundante desse mesmo símbolo.
+          pattern = (
+              r'(<nav[^>]*>\s*<div[^>]*>\s*)'
+              r'<img src="data:image/png;base64,[^"]+" '
+              r'alt="Ouvidorias Públicas Brasileiras" '
+              r'class="w-11 h-11 object-contain shrink-0">'
+          )
+          s, n = re.subn(
+              pattern,
+              r'\1<img src="favicon-ouvidorias.png" alt="Ouvidorias Públicas Brasileiras" class="w-11 h-11 object-contain shrink-0">',
+              s,
+              count=1,
+              flags=re.S,
+          )
+          if n not in (0, 1):
+              raise SystemExit(f'Número inesperado de substituições do logo: {n}')
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Validar preservação básica da estrutura
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s = Path('index.html').read_text(encoding='utf-8')
+          expected = [
+              'id="home"', 'id="noticias"', 'id="historia"', 'id="ouvidor-geral"',
+              'id="fundamentos"', 'id="modelos"', 'id="legislacao"', 'id="documentos"',
+              'id="multimidia"', 'id="entidades"', 'id="bibliografia"', 'id="mapa"',
+              'id="inscreva-se"', 'id="quem-somos"',
+              'href="visual-maceio.css"',
+              'src="favicon-ouvidorias.png" alt="Ouvidorias Públicas Brasileiras"',
+          ]
+          missing = [x for x in expected if x not in s]
+          if missing:
+              raise SystemExit('Validação falhou; ausentes: ' + ', '.join(missing))
+          print('Estrutura básica preservada; identidade visual vinculada.')
+          PY
+
+      - name: Commit da versão visual
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Nada a alterar."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Aplica identidade visual ao portal"
+          git push origin visual-maceio
