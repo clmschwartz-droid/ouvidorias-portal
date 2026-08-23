@@ -55,7 +55,115 @@ jobs:
           if n not in (0, 1):
               raise SystemExit(f'Número inesperado de substituições do logo: {n}')
 
+          # Os três cards da home passam a ter função real de navegação.
+          # Não alteramos nenhum texto; apenas acrescentamos comportamento e acessibilidade.
+          script_id = 'visual-maceio-home-cards'
+          if script_id not in s:
+              script = r'''
+    <script id="visual-maceio-home-cards">
+      document.addEventListener('DOMContentLoaded', function () {
+        const cards = Array.from(document.querySelectorAll('#home > .grid > div'));
+        const destinations = [
+          { target: 'mapa', label: 'Acessar o Mapa Interativo' },
+          { target: 'bibliografia', label: 'Consultar o Acervo Histórico e Bibliográfico' },
+          { target: 'fundamentos', label: 'Conhecer Origens, Fundamentos e Modelos' }
+        ];
+        cards.slice(0, 3).forEach(function (card, index) {
+          const destination = destinations[index];
+          if (!destination) return;
+          card.classList.add('clickable-home-card');
+          card.setAttribute('role', 'button');
+          card.setAttribute('tabindex', '0');
+          card.setAttribute('aria-label', destination.label);
+          const openDestination = function () { navigate(destination.target); };
+          card.addEventListener('click', openDestination);
+          card.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              openDestination();
+            }
+          });
+        });
+      });
+    </script>
+'''
+              if '</body>' not in s:
+                  raise SystemExit('Fechamento de body não encontrado.')
+              s = s.replace('</body>', script + '\n</body>', 1)
+
           p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Aplicar ajustes da primeira revisão visual
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('visual-maceio.css')
+          s = p.read_text(encoding='utf-8')
+          marker = '/* REVISAO VISUAL 2026-08-23 */'
+          if marker not in s:
+              s += r'''
+
+/* REVISAO VISUAL 2026-08-23 */
+/* 1. Hero: mantém as massas gráficas fora da área de leitura. */
+#home > div:first-child {
+  background-image:
+    radial-gradient(circle at 108% -18%, var(--opb-ink) 0 31%, transparent 31.4%),
+    radial-gradient(circle at 112% 126%, rgba(17,19,19,.92) 0 23%, transparent 23.4%) !important;
+}
+#home > div:first-child h2,
+#home > div:first-child p,
+#home > div:first-child > .flex {
+  position: relative;
+  z-index: 2;
+}
+
+/* 2. Mapa no menu: mesmo peso visual dos demais itens quando inativo. */
+body > nav [data-target="mapa"] {
+  color: #c9d0d0 !important;
+  background: transparent !important;
+}
+body > nav [data-target="mapa"] i,
+body > nav [data-target="mapa"] span { color: inherit !important; background: transparent !important; }
+body > nav [data-target="mapa"]:hover {
+  color: #fff !important;
+  background: rgba(255,255,255,.07) !important;
+}
+body > nav [data-target="mapa"].active {
+  color: var(--opb-ink) !important;
+  background: var(--opb-blue) !important;
+}
+body > nav [data-target="mapa"].active i,
+body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; background: transparent !important; }
+
+/* 3. Cards da home: o movimento agora corresponde a uma ação real de navegação. */
+#home .clickable-home-card { cursor: pointer; }
+#home .clickable-home-card:focus-visible {
+  outline: 3px solid rgba(49,95,105,.55) !important;
+  outline-offset: 4px !important;
+}
+
+/* 4. Notícias e cursos: corpo e metadados um pouco maiores para leitura confortável. */
+#noticias .text-sm { font-size: .96rem !important; line-height: 1.62 !important; }
+#noticias details .text-xs,
+#noticias p.text-xs,
+#noticias ul.text-xs { font-size: .82rem !important; line-height: 1.58 !important; }
+#noticias span.text-\[11px\] { font-size: .72rem !important; }
+
+@media (max-width: 767px) {
+  #home > div:first-child {
+    background-image:
+      radial-gradient(circle at 112% -14%, var(--opb-ink) 0 24%, transparent 24.4%),
+      radial-gradient(circle at 116% 122%, rgba(17,19,19,.92) 0 18%, transparent 18.4%) !important;
+  }
+  #noticias .text-sm { font-size: .94rem !important; }
+  #noticias details .text-xs,
+  #noticias p.text-xs,
+  #noticias ul.text-xs { font-size: .80rem !important; }
+}
+'''
+              p.write_text(s, encoding='utf-8')
           PY
 
       - name: Validar preservação básica da estrutura
@@ -63,6 +171,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           s = Path('index.html').read_text(encoding='utf-8')
+          css = Path('visual-maceio.css').read_text(encoding='utf-8')
           expected = [
               'id="home"', 'id="noticias"', 'id="historia"', 'id="ouvidor-geral"',
               'id="fundamentos"', 'id="modelos"', 'id="legislacao"', 'id="documentos"',
@@ -70,21 +179,24 @@ jobs:
               'id="inscreva-se"', 'id="quem-somos"',
               'href="visual-maceio.css"',
               'src="favicon-ouvidorias.png" alt="Ouvidorias Públicas Brasileiras"',
+              'id="visual-maceio-home-cards"',
           ]
           missing = [x for x in expected if x not in s]
           if missing:
               raise SystemExit('Validação falhou; ausentes: ' + ', '.join(missing))
-          print('Estrutura básica preservada; identidade visual vinculada.')
+          if '/* REVISAO VISUAL 2026-08-23 */' not in css:
+              raise SystemExit('Ajustes da revisão visual não foram aplicados ao CSS.')
+          print('Estrutura básica preservada; revisão visual aplicada.')
           PY
 
       - name: Commit da versão visual
         run: |
-          if git diff --quiet -- index.html; then
+          if git diff --quiet -- index.html visual-maceio.css; then
             echo "Nada a alterar."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          git commit -m "Aplica identidade visual ao portal"
+          git add index.html visual-maceio.css
+          git commit -m "Ajusta primeira revisão visual do portal"
           git push origin visual-maceio
