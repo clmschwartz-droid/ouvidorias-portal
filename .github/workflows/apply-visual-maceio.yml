@@ -1,4 +1,4 @@
-name: Aplicar identidade visual (branch visual-maceio)
+name: Aplicar ajuste responsivo do mapa
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  apply:
+  apply-map-mobile:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout da branch
@@ -17,186 +17,230 @@ jobs:
         with:
           ref: visual-maceio
 
-      - name: Aplicar camada visual ao index sem alterar conteúdo
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-
-          p = Path('index.html')
-          s = p.read_text(encoding='utf-8')
-
-          # A folha visual fica separada da estrutura e do conteúdo do portal.
-          if 'href="visual-maceio.css"' not in s:
-              marker = '    </style>\n</head>'
-              if marker not in s:
-                  raise SystemExit('Bloco de estilo/head esperado não encontrado.')
-              s = s.replace(
-                  marker,
-                  '    </style>\n    <link rel="stylesheet" href="visual-maceio.css">\n    <meta name="theme-color" content="#111313">\n</head>',
-                  1,
-              )
-
-          # O cabeçalho passa a usar o arquivo de marca já existente na raiz,
-          # eliminando apenas a cópia base64 redundante desse mesmo símbolo.
-          pattern = (
-              r'(<nav[^>]*>\s*<div[^>]*>\s*)'
-              r'<img src="data:image/png;base64,[^"]+" '
-              r'alt="Ouvidorias Públicas Brasileiras" '
-              r'class="w-11 h-11 object-contain shrink-0">'
-          )
-          s, n = re.subn(
-              pattern,
-              r'\1<img src="favicon-ouvidorias.png" alt="Ouvidorias Públicas Brasileiras" class="w-11 h-11 object-contain shrink-0">',
-              s,
-              count=1,
-              flags=re.S,
-          )
-          if n not in (0, 1):
-              raise SystemExit(f'Número inesperado de substituições do logo: {n}')
-
-          # Os três cards da home passam a ter função real de navegação.
-          # Não alteramos nenhum texto; apenas acrescentamos comportamento e acessibilidade.
-          script_id = 'visual-maceio-home-cards'
-          if script_id not in s:
-              script = r'''
-    <script id="visual-maceio-home-cards">
-      document.addEventListener('DOMContentLoaded', function () {
-        const cards = Array.from(document.querySelectorAll('#home > .grid > div'));
-        const destinations = [
-          { target: 'mapa', label: 'Acessar o Mapa Interativo' },
-          { target: 'bibliografia', label: 'Consultar o Acervo Histórico e Bibliográfico' },
-          { target: 'fundamentos', label: 'Conhecer Origens, Fundamentos e Modelos' }
-        ];
-        cards.slice(0, 3).forEach(function (card, index) {
-          const destination = destinations[index];
-          if (!destination) return;
-          card.classList.add('clickable-home-card');
-          card.setAttribute('role', 'button');
-          card.setAttribute('tabindex', '0');
-          card.setAttribute('aria-label', destination.label);
-          const openDestination = function () { navigate(destination.target); };
-          card.addEventListener('click', openDestination);
-          card.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              openDestination();
-            }
-          });
-        });
-      });
-    </script>
-'''
-              if '</body>' not in s:
-                  raise SystemExit('Fechamento de body não encontrado.')
-              s = s.replace('</body>', script + '\n</body>', 1)
-
-          p.write_text(s, encoding='utf-8')
-          PY
-
-      - name: Aplicar ajustes da primeira revisão visual
+      - name: Aplicar experiência compacta do mapa
         run: |
           python - <<'PY'
           from pathlib import Path
 
           p = Path('visual-maceio.css')
           s = p.read_text(encoding='utf-8')
-          marker = '/* REVISAO VISUAL 2026-08-23 */'
-          if marker not in s:
-              s += r'''
+          marker = '/* MAPA MOBILE — bottom sheet 2026-08-23 */'
+          if marker in s:
+              print('Ajuste já aplicado.')
+              raise SystemExit(0)
 
-/* REVISAO VISUAL 2026-08-23 */
-/* 1. Hero: mantém as massas gráficas fora da área de leitura. */
-#home > div:first-child {
-  background-image:
-    radial-gradient(circle at 108% -18%, var(--opb-ink) 0 31%, transparent 31.4%),
-    radial-gradient(circle at 112% 126%, rgba(17,19,19,.92) 0 23%, transparent 23.4%) !important;
-}
-#home > div:first-child h2,
-#home > div:first-child p,
-#home > div:first-child > .flex {
-  position: relative;
-  z-index: 2;
-}
+          s += r'''
 
-/* 2. Mapa no menu: mesmo peso visual dos demais itens quando inativo. */
-body > nav [data-target="mapa"] {
-  color: #c9d0d0 !important;
-  background: transparent !important;
-}
-body > nav [data-target="mapa"] i,
-body > nav [data-target="mapa"] span { color: inherit !important; background: transparent !important; }
-body > nav [data-target="mapa"]:hover {
-  color: #fff !important;
-  background: rgba(255,255,255,.07) !important;
-}
-body > nav [data-target="mapa"].active {
-  color: var(--opb-ink) !important;
-  background: var(--opb-blue) !important;
-}
-body > nav [data-target="mapa"].active i,
-body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; background: transparent !important; }
-
-/* 3. Cards da home: o movimento agora corresponde a uma ação real de navegação. */
-#home .clickable-home-card { cursor: pointer; }
-#home .clickable-home-card:focus-visible {
-  outline: 3px solid rgba(49,95,105,.55) !important;
-  outline-offset: 4px !important;
-}
-
-/* 4. Notícias e cursos: corpo e metadados um pouco maiores para leitura confortável. */
-#noticias .text-sm { font-size: .96rem !important; line-height: 1.62 !important; }
-#noticias details .text-xs,
-#noticias p.text-xs,
-#noticias ul.text-xs { font-size: .82rem !important; line-height: 1.58 !important; }
-#noticias span.text-\[11px\] { font-size: .72rem !important; }
-
-@media (max-width: 767px) {
-  #home > div:first-child {
-    background-image:
-      radial-gradient(circle at 112% -14%, var(--opb-ink) 0 24%, transparent 24.4%),
-      radial-gradient(circle at 116% 122%, rgba(17,19,19,.92) 0 18%, transparent 18.4%) !important;
+/* MAPA MOBILE — bottom sheet 2026-08-23 */
+/* Em telas compactas, o mapa continua visível e os dados do estado viram uma gaveta rolável. */
+@media (max-width: 767px), (max-height: 620px) and (max-width: 1100px) {
+  #mapa {
+    height: auto !important;
+    min-height: 100% !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+    position: relative;
+    padding-bottom: 1rem;
   }
-  #noticias .text-sm { font-size: .94rem !important; }
-  #noticias details .text-xs,
-  #noticias p.text-xs,
-  #noticias ul.text-xs { font-size: .80rem !important; }
+
+  #mapa > div:first-child {
+    width: 100% !important;
+    flex: none !important;
+    padding: .9rem !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--opb-line) !important;
+  }
+
+  /* Atalhos superiores em uma faixa horizontal, sem roubar altura do mapa. */
+  #mapa > div:first-child > div:first-child {
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: .5rem !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    margin-bottom: .75rem !important;
+    padding: 0 0 .25rem 0;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  #mapa > div:first-child > div:first-child::-webkit-scrollbar { display: none; }
+  #mapa > div:first-child > div:first-child .actbtn {
+    flex: 0 0 min(78vw, 300px) !important;
+    scroll-snap-align: start;
+    min-height: 58px;
+  }
+
+  #mapa > div:first-child > div:nth-child(2) { margin-bottom: .55rem !important; }
+  #mapa > div:first-child > div:nth-child(2) h2 { font-size: 1rem !important; }
+  #mapa > div:first-child > div:nth-child(2) p { font-size: .72rem !important; }
+
+  #mapa-canvas {
+    flex: none !important;
+    width: 100% !important;
+    min-height: 270px !important;
+    height: clamp(270px, 41dvh, 330px) !important;
+    max-height: 330px;
+  }
+
+  #mapa > div:nth-child(2) {
+    width: 100% !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+
+  /* A instrução inicial deixa de ocupar uma segunda tela inteira. */
+  #mapa-vazio { display: none !important; }
+
+  /* Estado selecionado: gaveta inferior independente, com rolagem própria. */
+  #mapa-painel {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    height: min(64dvh, 560px) !important;
+    max-height: calc(100dvh - 86px) !important;
+    z-index: 40;
+    background: var(--opb-paper) !important;
+    border: 1px solid var(--opb-line);
+    border-bottom: 0;
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -18px 52px rgba(17,19,19,.20);
+    overflow: hidden !important;
+  }
+  #mapa-painel.hidden { display: none !important; }
+  #mapa-painel.flex { display: flex !important; }
+
+  #mapa-painel > div:first-child {
+    padding: .9rem 1rem .75rem !important;
+    border-radius: 22px 22px 0 0;
+    flex: none;
+  }
+  #mapa-painel > div:first-child::before {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 4px;
+    border-radius: 999px;
+    background: #b9c2c1;
+    margin: -.25rem auto .65rem;
+  }
+  #mapa-painel #mp_estado { font-size: 1rem !important; }
+  #mapa-painel #mp_meta { font-size: .68rem !important; line-height: 1.35; }
+  #mapa-painel .tabbtn {
+    min-height: 40px;
+    padding-left: .35rem;
+    padding-right: .35rem;
+    line-height: 1.15;
+  }
+  #mapa-conteudo {
+    padding: .85rem !important;
+    padding-bottom: calc(.9rem + env(safe-area-inset-bottom)) !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Celular deitado: mantém a lógica móvel, evitando que o breakpoint por largura o transforme em desktop. */
+@media (orientation: landscape) and (max-height: 620px) and (max-width: 1100px) {
+  body {
+    flex-direction: column !important;
+  }
+  body > nav {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: none !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+    box-shadow: 0 8px 24px rgba(17,19,19,.13) !important;
+  }
+  body > nav > div:first-child,
+  body > nav > div:last-child { display: none !important; }
+  body > nav > div:nth-child(2) {
+    flex: none !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: .35rem .5rem !important;
+    gap: .3rem !important;
+    scrollbar-width: none;
+  }
+  body > nav > div:nth-child(2)::-webkit-scrollbar { display: none; }
+  body > nav > div:nth-child(2) > div { display: none !important; }
+  body > nav .nav-link {
+    flex: 0 0 auto !important;
+    border-radius: 999px !important;
+    padding: .5rem .7rem !important;
+    min-height: 38px;
+    transform: none !important;
+  }
+  body > nav .nav-link span { display: inline !important; font-size: .72rem; }
+
+  #main-content { min-height: 0 !important; }
+  #mapa { min-height: 100% !important; }
+  #mapa > div:first-child { padding: .55rem .75rem .7rem !important; }
+  #mapa > div:first-child > div:first-child {
+    margin-bottom: .35rem !important;
+  }
+  #mapa > div:first-child > div:first-child .actbtn {
+    flex-basis: 220px !important;
+    min-height: 48px;
+    padding-top: .45rem !important;
+    padding-bottom: .45rem !important;
+  }
+  #mapa > div:first-child > div:nth-child(2) { margin-bottom: .25rem !important; }
+  #mapa-canvas {
+    min-height: 190px !important;
+    height: 49dvh !important;
+    max-height: 240px !important;
+  }
+  #mapa > div:first-child > p:last-child { margin-top: .15rem !important; }
+  #mapa-painel {
+    height: 58dvh !important;
+    max-height: 58dvh !important;
+    border-radius: 18px 18px 0 0;
+  }
+  #mapa-painel > div:first-child {
+    padding: .55rem .9rem .5rem !important;
+    border-radius: 18px 18px 0 0;
+  }
+  #mapa-painel > div:first-child::before { margin-bottom: .35rem; }
+  #mapa-painel .tabbtn { min-height: 34px; padding-top: .3rem; padding-bottom: .3rem; }
+  #mapa-conteudo { padding: .65rem .8rem !important; }
 }
 '''
-              p.write_text(s, encoding='utf-8')
+          p.write_text(s, encoding='utf-8')
+          print('Ajuste responsivo do mapa aplicado.')
           PY
 
-      - name: Validar preservação básica da estrutura
+      - name: Validar
         run: |
           python - <<'PY'
           from pathlib import Path
-          s = Path('index.html').read_text(encoding='utf-8')
-          css = Path('visual-maceio.css').read_text(encoding='utf-8')
-          expected = [
-              'id="home"', 'id="noticias"', 'id="historia"', 'id="ouvidor-geral"',
-              'id="fundamentos"', 'id="modelos"', 'id="legislacao"', 'id="documentos"',
-              'id="multimidia"', 'id="entidades"', 'id="bibliografia"', 'id="mapa"',
-              'id="inscreva-se"', 'id="quem-somos"',
-              'href="visual-maceio.css"',
-              'src="favicon-ouvidorias.png" alt="Ouvidorias Públicas Brasileiras"',
-              'id="visual-maceio-home-cards"',
+          s = Path('visual-maceio.css').read_text(encoding='utf-8')
+          required = [
+            '/* MAPA MOBILE — bottom sheet 2026-08-23 */',
+            '#mapa-painel',
+            'height: min(64dvh, 560px)',
+            'orientation: landscape',
           ]
-          missing = [x for x in expected if x not in s]
+          missing = [x for x in required if x not in s]
           if missing:
-              raise SystemExit('Validação falhou; ausentes: ' + ', '.join(missing))
-          if '/* REVISAO VISUAL 2026-08-23 */' not in css:
-              raise SystemExit('Ajustes da revisão visual não foram aplicados ao CSS.')
-          print('Estrutura básica preservada; revisão visual aplicada.')
+              raise SystemExit('Validação falhou: ' + ', '.join(missing))
+          print('CSS móvel validado.')
           PY
 
-      - name: Commit da versão visual
+      - name: Commit
         run: |
-          if git diff --quiet -- index.html visual-maceio.css; then
+          if git diff --quiet -- visual-maceio.css; then
             echo "Nada a alterar."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html visual-maceio.css
-          git commit -m "Ajusta primeira revisão visual do portal"
+          git add visual-maceio.css
+          git commit -m "Melhora navegação do mapa em celulares"
           git push origin visual-maceio
