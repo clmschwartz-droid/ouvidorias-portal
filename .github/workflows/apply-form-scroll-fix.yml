@@ -1,0 +1,48 @@
+name: Aplicar correção de rolagem do formulário
+
+on:
+  push:
+    branches: [visual-maceio]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: visual-maceio
+
+      - name: Inserir script da correção no index
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          tag = '    <script src="form-scroll-fix.js"></script>\n'
+          if tag not in s:
+              if '</body>' not in s:
+                  raise SystemExit('Fechamento </body> não encontrado')
+              s = s.replace('</body>', tag + '</body>', 1)
+              p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Validar
+        run: |
+          grep -q 'src="form-scroll-fix.js"' index.html
+          test -f form-scroll-fix.js
+
+      - name: Commit
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Nada a alterar."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Ativa correção de rolagem do formulário"
+          git push origin visual-maceio
