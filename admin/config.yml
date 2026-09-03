@@ -4,6 +4,8 @@ backend:
   # Durante os testes, o CMS escreve somente na branch de trabalho.
   # Trocar para main imediatamente antes da publicação definitiva.
   branch: portal-definitivo
+  # O portal continua no GitHub Pages; o Netlify é usado apenas como ponte OAuth.
+  site_domain: ouvidorias-brasileiras-preview.netlify.app
 
 publish_mode: editorial_workflow
 locale: pt
