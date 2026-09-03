@@ -1,7 +1,9 @@
 backend:
   name: github
   repo: clmschwartz-droid/ouvidorias-portal
-  branch: main
+  # Durante os testes, o CMS escreve somente na branch de trabalho.
+  # Trocar para main imediatamente antes da publicação definitiva.
+  branch: portal-definitivo
 
 publish_mode: editorial_workflow
 locale: pt
