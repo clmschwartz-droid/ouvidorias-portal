@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "tipo": "Notícia",
+      "title": "Carta de Maceió: por um marco legal das ouvidorias públicas",
+      "date": "2026-08-28",
+      "subtitulo": "Documento aprovado ao final do 18º Seminário Nacional “Ouvidores & Ouvidorias” e do 8º Seminário Internacional “Ouvidores, Defensorías del Pueblo & Ombudsman”.",
+      "texto": "Reunidos em Maceió, 170 ouvidores e ouvidoras do Brasil, Argentina, Chile, Curaçau e Portugal aprovaram a Carta de Maceió, que propõe ao Congresso Nacional a construção de um marco legal nacional capaz de assegurar independência, garantias e poderes efetivos às Ouvidorias Públicas.",
+      "fonte": "Instituto Brasileiro Pró-Cidadania / Instituto Latinoamericano del Ombudsman – Defensorías del Pueblo (ILO)",
+      "local": "Maceió, Alagoas",
+      "link": "https://procidadania.org.br/noticia/carta-de-maceio-por-um-marco-legal-das-ouvidorias-publicas",
+      "link_label": "Ler a notícia dos organizadores",
+      "imagem": "noticias/banner-18-seminario-maceio.jpg",
+      "imagem_alt": "Arte do 18º Seminário Nacional Ouvidores & Ouvidorias, realizado em Maceió em agosto de 2026.",
+      "arquivo": "",
+      "arquivo_label": "Baixar a Carta de Maceió",
+      "destaque": true,
+      "substitui": "maceio-2026"
+    }
+  ]
+}
