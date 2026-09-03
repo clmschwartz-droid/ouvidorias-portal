@@ -1,0 +1,114 @@
+backend:
+  name: github
+  repo: clmschwartz-droid/ouvidorias-portal
+  branch: main
+
+publish_mode: editorial_workflow
+locale: pt
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: "noticias"
+    label: "Notícias e Cursos"
+    files:
+      - name: "itens"
+        label: "Itens publicados"
+        file: "conteudo/noticias.json"
+        format: "json"
+        fields:
+          - label: "Notícias, cursos e eventos"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Tipo", name: "tipo", widget: "select", options: ["Notícia", "Curso", "Evento"] }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Subtítulo ou linha fina", name: "subtitulo", widget: "string", required: false }
+              - { label: "Texto", name: "texto", widget: "text", required: false }
+              - { label: "Veículo ou organizador", name: "fonte", widget: "string", required: false }
+              - { label: "Local", name: "local", widget: "string", required: false }
+              - { label: "Link externo", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
+              - { label: "Texto do link externo", name: "link_label", widget: "string", required: false, default: "Acessar fonte" }
+              - label: "Imagem ou banner"
+                name: "imagem"
+                widget: "image"
+                required: false
+                media_folder: "noticias"
+                public_folder: "/noticias"
+              - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false }
+              - label: "PDF ou arquivo"
+                name: "arquivo"
+                widget: "file"
+                required: false
+                media_folder: "documentos"
+                public_folder: "/documentos"
+              - { label: "Texto do botão do arquivo", name: "arquivo_label", widget: "string", required: false, default: "Abrir documento" }
+              - { label: "Destaque", name: "destaque", widget: "boolean", required: false, default: false }
+              - { label: "Identificador técnico substituído", name: "substitui", widget: "hidden", required: false, default: "" }
+
+  - name: "documentos"
+    label: "Documentos"
+    files:
+      - name: "itens"
+        label: "Documentos do portal"
+        file: "conteudo/documentos.json"
+        format: "json"
+        fields:
+          - label: "Documentos"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Tipo", name: "tipo", widget: "string", required: false }
+              - { label: "Categoria", name: "categoria", widget: "select", options: ["Carta", "Documentos internacionais", "Documentos históricos", "Outro"], required: false }
+              - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+              - { label: "Descrição", name: "descricao", widget: "text", required: false }
+              - { label: "Fonte ou instituição", name: "fonte", widget: "string", required: false }
+              - { label: "Exibir em Documentos recentes", name: "recente", widget: "boolean", required: false, default: false }
+              - label: "PDF ou arquivo"
+                name: "arquivo"
+                widget: "file"
+                required: false
+                media_folder: "documentos"
+                public_folder: "/documentos"
+              - { label: "Texto do botão do arquivo", name: "arquivo_label", widget: "string", required: false, default: "Abrir documento" }
+              - label: "Links oficiais"
+                name: "links"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Texto do link", name: "label", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+
+  - name: "multimidia"
+    label: "Multimídia"
+    files:
+      - name: "itens"
+        label: "Vídeos, podcasts e entrevistas"
+        file: "conteudo/multimidia.json"
+        format: "json"
+        fields:
+          - label: "Conteúdos multimídia"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Tipo", name: "tipo", widget: "select", options: ["Vídeo", "Podcast", "Entrevista", "Áudio", "Outro"] }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+              - { label: "Descrição", name: "descricao", widget: "text", required: false }
+              - { label: "Plataforma", name: "plataforma", widget: "string", required: false, hint: "Ex.: UN Web TV, YouTube, Spotify" }
+              - { label: "Duração", name: "duracao", widget: "string", required: false }
+              - { label: "URL", name: "url", widget: "string", hint: "URL completa do vídeo, episódio ou áudio." }
+              - { label: "Texto do link", name: "link_label", widget: "string", required: false, default: "Acessar conteúdo" }
+              - { label: "Destaque", name: "destaque", widget: "boolean", required: false, default: false }
