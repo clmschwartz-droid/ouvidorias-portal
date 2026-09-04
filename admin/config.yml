@@ -45,14 +45,14 @@ collections:
                 name: "imagem"
                 widget: "image"
                 required: false
-                media_folder: "noticias"
+                media_folder: "/noticias"
                 public_folder: "/noticias"
               - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false }
               - label: "PDF ou arquivo"
                 name: "arquivo"
                 widget: "file"
                 required: false
-                media_folder: "documentos"
+                media_folder: "/documentos"
                 public_folder: "/documentos"
               - { label: "Texto do botão do arquivo", name: "arquivo_label", widget: "string", required: false, default: "Abrir documento" }
               - { label: "Destaque", name: "destaque", widget: "boolean", required: false, default: false }
@@ -82,7 +82,7 @@ collections:
                 name: "arquivo"
                 widget: "file"
                 required: false
-                media_folder: "documentos"
+                media_folder: "/documentos"
                 public_folder: "/documentos"
               - { label: "Texto do botão do arquivo", name: "arquivo_label", widget: "string", required: false, default: "Abrir documento" }
               - label: "Links oficiais"
