@@ -1,0 +1,81 @@
+{
+  "items": [
+    {
+      "title": "Painel de alto nível da Assembleia Geral da ONU sobre instituições de Ombudsman — Nota conceitual",
+      "tipo": "Documento internacional",
+      "categoria": "Documentos internacionais",
+      "date": "2026-05-18",
+      "descricao": "Nota conceitual do painel dedicado à importância do cumprimento dos Princípios de Veneza para fortalecer a independência e a autonomia das instituições de Ombudsman.",
+      "fonte": "Assembleia Geral das Nações Unidas",
+      "recente": true,
+      "links": [
+        {
+          "label": "Abrir nota conceitual",
+          "url": "https://www.un.org/pga/wp-content/uploads/sites/110/2026/04/Concept-Note-High-Level-Panel-on-Ombudsman-Institutions.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Resolução A/RES/75/186 — Papel das instituições de Ombudsman e mediadores",
+      "tipo": "Resolução",
+      "categoria": "Documentos internacionais",
+      "date": "2020-12-16",
+      "descricao": "Resolução da Assembleia Geral das Nações Unidas que acolhe os Princípios de Veneza. O registro oficial reúne as versões nos seis idiomas oficiais da ONU.",
+      "fonte": "Assembleia Geral das Nações Unidas",
+      "recente": false,
+      "links": [
+        {
+          "label": "Registro oficial e idiomas",
+          "url": "https://digitallibrary.un.org/record/3896442"
+        }
+      ]
+    },
+    {
+      "title": "Princípios de Veneza — CDL-AD(2019)005",
+      "tipo": "Princípios internacionais",
+      "categoria": "Documentos internacionais",
+      "date": "2019-03-15",
+      "descricao": "Princípios sobre a proteção e a promoção da instituição do Ombudsman, adotados pela Comissão de Veneza em 2019.",
+      "fonte": "Comissão de Veneza — Conselho da Europa",
+      "recente": false,
+      "links": [
+        {
+          "label": "Texto oficial",
+          "url": "https://www.venice.coe.int/webforms/documents/?pdf=CDL-AD%282019%29005-e"
+        }
+      ]
+    },
+    {
+      "title": "Resolução A/RES/79/177 — Instituições de Ombudsman e mediadores",
+      "tipo": "Resolução",
+      "categoria": "Documentos internacionais",
+      "date": "2024-12-17",
+      "descricao": "Resolução da Assembleia Geral das Nações Unidas que determinou a realização, em 2026, do painel de alto nível sobre os Princípios de Veneza e as instituições de Ombudsman.",
+      "fonte": "Assembleia Geral das Nações Unidas",
+      "recente": false,
+      "links": [
+        {
+          "label": "Registro oficial",
+          "url": "https://digitallibrary.un.org/record/4071980"
+        }
+      ]
+    },
+    {
+      "arquivo_label": "Baixar a Carta de Maceió",
+      "descricao": "Documento final aprovado em Maceió ao término do 18º Seminário Nacional “Ouvidores & Ouvidorias” e do 8º Seminário Internacional “Ouvidores, Defensorías del Pueblo & Ombudsman”, propondo a construção de um marco legal nacional para as Ouvidorias Públicas brasileiras.",
+      "recente": true,
+      "arquivo": "/documentos/carta-de-maceio.pdf",
+      "date": "2026-08-28",
+      "categoria": "Carta",
+      "tipo": "Carta",
+      "fonte": "Instituto Brasileiro Pró-Cidadania / Instituto Latinoamericano del Ombudsman – Defensorías del Pueblo (ILO)",
+      "title": "Carta de Maceió — Por um marco legal das Ouvidorias Públicas",
+      "links": [
+        {
+          "label": "Notícia dos organizadores",
+          "url": "https://procidadania.org.br/noticia/carta-de-maceio-por-um-marco-legal-das-ouvidorias-publicas"
+        }
+      ]
+    }
+  ]
+}
