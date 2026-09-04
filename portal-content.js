@@ -90,7 +90,8 @@
 
     ordered.forEach((item) => {
       if (!item.substitui) return;
-      document.querySelectorAll(`[data-legacy-id="${CSS.escape(item.substitui)}"]`).forEach((el) => el.classList.add('hidden'));
+      const id = String(item.substitui).replace(/"/g, '\\"');
+      document.querySelectorAll(`[data-legacy-id="${id}"]`).forEach((el) => el.classList.add('hidden'));
     });
   }
 
