@@ -47,7 +47,8 @@ collections:
                 required: false
                 media_folder: "/noticias"
                 public_folder: "/noticias"
-              - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false }
+                hint: "Padrão recomendado: 1200 × 630 px (proporção aproximada 1,9:1), JPG/PNG/WebP, preferencialmente até 800 KB. O portal preserva a proporção da imagem e não faz corte automático."
+              - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false, hint: "Descreva objetivamente o conteúdo essencial da imagem para acessibilidade." }
               - label: "PDF ou arquivo"
                 name: "arquivo"
                 widget: "file"
