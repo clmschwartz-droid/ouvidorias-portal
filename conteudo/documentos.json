@@ -74,6 +74,23 @@
           "url": "https://digitallibrary.un.org/record/4071980"
         }
       ]
+    },
+    {
+      "arquivo_label": "Baixar a Carta de Maceió",
+      "descricao": "Documento final aprovado em Maceió ao término do 18º Seminário Nacional “Ouvidores & Ouvidorias” e do 8º Seminário Internacional “Ouvidores, Defensorías del Pueblo & Ombudsman”, propondo a construção de um marco legal nacional para as Ouvidorias Públicas brasileiras.",
+      "recente": true,
+      "arquivo": "/documentos/carta-de-maceio.pdf",
+      "date": "2026-08-26",
+      "categoria": "Carta",
+      "tipo": "Carta",
+      "fonte": "Instituto Brasileiro Pró-Cidadania / Instituto Latinoamericano del Ombudsman – Defensorías del Pueblo (ILO)",
+      "title": "Carta de Maceió — Por um marco legal das Ouvidorias Públicas",
+      "links": [
+        {
+          "label": "Notícia dos organizadores",
+          "url": "https://procidadania.org.br/noticia/carta-de-maceio-por-um-marco-legal-das-ouvidorias-publicas"
+        }
+      ]
     }
   ]
 }
