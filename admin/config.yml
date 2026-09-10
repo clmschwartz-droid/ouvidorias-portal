@@ -37,10 +37,12 @@ collections:
               - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
               - { label: "Subtítulo ou linha fina", name: "subtitulo", widget: "string", required: false }
               - { label: "Texto", name: "texto", widget: "text", required: false }
+              - { label: "Autor ou autora", name: "autor", widget: "string", required: false }
               - { label: "Veículo ou organizador", name: "fonte", widget: "string", required: false }
               - { label: "Local", name: "local", widget: "string", required: false }
               - { label: "Link externo principal", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
               - { label: "Texto do link externo principal", name: "link_label", widget: "string", required: false, default: "Acessar fonte" }
+              - { label: "Abrir link principal em nova aba", name: "link_nova_aba", widget: "boolean", required: false, default: true }
               - label: "Links relacionados"
                 name: "links"
                 widget: "list"
@@ -50,6 +52,7 @@ collections:
                 fields:
                   - { label: "Texto do link", name: "label", widget: "string" }
                   - { label: "URL ou caminho", name: "url", widget: "string" }
+                  - { label: "Abrir em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
               - label: "Imagem ou banner"
                 name: "imagem"
                 widget: "image"
@@ -58,14 +61,15 @@ collections:
                 public_folder: "/noticias"
                 hint: "Padrão recomendado: 1200 × 630 px (proporção aproximada 1,9:1), JPG/PNG/WebP, preferencialmente até 800 KB. O portal preserva a proporção da imagem e não faz corte automático."
               - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false, hint: "Descreva objetivamente o conteúdo essencial da imagem para acessibilidade." }
+              - { label: "Legenda da imagem", name: "imagem_legenda", widget: "string", required: false }
               - label: "PDF ou arquivo principal"
                 name: "arquivo"
                 widget: "file"
                 required: false
                 media_folder: "/documentos"
                 public_folder: "/documentos"
-              - { label: "Texto do botão do arquivo", name: "arquivo_label", widget: "string", required: false, default: "Abrir documento" }
-              - { label: "Destaque", name: "destaque", widget: "boolean", required: false, default: false }
+              - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar arquivo" }
+              - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false, hint: "Destaca o card; quando houver imagem, ela aparece no topo da notícia." }
               - { label: "Identificador técnico substituído", name: "substitui", widget: "hidden", required: false, default: "" }
 
   - name: "documentos"
@@ -94,7 +98,7 @@ collections:
                 required: false
                 media_folder: "/documentos"
                 public_folder: "/documentos"
-              - { label: "Texto do botão do arquivo", name: "arquivo_label", widget: "string", required: false, default: "Abrir documento" }
+              - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar documento" }
               - label: "Links oficiais"
                 name: "links"
                 widget: "list"
@@ -103,6 +107,7 @@ collections:
                 fields:
                   - { label: "Texto do link", name: "label", widget: "string" }
                   - { label: "URL", name: "url", widget: "string" }
+                  - { label: "Abrir em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
 
   - name: "multimidia"
     label: "Multimídia"
@@ -117,14 +122,17 @@ collections:
             widget: "list"
             summary: "{{fields.date}} — {{fields.title}}"
             fields:
-              - { label: "Tipo", name: "tipo", widget: "select", options: ["Vídeo", "Podcast", "Entrevista", "Áudio", "Outro"] }
+              - { label: "Tipo", name: "tipo", widget: "select", options: ["Vídeo", "Podcast", "Entrevista", "Áudio", "Galeria de fotos", "Outro"] }
               - { label: "Título", name: "title", widget: "string" }
               - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
               - { label: "Descrição", name: "descricao", widget: "text", required: false }
+              - { label: "Fonte ou instituição", name: "fonte", widget: "string", required: false }
               - { label: "Plataforma", name: "plataforma", widget: "string", required: false, hint: "Ex.: UN Web TV, YouTube, Spotify" }
               - { label: "Duração", name: "duracao", widget: "string", required: false }
-              - { label: "URL", name: "url", widget: "string", hint: "URL completa do vídeo, episódio ou áudio." }
+              - { label: "URL oficial", name: "url", widget: "string", hint: "Página oficial do vídeo, episódio, áudio, entrevista ou galeria." }
+              - { label: "URL de incorporação", name: "embed_url", widget: "string", required: false, hint: "Para vídeos exibidos dentro do portal. Cole a URL do player (src do iframe); links comuns do YouTube e do Vimeo também são convertidos automaticamente." }
               - { label: "Texto do link", name: "link_label", widget: "string", required: false, default: "Acessar conteúdo" }
+              - { label: "Abrir link em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
               - label: "Imagem estática / thumbnail"
                 name: "imagem"
                 widget: "image"

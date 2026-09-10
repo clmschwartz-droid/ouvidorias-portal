@@ -11,7 +11,8 @@
       "links": [
         {
           "label": "Abrir nota conceitual",
-          "url": "https://www.un.org/pga/wp-content/uploads/sites/110/2026/04/Concept-Note-High-Level-Panel-on-Ombudsman-Institutions.pdf"
+          "url": "https://www.un.org/pga/wp-content/uploads/sites/110/2026/04/Concept-Note-High-Level-Panel-on-Ombudsman-Institutions.pdf",
+          "nova_aba": true
         }
       ]
     },
@@ -26,7 +27,8 @@
       "links": [
         {
           "label": "Registro oficial e idiomas",
-          "url": "https://digitallibrary.un.org/record/3896442"
+          "url": "https://digitallibrary.un.org/record/3896442",
+          "nova_aba": true
         }
       ]
     },
@@ -41,7 +43,8 @@
       "links": [
         {
           "label": "Texto oficial",
-          "url": "https://www.venice.coe.int/webforms/documents/?pdf=CDL-AD%282019%29005-e"
+          "url": "https://www.venice.coe.int/webforms/documents/?pdf=CDL-AD%282019%29005-e",
+          "nova_aba": true
         }
       ]
     },
@@ -56,7 +59,8 @@
       "links": [
         {
           "label": "Registro oficial",
-          "url": "https://digitallibrary.un.org/record/4071980"
+          "url": "https://digitallibrary.un.org/record/4071980",
+          "nova_aba": true
         }
       ]
     },
@@ -73,7 +77,8 @@
       "links": [
         {
           "label": "Notícia dos organizadores",
-          "url": "https://procidadania.org.br/noticia/carta-de-maceio-por-um-marco-legal-das-ouvidorias-publicas"
+          "url": "https://procidadania.org.br/noticia/carta-de-maceio-por-um-marco-legal-das-ouvidorias-publicas",
+          "nova_aba": true
         }
       ]
     }

@@ -14,12 +14,16 @@
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
-  const safeUrl = (value = '') => {
+  const rawSafeUrl = (value = '') => {
     const url = String(value || '').trim();
     if (!url) return '';
-    if (/^(https?:\/\/|\/|[a-zA-Z0-9_.-]+\/)/.test(url)) return esc(url);
+    if (/^(https?:\/\/|\/|[a-zA-Z0-9_.-]+\/)/.test(url)) return url;
     return '';
   };
+
+  const safeUrl = (value = '') => esc(rawSafeUrl(value));
+
+  const newTabAttrs = (value) => value === false ? '' : ' target="_blank" rel="noopener"';
 
   const datePt = (value) => {
     if (!value) return '';
@@ -42,27 +46,57 @@
     }
   }
 
+  function actionButton({ label, url, icon = 'external-link', newTab = true, download = false }) {
+    const href = safeUrl(url);
+    if (!href) return '';
+    const behavior = download ? ' download' : newTabAttrs(newTab);
+    return `<a href="${href}"${behavior} class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-lg text-white hover:opacity-90 transition" style="background-color:#4B9DAB;"><i data-lucide="${esc(icon)}" class="w-4 h-4"></i>${esc(label || 'Acessar')}</a>`;
+  }
+
+  function relatedLinkButtons(item) {
+    if (!Array.isArray(item.links)) return '';
+    return item.links.map((link) => {
+      if (!link || !link.url) return '';
+      return actionButton({
+        label: link.label || 'Acessar',
+        url: link.url,
+        icon: link.icon || 'external-link',
+        newTab: link.nova_aba !== false
+      });
+    }).join('');
+  }
+
   function linkButtons(item) {
     const links = [];
     if (item.arquivo) {
       links.push({
-        label: item.arquivo_label || 'Abrir documento',
+        label: item.arquivo_label || 'Baixar arquivo',
         url: item.arquivo,
-        icon: 'file-down'
+        icon: 'file-down',
+        download: true
       });
     }
     if (item.link) {
-      links.push({ label: item.link_label || 'Acessar fonte', url: item.link, icon: 'external-link' });
+      links.push({
+        label: item.link_label || 'Acessar fonte',
+        url: item.link,
+        icon: 'external-link',
+        newTab: item.link_nova_aba !== false
+      });
     }
     if (Array.isArray(item.links)) {
       item.links.forEach((l) => {
-        if (l && l.url) links.push({ label: l.label || 'Acessar', url: l.url, icon: l.icon || 'external-link' });
+        if (l && l.url) {
+          links.push({
+            label: l.label || 'Acessar',
+            url: l.url,
+            icon: l.icon || 'external-link',
+            newTab: l.nova_aba !== false
+          });
+        }
       });
     }
-    return links
-      .filter((l) => safeUrl(l.url))
-      .map((l) => `<a href="${safeUrl(l.url)}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-lg text-white hover:opacity-90 transition" style="background-color:#4B9DAB;"><i data-lucide="${esc(l.icon)}" class="w-4 h-4"></i>${esc(l.label)}</a>`)
-      .join('');
+    return links.map(actionButton).join('');
   }
 
   function renderNoticias(items) {
@@ -75,14 +109,15 @@
       const meta = [datePt(item.date), item.local ? esc(item.local) : ''].filter(Boolean).join(' · ');
       const buttons = linkButtons(item);
       return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        ${item.destaque ? '<div class="p-3 text-white text-xs font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">Notícia em destaque</div>' : ''}
+        ${item.destaque ? `<div class="p-3 text-white text-xs font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">${esc(item.tipo || 'Notícia')} em destaque</div>` : ''}
         <div class="p-6 md:p-8">
-          ${image ? `<div class="mb-5 overflow-hidden rounded-lg"><img src="${image}" alt="${esc(item.imagem_alt || item.title)}" class="w-full h-auto block"></div>` : ''}
+          ${image ? `<figure class="mb-5 overflow-hidden rounded-lg bg-slate-50"><img src="${image}" alt="${esc(item.imagem_alt || item.title)}" class="w-full h-auto block">${item.imagem_legenda ? `<figcaption class="px-3 py-2 text-[11px] leading-relaxed text-slate-500 border-t border-slate-100">${esc(item.imagem_legenda)}</figcaption>` : ''}</figure>` : ''}
           <div class="text-[10px] font-bold uppercase tracking-wider mb-2" style="color:#3d7f8c;">${esc(item.tipo || 'Notícia')}</div>
           <h3 class="text-xl font-bold text-slate-800 mb-1">${esc(item.title)}</h3>
           ${item.subtitulo ? `<p class="text-sm text-slate-500 mb-4">${esc(item.subtitulo)}</p>` : ''}
           ${meta ? `<p class="text-xs text-slate-500 mb-4">${meta}</p>` : ''}
           ${item.texto ? `<p class="text-sm text-slate-600 leading-relaxed mb-4">${esc(item.texto)}</p>` : ''}
+          ${item.autor ? `<p class="text-xs text-slate-500${item.fonte ? ' mb-1' : ' mb-4'}">Por ${esc(item.autor)}</p>` : ''}
           ${item.fonte ? `<p class="text-xs text-slate-500 mb-4">Fonte: ${esc(item.fonte)}</p>` : ''}
           ${buttons ? `<div class="flex flex-wrap gap-2 pt-2">${buttons}</div>` : ''}
         </div>
@@ -97,15 +132,25 @@
   }
 
   function docCard(item) {
-    const buttons = linkButtons(item);
+    const file = safeUrl(item.arquivo);
+    const relatedButtons = relatedLinkButtons(item);
+    const downloadButton = file ? actionButton({
+      label: item.arquivo_label || 'Baixar documento',
+      url: item.arquivo,
+      icon: 'download',
+      download: true
+    }) : '';
+    const buttons = `${downloadButton}${relatedButtons}`;
+    const icon = item.tipo === 'Carta' ? 'file-signature' : 'globe';
     return `<article class="p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
       <div class="flex items-start gap-3">
-        <div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0"><i data-lucide="${item.tipo === 'Carta' ? 'file-signature' : 'globe'}" class="w-5 h-5"></i></div>
+        ${file ? `<a href="${file}" class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0 hover:bg-indigo-200 transition" aria-label="Abrir ${esc(item.title)} na mesma aba"><i data-lucide="${icon}" class="w-5 h-5"></i></a>` : `<div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0"><i data-lucide="${icon}" class="w-5 h-5"></i></div>`}
         <div class="min-w-0 flex-1">
-          <h4 class="font-bold text-slate-800 text-sm">${esc(item.title)}</h4>
+          <h4 class="font-bold text-slate-800 text-sm">${file ? `<a href="${file}" class="hover:underline">${esc(item.title)}</a>` : esc(item.title)}</h4>
           ${item.date ? `<p class="text-[11px] text-slate-400 mt-1">${datePt(item.date)}</p>` : ''}
           ${item.descricao ? `<p class="text-xs text-slate-500 mt-2 leading-relaxed">${esc(item.descricao)}</p>` : ''}
           ${item.fonte ? `<p class="text-[11px] text-slate-400 mt-2">${esc(item.fonte)}</p>` : ''}
+          ${file ? `<a href="${file}" class="inline-flex items-center gap-1.5 text-[11px] font-semibold mt-3 hover:underline" style="color:#3d7f8c"><i data-lucide="eye" class="w-3.5 h-3.5"></i>Abrir no navegador</a>` : ''}
           ${buttons ? `<div class="flex flex-wrap gap-2 mt-3">${buttons}</div>` : ''}
         </div>
       </div>
@@ -132,6 +177,39 @@
     }
   }
 
+  function videoEmbedUrl(value) {
+    const raw = rawSafeUrl(value);
+    if (!/^https?:\/\//i.test(raw)) return '';
+
+    try {
+      const parsed = new URL(raw);
+      const host = parsed.hostname.toLowerCase().replace(/^www\./, '');
+      let videoId = '';
+
+      if (host === 'youtu.be') {
+        videoId = parsed.pathname.split('/').filter(Boolean)[0] || '';
+      } else if (['youtube.com', 'm.youtube.com', 'youtube-nocookie.com'].includes(host)) {
+        if (parsed.pathname === '/watch') videoId = parsed.searchParams.get('v') || '';
+        if (!videoId && /^\/(embed|shorts)\//.test(parsed.pathname)) {
+          videoId = parsed.pathname.split('/').filter(Boolean)[1] || '';
+        }
+      }
+
+      if (/^[a-zA-Z0-9_-]{6,}$/.test(videoId)) {
+        return esc(`https://www.youtube-nocookie.com/embed/${videoId}`);
+      }
+
+      if (host === 'vimeo.com' || host === 'player.vimeo.com') {
+        const vimeoId = parsed.pathname.split('/').filter(Boolean).find((part) => /^\d+$/.test(part));
+        if (vimeoId) return esc(`https://player.vimeo.com/video/${vimeoId}`);
+      }
+
+      return esc(parsed.href);
+    } catch (_) {
+      return '';
+    }
+  }
+
   function renderMultimidia(items) {
     const host = document.getElementById('multimidia-dinamica');
     if (!host || !items.length) return;
@@ -140,20 +218,19 @@
     host.innerHTML = ordered.map((item) => {
       const url = safeUrl(item.url);
       const image = safeUrl(item.imagem);
+      const isVideo = String(item.tipo || '').toLocaleLowerCase('pt-BR') === 'vídeo';
+      const embed = isVideo ? videoEmbedUrl(item.embed_url || item.url) : '';
       const meta = [item.plataforma, item.duracao, datePt(item.date)].filter(Boolean).map(esc).join(' · ');
       return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <a href="${url}" target="_blank" rel="noopener" class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Assistir ${esc(item.title)}">
-          ${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}
-          ${image ? '<div class="absolute inset-0 bg-black/15"></div>' : ''}
-          <div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</div>
-          <div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></div>
-        </a>
+        ${item.destaque ? '<div class="px-4 py-2 text-white text-[10px] font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">Conteúdo em destaque</div>' : ''}
+        ${embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950"><iframe src="${embed}" title="${esc(item.title)}" class="absolute inset-0 w-full h-full border-0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>` : (url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Acessar ${esc(item.title)}">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}${image ? '<div class="absolute inset-0 bg-black/20"></div>' : ''}<div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="${isVideo ? 'video' : 'external-link'}" class="w-3.5 h-3.5"></i>${esc(item.plataforma || item.tipo || 'Multimídia')}</div><div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="${isVideo ? 'play' : 'arrow-up-right'}" class="w-8 h-8${isVideo ? ' ml-1' : ''}" style="color:#3d7f8c;"></i></div></a>` : `<div class="aspect-video relative flex items-center justify-center overflow-hidden" style="background:#142d31;">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : '<i data-lucide="image" class="w-10 h-10 text-white/70"></i>'}</div>`)}
         <div class="p-5">
           <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:#e8f2f4;color:#3d7f8c">${esc(item.tipo || 'Vídeo')}</span>
           <h3 class="font-bold text-slate-800 mt-2 leading-snug">${esc(item.title)}</h3>
           ${meta ? `<p class="text-[11px] text-slate-400 mt-1">${meta}</p>` : ''}
           ${item.descricao ? `<p class="text-xs text-slate-500 mt-2 leading-relaxed">${esc(item.descricao)}</p>` : ''}
-          ${url ? `<a href="${url}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold mt-4 hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-4 h-4"></i>${esc(item.link_label || 'Assistir ao vídeo')}</a>` : ''}
+          ${item.fonte ? `<p class="text-[11px] text-slate-400 mt-2">Fonte: ${esc(item.fonte)}</p>` : ''}
+          ${url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="inline-flex items-center gap-2 text-xs font-semibold mt-4 hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-4 h-4"></i>${esc(item.link_label || (isVideo ? 'Abrir página oficial' : 'Acessar conteúdo'))}</a>` : ''}
         </div>
       </article>`;
     }).join('');

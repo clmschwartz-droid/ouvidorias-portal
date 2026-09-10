@@ -9,6 +9,7 @@
       "arquivo": "/documentos/carta-de-maceio.pdf",
       "date": "2026-08-28",
       "link_label": "Ler a notícia dos organizadores",
+      "link_nova_aba": true,
       "imagem": "/noticias/captura-de-tela-2026-09-04-a-s-17.35.07.png",
       "tipo": "Notícia",
       "fonte": "Instituto Brasileiro Pró-Cidadania / Instituto Latinoamericano del Ombudsman – Defensorías del Pueblo (ILO)",
