@@ -98,9 +98,10 @@
 
   function docCard(item) {
     const buttons = linkButtons(item);
+    const documentIcon = item.tipo === 'Carta' || item.tipo === 'Moção' ? 'file-signature' : 'globe';
     return `<article class="p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
       <div class="flex items-start gap-3">
-        <div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0"><i data-lucide="${item.tipo === 'Carta' ? 'file-signature' : 'globe'}" class="w-5 h-5"></i></div>
+        <div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0"><i data-lucide="${documentIcon}" class="w-5 h-5"></i></div>
         <div class="min-w-0 flex-1">
           <h4 class="font-bold text-slate-800 text-sm">${esc(item.title)}</h4>
           ${item.date ? `<p class="text-[11px] text-slate-400 mt-1">${datePt(item.date)}</p>` : ''}
