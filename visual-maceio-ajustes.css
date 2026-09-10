@@ -61,12 +61,17 @@ body > nav > div:first-child h1 {
 }
 
 @media (max-width: 767px) {
+  body > nav > div:first-child {
+    padding-top: .72rem !important;
+    padding-bottom: .72rem !important;
+  }
   body > nav > div:first-child img {
-    width: 40px !important;
-    height: 50px !important;
+    width: 48px !important;
+    height: 59px !important;
   }
   body > nav > div:first-child h1 {
-    font-size: .84rem !important;
+    font-size: .88rem !important;
+    line-height: 1.12 !important;
   }
   #noticias .seminario-maceio-banner {
     border-radius: 14px;
