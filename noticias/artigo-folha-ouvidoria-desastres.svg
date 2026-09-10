@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Quem escuta as vítimas de desastres climáticos?</title>
+  <desc id="desc">Imagem editorial com título, linha fina e autoria do artigo publicado na Folha de S.Paulo.</desc>
+  <rect width="1200" height="630" fill="#d9d9d9"/>
+  <g transform="translate(58 92)" fill="#070707">
+    <text x="0" y="0" font-family="Georgia, Times New Roman, serif" font-style="italic" font-size="60" font-weight="700">
+      <tspan x="0" dy="0">Quem escuta as vítimas</tspan>
+      <tspan x="0" dy="67">de desastres climáticos?</tspan>
+    </text>
+    <text x="0" y="188" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700">
+      <tspan x="0" dy="0">Canal de acolhimento e acompanhamento não pode ser improvisado</tspan>
+      <tspan x="0" dy="39">a cada tragédia; falta instância permanente que controle a reconstrução</tspan>
+    </text>
+    <line x1="0" y1="262" x2="32" y2="262" stroke="#202020" stroke-width="2"/>
+    <text x="0" y="310" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#143b62">Manoel Eduardo Alves Camargo e Gomes e Lucas Camargo Gomes</text>
+    <text x="0" y="348" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600">
+      <tspan x="0" dy="0">Vice-presidente do Instituto Latinoamericano del Ombudsman - Defensorías del Pueblo; professor de direito da UFPR</tspan>
+      <tspan x="0" dy="29">Sociólogo, é mestre pela Escola de Altos Estudos em Ciências Sociais (EHESS)</tspan>
+    </text>
+  </g>
+</svg>
