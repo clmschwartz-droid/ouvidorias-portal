@@ -3,7 +3,7 @@
     {
       "substitui": "maceio-2026",
       "destaque": true,
-      "texto": "Reunidos em Maceió, 170 ouvidores e ouvidoras do Brasil, Argentina, Chile, Curaçau e Portugal aprovaram a Carta de Maceió, que propõe ao Congresso Nacional a construção de um marco legal nacional capaz de assegurar independência, garantias e poderes efetivos às Ouvidorias Públicas.",
+      "texto": "Reunidos em Maceió, 170 ouvidores e ouvidoras do Brasil, Argentina, Chile, Curaçau e Portugal aprovaram a Carta de Maceió, que propõe ao Congresso Nacional a construção de um marco legal nacional capaz de assegurar independência, garantias e poderes efetivos às Ouvidorias Públicas. No mesmo encontro, os participantes aprovaram por aclamação uma moção de apoio à criação de uma Ouvidoria Especializada em Desastres Climáticos, proposta em artigo publicado na Folha de S.Paulo e vinculada, em sua implementação, aos princípios e requisitos da Carta de Maceió.",
       "arquivo_label": "Baixar a Carta de Maceió",
       "local": "Maceió, Alagoas",
       "arquivo": "/documentos/carta-de-maceio.pdf",
@@ -15,7 +15,36 @@
       "title": "Carta de Maceió: por um marco legal das ouvidorias públicas",
       "subtitulo": "Documento aprovado ao final do 18º Seminário Nacional “Ouvidores & Ouvidorias” e do 8º Seminário Internacional “Ouvidores, Defensorías del Pueblo & Ombudsman”.",
       "link": "https://procidadania.org.br/noticia/carta-de-maceio-por-um-marco-legal-das-ouvidorias-publicas",
-      "imagem_alt": "Banner da Carta de Maceió — Por um marco legal das Ouvidorias Públicas, aprovada em 28 de agosto de 2026."
+      "imagem_alt": "Banner da Carta de Maceió — Por um marco legal das Ouvidorias Públicas, aprovada em 28 de agosto de 2026.",
+      "links": [
+        {
+          "label": "Baixar a Moção de Apoio",
+          "url": "/documentos/mocao-apoio-ouvidoria-desastres-climaticos.pdf"
+        }
+      ]
+    },
+    {
+      "destaque": false,
+      "tipo": "Artigo",
+      "title": "Quem escuta as vítimas de desastres climáticos?",
+      "date": "2026-08-27",
+      "subtitulo": "Manoel Eduardo Alves Camargo e Gomes e Lucas Camargo Gomes propõem uma Ouvidoria Especializada em Desastres Climáticos.",
+      "texto": "Em artigo publicado na Folha de S.Paulo, os autores defendem a criação de uma instância permanente de escuta, acompanhamento das vítimas e controle das ações públicas de reconstrução. No dia seguinte, a proposta recebeu moção de apoio aprovada por aclamação durante os seminários realizados em Maceió.",
+      "fonte": "Folha de S.Paulo — Tendências/Debates",
+      "link": "https://www1.folha.uol.com.br/opiniao/2026/08/quem-escuta-as-vitimas-de-desastres-climaticos.shtml",
+      "link_label": "Ler o artigo na Folha de S.Paulo",
+      "imagem": "/noticias/artigo-folha-ouvidoria-desastres.jpg",
+      "imagem_alt": "Recorte da edição impressa da Folha de S.Paulo com o título, a linha fina e os autores do artigo “Quem escuta as vítimas de desastres climáticos?”.",
+      "links": [
+        {
+          "label": "Ver publicação no LinkedIn",
+          "url": "https://lnkd.in/p/dUYDJcAq"
+        },
+        {
+          "label": "Baixar a Moção de Apoio",
+          "url": "/documentos/mocao-apoio-ouvidoria-desastres-climaticos.pdf"
+        }
+      ]
     }
   ]
 }
