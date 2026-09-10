@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Painel de alto nível da Assembleia Geral da ONU sobre instituições de Ombudsman</title>
+  <desc id="desc">Thumbnail institucional para o vídeo do painel de 18 de maio de 2026, disponível na UN Web TV.</desc>
+  <rect width="1280" height="720" fill="#142d31"/>
+  <circle cx="1135" cy="82" r="250" fill="#5d9aa9" opacity=".72"/>
+  <circle cx="108" cy="742" r="285" fill="#0d1719" opacity=".86"/>
+  <g transform="translate(82 88)">
+    <rect x="0" y="0" rx="18" width="185" height="48" fill="#ffffff" opacity=".94"/>
+    <text x="25" y="32" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#142d31">UN WEB TV</text>
+    <text x="0" y="132" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#a7cbd2" letter-spacing="2">PAINEL DE ALTO NÍVEL</text>
+    <text x="0" y="196" font-family="Georgia, Times New Roman, serif" font-size="52" font-weight="700" fill="#ffffff">
+      <tspan x="0" dy="0">Instituições de Ombudsman</tspan>
+      <tspan x="0" dy="63">e os Princípios de Veneza</tspan>
+    </text>
+    <text x="0" y="355" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#d8e8eb">
+      <tspan x="0" dy="0">Independência, autonomia e condições para</tspan>
+      <tspan x="0" dy="38">o exercício efetivo de seus mandatos</tspan>
+    </text>
+    <text x="0" y="482" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#a7cbd2">18 MAI 2026 · NAÇÕES UNIDAS · NOVA YORK</text>
+  </g>
+  <g transform="translate(1070 535)">
+    <circle cx="0" cy="0" r="74" fill="#ffffff" opacity=".96"/>
+    <path d="M-20 -34 L42 0 L-20 34 Z" fill="#315f69"/>
+  </g>
+</svg>
