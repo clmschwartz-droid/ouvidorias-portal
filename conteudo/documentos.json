@@ -1,6 +1,25 @@
 {
   "items": [
     {
+      "title": "Moção de Apoio pela criação de uma Ouvidoria Especializada em Desastres Climáticos",
+      "tipo": "Moção",
+      "categoria": "Moção",
+      "date": "2026-08-28",
+      "descricao": "Moção aprovada por aclamação em Maceió em apoio à criação de uma Ouvidoria Especializada em Desastres Climáticos, como instância permanente de escuta, acompanhamento e acolhimento das vítimas e de controle das ações governamentais de reconstrução.",
+      "fonte": "Instituto Brasileiro Pró-Cidadania / Instituto Latinoamericano del Ombudsman – Defensorías del Pueblo (ILO)",
+      "recente": true,
+      "arquivo": "/documentos/mocao-de-apoio-ouvidoria-desastres-climaticos.pdf",
+      "arquivo_label": "Baixar a Moção de Apoio",
+      "links": [
+        {
+          "label": "Ler o artigo na Folha de S.Paulo",
+          "url": "https://www1.folha.uol.com.br/opiniao/2026/08/quem-escuta-as-vitimas-de-desastres-climaticos.shtml",
+          "nova_aba": true,
+          "download": false
+        }
+      ]
+    },
+    {
       "title": "Painel de alto nível da Assembleia Geral da ONU sobre instituições de Ombudsman — Nota conceitual",
       "tipo": "Documento internacional",
       "categoria": "Documentos internacionais",

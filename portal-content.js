@@ -60,8 +60,9 @@
       return actionButton({
         label: link.label || 'Acessar',
         url: link.url,
-        icon: link.icon || 'external-link',
-        newTab: link.nova_aba !== false
+        icon: link.icon || (link.download === true ? 'file-down' : 'external-link'),
+        newTab: link.nova_aba !== false,
+        download: link.download === true
       });
     }).join('');
   }
@@ -90,8 +91,9 @@
           links.push({
             label: l.label || 'Acessar',
             url: l.url,
-            icon: l.icon || 'external-link',
-            newTab: l.nova_aba !== false
+            icon: l.icon || (l.download === true ? 'file-down' : 'external-link'),
+            newTab: l.nova_aba !== false,
+            download: l.download === true
           });
         }
       });
@@ -141,7 +143,7 @@
       download: true
     }) : '';
     const buttons = `${downloadButton}${relatedButtons}`;
-    const icon = item.tipo === 'Carta' ? 'file-signature' : 'globe';
+    const icon = item.tipo === 'Carta' ? 'file-signature' : (item.tipo === 'Moção' ? 'scroll-text' : 'globe');
     return `<article class="p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
       <div class="flex items-start gap-3">
         ${file ? `<a href="${file}" class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0 hover:bg-indigo-200 transition" aria-label="Abrir ${esc(item.title)} na mesma aba"><i data-lucide="${icon}" class="w-5 h-5"></i></a>` : `<div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0"><i data-lucide="${icon}" class="w-5 h-5"></i></div>`}
@@ -196,18 +198,37 @@
       }
 
       if (/^[a-zA-Z0-9_-]{6,}$/.test(videoId)) {
-        return esc(`https://www.youtube-nocookie.com/embed/${videoId}`);
+        return `https://www.youtube-nocookie.com/embed/${videoId}`;
       }
 
       if (host === 'vimeo.com' || host === 'player.vimeo.com') {
         const vimeoId = parsed.pathname.split('/').filter(Boolean).find((part) => /^\d+$/.test(part));
-        if (vimeoId) return esc(`https://player.vimeo.com/video/${vimeoId}`);
+        if (vimeoId) return `https://player.vimeo.com/video/${vimeoId}`;
       }
 
-      return esc(parsed.href);
+      return parsed.href;
     } catch (_) {
       return '';
     }
+  }
+
+  function autoplayVideoUrl(value) {
+    const raw = videoEmbedUrl(value);
+    if (!raw) return '';
+    try {
+      const parsed = new URL(raw);
+      const host = parsed.hostname.toLowerCase();
+      parsed.searchParams.set('autoplay', host.includes('youtube') || host.includes('vimeo') ? '1' : 'true');
+      return parsed.href;
+    } catch (_) {
+      return raw;
+    }
+  }
+
+  function videoFrame(embed, title, autoplay = false) {
+    const src = safeUrl(autoplay ? autoplayVideoUrl(embed) : videoEmbedUrl(embed));
+    if (!src) return '';
+    return `<iframe src="${src}" title="${esc(title)}" class="absolute inset-0 w-full h-full border-0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
   }
 
   function renderMultimidia(items) {
@@ -221,9 +242,10 @@
       const isVideo = String(item.tipo || '').toLocaleLowerCase('pt-BR') === 'vídeo';
       const embed = isVideo ? videoEmbedUrl(item.embed_url || item.url) : '';
       const meta = [item.plataforma, item.duracao, datePt(item.date)].filter(Boolean).map(esc).join(' · ');
+      const embeddedMedia = embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950" data-video-shell>${image ? `<button type="button" class="absolute inset-0 w-full h-full flex items-center justify-center group text-left" data-video-embed="${safeUrl(embed)}" data-video-title="${esc(item.title)}" aria-label="Reproduzir ${esc(item.title)}"><img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover"><span class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition" aria-hidden="true"></span><span class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/95 bg-black/55 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</span><span class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition" aria-hidden="true"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></span></button>` : videoFrame(embed, item.title)}</div>` : '';
       return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
         ${item.destaque ? '<div class="px-4 py-2 text-white text-[10px] font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">Conteúdo em destaque</div>' : ''}
-        ${embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950"><iframe src="${embed}" title="${esc(item.title)}" class="absolute inset-0 w-full h-full border-0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>` : (url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Acessar ${esc(item.title)}">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}${image ? '<div class="absolute inset-0 bg-black/20"></div>' : ''}<div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="${isVideo ? 'video' : 'external-link'}" class="w-3.5 h-3.5"></i>${esc(item.plataforma || item.tipo || 'Multimídia')}</div><div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="${isVideo ? 'play' : 'arrow-up-right'}" class="w-8 h-8${isVideo ? ' ml-1' : ''}" style="color:#3d7f8c;"></i></div></a>` : `<div class="aspect-video relative flex items-center justify-center overflow-hidden" style="background:#142d31;">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : '<i data-lucide="image" class="w-10 h-10 text-white/70"></i>'}</div>`)}
+        ${embeddedMedia || (url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Acessar ${esc(item.title)}">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}${image ? '<div class="absolute inset-0 bg-black/20"></div>' : ''}<div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="${isVideo ? 'video' : 'external-link'}" class="w-3.5 h-3.5"></i>${esc(item.plataforma || item.tipo || 'Multimídia')}</div><div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="${isVideo ? 'play' : 'arrow-up-right'}" class="w-8 h-8${isVideo ? ' ml-1' : ''}" style="color:#3d7f8c;"></i></div></a>` : `<div class="aspect-video relative flex items-center justify-center overflow-hidden" style="background:#142d31;">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : '<i data-lucide="image" class="w-10 h-10 text-white/70"></i>'}</div>`)}
         <div class="p-5">
           <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:#e8f2f4;color:#3d7f8c">${esc(item.tipo || 'Vídeo')}</span>
           <h3 class="font-bold text-slate-800 mt-2 leading-snug">${esc(item.title)}</h3>
@@ -234,6 +256,15 @@
         </div>
       </article>`;
     }).join('');
+
+    host.querySelectorAll('[data-video-embed]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const shell = button.closest('[data-video-shell]');
+        if (!shell) return;
+        const frame = videoFrame(button.dataset.videoEmbed, button.dataset.videoTitle || 'Vídeo', true);
+        if (frame) shell.innerHTML = frame;
+      }, { once: true });
+    });
 
     const badge = document.getElementById('multimidia-em-construcao');
     const placeholders = document.querySelectorAll('.multimidia-placeholder');
