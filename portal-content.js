@@ -51,12 +51,13 @@
         icon: 'file-down'
       });
     }
+    if (item.link) {
+      links.push({ label: item.link_label || 'Acessar fonte', url: item.link, icon: 'external-link' });
+    }
     if (Array.isArray(item.links)) {
       item.links.forEach((l) => {
-        if (l && l.url) links.push({ label: l.label || 'Acessar', url: l.url, icon: 'external-link' });
+        if (l && l.url) links.push({ label: l.label || 'Acessar', url: l.url, icon: l.icon || 'external-link' });
       });
-    } else if (item.link) {
-      links.push({ label: item.link_label || 'Acessar fonte', url: item.link, icon: 'external-link' });
     }
     return links
       .filter((l) => safeUrl(l.url))
@@ -138,11 +139,14 @@
 
     host.innerHTML = ordered.map((item) => {
       const url = safeUrl(item.url);
+      const image = safeUrl(item.imagem);
       const meta = [item.plataforma, item.duracao, datePt(item.date)].filter(Boolean).map(esc).join(' · ');
       return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <a href="${url}" target="_blank" rel="noopener" class="aspect-video relative flex items-center justify-center group" style="background:#142d31;" aria-label="Assistir ${esc(item.title)}">
-          <div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/85 bg-black/25 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</div>
-          <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></div>
+        <a href="${url}" target="_blank" rel="noopener" class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Assistir ${esc(item.title)}">
+          ${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}
+          ${image ? '<div class="absolute inset-0 bg-black/15"></div>' : ''}
+          <div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</div>
+          <div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></div>
         </a>
         <div class="p-5">
           <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:#e8f2f4;color:#3d7f8c">${esc(item.tipo || 'Vídeo')}</span>
