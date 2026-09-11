@@ -228,7 +228,7 @@
   function videoFrame(embed, title, autoplay = false) {
     const src = safeUrl(autoplay ? autoplayVideoUrl(embed) : videoEmbedUrl(embed));
     if (!src) return '';
-    return `<iframe src="${src}" title="${esc(title)}" class="absolute inset-0 w-full h-full border-0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    return `<iframe src="${src}" title="${esc(title)}" class="absolute inset-0 w-full h-full border-0" loading="lazy" allow="accelerometer; autoplay *; clipboard-write; encrypted-media *; fullscreen *; gyroscope; picture-in-picture *; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
   }
 
   function renderMultimidia(items) {

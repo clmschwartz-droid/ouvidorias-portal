@@ -30,11 +30,6 @@ body > nav > div:first-child h1 {
 }
 
 /* Fala Ouvidor: mesmo padrão visual do cabeçalho de Inscreva-se */
-/* O item permanece fora do menu público até a ativação do e-mail institucional. */
-body > nav [data-target="fala-ouvidor"] {
-  display: none !important;
-}
-
 #fala-ouvidor > div:first-child {
   position: relative;
   overflow: hidden;
