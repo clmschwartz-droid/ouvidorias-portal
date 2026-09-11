@@ -165,6 +165,9 @@
             <button onclick="navigate('inscreva-se')" class="nav-link text-left px-4 py-3 rounded-lg transition flex items-center gap-3 shrink-0 text-white font-medium" style="background-color:#4B9DAB;" data-target="inscreva-se">
                 <i data-lucide="mail-plus" class="w-5 h-5"></i> <span class="hidden md:inline">Inscreva-se</span>
             </button>
+            <button onclick="navigate('fala-ouvidor')" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="fala-ouvidor">
+                <i data-lucide="message-circle-more" class="w-5 h-5"></i> <span class="hidden md:inline">Fala Ouvidor</span>
+            </button>
 
             <div class="md:mt-4 mb-1 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider hidden md:block">Quem Somos</div>
 
@@ -223,8 +226,9 @@
             <p class="text-slate-500 mb-8 pb-4 border-b">Eventos, seminários, cursos e novidades em geral do universo das ouvidorias.</p>
 
             <div class="space-y-6">
-                <!-- CONTEÚDO EDITÁVEL: cada notícia é um card como o abaixo -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div id="noticias-dinamicas" class="space-y-6"></div>
+                <!-- CONTEÚDO EDITÁVEL LEGADO: mantido como fallback até o conteúdo correspondente ser publicado pelo CMS -->
+                <div data-legacy-id="maceio-2026" class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                     <div class="p-3 text-white text-xs font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">Evento em Destaque</div>
                     <div class="p-6 md:p-8">
                         <div class="seminario-maceio-banner mb-5">
@@ -256,7 +260,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+                <div data-legacy-id="maceio-2026" class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
                     <a href="noticias/programacao-completa-18-seminario-ouvidores-ouvidorias.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-lg text-white hover:opacity-90 transition" style="background-color:#4B9DAB;">
                         <i data-lucide="file-down" class="w-4 h-4"></i> Baixar a programação completa do evento
                     </a>
@@ -599,6 +603,11 @@
             <h2 class="text-3xl font-bold text-slate-800 mb-2">Documentos</h2>
             <p class="text-slate-500 mb-8 pb-4 border-b">O pioneirismo da Ouvidoria Municipal de Curitiba e outros registros históricos e atuais sobre o instituto do ombudsman no Brasil e no mundo.</p>
 
+            <div id="documentos-recentes-section" class="hidden mb-8">
+                <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 px-1">Documentos recentes</h3>
+                <div id="documentos-recentes-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+            </div>
+
             <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 px-1">Carta de Curitiba (1987)</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 <!-- CONTEÚDO EDITÁVEL -->
@@ -627,6 +636,7 @@
 
             <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 px-1">Declarações e documentos internacionais</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div id="documentos-internacionais-dinamicos" class="contents"></div>
                 <a href="documentos/declaracao-cidade-do-mexico-ilo.pdf" target="_blank" rel="noopener" class="flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md transition group">
                     <div class="bg-indigo-100 text-indigo-700 p-3 rounded-lg group-hover:bg-indigo-600 group-hover:text-white transition shrink-0"><i data-lucide="globe" class="w-5 h-5"></i></div>
                     <div class="min-w-0">
@@ -675,11 +685,12 @@
         <section id="multimidia" class="section-content hidden p-6 md:p-10 max-w-4xl mx-auto fade-in">
             <h2 class="text-3xl font-bold text-slate-800 mb-2">Multimídia</h2>
             <p class="text-slate-500 mb-6 pb-4 border-b">Videoconferências, palestras, entrevistas e podcasts sobre ouvidorias públicas.</p>
-            <div class="mb-6 inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700"><i data-lucide="hammer" class="w-3.5 h-3.5"></i> Seção em construção</div>
+            <div id="multimidia-em-construcao" class="mb-6 inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700"><i data-lucide="hammer" class="w-3.5 h-3.5"></i> Seção em construção</div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="multimidia-grid">
-                <!-- Card simulado de vídeo: substituir pelo iframe real quando houver conteúdo -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div id="multimidia-dinamica" class="contents"></div>
+                <!-- Cards simulados: ficam como fallback somente enquanto não houver conteúdo real -->
+                <div class="multimidia-placeholder bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                     <div class="aspect-video bg-slate-900 relative flex items-center justify-center">
                         <div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/80 bg-black/30 px-2 py-1 rounded"><i data-lucide="youtube" class="w-3.5 h-3.5"></i> YouTube</div>
                         <div class="w-14 h-14 rounded-full bg-white/95 flex items-center justify-center shadow-lg"><i data-lucide="play" class="w-7 h-7 text-slate-700 ml-1"></i></div>
@@ -693,7 +704,7 @@
                 </div>
 
                 <!-- Card simulado de podcast: substituir pelo player ou link real quando houver conteúdo -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="multimidia-placeholder bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                     <div class="aspect-video bg-slate-50 flex flex-col items-center justify-center border-b border-slate-100">
                         <div class="w-14 h-14 rounded-full bg-white border border-slate-200 flex items-center justify-center shadow-sm mb-3"><i data-lucide="mic" class="w-7 h-7 text-slate-500"></i></div>
                         <div class="flex items-end gap-1 h-6" aria-hidden="true"><span class="w-1 h-2 rounded bg-slate-300"></span><span class="w-1 h-4 rounded bg-slate-300"></span><span class="w-1 h-6 rounded bg-slate-400"></span><span class="w-1 h-3 rounded bg-slate-300"></span><span class="w-1 h-5 rounded bg-slate-400"></span><span class="w-1 h-2 rounded bg-slate-300"></span></div>
@@ -1662,6 +1673,42 @@
             </div>
         </section>
 
+        <!-- ================= SEÇÃO: FALA OUVIDOR ================= -->
+        <section id="fala-ouvidor" class="section-content hidden p-6 md:p-10 max-w-2xl mx-auto fade-in">
+            <div class="rounded-2xl p-8 md:p-10 text-white shadow-lg mb-8" style="background-color:#1c2b2e;">
+                <h2 class="text-3xl font-bold mb-3">Fala Ouvidor</h2>
+                <p class="leading-relaxed" style="color:#bcdadf;">Canal direto para sugestões, correções, envio de referências e outras mensagens sobre o Portal das Ouvidorias Públicas do Brasil.</p>
+            </div>
+
+            <form id="fala-ouvidor-form" class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-5" onsubmit="event.preventDefault();">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <label class="block text-sm font-semibold text-slate-700">Nome
+                        <input type="text" name="nome" autocomplete="name" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Seu nome">
+                    </label>
+                    <label class="block text-sm font-semibold text-slate-700">E-mail
+                        <input type="email" name="email" autocomplete="email" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="voce@exemplo.com">
+                    </label>
+                </div>
+                <label class="block text-sm font-semibold text-slate-700">Assunto
+                    <select name="assunto" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
+                        <option>Sugestão</option>
+                        <option>Correção ou atualização</option>
+                        <option>Envio de documento ou referência</option>
+                        <option>Outro assunto</option>
+                    </select>
+                </label>
+                <label class="block text-sm font-semibold text-slate-700">Mensagem
+                    <textarea name="mensagem" rows="7" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Escreva sua mensagem"></textarea>
+                </label>
+                <div class="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-relaxed text-amber-800">
+                    A estrutura do formulário já está pronta. O envio será ativado antes da publicação, depois de definirmos o endereço institucional que receberá as mensagens.
+                </div>
+                <button type="submit" disabled class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white font-semibold opacity-50 cursor-not-allowed" style="background-color:#4B9DAB;">
+                    <i data-lucide="send" class="w-4 h-4"></i> Envio em configuração
+                </button>
+            </form>
+        </section>
+
         <!-- ================= SEÇÃO: QUEM SOMOS ================= -->
         <section id="quem-somos" class="section-content hidden p-6 md:p-10 max-w-3xl mx-auto fade-in">
             <div class="prose max-w-none text-slate-700 space-y-4">
@@ -1949,5 +1996,6 @@
         icones();
     </script>
     <script src="form-scroll-fix.js"></script>
+    <script src="portal-content.js"></script>
 </body>
 </html>

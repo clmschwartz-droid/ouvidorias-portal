@@ -1,0 +1,146 @@
+backend:
+  name: github
+  repo: clmschwartz-droid/ouvidorias-portal
+  # Durante os testes, o CMS escreve somente na branch de trabalho.
+  # Trocar para main imediatamente antes da publicação definitiva.
+  branch: portal-definitivo
+  # O portal continua no GitHub Pages; o Netlify é usado apenas como ponte OAuth.
+  site_domain: ouvidorias-brasileiras-preview.netlify.app
+
+publish_mode: editorial_workflow
+locale: pt
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: "noticias"
+    label: "Notícias e Cursos"
+    files:
+      - name: "itens"
+        label: "Itens publicados"
+        file: "conteudo/noticias.json"
+        format: "json"
+        fields:
+          - label: "Notícias, cursos e eventos"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Tipo", name: "tipo", widget: "select", options: ["Notícia", "Artigo", "Curso", "Evento"] }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Subtítulo ou linha fina", name: "subtitulo", widget: "string", required: false }
+              - { label: "Texto", name: "texto", widget: "text", required: false }
+              - { label: "Autor ou autora", name: "autor", widget: "string", required: false }
+              - { label: "Veículo ou organizador", name: "fonte", widget: "string", required: false }
+              - { label: "Local", name: "local", widget: "string", required: false }
+              - { label: "Link externo principal", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
+              - { label: "Texto do link externo principal", name: "link_label", widget: "string", required: false, default: "Acessar fonte" }
+              - { label: "Abrir link principal em nova aba", name: "link_nova_aba", widget: "boolean", required: false, default: true }
+              - label: "Links relacionados"
+                name: "links"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                hint: "Use para documentos ou páginas complementares relacionados à notícia."
+                fields:
+                  - { label: "Texto do link", name: "label", widget: "string" }
+                  - { label: "URL ou caminho", name: "url", widget: "string" }
+                  - { label: "Abrir em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
+                  - { label: "Fazer download ao clicar", name: "download", widget: "boolean", required: false, default: false, hint: "Ative para PDFs e outros arquivos que devem ser baixados diretamente." }
+              - label: "Imagem ou banner"
+                name: "imagem"
+                widget: "image"
+                required: false
+                media_folder: "/noticias"
+                public_folder: "/noticias"
+                hint: "Padrão recomendado: 1200 × 630 px (proporção aproximada 1,9:1), JPG/PNG/WebP, preferencialmente até 800 KB. O portal preserva a proporção da imagem e não faz corte automático."
+              - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false, hint: "Descreva objetivamente o conteúdo essencial da imagem para acessibilidade." }
+              - { label: "Legenda da imagem", name: "imagem_legenda", widget: "string", required: false }
+              - label: "PDF ou arquivo principal"
+                name: "arquivo"
+                widget: "file"
+                required: false
+                media_folder: "/documentos"
+                public_folder: "/documentos"
+              - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar arquivo" }
+              - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false, hint: "Destaca o card; quando houver imagem, ela aparece no topo da notícia." }
+              - { label: "Identificador técnico substituído", name: "substitui", widget: "hidden", required: false, default: "" }
+
+  - name: "documentos"
+    label: "Documentos"
+    files:
+      - name: "itens"
+        label: "Documentos do portal"
+        file: "conteudo/documentos.json"
+        format: "json"
+        fields:
+          - label: "Documentos"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Tipo", name: "tipo", widget: "string", required: false }
+              - { label: "Categoria", name: "categoria", widget: "select", options: ["Carta", "Moção", "Documentos internacionais", "Documentos históricos", "Outro"], required: false }
+              - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+              - { label: "Descrição", name: "descricao", widget: "text", required: false }
+              - { label: "Fonte ou instituição", name: "fonte", widget: "string", required: false }
+              - { label: "Exibir em Documentos recentes", name: "recente", widget: "boolean", required: false, default: false }
+              - label: "PDF ou arquivo"
+                name: "arquivo"
+                widget: "file"
+                required: false
+                media_folder: "/documentos"
+                public_folder: "/documentos"
+              - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar documento" }
+              - label: "Links oficiais"
+                name: "links"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Texto do link", name: "label", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+                  - { label: "Abrir em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
+                  - { label: "Fazer download ao clicar", name: "download", widget: "boolean", required: false, default: false }
+
+  - name: "multimidia"
+    label: "Multimídia"
+    files:
+      - name: "itens"
+        label: "Vídeos, podcasts e entrevistas"
+        file: "conteudo/multimidia.json"
+        format: "json"
+        fields:
+          - label: "Conteúdos multimídia"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Tipo", name: "tipo", widget: "select", options: ["Vídeo", "Podcast", "Entrevista", "Áudio", "Galeria de fotos", "Outro"] }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+              - { label: "Descrição", name: "descricao", widget: "text", required: false }
+              - { label: "Fonte ou instituição", name: "fonte", widget: "string", required: false }
+              - { label: "Plataforma", name: "plataforma", widget: "string", required: false, hint: "Ex.: UN Web TV, YouTube, Spotify" }
+              - { label: "Duração", name: "duracao", widget: "string", required: false }
+              - { label: "URL oficial", name: "url", widget: "string", hint: "Página oficial do vídeo, episódio, áudio, entrevista ou galeria." }
+              - { label: "URL de incorporação", name: "embed_url", widget: "string", required: false, hint: "Para vídeos exibidos dentro do portal. Cole a URL do player (src do iframe); links comuns do YouTube e do Vimeo também são convertidos automaticamente." }
+              - { label: "Texto do link", name: "link_label", widget: "string", required: false, default: "Acessar conteúdo" }
+              - { label: "Abrir link em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
+              - label: "Imagem estática / thumbnail"
+                name: "imagem"
+                widget: "image"
+                required: false
+                media_folder: "/multimidia"
+                public_folder: "/multimidia"
+                hint: "Recomendado: 1280 × 720 px ou outra imagem em proporção 16:9."
+              - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false }
+              - { label: "Destaque", name: "destaque", widget: "boolean", required: false, default: false }
