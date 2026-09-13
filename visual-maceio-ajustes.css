@@ -60,6 +60,42 @@ body > nav > div:first-child h1 {
   z-index: 1;
 }
 
+/* Controle de tela cheia independente do player incorporado */
+.portal-video-fullscreen {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+[data-video-shell]:fullscreen,
+[data-video-shell]:-webkit-full-screen,
+[data-video-shell].portal-video-expanded {
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  border-radius: 0 !important;
+  background: #000 !important;
+}
+
+[data-video-shell].portal-video-expanded {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+}
+
+[data-video-shell]:fullscreen iframe,
+[data-video-shell]:-webkit-full-screen iframe,
+[data-video-shell].portal-video-expanded iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+html.portal-video-lock,
+html.portal-video-lock body {
+  overflow: hidden !important;
+}
+
 @media (max-width: 767px) {
   body > nav > div:first-child {
     padding-top: .72rem !important;

@@ -231,6 +231,48 @@
     return `<iframe src="${src}" title="${esc(title)}" class="absolute inset-0 w-full h-full border-0" loading="lazy" allow="accelerometer; autoplay *; clipboard-write; encrypted-media *; fullscreen *; gyroscope; picture-in-picture *; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
   }
 
+  function videoFullscreenButton(title) {
+    const safeTitle = esc(title || 'vídeo');
+    return `<button type="button" class="portal-video-fullscreen absolute top-3 right-3 z-20 inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-white/25 bg-black/70 px-3 py-2 text-xs font-semibold text-white shadow-lg backdrop-blur-sm transition hover:bg-black/85 focus:outline-none focus:ring-2 focus:ring-white" data-video-fullscreen aria-label="Exibir ${safeTitle} em tela cheia" aria-pressed="false"><i data-lucide="maximize-2" data-video-enter-icon class="w-4 h-4" aria-hidden="true"></i><i data-lucide="minimize-2" data-video-exit-icon class="hidden w-4 h-4" aria-hidden="true"></i><span data-video-fullscreen-label>Tela cheia</span></button>`;
+  }
+
+  function fullscreenElement() {
+    return document.fullscreenElement || document.webkitFullscreenElement || null;
+  }
+
+  function updateVideoFullscreenControls() {
+    document.querySelectorAll('[data-video-shell]').forEach((shell) => {
+      const expanded = fullscreenElement() === shell || shell.classList.contains('portal-video-expanded');
+      const control = shell.querySelector('[data-video-fullscreen]');
+      if (!control) return;
+      const label = control.querySelector('[data-video-fullscreen-label]');
+      const enterIcon = control.querySelector('[data-video-enter-icon]');
+      const exitIcon = control.querySelector('[data-video-exit-icon]');
+      control.setAttribute('aria-pressed', expanded ? 'true' : 'false');
+      control.setAttribute('aria-label', expanded ? 'Sair da tela cheia' : 'Exibir o vídeo em tela cheia');
+      if (label) label.textContent = expanded ? 'Sair da tela cheia' : 'Tela cheia';
+      if (enterIcon) enterIcon.classList.toggle('hidden', expanded);
+      if (exitIcon) exitIcon.classList.toggle('hidden', !expanded);
+    });
+  }
+
+  function enterViewportFullscreen(shell) {
+    document.querySelectorAll('.portal-video-expanded').forEach((expandedShell) => {
+      expandedShell.classList.remove('portal-video-expanded');
+    });
+    shell.classList.add('portal-video-expanded');
+    document.documentElement.classList.add('portal-video-lock');
+    updateVideoFullscreenControls();
+  }
+
+  function exitViewportFullscreen(shell) {
+    if (shell) shell.classList.remove('portal-video-expanded');
+    if (!document.querySelector('.portal-video-expanded')) {
+      document.documentElement.classList.remove('portal-video-lock');
+    }
+    updateVideoFullscreenControls();
+  }
+
   function renderMultimidia(items) {
     const host = document.getElementById('multimidia-dinamica');
     if (!host || !items.length) return;
@@ -242,7 +284,7 @@
       const isVideo = String(item.tipo || '').toLocaleLowerCase('pt-BR') === 'vídeo';
       const embed = isVideo ? videoEmbedUrl(item.embed_url || item.url) : '';
       const meta = [item.plataforma, item.duracao, datePt(item.date)].filter(Boolean).map(esc).join(' · ');
-      const embeddedMedia = embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950" data-video-shell>${image ? `<button type="button" class="absolute inset-0 w-full h-full flex items-center justify-center group text-left" data-video-embed="${safeUrl(embed)}" data-video-title="${esc(item.title)}" aria-label="Reproduzir ${esc(item.title)}"><img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover"><span class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition" aria-hidden="true"></span><span class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/95 bg-black/55 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</span><span class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition" aria-hidden="true"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></span></button>` : videoFrame(embed, item.title)}</div>` : '';
+      const embeddedMedia = embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950" data-video-shell>${image ? `<button type="button" class="absolute inset-0 w-full h-full flex items-center justify-center group text-left" data-video-embed="${safeUrl(embed)}" data-video-title="${esc(item.title)}" aria-label="Reproduzir ${esc(item.title)}"><img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover"><span class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition" aria-hidden="true"></span><span class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/95 bg-black/55 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</span><span class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition" aria-hidden="true"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></span></button>` : videoFrame(embed, item.title)}${videoFullscreenButton(item.title)}</div>` : '';
       return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
         ${item.destaque ? '<div class="px-4 py-2 text-white text-[10px] font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">Conteúdo em destaque</div>' : ''}
         ${embeddedMedia || (url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Acessar ${esc(item.title)}">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}${image ? '<div class="absolute inset-0 bg-black/20"></div>' : ''}<div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="${isVideo ? 'video' : 'external-link'}" class="w-3.5 h-3.5"></i>${esc(item.plataforma || item.tipo || 'Multimídia')}</div><div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="${isVideo ? 'play' : 'arrow-up-right'}" class="w-8 h-8${isVideo ? ' ml-1' : ''}" style="color:#3d7f8c;"></i></div></a>` : `<div class="aspect-video relative flex items-center justify-center overflow-hidden" style="background:#142d31;">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : '<i data-lucide="image" class="w-10 h-10 text-white/70"></i>'}</div>`)}
@@ -262,8 +304,54 @@
         const shell = button.closest('[data-video-shell]');
         if (!shell) return;
         const frame = videoFrame(button.dataset.videoEmbed, button.dataset.videoTitle || 'Vídeo', true);
-        if (frame) shell.innerHTML = frame;
+        if (frame) {
+          shell.innerHTML = `${frame}${videoFullscreenButton(button.dataset.videoTitle || 'Vídeo')}`;
+          try { if (window.lucide) window.lucide.createIcons(); } catch (_) {}
+          updateVideoFullscreenControls();
+        }
       }, { once: true });
+    });
+
+    host.addEventListener('click', async (event) => {
+      const control = event.target.closest('[data-video-fullscreen]');
+      if (!control || !host.contains(control)) return;
+      const shell = control.closest('[data-video-shell]');
+      if (!shell) return;
+
+      if (shell.classList.contains('portal-video-expanded')) {
+        exitViewportFullscreen(shell);
+        return;
+      }
+
+      const activeFullscreen = fullscreenElement();
+      if (activeFullscreen === shell) {
+        const exitFullscreen = document.exitFullscreen || document.webkitExitFullscreen;
+        if (exitFullscreen) {
+          try { await exitFullscreen.call(document); } catch (_) { exitViewportFullscreen(shell); }
+        }
+        return;
+      }
+
+      const requestFullscreen = shell.requestFullscreen || shell.webkitRequestFullscreen || shell.webkitRequestFullScreen;
+      if (!requestFullscreen) {
+        enterViewportFullscreen(shell);
+        return;
+      }
+
+      try {
+        await requestFullscreen.call(shell);
+        updateVideoFullscreenControls();
+      } catch (_) {
+        enterViewportFullscreen(shell);
+      }
+    });
+
+    document.addEventListener('fullscreenchange', updateVideoFullscreenControls);
+    document.addEventListener('webkitfullscreenchange', updateVideoFullscreenControls);
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      const expandedShell = document.querySelector('.portal-video-expanded');
+      if (expandedShell) exitViewportFullscreen(expandedShell);
     });
 
     const badge = document.getElementById('multimidia-em-construcao');
