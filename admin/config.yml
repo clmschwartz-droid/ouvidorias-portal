@@ -1,9 +1,8 @@
 backend:
   name: github
   repo: clmschwartz-droid/ouvidorias-portal
-  # Durante os testes, o CMS escreve somente na branch de trabalho.
-  # Trocar para main imediatamente antes da publicação definitiva.
-  branch: portal-definitivo
+  # O CMS público usa a branch protegida main; cada publicação segue o fluxo editorial por pull request.
+  branch: main
   # O portal continua no GitHub Pages; o Netlify é usado apenas como ponte OAuth.
   site_domain: ouvidorias-brasileiras-preview.netlify.app
 
