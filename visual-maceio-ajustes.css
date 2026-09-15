@@ -109,6 +109,77 @@ html.portal-video-lock body {
   border: 0 !important;
 }
 
+/* Mapa: mais área visual em desktop, sem alterar dados, controles ou navegação. */
+@media (min-width: 1181px) and (min-height: 621px) {
+  #mapa > div:first-child {
+    width: 58% !important;
+  }
+  #mapa > div:nth-child(2) {
+    width: 42% !important;
+  }
+  #mapa-canvas {
+    min-height: clamp(440px, 58vh, 620px) !important;
+  }
+}
+
+/* No iPad e em tablets, o mapa ocupa toda a largura útil; o painel permanece
+   acessível como gaveta, com os mesmos controles e informações. */
+@media (min-width: 768px) and (max-width: 1180px) and (min-height: 621px) {
+  #mapa {
+    height: auto !important;
+    min-height: 100% !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+  #mapa > div:first-child {
+    width: 100% !important;
+    flex: none !important;
+    padding: 1rem 1.25rem !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--opb-line) !important;
+  }
+  #mapa-canvas {
+    flex: none !important;
+    width: 100% !important;
+    min-height: 430px !important;
+    height: clamp(430px, 54dvh, 560px) !important;
+    max-height: 560px !important;
+  }
+  #mapa > div:nth-child(2) {
+    width: 100% !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+  #mapa-vazio {
+    display: none !important;
+  }
+  #mapa-painel {
+    position: fixed !important;
+    left: 16rem;
+    right: 0;
+    bottom: 0;
+    width: auto !important;
+    height: min(60dvh, 600px) !important;
+    max-height: calc(100dvh - 32px) !important;
+    z-index: 40;
+    background: var(--opb-paper) !important;
+    border: 1px solid var(--opb-line);
+    border-bottom: 0;
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -18px 52px rgba(17,19,19,.20);
+    overflow: hidden !important;
+  }
+  #mapa-painel.hidden {
+    display: none !important;
+  }
+  #mapa-painel.flex {
+    display: flex !important;
+  }
+}
+
 @media (max-width: 767px) {
   body > nav > div:first-child {
     padding-top: .72rem !important;
