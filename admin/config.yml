@@ -143,3 +143,53 @@ collections:
                 hint: "Recomendado: 1280 × 720 px ou outra imagem em proporção 16:9."
               - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false }
               - { label: "Destaque", name: "destaque", widget: "boolean", required: false, default: false }
+
+  - name: "manifestacoes"
+    label: "Fala Ouvidor — publicações"
+    files:
+      - name: "itens"
+        label: "Manifestações moderadas"
+        file: "conteudo/manifestacoes.json"
+        format: "json"
+        fields:
+          - label: "Manifestações aprovadas para publicação"
+            name: "items"
+            widget: "list"
+            required: false
+            summary: "{{fields.date}} — {{fields.title}}"
+            hint: "Inclua somente a versão já moderada, revisada e autorizada para exibição pública. Nunca registre aqui e-mail, telefone, documentos privados ou o relato original recebido."
+            fields:
+              - { label: "Título público", name: "title", widget: "string" }
+              - { label: "Data de publicação", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Categoria", name: "categoria", widget: "select", options: ["Interrupção de mandato", "Afastamento ou demissão", "Prejuízo ao funcionamento de ouvidoria", "Relato institucional", "Sugestão ou atualização", "Outro"] }
+              - { label: "Ouvidoria, órgão ou instituição", name: "instituicao", widget: "string", required: false }
+              - { label: "Local ou UF", name: "local", widget: "string", required: false }
+              - { label: "Texto público moderado", name: "texto", widget: "text", hint: "Revise o texto e remova dados pessoais ou alegações que não devam ser publicadas." }
+              - { label: "Identificação pública", name: "autor_exibicao", widget: "string", required: false, default: "Identidade preservada", hint: "Use o nome autorizado, iniciais ou “Identidade preservada”." }
+              - { label: "Situação", name: "status", widget: "select", options: ["Relato publicado", "Em acompanhamento", "Resposta recebida", "Encerrado"], required: false, default: "Relato publicado" }
+              - { label: "Resposta ou atualização", name: "resposta", widget: "text", required: false }
+              - { label: "Data da resposta", name: "resposta_data", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+              - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false }
+              - { label: "Publicado", name: "publicado", widget: "boolean", required: false, default: true, hint: "Desative para retirar temporariamente a manifestação da página sem apagar o registro editorial." }
+
+  - name: "conselho_curador"
+    label: "Conselho Curador"
+    files:
+      - name: "integrantes"
+        label: "Integrantes"
+        file: "conteudo/conselho-curador.json"
+        format: "json"
+        fields:
+          - label: "Pessoas e instituições"
+            name: "items"
+            widget: "list"
+            required: false
+            summary: "{{fields.nome}} — {{fields.entidade}}"
+            fields:
+              - { label: "Nome", name: "nome", widget: "string" }
+              - { label: "Entidade", name: "entidade", widget: "string" }
+              - { label: "Função ou vínculo", name: "funcao", widget: "string", required: false }
+              - { label: "Nota biográfica", name: "bio", widget: "text", required: false }
+              - { label: "Link institucional", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
+              - { label: "Ordem de exibição", name: "ordem", widget: "number", value_type: "int", min: 1, required: false }
+              - { label: "Exibir no portal", name: "ativo", widget: "boolean", required: false, default: true }

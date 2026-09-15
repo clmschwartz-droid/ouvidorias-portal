@@ -4,7 +4,9 @@
   const DATA = {
     noticias: 'conteudo/noticias.json',
     documentos: 'conteudo/documentos.json',
-    multimidia: 'conteudo/multimidia.json'
+    multimidia: 'conteudo/multimidia.json',
+    manifestacoes: 'conteudo/manifestacoes.json',
+    conselhoCurador: 'conteudo/conselho-curador.json'
   };
 
   const esc = (value = '') => String(value)
@@ -360,15 +362,86 @@
     placeholders.forEach((el) => el.classList.add('hidden'));
   }
 
+  function renderManifestacoes(items) {
+    const host = document.getElementById('manifestacoes-publicadas');
+    if (!host) return;
+
+    const publicados = [...items]
+      .filter((item) => item && item.publicado !== false && item.title && item.texto)
+      .sort((a, b) => {
+        if (Boolean(a.destaque) !== Boolean(b.destaque)) return a.destaque ? -1 : 1;
+        return String(b.date || '').localeCompare(String(a.date || ''));
+      });
+
+    if (!publicados.length) return;
+
+    host.innerHTML = publicados.map((item) => {
+      const local = [item.instituicao, item.local].filter(Boolean).map(esc).join(' · ');
+      const meta = [datePt(item.date), local].filter(Boolean).join(' · ');
+      const texto = esc(item.texto).replace(/\n/g, '<br>');
+      const resposta = item.resposta ? esc(item.resposta).replace(/\n/g, '<br>') : '';
+      return `<article class="rounded-xl border border-slate-200 bg-white p-5 md:p-6 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded" style="background:#e8f2f4;color:#3d7f8c">${esc(item.categoria || 'Manifestação')}</span>
+          ${item.status ? `<span class="text-[10px] font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">${esc(item.status)}</span>` : ''}
+          ${item.destaque ? '<span class="text-[10px] font-semibold px-2 py-1 rounded bg-amber-50 text-amber-700">Em destaque</span>' : ''}
+        </div>
+        <h4 class="text-lg font-bold text-slate-800">${esc(item.title)}</h4>
+        ${meta ? `<p class="mt-1 text-xs text-slate-500">${meta}</p>` : ''}
+        <p class="mt-4 text-sm leading-relaxed text-slate-700">${texto}</p>
+        ${item.autor_exibicao ? `<p class="mt-4 text-xs text-slate-500">Identificação: ${esc(item.autor_exibicao)}</p>` : ''}
+        ${resposta ? `<div class="mt-5 rounded-lg border border-teal-100 bg-teal-50 p-4"><p class="text-xs font-bold uppercase tracking-wider mb-2" style="color:#3d7f8c">Resposta ou atualização</p><p class="text-sm leading-relaxed text-slate-700">${resposta}</p>${item.resposta_data ? `<p class="mt-2 text-xs text-slate-500">${datePt(item.resposta_data)}</p>` : ''}</div>` : ''}
+      </article>`;
+    }).join('');
+  }
+
+  function renderConselhoCurador(items) {
+    const host = document.getElementById('conselho-curador-lista');
+    const nav = document.getElementById('conselho-curador-nav');
+    if (!host || !nav) return;
+
+    const integrantes = [...items]
+      .filter((item) => item && item.ativo !== false && item.nome)
+      .sort((a, b) => {
+        const ordemA = Number.isFinite(Number(a.ordem)) ? Number(a.ordem) : 9999;
+        const ordemB = Number.isFinite(Number(b.ordem)) ? Number(b.ordem) : 9999;
+        return ordemA - ordemB || String(a.nome).localeCompare(String(b.nome), 'pt-BR');
+      });
+
+    if (!integrantes.length) return;
+
+    host.innerHTML = integrantes.map((item) => {
+      const link = safeUrl(item.link);
+      return `<article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-lg bg-teal-50 p-2.5" style="color:#3d7f8c"><i data-lucide="user-round-check" class="w-5 h-5"></i></div>
+          <div class="min-w-0">
+            <h3 class="font-bold text-slate-800">${esc(item.nome)}</h3>
+            ${item.entidade ? `<p class="mt-1 text-sm font-medium" style="color:#3d7f8c">${esc(item.entidade)}</p>` : ''}
+            ${item.funcao ? `<p class="mt-1 text-xs text-slate-500">${esc(item.funcao)}</p>` : ''}
+            ${item.bio ? `<p class="mt-3 text-sm leading-relaxed text-slate-600">${esc(item.bio)}</p>` : ''}
+            ${link ? `<a href="${link}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-3.5 h-3.5"></i>Saiba mais</a>` : ''}
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+
+    nav.classList.remove('hidden');
+  }
+
   async function init() {
-    const [noticias, documentos, multimidia] = await Promise.all([
+    const [noticias, documentos, multimidia, manifestacoes, conselhoCurador] = await Promise.all([
       fetchItems(DATA.noticias),
       fetchItems(DATA.documentos),
-      fetchItems(DATA.multimidia)
+      fetchItems(DATA.multimidia),
+      fetchItems(DATA.manifestacoes),
+      fetchItems(DATA.conselhoCurador)
     ]);
     renderNoticias(noticias);
     renderDocumentos(documentos);
     renderMultimidia(multimidia);
+    renderManifestacoes(manifestacoes);
+    renderConselhoCurador(conselhoCurador);
     try { if (window.lucide) window.lucide.createIcons(); } catch (_) {}
   }
 

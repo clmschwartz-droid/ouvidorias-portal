@@ -174,6 +174,9 @@
             <button onclick="navigate('quem-somos')" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="quem-somos">
                 <i data-lucide="info" class="w-5 h-5"></i> <span class="hidden md:inline">Camargo e Gomes Advogados</span>
             </button>
+            <button id="conselho-curador-nav" onclick="navigate('conselho-curador')" class="nav-link hidden text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="conselho-curador">
+                <i data-lucide="badge-check" class="w-5 h-5"></i> <span class="hidden md:inline">Conselho Curador</span>
+            </button>
         </div>
         
         <div class="p-4 border-t border-slate-100 hidden md:block text-xs text-slate-400 text-center">
@@ -1674,36 +1677,106 @@
         </section>
 
         <!-- ================= SEÇÃO: FALA OUVIDOR ================= -->
-        <section id="fala-ouvidor" class="section-content hidden p-6 md:p-10 max-w-2xl mx-auto fade-in">
+        <section id="fala-ouvidor" class="section-content hidden p-6 md:p-10 max-w-3xl mx-auto fade-in">
             <div class="rounded-2xl p-8 md:p-10 text-white shadow-lg mb-8" style="background-color:#1c2b2e;">
                 <h2 class="text-3xl font-bold mb-3">Fala Ouvidor</h2>
-                <p class="leading-relaxed" style="color:#bcdadf;">Canal direto para sugestões, correções, envio de referências e outras mensagens sobre o Portal das Ouvidorias Públicas do Brasil.</p>
+                <p class="leading-relaxed" style="color:#bcdadf;">Espaço de escuta, registro e visibilidade para manifestações sobre fatos que afetem a autonomia, a continuidade e o funcionamento das ouvidorias públicas brasileiras — como interrupções de mandato, afastamentos ou demissões considerados indevidos por seus autores e outros episódios relevantes.</p>
             </div>
 
-            <form id="fala-ouvidor-form" class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-5" onsubmit="event.preventDefault();">
+            <div class="bg-sky-50 border border-sky-200 rounded-xl p-5 mb-6 text-sm leading-relaxed text-slate-700">
+                <p><strong>Moderação prévia:</strong> o envio de uma manifestação não produz publicação automática. O conteúdo será analisado e poderá ser editado, resumido ou anonimizado antes de eventual divulgação.</p>
+                <p class="mt-2">Este espaço não substitui ouvidorias, corregedorias, plataformas oficiais de denúncia ou medidas administrativas e judiciais cabíveis.</p>
+            </div>
+
+            <form id="fala-ouvidor-form" class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-5" data-endpoint="" novalidate>
                 <div class="grid md:grid-cols-2 gap-4">
-                    <label class="block text-sm font-semibold text-slate-700">Nome
-                        <input type="text" name="nome" autocomplete="name" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Seu nome">
+                    <label class="block text-sm font-semibold text-slate-700">Nome completo
+                        <input type="text" name="nome" autocomplete="name" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Seu nome">
+                        <span class="block mt-1 text-xs font-normal text-slate-500">Uso privado; a forma de identificação pública é escolhida abaixo.</span>
                     </label>
                     <label class="block text-sm font-semibold text-slate-700">E-mail
-                        <input type="email" name="email" autocomplete="email" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="voce@exemplo.com">
+                        <input type="email" name="email" autocomplete="email" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="voce@exemplo.com">
+                        <span class="block mt-1 text-xs font-normal text-slate-500">Não será exibido publicamente.</span>
                     </label>
                 </div>
-                <label class="block text-sm font-semibold text-slate-700">Assunto
-                    <select name="assunto" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
-                        <option>Sugestão</option>
-                        <option>Correção ou atualização</option>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <label class="block text-sm font-semibold text-slate-700">Ouvidoria, órgão ou instituição
+                        <input type="text" name="instituicao" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Nome da instituição">
+                    </label>
+                    <label class="block text-sm font-semibold text-slate-700">UF
+                        <select name="uf" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
+                            <option value="">Selecione, se aplicável</option>
+                            <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
+                        </select>
+                    </label>
+                </div>
+
+                <label class="block text-sm font-semibold text-slate-700">Tipo de manifestação
+                    <select name="categoria" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
+                        <option value="">Selecione</option>
+                        <option>Interrupção de mandato</option>
+                        <option>Afastamento ou demissão</option>
+                        <option>Prejuízo ao funcionamento de ouvidoria</option>
+                        <option>Relato institucional</option>
+                        <option>Sugestão, correção ou atualização do portal</option>
                         <option>Envio de documento ou referência</option>
-                        <option>Outro assunto</option>
+                        <option>Outro assunto relacionado às ouvidorias</option>
                     </select>
                 </label>
-                <label class="block text-sm font-semibold text-slate-700">Mensagem
-                    <textarea name="mensagem" rows="7" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Escreva sua mensagem"></textarea>
+
+                <label class="block text-sm font-semibold text-slate-700">Título da manifestação
+                    <input type="text" name="titulo" maxlength="140" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Resuma o assunto em uma frase">
                 </label>
-                <button type="submit" disabled class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white font-semibold opacity-50 cursor-not-allowed" style="background-color:#4B9DAB;">
+
+                <label class="block text-sm font-semibold text-slate-700">Manifestação
+                    <textarea name="mensagem" rows="9" maxlength="6000" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Descreva os fatos com objetividade. Evite inserir dados pessoais que não sejam necessários."></textarea>
+                    <span class="block mt-1 text-xs font-normal text-slate-500">Até 6.000 caracteres.</span>
+                </label>
+
+                <label class="block text-sm font-semibold text-slate-700">Identificação em eventual publicação
+                    <select name="identificacao_publica" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
+                        <option value="">Selecione</option>
+                        <option value="nome">Nome completo</option>
+                        <option value="iniciais">Somente iniciais</option>
+                        <option value="preservada">Identidade preservada</option>
+                    </select>
+                </label>
+
+                <label class="fala-ouvidor-honeypot" aria-hidden="true">Não preencha este campo
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                </label>
+
+                <div class="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+                    <label class="flex items-start gap-3">
+                        <input type="checkbox" name="ciencia_moderacao" required class="mt-1 h-4 w-4 rounded border-slate-300 text-teal-700 focus:ring-teal-200">
+                        <span>Estou ciente de que a manifestação será submetida a moderação e de que seu envio não garante publicação.</span>
+                    </label>
+                    <label class="flex items-start gap-3">
+                        <input type="checkbox" name="consentimento_dados" required class="mt-1 h-4 w-4 rounded border-slate-300 text-teal-700 focus:ring-teal-200">
+                        <span>Autorizo o tratamento dos dados fornecidos para análise, contato, moderação e eventual publicação nos termos informados acima.</span>
+                    </label>
+                </div>
+
+                <div id="fala-ouvidor-status" class="hidden rounded-lg border px-4 py-3 text-sm" role="status" aria-live="polite"></div>
+
+                <button id="fala-ouvidor-submit" type="submit" disabled class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white font-semibold opacity-50 cursor-not-allowed" style="background-color:#4B9DAB;">
                     <i data-lucide="send" class="w-4 h-4"></i> Envio em fase de ativação
                 </button>
             </form>
+
+            <div class="mt-10 pt-8 border-t border-slate-200">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="p-2 rounded-lg bg-teal-50" style="color:#3d7f8c;"><i data-lucide="messages-square" class="w-5 h-5"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">Manifestações publicadas</h3>
+                        <p class="text-sm text-slate-500">Relatos divulgados após análise e moderação editorial.</p>
+                    </div>
+                </div>
+                <div id="manifestacoes-publicadas" class="space-y-4">
+                    <div class="rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-500">Ainda não há manifestações publicadas.</div>
+                </div>
+            </div>
         </section>
 
         <!-- ================= SEÇÃO: QUEM SOMOS ================= -->
@@ -1715,6 +1788,15 @@
                 <p>A esta frente de trabalho do escritório, juntam-se outras, como a defesa de povos e comunidades extrativistas tradicionais da Amazônia e de vítimas de atividades anticoncorrenciais, e, mais recentemente, a regulamentação das salvaguardas do mercado de créditos de carbono.</p>
                 <p>Saiba mais sobre o escritório em <a href="https://www.camargoegomes.com" target="_blank" rel="noopener" class="text-sky-700 hover:underline">camargoegomes.com</a>.</p>
             </div>
+        </section>
+
+        <!-- ================= SEÇÃO: CONSELHO CURADOR ================= -->
+        <section id="conselho-curador" class="section-content hidden p-6 md:p-10 max-w-4xl mx-auto fade-in">
+            <div class="rounded-2xl p-8 md:p-10 text-white shadow-lg mb-8" style="background-color:#1c2b2e;">
+                <h2 class="text-3xl font-bold mb-3">Conselho Curador</h2>
+                <p class="leading-relaxed" style="color:#bcdadf;">Pessoas e instituições que contribuem para a orientação e o desenvolvimento do Portal das Ouvidorias Públicas do Brasil.</p>
+            </div>
+            <div id="conselho-curador-lista" class="grid gap-4 md:grid-cols-2"></div>
         </section>
 
         <!-- MODAL DO MAPA (federais / redes / buscador) -->
@@ -1994,5 +2076,6 @@
     </script>
     <script src="form-scroll-fix.js"></script>
     <script src="portal-content.js"></script>
+    <script src="fala-ouvidor.js"></script>
 </body>
 </html>
