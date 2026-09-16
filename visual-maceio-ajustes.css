@@ -180,6 +180,18 @@ html.portal-video-lock body {
   }
 }
 
+/* No celular em pé, o mapa ganha altura e avança discretamente sobre as
+   margens laterais. A gaveta, os cliques e o modo deitado permanecem iguais. */
+@media (max-width: 767px) and (orientation: portrait) {
+  #mapa-canvas {
+    width: calc(100% + 1.2rem) !important;
+    margin-left: -.6rem !important;
+    min-height: 320px !important;
+    height: clamp(320px, 48dvh, 400px) !important;
+    max-height: 400px !important;
+  }
+}
+
 @media (max-width: 767px) {
   body > nav > div:first-child {
     padding-top: .72rem !important;
