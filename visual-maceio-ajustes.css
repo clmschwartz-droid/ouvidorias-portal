@@ -189,6 +189,11 @@ html.portal-video-lock body {
     min-height: 320px !important;
     height: clamp(320px, 48dvh, 400px) !important;
     max-height: 400px !important;
+    overflow: hidden !important;
+  }
+  #mapa-canvas svg {
+    transform: scale(1.16);
+    transform-origin: 50% 50%;
   }
 }
 
