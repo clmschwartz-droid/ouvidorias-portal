@@ -112,13 +112,13 @@ html.portal-video-lock body {
 /* Mapa: mais área visual em desktop, sem alterar dados, controles ou navegação. */
 @media (min-width: 1181px) and (min-height: 621px) {
   #mapa > div:first-child {
-    width: 58% !important;
+    width: 65% !important;
   }
   #mapa > div:nth-child(2) {
-    width: 42% !important;
+    width: 35% !important;
   }
   #mapa-canvas {
-    min-height: clamp(440px, 58vh, 620px) !important;
+    min-height: clamp(480px, 64vh, 680px) !important;
   }
 }
 
@@ -180,8 +180,9 @@ html.portal-video-lock body {
   }
 }
 
-/* No celular em pé, o mapa ganha altura e usa praticamente toda a largura
-   física da tela. A gaveta, os cliques e o modo deitado permanecem iguais. */
+/* No celular em pé, o mapa ganha altura, usa praticamente toda a largura
+   física da tela e recebe uma pequena correção óptica para a direita. A
+   gaveta, os cliques e o modo deitado permanecem iguais. */
 @media (max-width: 767px) and (orientation: portrait) {
   #mapa-canvas {
     width: calc(100% + 1.8rem) !important;
@@ -192,7 +193,7 @@ html.portal-video-lock body {
     overflow: hidden !important;
   }
   #mapa-canvas svg {
-    transform: scale(1.24);
+    transform: translateX(2.5%) scale(1.28);
     transform-origin: 50% 50%;
   }
 }
