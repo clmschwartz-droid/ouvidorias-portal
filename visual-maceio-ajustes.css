@@ -180,19 +180,19 @@ html.portal-video-lock body {
   }
 }
 
-/* No celular em pé, o mapa ganha altura e avança discretamente sobre as
-   margens laterais. A gaveta, os cliques e o modo deitado permanecem iguais. */
+/* No celular em pé, o mapa ganha altura e usa praticamente toda a largura
+   física da tela. A gaveta, os cliques e o modo deitado permanecem iguais. */
 @media (max-width: 767px) and (orientation: portrait) {
   #mapa-canvas {
-    width: calc(100% + 1.2rem) !important;
-    margin-left: -.6rem !important;
+    width: calc(100% + 1.8rem) !important;
+    margin-left: -.9rem !important;
     min-height: 320px !important;
     height: clamp(320px, 48dvh, 400px) !important;
     max-height: 400px !important;
     overflow: hidden !important;
   }
   #mapa-canvas svg {
-    transform: scale(1.16);
+    transform: scale(1.24);
     transform-origin: 50% 50%;
   }
 }
