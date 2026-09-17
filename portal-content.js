@@ -145,7 +145,7 @@
     const featuredCard = cards[0] || '';
     const secondaryCards = cards.slice(1, 3);
     const archiveCards = cards.slice(3);
-    host.innerHTML = `<div class="news-cover">${featuredCard}${secondaryCards.length ? `<div class="news-card-rail">${secondaryCards.join('')}</div>` : ''}</div>${archiveCards.length ? `<div class="news-archive-grid">${archiveCards.join('')}</div>` : ''}`;
+    host.innerHTML = `<div class="news-cover">${featuredCard}${secondaryCards.length ? `<div class="news-card-rail" data-scroll-cues data-scroll-label="notícias em destaque">${secondaryCards.join('')}</div>` : ''}</div>${archiveCards.length ? `<div class="news-archive-grid" data-scroll-cues data-scroll-label="outras notícias">${archiveCards.join('')}</div>` : ''}`;
 
     ordered.forEach((item) => {
       if (!item.substitui) return;
