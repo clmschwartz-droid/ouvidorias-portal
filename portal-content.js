@@ -111,12 +111,10 @@
     const destaque = byDate.find((item) => item.destaque === true) || byDate[0];
     const ordered = destaque ? [destaque, ...byDate.filter((item) => item !== destaque)] : byDate;
 
-    host.innerHTML = ordered.map((item, index) => {
+    const cards = ordered.map((item, index) => {
       const cardClass = index === 0
         ? 'news-card news-card-featured'
-        : (index < 3
-          ? 'news-card news-card-secondary' + (ordered.length === 2 ? ' news-card-secondary-solo' : '')
-          : 'news-card news-card-archive');
+        : (index < 3 ? 'news-card news-card-secondary' : 'news-card news-card-archive');
       const image = safeUrl(item.imagem);
       const meta = [datePt(item.date), item.local ? esc(item.local) : ''].filter(Boolean).join(' · ');
       const buttons = linkButtons(item);
@@ -134,7 +132,12 @@
           ${buttons ? `<div class="news-card-actions flex flex-wrap gap-2 pt-2">${buttons}</div>` : ''}
         </div>
       </article>`;
-    }).join('');
+    });
+
+    const featuredCard = cards[0] || '';
+    const secondaryCards = cards.slice(1, 3);
+    const archiveCards = cards.slice(3);
+    host.innerHTML = `<div class="news-cover">${featuredCard}${secondaryCards.length ? `<div class="news-card-rail">${secondaryCards.join('')}</div>` : ''}</div>${archiveCards.length ? `<div class="news-archive-grid">${archiveCards.join('')}</div>` : ''}`;
 
     ordered.forEach((item) => {
       if (!item.substitui) return;
