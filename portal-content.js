@@ -19,7 +19,15 @@
   const rawSafeUrl = (value = '') => {
     const url = String(value || '').trim();
     if (!url) return '';
-    if (/^(https?:\/\/|\/|[a-zA-Z0-9_.-]+\/)/.test(url)) return url;
+    if (/^https?:\/\//.test(url)) return url;
+    if (/^\/(?!\/)/.test(url)) {
+      if (window.location.hostname === 'raw.githack.com') {
+        const previewParts = window.location.pathname.split('/').filter(Boolean);
+        if (previewParts.length >= 3) return `/${previewParts.slice(0, 3).join('/')}${url}`;
+      }
+      return url;
+    }
+    if (/^[a-zA-Z0-9_.-]+\//.test(url)) return url;
     return '';
   };
 
