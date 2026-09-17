@@ -107,23 +107,31 @@
     const host = document.getElementById('noticias-dinamicas');
     if (!host || !items.length) return;
 
-    const ordered = [...items].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
-    host.innerHTML = ordered.map((item) => {
+    const byDate = [...items].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    const destaque = byDate.find((item) => item.destaque === true) || byDate[0];
+    const ordered = destaque ? [destaque, ...byDate.filter((item) => item !== destaque)] : byDate;
+
+    host.innerHTML = ordered.map((item, index) => {
+      const cardClass = index === 0
+        ? 'news-card news-card-featured'
+        : (index < 3
+          ? 'news-card news-card-secondary' + (ordered.length === 2 ? ' news-card-secondary-solo' : '')
+          : 'news-card news-card-archive');
       const image = safeUrl(item.imagem);
       const meta = [datePt(item.date), item.local ? esc(item.local) : ''].filter(Boolean).join(' · ');
       const buttons = linkButtons(item);
-      return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+      return `<article class="${cardClass} bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
         ${item.destaque ? `<div class="p-3 text-white text-xs font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">${esc(item.tipo || 'Notícia')} em destaque</div>` : ''}
-        <div class="p-6 md:p-8">
-          ${image ? `<figure class="mb-5 overflow-hidden rounded-lg bg-slate-50"><img src="${image}" alt="${esc(item.imagem_alt || item.title)}" class="w-full h-auto block">${item.imagem_legenda ? `<figcaption class="px-3 py-2 text-[11px] leading-relaxed text-slate-500 border-t border-slate-100">${esc(item.imagem_legenda)}</figcaption>` : ''}</figure>` : ''}
-          <div class="text-[10px] font-bold uppercase tracking-wider mb-2" style="color:#3d7f8c;">${esc(item.tipo || 'Notícia')}</div>
-          <h3 class="text-xl font-bold text-slate-800 mb-1">${esc(item.title)}</h3>
-          ${item.subtitulo ? `<p class="text-sm text-slate-500 mb-4">${esc(item.subtitulo)}</p>` : ''}
+        <div class="news-card-body p-6 md:p-8">
+          ${image ? `<figure class="news-card-image mb-5 overflow-hidden rounded-lg bg-slate-50"><img src="${image}" alt="${esc(item.imagem_alt || item.title)}" class="w-full h-auto block">${item.imagem_legenda ? `<figcaption class="px-3 py-2 text-[11px] leading-relaxed text-slate-500 border-t border-slate-100">${esc(item.imagem_legenda)}</figcaption>` : ''}</figure>` : ''}
+          <div class="news-card-kicker text-[10px] font-bold uppercase tracking-wider mb-2" style="color:#3d7f8c;">${esc(item.tipo || 'Notícia')}</div>
+          <h3 class="news-card-title text-xl font-bold text-slate-800 mb-1">${esc(item.title)}</h3>
+          ${item.subtitulo ? `<p class="news-card-subtitle text-sm text-slate-500 mb-4">${esc(item.subtitulo)}</p>` : ''}
           ${meta ? `<p class="text-xs text-slate-500 mb-4">${meta}</p>` : ''}
           ${item.texto ? `<p class="text-sm text-slate-600 leading-relaxed mb-4">${esc(item.texto)}</p>` : ''}
           ${item.autor ? `<p class="text-xs text-slate-500${item.fonte ? ' mb-1' : ' mb-4'}">Por ${esc(item.autor)}</p>` : ''}
           ${item.fonte ? `<p class="text-xs text-slate-500 mb-4">Fonte: ${esc(item.fonte)}</p>` : ''}
-          ${buttons ? `<div class="flex flex-wrap gap-2 pt-2">${buttons}</div>` : ''}
+          ${buttons ? `<div class="news-card-actions flex flex-wrap gap-2 pt-2">${buttons}</div>` : ''}
         </div>
       </article>`;
     }).join('');

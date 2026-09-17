@@ -69,7 +69,7 @@ collections:
                 media_folder: "/documentos"
                 public_folder: "/documentos"
               - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar arquivo" }
-              - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false, hint: "Destaca o card; quando houver imagem, ela aparece no topo da notícia." }
+              - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false, hint: "Use em um único item por vez: ele ocupará o card principal da capa. Se nenhum item estiver marcado, a notícia mais recente assumirá automaticamente o destaque." }
               - { label: "Identificador técnico substituído", name: "substitui", widget: "hidden", required: false, default: "" }
 
   - name: "documentos"
