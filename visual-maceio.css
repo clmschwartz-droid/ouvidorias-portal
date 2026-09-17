@@ -365,10 +365,6 @@ body > nav [data-target="mapa"].active {
 body > nav [data-target="mapa"].active i,
 body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; background: transparent !important; }
 
-/* Os cards da home não simulam mais um link enquanto ainda não forem links reais. */
-#home > .grid > div { transition: box-shadow .16s ease !important; cursor: default; }
-#home > .grid > div:hover { transform: none !important; box-shadow: 0 9px 28px rgba(17,19,19,.055) !important; }
-
 /* Notícias e cursos: textos menores sobem um degrau de legibilidade. */
 #noticias .text-sm { font-size: .96rem !important; line-height: 1.62 !important; }
 #noticias details .text-xs,
@@ -406,7 +402,7 @@ body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; 
     border-right: 0 !important;
     border-bottom: 1px solid var(--opb-line) !important;
   }
-  #mapa > div:first-child > div:first-child {
+  #map-actions-scroll {
     display: flex !important;
     grid-template-columns: none !important;
     gap: .5rem !important;
@@ -418,8 +414,8 @@ body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; 
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
-  #mapa > div:first-child > div:first-child::-webkit-scrollbar { display: none; }
-  #mapa > div:first-child > div:first-child .actbtn {
+  #map-actions-scroll::-webkit-scrollbar { display: none; }
+  #map-actions-scroll .actbtn {
     flex: 0 0 min(78vw, 300px) !important;
     scroll-snap-align: start;
     min-height: 58px;
@@ -503,7 +499,8 @@ body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; 
   }
   body > nav > div:first-child,
   body > nav > div:last-child { display: none !important; }
-  body > nav > div:nth-child(2) {
+  .nav-scroll-shell { flex: none !important; min-height: 0; }
+  #main-nav-scroll {
     flex: none !important;
     flex-direction: row !important;
     overflow-x: auto !important;
@@ -512,8 +509,8 @@ body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; 
     gap: .3rem !important;
     scrollbar-width: none;
   }
-  body > nav > div:nth-child(2)::-webkit-scrollbar { display: none; }
-  body > nav > div:nth-child(2) > div { display: none !important; }
+  #main-nav-scroll::-webkit-scrollbar { display: none; }
+  #main-nav-scroll > div { display: none !important; }
   body > nav .nav-link {
     flex: 0 0 auto !important;
     border-radius: 999px !important;
@@ -525,8 +522,8 @@ body > nav [data-target="mapa"].active span { color: var(--opb-ink) !important; 
   #main-content { min-height: 0 !important; }
   #mapa { min-height: 100% !important; }
   #mapa > div:first-child { padding: .55rem .75rem .7rem !important; }
-  #mapa > div:first-child > div:first-child { margin-bottom: .35rem !important; }
-  #mapa > div:first-child > div:first-child .actbtn {
+  #map-actions-scroll { margin-bottom: .35rem !important; }
+  #map-actions-scroll .actbtn {
     flex-basis: 220px !important;
     min-height: 48px;
     padding-top: .45rem !important;

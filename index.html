@@ -113,7 +113,7 @@
         </div>
         
         <!-- Links do Menu -->
-        <div class="flex-1 overflow-y-auto py-4 flex flex-row md:flex-col gap-1 px-3 overflow-x-auto custom-scrollbar">
+        <div id="main-nav-scroll" data-scroll-cues data-scroll-label="menu principal" class="flex-1 overflow-y-auto py-4 flex flex-row md:flex-col gap-1 px-3 overflow-x-auto custom-scrollbar">
             <button onclick="navigate('home')" class="nav-link active text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="home">
                 <i data-lucide="home" class="w-5 h-5"></i> <span class="hidden md:inline">Início</span>
             </button>
@@ -205,21 +205,24 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <button type="button" onclick="navigate('entidades')" aria-label="Conhecer as entidades de ouvidoria" class="home-feature-card bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-left w-full">
                     <div class="bg-emerald-100 w-12 h-12 rounded-lg flex items-center justify-center text-emerald-600 mb-4"><i data-lucide="map-pinned"></i></div>
                     <h3 class="font-bold text-lg mb-2">Raio-X Nacional</h3>
                     <p class="text-slate-600 text-sm">Levantamento da infraestrutura de atendimento dos Tribunais, do Ministério Público, das Defensorias Públicas e dos Poderes Executivo e Legislativo em todos os Estados da Federação.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <span class="home-feature-card-cta">Conhecer as entidades <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+                </button>
+                <button type="button" onclick="navigate('bibliografia')" aria-label="Consultar a bibliografia do portal" class="home-feature-card bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-left w-full">
                     <div class="bg-amber-100 w-12 h-12 rounded-lg flex items-center justify-center text-amber-600 mb-4"><i data-lucide="library"></i></div>
                     <h3 class="font-bold text-lg mb-2">Acervo Histórico e Bibliográfico</h3>
                     <p class="text-slate-600 text-sm">Documentação e publicações que fundamentam a evolução das ouvidorias públicas no Brasil e do instituto do ombudsman no mundo.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <span class="home-feature-card-cta">Consultar a bibliografia <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+                </button>
+                <button type="button" onclick="navigate('fundamentos')" aria-label="Explorar os fundamentos das ouvidorias" class="home-feature-card bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-left w-full">
                     <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center text-purple-600 mb-4"><i data-lucide="scale"></i></div>
                     <h3 class="font-bold text-lg mb-2">Origens, Fundamentos e Modelos</h3>
                     <p class="text-slate-600 text-sm">Da Suécia de 1809 aos modelos de ouvidorias e ombudsman no Brasil, conheça os cinco fundamentos do instituto: controle do Estado, defesa da cidadania, mediação, participação popular e direitos humanos.</p>
-                </div>
+                    <span class="home-feature-card-cta">Explorar os fundamentos <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+                </button>
             </div>
         </section>
 
@@ -1585,7 +1588,7 @@
         <section id="mapa" class="section-content hidden h-full fade-in flex flex-col md:flex-row">
             <!-- COLUNA DO MAPA -->
             <div class="w-full md:w-1/2 bg-white p-5 md:p-6 flex flex-col border-r border-slate-200 shrink-0">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-5">
+                <div id="map-actions-scroll" data-scroll-cues data-scroll-label="opções do mapa" class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-5">
                     <button id="btn_federais" onclick="mapaPainel('federais')" class="actbtn text-left px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white">
                         <div class="flex items-center gap-2 mb-0.5">
                             <i data-lucide="landmark" class="w-4 h-4 text-slate-500"></i>
@@ -2076,5 +2079,6 @@
     <script src="form-scroll-fix.js"></script>
     <script src="portal-content.js"></script>
     <script src="fala-ouvidor.js"></script>
+    <script src="scroll-cues.js"></script>
 </body>
 </html>
