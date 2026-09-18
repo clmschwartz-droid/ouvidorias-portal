@@ -16,6 +16,9 @@ Critérios de aceite antes do merge final:
 4. funcionamento verificado em computador, Android e iPad;
 5. credenciais OAuth e outros segredos mantidos somente no serviço de autenticação, nunca no GitHub;
 6. procedimento de migração documentado para futura transferência do repositório à conta institucional.
+7. opção **“Exibir no portal”** acrescentada a Notícias, Documentos e Multimídia, ativada por padrão, para permitir ocultação reversível sem excluir o conteúdo; o “x” do widget de lista deve ficar reservado à exclusão permanente.
+
+Antes do merge final, testar em cada uma das três coleções o ciclo completo: ocultar um item, salvar como rascunho, conferir o Deploy Preview, publicar, reexibir o item e confirmar que nenhum arquivo ou metadado foi perdido.
 
 Enquanto a autenticação dedicada ao endereço oficial não for concluída, a configuração existente deve permanecer intacta. A troca do provedor exige uma URL de autenticação e uma credencial OAuth válidas; não deve ser simulada com valores provisórios na versão pública.
 
