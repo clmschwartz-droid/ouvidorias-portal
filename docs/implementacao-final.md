@@ -57,6 +57,12 @@ Nunca registrar nesse arquivo:
 
 Os integrantes são mantidos em `conteudo/conselho-curador.json`. O botão e a seção permanecem ocultos enquanto a lista estiver vazia. Assim, a estrutura pode ser preparada antes da entrega dos nomes sem produzir uma página pública incompleta.
 
+## Métricas com GoatCounter
+
+O portal carrega o contador público associado ao site code `ouvidoriasbrasileiras`, por meio de `https://gc.zgo.at/count.js`. Não há senha, token ou outro segredo no código do site. A conta administrativa precisa manter o e-mail verificado e o acesso ao painel protegido.
+
+Após a publicação, abrir o portal em uma janela sem bloqueador de conteúdo e confirmar no painel do GoatCounter o recebimento da primeira visita. Bloqueadores podem impedir a contagem no navegador usado para o teste.
+
 ## Itens que dependem de configuração externa
 
 - criação e teste do e-mail institucional;
@@ -64,6 +70,7 @@ Os integrantes são mantidos em `conteudo/conselho-curador.json`. O botão e a s
 - ativação das notificações de novas respostas para a conta administrativa;
 - credenciais de autenticação do `/admin/`;
 - definição da política de privacidade e retenção;
-- GoatCounter e eventual serviço de newsletter.
+- verificação do e-mail da conta GoatCounter e teste da primeira visita;
+- eventual serviço de newsletter.
 
 Esses valores não devem ser gravados diretamente em arquivos públicos quando forem secretos.
