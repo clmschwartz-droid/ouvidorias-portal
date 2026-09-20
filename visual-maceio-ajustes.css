@@ -96,17 +96,24 @@ html.portal-video-lock body {
   overflow: hidden !important;
 }
 
-/* Campo antispam: disponível para robôs, mas fora da tela e da navegação. */
-.fala-ouvidor-honeypot {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
+/* Google Forms permanece integrado à página, sem abrir outra aba. */
+.fala-ouvidor-form-shell {
+  min-height: 2450px;
+}
+
+.fala-ouvidor-form-frame {
+  height: 2450px;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  .fala-ouvidor-form-shell {
+    min-height: 2920px;
+  }
+
+  .fala-ouvidor-form-frame {
+    height: 2920px;
+  }
 }
 
 /* Mapa: mais área visual em desktop, sem alterar dados, controles ou navegação. */

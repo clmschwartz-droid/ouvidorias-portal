@@ -28,29 +28,17 @@ O relato recebido e sua versão publicada são registros diferentes.
 
 ### Registro privado
 
-Deve ser armazenado fora deste repositório e acessível somente às pessoas responsáveis pela moderação. Pode conter nome, e-mail, relato integral, anexos, consentimentos, datas e histórico de contato.
+O recebimento é feito pelo Google Forms incorporado à seção. As respostas são vinculadas a uma planilha separada e restrita, sob a conta administrativa do portal. Nome, e-mail, relato integral, consentimentos, datas e histórico de contato permanecem fora deste repositório.
 
-Requisitos mínimos do serviço de recebimento:
+Requisitos operacionais:
 
-- conexão HTTPS;
-- validação dos campos no servidor;
-- proteção antispam e limitação de tentativas;
-- verificação da origem `https://ouvidoriasbrasileiras.com.br`;
-- identificador ou protocolo para cada envio;
-- registro da versão do formulário e dos consentimentos;
-- controle de acesso à caixa de moderação;
-- política de retenção e exclusão;
-- notificação para o endereço institucional, sem expor o conteúdo completo em assunto de e-mail;
-- logs sem conteúdo pessoal desnecessário.
-
-O formulário espera um endpoint HTTPS no atributo `data-endpoint` de `#fala-ouvidor-form`. Uma resposta bem-sucedida pode retornar:
-
-```json
-{
-  "ok": true,
-  "protocolo": "FO-2026-0001"
-}
-```
+- manter formulário e planilha sob controle da conta administrativa;
+- conceder acesso somente às pessoas responsáveis pela moderação;
+- não tornar pública a planilha de respostas;
+- conservar a validação de e-mail, o limite de 6.000 caracteres e as duas confirmações obrigatórias;
+- revisar, editar ou anonimizar cada relato antes de eventual publicação;
+- definir política de retenção e exclusão dos dados privados;
+- manter notificações sem expor conteúdo pessoal desnecessário no assunto do e-mail.
 
 ### Versão pública moderada
 
@@ -72,9 +60,9 @@ Os integrantes são mantidos em `conteudo/conselho-curador.json`. O botão e a s
 ## Itens que dependem de configuração externa
 
 - criação e teste do e-mail institucional;
-- escolha e ativação do serviço privado de recebimento;
+- definição das pessoas autorizadas a acessar a planilha privada de respostas;
+- ativação das notificações de novas respostas para a conta administrativa;
 - credenciais de autenticação do `/admin/`;
-- configuração antispam;
 - definição da política de privacidade e retenção;
 - GoatCounter e eventual serviço de newsletter.
 

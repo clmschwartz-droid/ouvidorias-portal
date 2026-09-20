@@ -1690,82 +1690,20 @@
                 <p><strong>Moderação prévia:</strong> os relatos podem ser editados ou anonimizados antes de eventual publicação. Este canal não substitui os meios oficiais cabíveis.</p>
             </div>
 
-            <form id="fala-ouvidor-form" class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-5" data-endpoint="" novalidate>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <label class="block text-sm font-semibold text-slate-700">Nome completo
-                        <input type="text" name="nome" autocomplete="name" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Seu nome">
-                        <span class="block mt-1 text-xs font-normal text-slate-500">Uso privado; a forma de identificação pública é escolhida abaixo.</span>
-                    </label>
-                    <label class="block text-sm font-semibold text-slate-700">E-mail
-                        <input type="email" name="email" autocomplete="email" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="voce@exemplo.com">
-                        <span class="block mt-1 text-xs font-normal text-slate-500">Não será exibido publicamente.</span>
-                    </label>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-4">
-                    <label class="block text-sm font-semibold text-slate-700">Ouvidoria, órgão ou instituição
-                        <input type="text" name="instituicao" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Nome da instituição">
-                    </label>
-                    <label class="block text-sm font-semibold text-slate-700">UF
-                        <select name="uf" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
-                            <option value="">Selecione, se aplicável</option>
-                            <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
-                        </select>
-                    </label>
-                </div>
-
-                <label class="block text-sm font-semibold text-slate-700">Tipo de manifestação
-                    <select name="categoria" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
-                        <option value="">Selecione</option>
-                        <option>Interrupção de mandato</option>
-                        <option>Afastamento ou demissão</option>
-                        <option>Prejuízo ao funcionamento de ouvidoria</option>
-                        <option>Relato institucional</option>
-                        <option>Sugestão, correção ou atualização do portal</option>
-                        <option>Envio de documento ou referência</option>
-                        <option>Outro assunto relacionado às ouvidorias</option>
-                    </select>
-                </label>
-
-                <label class="block text-sm font-semibold text-slate-700">Título da manifestação
-                    <input type="text" name="titulo" maxlength="140" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Resuma o assunto em uma frase">
-                </label>
-
-                <label class="block text-sm font-semibold text-slate-700">Manifestação
-                    <textarea name="mensagem" rows="9" maxlength="6000" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Descreva os fatos com objetividade. Evite inserir dados pessoais que não sejam necessários."></textarea>
-                    <span class="block mt-1 text-xs font-normal text-slate-500">Até 6.000 caracteres.</span>
-                </label>
-
-                <label class="block text-sm font-semibold text-slate-700">Identificação em eventual publicação
-                    <select name="identificacao_publica" required class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
-                        <option value="">Selecione</option>
-                        <option value="nome">Nome completo</option>
-                        <option value="iniciais">Somente iniciais</option>
-                        <option value="preservada">Identidade preservada</option>
-                    </select>
-                </label>
-
-                <label class="fala-ouvidor-honeypot" aria-hidden="true">Não preencha este campo
-                    <input type="text" name="website" tabindex="-1" autocomplete="off">
-                </label>
-
-                <div class="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-                    <label class="flex items-start gap-3">
-                        <input type="checkbox" name="ciencia_moderacao" required class="mt-1 h-4 w-4 rounded border-slate-300 text-teal-700 focus:ring-teal-200">
-                        <span>Estou ciente de que a manifestação será submetida a moderação e de que seu envio não garante publicação.</span>
-                    </label>
-                    <label class="flex items-start gap-3">
-                        <input type="checkbox" name="consentimento_dados" required class="mt-1 h-4 w-4 rounded border-slate-300 text-teal-700 focus:ring-teal-200">
-                        <span>Autorizo o tratamento dos dados fornecidos para análise, contato, moderação e eventual publicação nos termos informados acima.</span>
-                    </label>
-                </div>
-
-                <div id="fala-ouvidor-status" class="hidden rounded-lg border px-4 py-3 text-sm" role="status" aria-live="polite"></div>
-
-                <button id="fala-ouvidor-submit" type="submit" disabled class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white font-semibold opacity-50 cursor-not-allowed" style="background-color:#4B9DAB;">
-                    <i data-lucide="send" class="w-4 h-4"></i> Envio em fase de ativação
-                </button>
-            </form>
+            <div class="fala-ouvidor-form-shell bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSf86JKoy6vNC3Q9iiz3v_p8gNXsOP8DhQh74v9Swl1i3QGwig/viewform?embedded=true"
+                    width="100%"
+                    height="2450"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    loading="lazy"
+                    title="Fala Ouvidor — envio de manifestação"
+                    class="fala-ouvidor-form-frame block w-full bg-white">
+                    Carregando…
+                </iframe>
+            </div>
 
             <div class="mt-10 pt-8 border-t border-slate-200">
                 <div class="flex items-center gap-3 mb-5">
@@ -2078,7 +2016,6 @@
     </script>
     <script src="form-scroll-fix.js"></script>
     <script src="portal-content.js"></script>
-    <script src="fala-ouvidor.js"></script>
     <script src="scroll-cues.js"></script>
 </body>
 </html>
