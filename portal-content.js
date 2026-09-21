@@ -6,7 +6,8 @@
     documentos: 'conteudo/documentos.json',
     multimidia: 'conteudo/multimidia.json',
     manifestacoes: 'conteudo/manifestacoes.json',
-    conselhoCurador: 'conteudo/conselho-curador.json'
+    conselhoCurador: 'conteudo/conselho-curador.json',
+    configuracao: 'conteudo/configuracao.json'
   };
 
   const esc = (value = '') => String(value)
@@ -53,6 +54,18 @@
     } catch (err) {
       console.warn(`[Portal] Não foi possível carregar ${url}:`, err);
       return [];
+    }
+  }
+
+  async function fetchJson(url) {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      const data = await res.json();
+      return data && typeof data === 'object' && !Array.isArray(data) ? data : {};
+    } catch (err) {
+      console.warn(`[Portal] Não foi possível carregar ${url}:`, err);
+      return {};
     }
   }
 
@@ -113,9 +126,10 @@
 
   function renderNoticias(items) {
     const host = document.getElementById('noticias-dinamicas');
-    if (!host || !items.length) return;
+    const visiveis = items.filter((item) => item && item.publicado !== false);
+    if (!host || !visiveis.length) return;
 
-    const byDate = [...items].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    const byDate = [...visiveis].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
     const destaque = byDate.find((item) => item.destaque === true) || byDate[0];
     const ordered = destaque ? [destaque, ...byDate.filter((item) => item !== destaque)] : byDate;
 
@@ -181,9 +195,10 @@
   }
 
   function renderDocumentos(items) {
-    if (!items.length) return;
+    const visiveis = items.filter((item) => item && item.publicado !== false);
+    if (!visiveis.length) return;
 
-    const ordered = [...items].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    const ordered = [...visiveis].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
     const recentes = ordered.filter((item) => item.recente === true);
     const internacionais = ordered.filter((item) => item.categoria === 'Documentos internacionais' && item.recente !== true);
 
@@ -296,8 +311,9 @@
 
   function renderMultimidia(items) {
     const host = document.getElementById('multimidia-dinamica');
-    if (!host || !items.length) return;
-    const ordered = [...items].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    const visiveis = items.filter((item) => item && item.publicado !== false);
+    if (!host || !visiveis.length) return;
+    const ordered = [...visiveis].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
 
     host.innerHTML = ordered.map((item) => {
       const url = safeUrl(item.url);
@@ -305,7 +321,7 @@
       const isVideo = String(item.tipo || '').toLocaleLowerCase('pt-BR') === 'vídeo';
       const embed = isVideo ? videoEmbedUrl(item.embed_url || item.url) : '';
       const meta = [item.plataforma, item.duracao, datePt(item.date)].filter(Boolean).map(esc).join(' · ');
-      const embeddedMedia = embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950" data-video-shell>${image ? `<button type="button" class="absolute inset-0 w-full h-full flex items-center justify-center group text-left" data-video-embed="${safeUrl(embed)}" data-video-title="${esc(item.title)}" aria-label="Reproduzir ${esc(item.title)}"><img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover"><span class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition" aria-hidden="true"></span><span class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/95 bg-black/55 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</span><span class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition" aria-hidden="true"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></span></button>` : videoFrame(embed, item.title)}${videoFullscreenButton(item.title)}</div>` : '';
+      const embeddedMedia = embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950" data-video-shell data-video-title="${esc(item.title)}">${image ? `<button type="button" class="absolute inset-0 w-full h-full flex items-center justify-center group text-left" data-video-embed="${safeUrl(embed)}" data-video-title="${esc(item.title)}" aria-label="Reproduzir ${esc(item.title)}"><img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover"><span class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition" aria-hidden="true"></span><span class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/95 bg-black/55 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</span><span class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition" aria-hidden="true"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></span></button>` : videoFrame(embed, item.title)}${videoFullscreenButton(item.title)}</div>` : '';
       return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
         ${item.destaque ? '<div class="px-4 py-2 text-white text-[10px] font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">Conteúdo em destaque</div>' : ''}
         ${embeddedMedia || (url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Acessar ${esc(item.title)}">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}${image ? '<div class="absolute inset-0 bg-black/20"></div>' : ''}<div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="${isVideo ? 'video' : 'external-link'}" class="w-3.5 h-3.5"></i>${esc(item.plataforma || item.tipo || 'Multimídia')}</div><div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="${isVideo ? 'play' : 'arrow-up-right'}" class="w-8 h-8${isVideo ? ' ml-1' : ''}" style="color:#3d7f8c;"></i></div></a>` : `<div class="aspect-video relative flex items-center justify-center overflow-hidden" style="background:#142d31;">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : '<i data-lucide="image" class="w-10 h-10 text-white/70"></i>'}</div>`)}
@@ -324,6 +340,9 @@
       button.addEventListener('click', () => {
         const shell = button.closest('[data-video-shell]');
         if (!shell) return;
+        if (window.PortalAnalytics) {
+          window.PortalAnalytics.event('video/reproduzir', button.dataset.videoTitle || 'Vídeo reproduzido');
+        }
         const frame = videoFrame(button.dataset.videoEmbed, button.dataset.videoTitle || 'Vídeo', true);
         if (frame) {
           shell.innerHTML = `${frame}${videoFullscreenButton(button.dataset.videoTitle || 'Vídeo')}`;
@@ -338,9 +357,11 @@
       if (!control || !host.contains(control)) return;
       const shell = control.closest('[data-video-shell]');
       if (!shell) return;
+      const videoTitle = shell.dataset.videoTitle || 'Vídeo';
 
       if (shell.classList.contains('portal-video-expanded')) {
         exitViewportFullscreen(shell);
+        if (window.PortalAnalytics) window.PortalAnalytics.event('video/sair-tela-cheia', videoTitle);
         return;
       }
 
@@ -350,20 +371,24 @@
         if (exitFullscreen) {
           try { await exitFullscreen.call(document); } catch (_) { exitViewportFullscreen(shell); }
         }
+        if (window.PortalAnalytics) window.PortalAnalytics.event('video/sair-tela-cheia', videoTitle);
         return;
       }
 
       const requestFullscreen = shell.requestFullscreen || shell.webkitRequestFullscreen || shell.webkitRequestFullScreen;
       if (!requestFullscreen) {
         enterViewportFullscreen(shell);
+        if (window.PortalAnalytics) window.PortalAnalytics.event('video/tela-cheia', videoTitle);
         return;
       }
 
       try {
         await requestFullscreen.call(shell);
         updateVideoFullscreenControls();
+        if (window.PortalAnalytics) window.PortalAnalytics.event('video/tela-cheia', videoTitle);
       } catch (_) {
         enterViewportFullscreen(shell);
+        if (window.PortalAnalytics) window.PortalAnalytics.event('video/tela-cheia', videoTitle);
       }
     });
 
@@ -414,10 +439,13 @@
     }).join('');
   }
 
-  function renderConselhoCurador(items) {
+  function renderConselhoCurador(items, publicado) {
     const host = document.getElementById('conselho-curador-lista');
     const nav = document.getElementById('conselho-curador-nav');
     if (!host || !nav) return;
+    nav.classList.add('hidden');
+    host.innerHTML = '';
+    if (publicado !== true) return;
 
     const integrantes = [...items]
       .filter((item) => item && item.ativo !== false && item.nome)
@@ -448,19 +476,68 @@
     nav.classList.remove('hidden');
   }
 
+  function setupNewsletter(config) {
+    const popup = document.getElementById('newsletter-popup');
+    if (!popup || config.newsletter_ativa !== true) return;
+
+    const url = rawSafeUrl(config.newsletter_url);
+    if (!/^https?:\/\//i.test(url)) return;
+
+    const title = popup.querySelector('[data-newsletter-title]');
+    const text = popup.querySelector('[data-newsletter-text]');
+    const link = popup.querySelector('[data-newsletter-link]');
+    const version = String(config.newsletter_versao || '1').replace(/[^a-zA-Z0-9_.-]/g, '') || '1';
+    const storageKey = `portal-newsletter-dismissed-${version}`;
+
+    try {
+      if (window.localStorage.getItem(storageKey) === '1') return;
+    } catch (_) {}
+
+    if (title) title.textContent = config.newsletter_titulo || 'Acompanhe as novidades do portal';
+    if (text) text.textContent = config.newsletter_texto || '';
+    if (link) {
+      link.href = url;
+      link.textContent = config.newsletter_botao || 'Assinar newsletter';
+    }
+
+    const close = () => {
+      popup.classList.add('hidden');
+      popup.setAttribute('aria-hidden', 'true');
+      try { window.localStorage.setItem(storageKey, '1'); } catch (_) {}
+    };
+
+    popup.querySelectorAll('[data-newsletter-close]').forEach((button) => {
+      button.addEventListener('click', close);
+    });
+    popup.addEventListener('click', (event) => {
+      if (event.target === popup) close();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !popup.classList.contains('hidden')) close();
+    });
+
+    const seconds = Math.max(0, Math.min(60, Number(config.newsletter_atraso_segundos) || 0));
+    window.setTimeout(() => {
+      popup.classList.remove('hidden');
+      popup.setAttribute('aria-hidden', 'false');
+    }, seconds * 1000);
+  }
+
   async function init() {
-    const [noticias, documentos, multimidia, manifestacoes, conselhoCurador] = await Promise.all([
+    const [noticias, documentos, multimidia, manifestacoes, conselhoCurador, configuracao] = await Promise.all([
       fetchItems(DATA.noticias),
       fetchItems(DATA.documentos),
       fetchItems(DATA.multimidia),
       fetchItems(DATA.manifestacoes),
-      fetchItems(DATA.conselhoCurador)
+      fetchItems(DATA.conselhoCurador),
+      fetchJson(DATA.configuracao)
     ]);
     renderNoticias(noticias);
     renderDocumentos(documentos);
     renderMultimidia(multimidia);
     renderManifestacoes(manifestacoes);
-    renderConselhoCurador(conselhoCurador);
+    renderConselhoCurador(conselhoCurador, configuracao.conselho_publicado);
+    setupNewsletter(configuracao);
     try { if (window.lucide) window.lucide.createIcons(); } catch (_) {}
   }
 

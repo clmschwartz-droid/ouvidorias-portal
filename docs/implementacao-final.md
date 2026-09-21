@@ -18,6 +18,8 @@ Critérios de aceite antes do merge final:
 6. procedimento de migração documentado para futura transferência do repositório à conta institucional.
 7. opção **“Exibir no portal”** acrescentada a Notícias, Documentos e Multimídia, ativada por padrão, para permitir ocultação reversível sem excluir o conteúdo; o “x” do widget de lista deve ficar reservado à exclusão permanente.
 
+O mesmo princípio vale para manifestações públicas e integrantes do Conselho: use primeiro os controles **“Publicado”** ou **“Exibir no portal”**. A remoção pelo “x” só se torna pública depois de salvar/publicar a alteração e ainda pode ser recuperada pelo histórico do Git, mas não deve ser usada como rotina editorial.
+
 Antes do merge final, testar em cada uma das três coleções o ciclo completo: ocultar um item, salvar como rascunho, conferir o Deploy Preview, publicar, reexibir o item e confirmar que nenhum arquivo ou metadado foi perdido.
 
 Enquanto a autenticação dedicada ao endereço oficial não for concluída, a configuração existente deve permanecer intacta. A troca do provedor exige uma URL de autenticação e uma credencial OAuth válidas; não deve ser simulada com valores provisórios na versão pública.
@@ -55,13 +57,26 @@ Nunca registrar nesse arquivo:
 
 ## Conselho Curador
 
-Os integrantes são mantidos em `conteudo/conselho-curador.json`. O botão e a seção permanecem ocultos enquanto a lista estiver vazia. Assim, a estrutura pode ser preparada antes da entrega dos nomes sem produzir uma página pública incompleta.
+Os integrantes são mantidos em `conteudo/conselho-curador.json`. Além do controle individual de cada integrante, existe a trava geral **“Publicar Conselho Curador”** em **Configuração do portal**. Enquanto essa trava estiver desativada, o botão e a seção permanecem ocultos mesmo que nomes já tenham sido cadastrados. Assim, a estrutura pode ser preparada antes das autorizações sem produzir uma página pública incompleta.
 
 ## Métricas com GoatCounter
 
 O portal carrega o contador público associado ao site code `ouvidoriasbrasileiras`, por meio de `https://gc.zgo.at/count.js`. Não há senha, token ou outro segredo no código do site. A conta administrativa precisa manter o e-mail verificado e o acesso ao painel protegido.
 
+O contador só é carregado em `ouvidoriasbrasileiras.com.br` e `www.ouvidoriasbrasileiras.com.br`; previews, `raw.githack.com` e testes locais não contaminam os dados. Além das visitas às seções, o portal registra como eventos:
+
+- abertura e download de documentos;
+- cliques em links externos;
+- reprodução e tela cheia de vídeos;
+- abertura de estados e painéis auxiliares do mapa.
+
+Os envios dos Google Forms não podem ser lidos pelo site por serem iframes de outra origem. A conclusão de **Inscreva-se** e **Fala Ouvidor** deve ser acompanhada nas respectivas planilhas de respostas; o GoatCounter registra o acesso às seções que contêm os formulários.
+
 Após a publicação, abrir o portal em uma janela sem bloqueador de conteúdo e confirmar no painel do GoatCounter o recebimento da primeira visita. Bloqueadores podem impedir a contagem no navegador usado para o teste.
+
+## Newsletter preparada e desativada
+
+A estrutura do pop-up está pronta, mas nasce invisível. Em **Configuração do portal**, o recurso só aparece quando **Ativar pop-up da newsletter** estiver ligado e uma URL pública válida tiver sido informada. Título, texto, botão, atraso e versão do aviso podem ser alterados no Decap. A versão permite reapresentar o aviso a quem já o dispensou depois de uma mudança editorial relevante.
 
 ## Itens que dependem de configuração externa
 

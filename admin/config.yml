@@ -30,10 +30,12 @@ collections:
             name: "items"
             widget: "list"
             summary: "{{fields.date}} — {{fields.title}}"
+            hint: "Para retirar um item temporariamente, desative “Exibir no portal”. Use o X somente quando a exclusão permanente for realmente desejada."
             fields:
               - { label: "Tipo", name: "tipo", widget: "select", options: ["Notícia", "Artigo", "Curso", "Evento"] }
               - { label: "Título", name: "title", widget: "string" }
               - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true, hint: "Desative para ocultar sem excluir; o conteúdo e os arquivos permanecem preservados." }
               - { label: "Subtítulo ou linha fina", name: "subtitulo", widget: "string", required: false }
               - { label: "Texto", name: "texto", widget: "text", required: false }
               - { label: "Autor ou autora", name: "autor", widget: "string", required: false }
@@ -84,11 +86,13 @@ collections:
             name: "items"
             widget: "list"
             summary: "{{fields.date}} — {{fields.title}}"
+            hint: "Para retirar um item temporariamente, desative “Exibir no portal”. Use o X somente quando a exclusão permanente for realmente desejada."
             fields:
               - { label: "Título", name: "title", widget: "string" }
               - { label: "Tipo", name: "tipo", widget: "string", required: false }
               - { label: "Categoria", name: "categoria", widget: "select", options: ["Carta", "Moção", "Documentos internacionais", "Documentos históricos", "Outro"], required: false }
               - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+              - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true, hint: "Desative para ocultar sem excluir; o conteúdo e os arquivos permanecem preservados." }
               - { label: "Descrição", name: "descricao", widget: "text", required: false }
               - { label: "Fonte ou instituição", name: "fonte", widget: "string", required: false }
               - { label: "Exibir em Documentos recentes", name: "recente", widget: "boolean", required: false, default: false }
@@ -122,10 +126,12 @@ collections:
             name: "items"
             widget: "list"
             summary: "{{fields.date}} — {{fields.title}}"
+            hint: "Para retirar um item temporariamente, desative “Exibir no portal”. Use o X somente quando a exclusão permanente for realmente desejada."
             fields:
               - { label: "Tipo", name: "tipo", widget: "select", options: ["Vídeo", "Podcast", "Entrevista", "Áudio", "Galeria de fotos", "Outro"] }
               - { label: "Título", name: "title", widget: "string" }
               - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+              - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true, hint: "Desative para ocultar sem excluir; o conteúdo e os arquivos permanecem preservados." }
               - { label: "Descrição", name: "descricao", widget: "text", required: false }
               - { label: "Fonte ou instituição", name: "fonte", widget: "string", required: false }
               - { label: "Plataforma", name: "plataforma", widget: "string", required: false, hint: "Ex.: UN Web TV, YouTube, Spotify" }
@@ -157,7 +163,7 @@ collections:
             widget: "list"
             required: false
             summary: "{{fields.date}} — {{fields.title}}"
-            hint: "Inclua somente a versão já moderada, revisada e autorizada para exibição pública. Nunca registre aqui e-mail, telefone, documentos privados ou o relato original recebido."
+            hint: "Inclua somente a versão já moderada, revisada e autorizada. Nunca registre e-mail, telefone, documentos privados ou o relato original. Para ocultar sem apagar, desative “Publicado”; use o X apenas para exclusão permanente."
             fields:
               - { label: "Título público", name: "title", widget: "string" }
               - { label: "Data de publicação", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
@@ -185,6 +191,7 @@ collections:
             widget: "list"
             required: false
             summary: "{{fields.nome}} — {{fields.entidade}}"
+            hint: "Os integrantes só aparecem quando também for ativada a publicação geral em “Configuração do portal”. Use o X apenas para exclusão permanente."
             fields:
               - { label: "Nome", name: "nome", widget: "string" }
               - { label: "Entidade", name: "entidade", widget: "string" }
@@ -193,3 +200,20 @@ collections:
               - { label: "Link institucional", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
               - { label: "Ordem de exibição", name: "ordem", widget: "number", value_type: "int", min: 1, required: false }
               - { label: "Exibir no portal", name: "ativo", widget: "boolean", required: false, default: true }
+
+  - name: "configuracao"
+    label: "Configuração do portal"
+    files:
+      - name: "geral"
+        label: "Publicação e recursos futuros"
+        file: "conteudo/configuracao.json"
+        format: "json"
+        fields:
+          - { label: "Publicar Conselho Curador", name: "conselho_publicado", widget: "boolean", required: false, default: false, hint: "Mantenha desativado até que todos os integrantes tenham autorizado a divulgação." }
+          - { label: "Ativar pop-up da newsletter", name: "newsletter_ativa", widget: "boolean", required: false, default: false, hint: "Só ative depois de informar uma URL pública válida da newsletter." }
+          - { label: "Título da newsletter", name: "newsletter_titulo", widget: "string", required: false, default: "Acompanhe as novidades do portal" }
+          - { label: "Texto da newsletter", name: "newsletter_texto", widget: "text", required: false, default: "Receba novas publicações, documentos e atualizações do Portal das Ouvidorias Públicas do Brasil." }
+          - { label: "URL para inscrição", name: "newsletter_url", widget: "string", required: false, hint: "Cole a URL pública completa do Substack ou do serviço que vier a ser adotado." }
+          - { label: "Texto do botão", name: "newsletter_botao", widget: "string", required: false, default: "Assinar newsletter" }
+          - { label: "Atraso para exibição (segundos)", name: "newsletter_atraso_segundos", widget: "number", value_type: "int", min: 0, max: 60, required: false, default: 8 }
+          - { label: "Versão do aviso", name: "newsletter_versao", widget: "string", required: false, default: "1", hint: "Altere este valor quando quiser que o pop-up volte a aparecer para quem já o dispensou." }

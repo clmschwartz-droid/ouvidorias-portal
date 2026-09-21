@@ -1755,6 +1755,20 @@
 
     </main>
 
+    <!-- Estrutura pronta para a newsletter; permanece totalmente oculta enquanto desativada no CMS. -->
+    <div id="newsletter-popup" class="hidden fixed inset-0 z-[70] flex bg-slate-950/55 p-4 items-end sm:items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="newsletter-popup-title" aria-hidden="true">
+        <div class="relative w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl sm:p-8">
+            <button type="button" data-newsletter-close class="absolute right-3 top-3 rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Fechar aviso da newsletter"><i data-lucide="x" class="h-5 w-5"></i></button>
+            <div class="mb-4 inline-flex rounded-xl bg-teal-50 p-3" style="color:#3d7f8c"><i data-lucide="mail-plus" class="h-6 w-6"></i></div>
+            <h2 id="newsletter-popup-title" data-newsletter-title class="pr-8 text-2xl font-bold text-slate-800">Acompanhe as novidades do portal</h2>
+            <p data-newsletter-text class="mt-3 text-sm leading-relaxed text-slate-600"></p>
+            <div class="mt-6 flex flex-wrap gap-3">
+                <a data-newsletter-link href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90" style="background-color:#4B9DAB">Assinar newsletter</a>
+                <button type="button" data-newsletter-close class="rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">Agora não</button>
+            </div>
+        </div>
+    </div>
+
     <!-- LOGICA DO SITE -->
     <script>
         // Inicializa ícones globais (protegido: o site continua funcionando se o CDN falhar)
@@ -1790,6 +1804,7 @@
             window.scrollTo(0, 0);
 
             if (targetId === 'mapa') { drawRegionsMap(); }
+            if (window.PortalAnalytics) { window.PortalAnalytics.section(targetId); }
         }
 
         // ======================================================================
@@ -1842,6 +1857,7 @@
         function mapaAbrir(uf){
             mapaAtual = MAPA.estados[uf];
             if(!mapaAtual) return;
+            if(window.PortalAnalytics) window.PortalAnalytics.event('mapa/estado/'+String(uf).toLowerCase(), 'Mapa: '+mapaAtual.nome);
             mapaUF = uf;
             drawRegionsMap();
             document.getElementById('mapa-vazio').classList.add('hidden');
@@ -1932,6 +1948,7 @@
         const M_BTN = {federais:'btn_federais', redes:'btn_redes', buscador:'btn_buscador'};
 
         function mapaPainel(tipo){
+            if(window.PortalAnalytics) window.PortalAnalytics.event('mapa/painel/'+tipo, 'Mapa: '+tipo);
             mapaMarcarBotao(M_BTN[tipo]);
             const t = document.getElementById('mapa-modal-titulo');
             const s = document.getElementById('mapa-modal-sub');
@@ -2014,13 +2031,9 @@
 
         icones();
     </script>
+    <script src="portal-analytics.js"></script>
     <script src="form-scroll-fix.js"></script>
     <script src="portal-content.js"></script>
     <script src="scroll-cues.js"></script>
-    <script
-        data-goatcounter="https://ouvidoriasbrasileiras.goatcounter.com/count"
-        async
-        src="https://gc.zgo.at/count.js">
-    </script>
 </body>
 </html>
