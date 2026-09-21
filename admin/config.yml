@@ -4,7 +4,8 @@ backend:
   # O CMS público usa a branch protegida main; cada publicação segue o fluxo editorial por pull request.
   branch: main
   # O portal continua no GitHub Pages; o Netlify é usado apenas como ponte OAuth.
-  site_domain: ouvidorias-brasileiras-preview.netlify.app
+  # O domínio canônico também está cadastrado no projeto Netlify para autorizar o retorno do login.
+  site_domain: ouvidoriasbrasileiras.com.br
 
 publish_mode: editorial_workflow
 locale: pt
