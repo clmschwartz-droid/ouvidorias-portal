@@ -117,11 +117,11 @@ html.portal-video-lock body {
 }
 
 .fala-ouvidor-form-shell {
-  min-height: 2450px;
+  min-height: 2050px;
 }
 
 .fala-ouvidor-form-frame {
-  height: 2450px;
+  height: 2050px;
   border: 0;
 }
 
@@ -143,11 +143,11 @@ html.portal-video-lock body {
   }
 
   .fala-ouvidor-form-shell {
-    min-height: 2920px;
+    min-height: 2600px;
   }
 
   .fala-ouvidor-form-frame {
-    height: 2920px;
+    height: 2600px;
   }
 }
 
