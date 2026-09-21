@@ -113,7 +113,7 @@
         </div>
         
         <!-- Links do Menu -->
-        <div class="flex-1 overflow-y-auto py-4 flex flex-row md:flex-col gap-1 px-3 overflow-x-auto custom-scrollbar">
+        <div id="main-nav-scroll" data-scroll-cues data-scroll-label="menu principal" class="flex-1 overflow-y-auto py-4 flex flex-row md:flex-col gap-1 px-3 overflow-x-auto custom-scrollbar">
             <button onclick="navigate('home')" class="nav-link active text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="home">
                 <i data-lucide="home" class="w-5 h-5"></i> <span class="hidden md:inline">Início</span>
             </button>
@@ -174,6 +174,9 @@
             <button onclick="navigate('quem-somos')" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="quem-somos">
                 <i data-lucide="info" class="w-5 h-5"></i> <span class="hidden md:inline">Camargo e Gomes Advogados</span>
             </button>
+            <button id="conselho-curador-nav" onclick="navigate('conselho-curador')" class="nav-link hidden text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="conselho-curador">
+                <i data-lucide="badge-check" class="w-5 h-5"></i> <span class="hidden md:inline">Conselho Curador</span>
+            </button>
         </div>
         
         <div class="p-4 border-t border-slate-100 hidden md:block text-xs text-slate-400 text-center">
@@ -202,21 +205,24 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <button type="button" onclick="navigate('entidades')" aria-label="Conhecer as entidades de ouvidoria" class="home-feature-card bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-left w-full">
                     <div class="bg-emerald-100 w-12 h-12 rounded-lg flex items-center justify-center text-emerald-600 mb-4"><i data-lucide="map-pinned"></i></div>
                     <h3 class="font-bold text-lg mb-2">Raio-X Nacional</h3>
                     <p class="text-slate-600 text-sm">Levantamento da infraestrutura de atendimento dos Tribunais, do Ministério Público, das Defensorias Públicas e dos Poderes Executivo e Legislativo em todos os Estados da Federação.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <span class="home-feature-card-cta">Conhecer as entidades <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+                </button>
+                <button type="button" onclick="navigate('bibliografia')" aria-label="Consultar a bibliografia do portal" class="home-feature-card bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-left w-full">
                     <div class="bg-amber-100 w-12 h-12 rounded-lg flex items-center justify-center text-amber-600 mb-4"><i data-lucide="library"></i></div>
                     <h3 class="font-bold text-lg mb-2">Acervo Histórico e Bibliográfico</h3>
                     <p class="text-slate-600 text-sm">Documentação e publicações que fundamentam a evolução das ouvidorias públicas no Brasil e do instituto do ombudsman no mundo.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <span class="home-feature-card-cta">Consultar a bibliografia <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+                </button>
+                <button type="button" onclick="navigate('fundamentos')" aria-label="Explorar os fundamentos das ouvidorias" class="home-feature-card bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-left w-full">
                     <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center text-purple-600 mb-4"><i data-lucide="scale"></i></div>
                     <h3 class="font-bold text-lg mb-2">Origens, Fundamentos e Modelos</h3>
                     <p class="text-slate-600 text-sm">Da Suécia de 1809 aos modelos de ouvidorias e ombudsman no Brasil, conheça os cinco fundamentos do instituto: controle do Estado, defesa da cidadania, mediação, participação popular e direitos humanos.</p>
-                </div>
+                    <span class="home-feature-card-cta">Explorar os fundamentos <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+                </button>
             </div>
         </section>
 
@@ -1582,7 +1588,7 @@
         <section id="mapa" class="section-content hidden h-full fade-in flex flex-col md:flex-row">
             <!-- COLUNA DO MAPA -->
             <div class="w-full md:w-1/2 bg-white p-5 md:p-6 flex flex-col border-r border-slate-200 shrink-0">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-5">
+                <div id="map-actions-scroll" data-scroll-cues data-scroll-label="opções do mapa" class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-5">
                     <button id="btn_federais" onclick="mapaPainel('federais')" class="actbtn text-left px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white">
                         <div class="flex items-center gap-2 mb-0.5">
                             <i data-lucide="landmark" class="w-4 h-4 text-slate-500"></i>
@@ -1674,36 +1680,43 @@
         </section>
 
         <!-- ================= SEÇÃO: FALA OUVIDOR ================= -->
-        <section id="fala-ouvidor" class="section-content hidden p-6 md:p-10 max-w-2xl mx-auto fade-in">
+        <section id="fala-ouvidor" class="section-content hidden p-6 md:p-10 max-w-3xl mx-auto fade-in">
             <div class="rounded-2xl p-8 md:p-10 text-white shadow-lg mb-8" style="background-color:#1c2b2e;">
                 <h2 class="text-3xl font-bold mb-3">Fala Ouvidor</h2>
-                <p class="leading-relaxed" style="color:#bcdadf;">Canal direto para sugestões, correções, envio de referências e outras mensagens sobre o Portal das Ouvidorias Públicas do Brasil.</p>
+                <p class="leading-relaxed" style="color:#bcdadf;">Canal para relatar problemas que afetem a autonomia ou o funcionamento da sua ouvidoria e para enviar sugestões, correções e referências ao portal.</p>
             </div>
 
-            <form id="fala-ouvidor-form" class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-5" onsubmit="event.preventDefault();">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <label class="block text-sm font-semibold text-slate-700">Nome
-                        <input type="text" name="nome" autocomplete="name" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Seu nome">
-                    </label>
-                    <label class="block text-sm font-semibold text-slate-700">E-mail
-                        <input type="email" name="email" autocomplete="email" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="voce@exemplo.com">
-                    </label>
+            <div class="bg-sky-50 border border-sky-200 rounded-xl p-4 mb-6 text-sm leading-relaxed text-slate-700">
+                <p><strong>Moderação prévia:</strong> os relatos podem ser editados ou anonimizados antes de eventual publicação. Este canal não substitui os meios oficiais cabíveis.</p>
+            </div>
+
+            <div class="fala-ouvidor-form-shell bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSf86JKoy6vNC3Q9iiz3v_p8gNXsOP8DhQh74v9Swl1i3QGwig/viewform?embedded=true"
+                    width="100%"
+                    height="2450"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    loading="lazy"
+                    title="Fala Ouvidor — envio de manifestação"
+                    class="fala-ouvidor-form-frame block w-full bg-white">
+                    Carregando…
+                </iframe>
+            </div>
+
+            <div class="mt-10 pt-8 border-t border-slate-200">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="p-2 rounded-lg bg-teal-50" style="color:#3d7f8c;"><i data-lucide="messages-square" class="w-5 h-5"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">Manifestações publicadas</h3>
+                        <p class="text-sm text-slate-500">Relatos divulgados após análise e moderação editorial.</p>
+                    </div>
                 </div>
-                <label class="block text-sm font-semibold text-slate-700">Assunto
-                    <select name="assunto" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal bg-white focus:outline-none focus:ring-2 focus:ring-teal-200">
-                        <option>Sugestão</option>
-                        <option>Correção ou atualização</option>
-                        <option>Envio de documento ou referência</option>
-                        <option>Outro assunto</option>
-                    </select>
-                </label>
-                <label class="block text-sm font-semibold text-slate-700">Mensagem
-                    <textarea name="mensagem" rows="7" class="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-teal-200" placeholder="Escreva sua mensagem"></textarea>
-                </label>
-                <button type="submit" disabled class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white font-semibold opacity-50 cursor-not-allowed" style="background-color:#4B9DAB;">
-                    <i data-lucide="send" class="w-4 h-4"></i> Envio em fase de ativação
-                </button>
-            </form>
+                <div id="manifestacoes-publicadas" class="space-y-4">
+                    <div class="rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-500">Ainda não há manifestações publicadas.</div>
+                </div>
+            </div>
         </section>
 
         <!-- ================= SEÇÃO: QUEM SOMOS ================= -->
@@ -1715,6 +1728,15 @@
                 <p>A esta frente de trabalho do escritório, juntam-se outras, como a defesa de povos e comunidades extrativistas tradicionais da Amazônia e de vítimas de atividades anticoncorrenciais, e, mais recentemente, a regulamentação das salvaguardas do mercado de créditos de carbono.</p>
                 <p>Saiba mais sobre o escritório em <a href="https://www.camargoegomes.com" target="_blank" rel="noopener" class="text-sky-700 hover:underline">camargoegomes.com</a>.</p>
             </div>
+        </section>
+
+        <!-- ================= SEÇÃO: CONSELHO CURADOR ================= -->
+        <section id="conselho-curador" class="section-content hidden p-6 md:p-10 max-w-4xl mx-auto fade-in">
+            <div class="rounded-2xl p-8 md:p-10 text-white shadow-lg mb-8" style="background-color:#1c2b2e;">
+                <h2 class="text-3xl font-bold mb-3">Conselho Curador</h2>
+                <p class="leading-relaxed" style="color:#bcdadf;">Pessoas e instituições que contribuem para a orientação e o desenvolvimento do Portal das Ouvidorias Públicas do Brasil.</p>
+            </div>
+            <div id="conselho-curador-lista" class="grid gap-4 md:grid-cols-2"></div>
         </section>
 
         <!-- MODAL DO MAPA (federais / redes / buscador) -->
@@ -1732,6 +1754,20 @@
         </div>
 
     </main>
+
+    <!-- Estrutura pronta para a newsletter; permanece totalmente oculta enquanto desativada no CMS. -->
+    <div id="newsletter-popup" class="hidden fixed inset-0 z-[70] flex bg-slate-950/55 p-4 items-end sm:items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="newsletter-popup-title" aria-hidden="true">
+        <div class="relative w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl sm:p-8">
+            <button type="button" data-newsletter-close class="absolute right-3 top-3 rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Fechar aviso da newsletter"><i data-lucide="x" class="h-5 w-5"></i></button>
+            <div class="mb-4 inline-flex rounded-xl bg-teal-50 p-3" style="color:#3d7f8c"><i data-lucide="mail-plus" class="h-6 w-6"></i></div>
+            <h2 id="newsletter-popup-title" data-newsletter-title class="pr-8 text-2xl font-bold text-slate-800">Acompanhe as novidades do portal</h2>
+            <p data-newsletter-text class="mt-3 text-sm leading-relaxed text-slate-600"></p>
+            <div class="mt-6 flex flex-wrap gap-3">
+                <a data-newsletter-link href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90" style="background-color:#4B9DAB">Assinar newsletter</a>
+                <button type="button" data-newsletter-close class="rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">Agora não</button>
+            </div>
+        </div>
+    </div>
 
     <!-- LOGICA DO SITE -->
     <script>
@@ -1768,6 +1804,7 @@
             window.scrollTo(0, 0);
 
             if (targetId === 'mapa') { drawRegionsMap(); }
+            if (window.PortalAnalytics) { window.PortalAnalytics.section(targetId); }
         }
 
         // ======================================================================
@@ -1820,6 +1857,7 @@
         function mapaAbrir(uf){
             mapaAtual = MAPA.estados[uf];
             if(!mapaAtual) return;
+            if(window.PortalAnalytics) window.PortalAnalytics.event('mapa/estado/'+String(uf).toLowerCase(), 'Mapa: '+mapaAtual.nome);
             mapaUF = uf;
             drawRegionsMap();
             document.getElementById('mapa-vazio').classList.add('hidden');
@@ -1910,6 +1948,7 @@
         const M_BTN = {federais:'btn_federais', redes:'btn_redes', buscador:'btn_buscador'};
 
         function mapaPainel(tipo){
+            if(window.PortalAnalytics) window.PortalAnalytics.event('mapa/painel/'+tipo, 'Mapa: '+tipo);
             mapaMarcarBotao(M_BTN[tipo]);
             const t = document.getElementById('mapa-modal-titulo');
             const s = document.getElementById('mapa-modal-sub');
@@ -1992,7 +2031,9 @@
 
         icones();
     </script>
+    <script src="portal-analytics.js"></script>
     <script src="form-scroll-fix.js"></script>
     <script src="portal-content.js"></script>
+    <script src="scroll-cues.js"></script>
 </body>
 </html>
