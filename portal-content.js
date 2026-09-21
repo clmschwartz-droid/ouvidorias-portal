@@ -126,8 +126,16 @@
 
   function renderNoticias(items) {
     const host = document.getElementById('noticias-dinamicas');
+    if (!host) return;
+
+    items.forEach((item) => {
+      if (!item || !item.substitui) return;
+      const id = String(item.substitui).replace(/"/g, '\\"');
+      document.querySelectorAll(`[data-legacy-id="${id}"]`).forEach((el) => el.classList.add('hidden'));
+    });
+
     const visiveis = items.filter((item) => item && item.publicado !== false);
-    if (!host || !visiveis.length) return;
+    if (!visiveis.length) return;
 
     const byDate = [...visiveis].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
     const destaque = byDate.find((item) => item.destaque === true) || byDate[0];
@@ -161,11 +169,6 @@
     const archiveCards = cards.slice(3);
     host.innerHTML = `<div class="news-cover">${featuredCard}${secondaryCards.length ? `<div class="news-card-rail" data-scroll-cues data-scroll-label="notícias em destaque">${secondaryCards.join('')}</div>` : ''}</div>${archiveCards.length ? `<div class="news-archive-grid" data-scroll-cues data-scroll-label="outras notícias">${archiveCards.join('')}</div>` : ''}`;
 
-    ordered.forEach((item) => {
-      if (!item.substitui) return;
-      const id = String(item.substitui).replace(/"/g, '\\"');
-      document.querySelectorAll(`[data-legacy-id="${id}"]`).forEach((el) => el.classList.add('hidden'));
-    });
   }
 
   function docCard(item) {
