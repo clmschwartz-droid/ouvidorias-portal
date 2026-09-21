@@ -1,15 +1,15 @@
 {
   "items": [
     {
-      "title": "Moção de Apoio pela criação de uma Ouvidoria Especializada em Desastres Climáticos",
-      "tipo": "Moção",
-      "categoria": "Moção",
-      "date": "2026-08-28",
+      "arquivo_label": "Baixar a Moção de Apoio",
       "descricao": "Moção aprovada por aclamação em Maceió em apoio à criação de uma Ouvidoria Especializada em Desastres Climáticos, como instância permanente de escuta, acompanhamento e acolhimento das vítimas e de controle das ações governamentais de reconstrução.",
-      "fonte": "Instituto Brasileiro Pró-Cidadania / Instituto Latinoamericano del Ombudsman – Defensorías del Pueblo (ILO)",
       "recente": true,
       "arquivo": "/documentos/mocao-de-apoio-ouvidoria-desastres-climaticos.pdf",
-      "arquivo_label": "Baixar a Moção de Apoio",
+      "date": "2026-08-28",
+      "categoria": "Moção",
+      "tipo": "Moção",
+      "fonte": "Instituto Brasileiro Pró-Cidadania / Instituto Latinoamericano del Ombudsman – Defensorías del Pueblo (ILO)",
+      "title": "Moção de Apoio pela criação de uma Ouvidoria Especializada em Desastres Climáticos",
       "links": [
         {
           "label": "Ler artigo na Folha de S. Paulo",
@@ -98,6 +98,25 @@
           "label": "Notícia dos organizadores",
           "url": "https://procidadania.org.br/noticia/carta-de-maceio-por-um-marco-legal-das-ouvidorias-publicas",
           "nova_aba": true
+        }
+      ]
+    },
+    {
+      "arquivo_label": "Baixar documento",
+      "publicado": true,
+      "descricao": "Publicado na Folha de S.Paulo em 22 de setembro de 1991, o balanço de Caio Túlio Costa registra os resultados e os limites dos dois primeiros anos da função no Brasil.",
+      "recente": false,
+      "arquivo": "/documentos/ficha-de-leitura-relatorio-final-caio-tulio-costa-35-anos.pdf",
+      "date": "2026-09-21",
+      "categoria": "Documentos históricos",
+      "fonte": "Folha de S. Paulo",
+      "title": "Relatório final do primeiro ombudsman da imprensa brasileira",
+      "links": [
+        {
+          "nova_aba": true,
+          "download": false,
+          "label": "Ler texto na Folha de S. Paulo",
+          "url": "https://www1.folha.uol.com.br/paywall/login.shtml?https://www1.folha.uol.com.br/colunas/caiotuliocosta/1991/09/1521094-relatorio-final.shtml"
         }
       ]
     }
