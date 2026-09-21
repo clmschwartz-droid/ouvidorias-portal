@@ -97,6 +97,25 @@ html.portal-video-lock body {
 }
 
 /* Google Forms permanece integrado à página, sem abrir outra aba. */
+.inscreva-se-form-shell {
+  min-height: 1420px;
+}
+
+.inscreva-se-form-frame {
+  height: 1420px;
+  border: 0;
+}
+
+/* As páginas seguintes podem ser mais longas; o script amplia o quadro depois
+   do primeiro avanço sem impor espaço vazio à página inicial. */
+.inscreva-se-form-shell.is-expanded {
+  min-height: 2150px;
+}
+
+.inscreva-se-form-shell.is-expanded .inscreva-se-form-frame {
+  height: 2150px;
+}
+
 .fala-ouvidor-form-shell {
   min-height: 2450px;
 }
@@ -107,6 +126,22 @@ html.portal-video-lock body {
 }
 
 @media (max-width: 767px) {
+  .inscreva-se-form-shell {
+    min-height: 1800px;
+  }
+
+  .inscreva-se-form-frame {
+    height: 1800px;
+  }
+
+  .inscreva-se-form-shell.is-expanded {
+    min-height: 2350px;
+  }
+
+  .inscreva-se-form-shell.is-expanded .inscreva-se-form-frame {
+    height: 2350px;
+  }
+
   .fala-ouvidor-form-shell {
     min-height: 2920px;
   }

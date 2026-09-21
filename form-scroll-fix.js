@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const section = document.getElementById('inscreva-se');
   const iframe = section ? section.querySelector('iframe') : null;
+  const shell = iframe ? iframe.closest('.inscreva-se-form-shell') : null;
   const main = document.getElementById('main-content');
   if (!section || !iframe || !main) return;
 
@@ -18,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     if (section.classList.contains('hidden')) return;
+
+    // As etapas seguintes podem ter mais campos do que a primeira.
+    shell?.classList.add('is-expanded');
 
     // Aguarda o Google Form terminar de montar a nova etapa antes de reposicionar a tela.
     window.setTimeout(() => {
