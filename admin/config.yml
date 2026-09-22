@@ -91,12 +91,12 @@ collections:
             fields:
               - { label: "Título", name: "title", widget: "string" }
               - { label: "Tipo", name: "tipo", widget: "string", required: false }
-              - { label: "Categoria", name: "categoria", widget: "select", options: ["Carta", "Moção", "Documentos internacionais", "Documentos históricos", "Outro"], required: false }
+              - { label: "Categoria", name: "categoria", widget: "select", options: ["Carta", "Moção", "Documentos internacionais", "Documentos históricos", "Outro"], required: false, default: "Outro", hint: "Define a rubrica em que o documento aparecerá. Se ficar vazio, será publicado em “Outros documentos”." }
               - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
               - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true, hint: "Desative para ocultar sem excluir; o conteúdo e os arquivos permanecem preservados." }
               - { label: "Descrição", name: "descricao", widget: "text", required: false }
               - { label: "Fonte ou instituição", name: "fonte", widget: "string", required: false }
-              - { label: "Exibir em Documentos recentes", name: "recente", widget: "boolean", required: false, default: false }
+              - { label: "Exibir também em Documentos recentes", name: "recente", widget: "boolean", required: false, default: false, hint: "Esta é apenas uma vitrine adicional. O documento será publicado em sua rubrica mesmo que esta opção fique desativada." }
               - label: "PDF ou arquivo"
                 name: "arquivo"
                 widget: "file"
@@ -129,7 +129,7 @@ collections:
             summary: "{{fields.date}} — {{fields.title}}"
             hint: "Para retirar um item temporariamente, desative “Exibir no portal”. Use o X somente quando a exclusão permanente for realmente desejada."
             fields:
-              - { label: "Tipo", name: "tipo", widget: "select", options: ["Vídeo", "Podcast", "Entrevista", "Áudio", "Galeria de fotos", "Outro"] }
+              - { label: "Tipo", name: "tipo", widget: "select", options: ["Vídeo", "Podcast", "Entrevista", "Áudio", "Galeria de fotos", "Outro"], hint: "O tipo define automaticamente a rubrica pública: Vídeos, Podcasts, Entrevistas, Áudios, Galerias de fotos ou Outros conteúdos." }
               - { label: "Título", name: "title", widget: "string" }
               - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
               - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true, hint: "Desative para ocultar sem excluir; o conteúdo e os arquivos permanecem preservados." }
@@ -191,11 +191,12 @@ collections:
             name: "items"
             widget: "list"
             required: false
-            summary: "{{fields.nome}} — {{fields.entidade}}"
+            summary: "{{fields.grupo}} — {{fields.nome}}"
             hint: "Os integrantes só aparecem quando também for ativada a publicação geral em “Configuração do portal”. Use o X apenas para exclusão permanente."
             fields:
+              - { label: "Grupo", name: "grupo", widget: "select", options: ["Conselheiros", "Entidades", "Coordenação e projeto editorial do portal"], default: "Conselheiros" }
               - { label: "Nome", name: "nome", widget: "string" }
-              - { label: "Entidade", name: "entidade", widget: "string" }
+              - { label: "Entidade", name: "entidade", widget: "string", required: false }
               - { label: "Função ou vínculo", name: "funcao", widget: "string", required: false }
               - { label: "Nota biográfica", name: "bio", widget: "text", required: false }
               - { label: "Link institucional", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }

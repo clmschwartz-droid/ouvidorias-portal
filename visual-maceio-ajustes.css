@@ -367,10 +367,10 @@ html.portal-video-lock body {
     background: #f8faf9;
   }
   #noticias-dinamicas .news-card-featured .news-card-body > p.text-sm.text-slate-600.leading-relaxed {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    display: block;
+    overflow: visible;
+    -webkit-box-orient: initial;
+    -webkit-line-clamp: unset;
   }
   #noticias-dinamicas .news-card-rail,
   #noticias-dinamicas .news-archive-grid {
