@@ -1,35 +1,36 @@
 /*
- * Corrige a posição da página ao avançar entre etapas do Google Form incorporado.
- * Não acessa o conteúdo do iframe (que é de outro domínio); apenas reage ao
- * recarregamento do próprio iframe e reposiciona o contêiner principal.
+ * Reposiciona a página quando qualquer Google Form incorporado avança de
+ * etapa ou mostra a confirmação de envio. O conteúdo do iframe pertence ao
+ * Google e não é acessado; o script reage apenas ao evento de carregamento.
  */
 document.addEventListener('DOMContentLoaded', () => {
-  const section = document.getElementById('inscreva-se');
-  const iframe = section ? section.querySelector('iframe') : null;
-  const shell = iframe ? iframe.closest('.inscreva-se-form-shell') : null;
   const main = document.getElementById('main-content');
-  if (!section || !iframe || !main) return;
+  const shells = document.querySelectorAll('[data-google-form-shell]');
+  if (!main || !shells.length) return;
 
-  let firstLoad = true;
+  shells.forEach((shell) => {
+    const section = shell.closest('.section-content');
+    const iframe = shell.querySelector('[data-google-form-frame]');
+    if (!section || !iframe) return;
 
-  iframe.addEventListener('load', () => {
-    // O carregamento inicial do formulário não deve deslocar quem estiver em outra seção.
-    if (firstLoad) {
-      firstLoad = false;
-      return;
-    }
-    if (section.classList.contains('hidden')) return;
+    let firstLoad = true;
 
-    // As etapas seguintes podem ter mais campos do que a primeira.
-    shell?.classList.add('is-expanded');
+    iframe.addEventListener('load', () => {
+      // O carregamento inicial não deve deslocar quem estiver em outra seção.
+      if (firstLoad) {
+        firstLoad = false;
+        return;
+      }
+      if (section.classList.contains('hidden')) return;
 
-    // Aguarda o Google Form terminar de montar a nova etapa antes de reposicionar a tela.
-    window.setTimeout(() => {
-      const mainRect = main.getBoundingClientRect();
-      const iframeRect = iframe.getBoundingClientRect();
-      const target = main.scrollTop + iframeRect.top - mainRect.top - 12;
-      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-      main.scrollTo({ top: Math.max(0, target), behavior });
-    }, 80);
+      // Aguarda o Google montar a etapa seguinte ou a mensagem de confirmação.
+      window.setTimeout(() => {
+        const mainRect = main.getBoundingClientRect();
+        const shellRect = shell.getBoundingClientRect();
+        const target = main.scrollTop + shellRect.top - mainRect.top - 12;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        main.scrollTo({ top: Math.max(0, target), behavior: reducedMotion ? 'auto' : 'smooth' });
+      }, 120);
+    });
   });
 });
