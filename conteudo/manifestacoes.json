@@ -1,3 +1,18 @@
 {
-  "items": []
+  "items": [
+    {
+      "title": "Teste técnico do fluxo Fala Ouvidor",
+      "date": "2026-09-22",
+      "categoria": "Outro",
+      "instituicao": "Portal das Ouvidorias Públicas do Brasil",
+      "local": "Teste técnico",
+      "texto": "Esta é uma manifestação inteiramente fictícia, criada exclusivamente para validar o fluxo de moderação e publicação do portal.",
+      "autor_exibicao": "Identidade preservada",
+      "status": "Relato publicado",
+      "resposta": "",
+      "resposta_data": "",
+      "destaque": false,
+      "publicado": true
+    }
+  ]
 }
