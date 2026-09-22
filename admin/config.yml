@@ -212,7 +212,8 @@ collections:
         format: "json"
         fields:
           - { label: "Publicar Conselho Curador", name: "conselho_publicado", widget: "boolean", required: false, default: false, hint: "Mantenha desativado até que todos os integrantes tenham autorizado a divulgação." }
-          - { label: "Ativar pop-up da newsletter", name: "newsletter_ativa", widget: "boolean", required: false, default: false, hint: "Só ative depois de informar uma URL pública válida da newsletter." }
+          - { label: "Publicar newsletter no menu", name: "newsletter_publicada", widget: "boolean", required: false, default: false, hint: "Exibe a opção Newsletter no menu. Só ative depois de informar uma URL pública válida para inscrição." }
+          - { label: "Exibir pop-up automaticamente", name: "newsletter_popup_ativo", widget: "boolean", required: false, default: false, hint: "O pop-up só será exibido se a newsletter também estiver publicada no menu." }
           - { label: "Título da newsletter", name: "newsletter_titulo", widget: "string", required: false, default: "Acompanhe as novidades do portal" }
           - { label: "Texto da newsletter", name: "newsletter_texto", widget: "text", required: false, default: "Receba novas publicações, documentos e atualizações do Portal das Ouvidorias Públicas do Brasil." }
           - { label: "URL para inscrição", name: "newsletter_url", widget: "string", required: false, hint: "Cole a URL pública completa do Substack ou do serviço que vier a ser adotado." }

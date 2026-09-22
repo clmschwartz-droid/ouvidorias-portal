@@ -548,20 +548,21 @@
 
   function setupNewsletter(config) {
     const popup = document.getElementById('newsletter-popup');
-    if (!popup || config.newsletter_ativa !== true) return;
+    const nav = document.getElementById('newsletter-nav');
+    if (!popup || !nav) return;
 
     const url = rawSafeUrl(config.newsletter_url);
-    if (!/^https?:\/\//i.test(url)) return;
+    const published = config.newsletter_publicada === true;
+    const popupEnabled = config.newsletter_popup_ativo === true
+      || (config.newsletter_popup_ativo == null && config.newsletter_ativa === true);
+    if (!published || !/^https?:\/\//i.test(url)) return;
 
     const title = popup.querySelector('[data-newsletter-title]');
     const text = popup.querySelector('[data-newsletter-text]');
     const link = popup.querySelector('[data-newsletter-link]');
     const version = String(config.newsletter_versao || '1').replace(/[^a-zA-Z0-9_.-]/g, '') || '1';
     const storageKey = `portal-newsletter-dismissed-${version}`;
-
-    try {
-      if (window.localStorage.getItem(storageKey) === '1') return;
-    } catch (_) {}
+    let lastFocused = null;
 
     if (title) title.textContent = config.newsletter_titulo || 'Acompanhe as novidades do portal';
     if (text) text.textContent = config.newsletter_texto || '';
@@ -570,27 +571,44 @@
       link.textContent = config.newsletter_botao || 'Assinar newsletter';
     }
 
-    const close = () => {
-      popup.classList.add('hidden');
-      popup.setAttribute('aria-hidden', 'true');
-      try { window.localStorage.setItem(storageKey, '1'); } catch (_) {}
-    };
-
-    popup.querySelectorAll('[data-newsletter-close]').forEach((button) => {
-      button.addEventListener('click', close);
-    });
-    popup.addEventListener('click', (event) => {
-      if (event.target === popup) close();
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !popup.classList.contains('hidden')) close();
-    });
-
-    const seconds = Math.max(0, Math.min(60, Number(config.newsletter_atraso_segundos) || 0));
-    window.setTimeout(() => {
+    const open = (trigger = null) => {
+      lastFocused = trigger instanceof HTMLElement ? trigger : document.activeElement;
       popup.classList.remove('hidden');
       popup.setAttribute('aria-hidden', 'false');
-    }, seconds * 1000);
+      nav.setAttribute('aria-expanded', 'true');
+      const closeButton = popup.querySelector('[data-newsletter-close]');
+      if (closeButton) window.setTimeout(() => closeButton.focus(), 0);
+    };
+
+    const close = (remember = true) => {
+      popup.classList.add('hidden');
+      popup.setAttribute('aria-hidden', 'true');
+      nav.setAttribute('aria-expanded', 'false');
+      if (remember) {
+        try { window.localStorage.setItem(storageKey, '1'); } catch (_) {}
+      }
+      if (lastFocused instanceof HTMLElement) lastFocused.focus();
+    };
+
+    nav.classList.remove('hidden');
+    nav.addEventListener('click', () => open(nav));
+    popup.querySelectorAll('[data-newsletter-close]').forEach((button) => {
+      button.addEventListener('click', () => close(true));
+    });
+    popup.addEventListener('click', (event) => {
+      if (event.target === popup) close(true);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !popup.classList.contains('hidden')) close(true);
+    });
+
+    if (!popupEnabled) return;
+    try {
+      if (window.localStorage.getItem(storageKey) === '1') return;
+    } catch (_) {}
+
+    const seconds = Math.max(0, Math.min(60, Number(config.newsletter_atraso_segundos) || 0));
+    window.setTimeout(() => open(null), seconds * 1000);
   }
 
   async function init() {
