@@ -166,6 +166,7 @@ collections:
             summary: "{{fields.date}} — {{fields.title}}"
             hint: "Inclua somente a versão já moderada, revisada e autorizada. Nunca registre e-mail, telefone, documentos privados ou o relato original. Para ocultar sem apagar, desative “Publicado”; use o X apenas para exclusão permanente."
             fields:
+              - { label: "ID interno", name: "id_interno", widget: "hidden", required: false }
               - { label: "Título público", name: "title", widget: "string" }
               - { label: "Data de publicação", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
               - { label: "Categoria", name: "categoria", widget: "select", options: ["Interrupção de mandato", "Afastamento ou demissão", "Prejuízo ao funcionamento de ouvidoria", "Relato institucional", "Sugestão ou atualização", "Outro"] }

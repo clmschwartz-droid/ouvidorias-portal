@@ -1,0 +1,60 @@
+name: Importar rascunho do Fala Ouvidor
+
+on:
+  repository_dispatch:
+    types: [fala_ouvidor_rascunho]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: fala-ouvidor-importacao
+  cancel-in-progress: false
+
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o portal
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validar e preparar o rascunho oculto
+        id: preparar
+        run: node scripts/importar-manifestacao.mjs "$GITHUB_EVENT_PATH"
+
+      - name: Criar e incorporar a alteração protegida
+        if: steps.preparar.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INTERNAL_ID: ${{ steps.preparar.outputs.internal_id }}
+          SAFE_SLUG: ${{ steps.preparar.outputs.safe_slug }}
+        run: |
+          set -euo pipefail
+          branch="automacao/fala-ouvidor/${SAFE_SLUG}-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add conteudo/manifestacoes.json
+          git commit -m "[skip netlify] Importa rascunho Fala Ouvidor ${INTERNAL_ID}"
+          git push origin "$branch"
+
+          pr_url="$(gh pr create \
+            --base main \
+            --head "$branch" \
+            --title "[skip netlify] Importa rascunho Fala Ouvidor ${INTERNAL_ID}" \
+            --body "Rascunho público já moderado, importado automaticamente como oculto. Nenhum dado privado do formulário integra este pull request.")"
+
+          for tentativa in 1 2 3 4 5 6 7 8 9 10; do
+            if gh pr merge "$pr_url" --merge --delete-branch; then
+              echo "Rascunho incorporado: $pr_url"
+              exit 0
+            fi
+            sleep 3
+          done
+
+          echo "Não foi possível incorporar automaticamente $pr_url" >&2
+          exit 1
+
