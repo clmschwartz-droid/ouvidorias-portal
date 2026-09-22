@@ -5,9 +5,7 @@ const FALA_OUVIDOR = Object.freeze({
   emailAvisos: 'ouvidoriaspublicasbrasileiras@gmail.com',
   emailRespostas: 'ouvidorias@camargoegomes.com',
   repositorio: 'clmschwartz-droid/ouvidorias-portal',
-  eventoGitHub: 'fala_ouvidor_rascunho',
   adminDecap: 'https://ouvidoriasbrasileiras.com.br/admin/#/collections/manifestacoes/entries/itens',
-  acoesGitHub: 'https://github.com/clmschwartz-droid/ouvidorias-portal/actions/workflows/importar-manifestacao.yml',
 });
 
 const COL = Object.freeze({
@@ -75,7 +73,7 @@ function abrirConfiguracaoGitHub() {
   const html = HtmlService.createHtmlOutput(`
     <div style="font:14px Arial,sans-serif;padding:16px;line-height:1.45">
       <p><strong>Credencial GitHub restrita</strong></p>
-      <p>Cole um token fine-grained com acesso somente ao repositório <code>${FALA_OUVIDOR.repositorio}</code> e permissão <em>Contents: read and write</em>.</p>
+      <p>Cole um token fine-grained com acesso somente ao repositório <code>${FALA_OUVIDOR.repositorio}</code> e permissões <em>Contents: read and write</em> e <em>Pull requests: read and write</em>.</p>
       <input id="token" type="password" autocomplete="off" style="box-sizing:border-box;width:100%;padding:9px" />
       <button style="margin-top:12px;padding:8px 14px" onclick="salvar()">Salvar com segurança</button>
       <p id="status" style="color:#475569"></p>
@@ -260,25 +258,20 @@ function enviarRascunhoSelecionadoAoDecap() {
     const valores = aba.getRange(linha, 1, 1, COL.confirmacoesOriginais).getValues()[0];
     const payload = montarPayloadPublico_(valores);
     aba.getRange(linha, COL.fluxo).setValue('Envio solicitado');
-    definirLink_(aba.getRange(linha, COL.link), FALA_OUVIDOR.acoesGitHub, 'Acompanhar automação');
     SpreadsheetApp.flush();
 
-    despacharParaGitHub_(payload);
-    const disponivel = aguardarRascunhoNoGitHub_(payload.id_interno);
-    if (disponivel) {
-      aba.getRange(linha, COL.fluxo).setValue('Disponível no Decap');
-      definirLink_(aba.getRange(linha, COL.link), FALA_OUVIDOR.adminDecap, 'Abrir no Decap');
-      ui.alert(
-        'Rascunho pronto',
-        'A versão moderada já está oculta no portal e disponível no Decap. Abra o link da coluna P para a conferência final e a publicação.',
-        ui.ButtonSet.OK,
-      );
-      return;
+    const resultado = incorporarRascunhoNoGitHub_(payload);
+    aba.getRange(linha, COL.fluxo).setValue('Disponível no Decap');
+    definirLink_(aba.getRange(linha, COL.link), FALA_OUVIDOR.adminDecap, 'Abrir no Decap');
+    if (resultado.prUrl) {
+      const celula = aba.getRange(linha, COL.observacoes);
+      const anterior = String(celula.getValue() || '').trim();
+      celula.setValue([anterior, `Rascunho incorporado pelo PR ${resultado.prUrl}.`].filter(Boolean).join('\n'));
     }
 
     ui.alert(
-      'Envio recebido',
-      'O GitHub recebeu o rascunho, mas a incorporação ainda está em processamento. Aguarde um pouco e consulte o link da coluna P.',
+      resultado.jaExistia ? 'Rascunho já existente' : 'Rascunho pronto',
+      'A versão moderada está oculta no portal e disponível no Decap. Abra o link da coluna P para a conferência final e a publicação.',
       ui.ButtonSet.OK,
     );
   } catch (erro) {
@@ -339,57 +332,136 @@ function montarPayloadPublico_(valores) {
   };
 }
 
-function despacharParaGitHub_(payload) {
+function incorporarRascunhoNoGitHub_(payload) {
   const token = PropertiesService.getUserProperties().getProperty('FALA_OUVIDOR_GITHUB_TOKEN');
   if (!token) throw new Error('Configure primeiro a credencial GitHub pelo menu Fala Ouvidor.');
 
-  const resposta = UrlFetchApp.fetch(
-    `https://api.github.com/repos/${FALA_OUVIDOR.repositorio}/dispatches`,
-    {
-      method: 'post',
-      contentType: 'application/json',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
-      payload: JSON.stringify({
-        event_type: FALA_OUVIDOR.eventoGitHub,
-        client_payload: payload,
-      }),
-      muteHttpExceptions: true,
-    },
-  );
-
-  if (resposta.getResponseCode() !== 204) {
-    throw new Error(`O GitHub recusou o envio (${resposta.getResponseCode()}). Verifique a credencial e as permissões.`);
+  const referencia = requisicaoGitHub_('/git/ref/heads/main', { codigos: [200] }).dados;
+  const baseSha = referencia.object.sha;
+  const arquivo = requisicaoGitHub_(
+    `/contents/conteudo/manifestacoes.json?ref=${encodeURIComponent(baseSha)}`,
+    { codigos: [200] },
+  ).dados;
+  const bytes = Utilities.base64Decode(String(arquivo.content || '').replace(/\s/g, ''));
+  const manifesto = JSON.parse(Utilities.newBlob(bytes).getDataAsString());
+  if (!manifesto || !Array.isArray(manifesto.items)) {
+    throw new Error('O arquivo público de manifestações possui formato inesperado.');
   }
+
+  const existente = manifesto.items.some((item) => item.id_interno === payload.id_interno);
+  if (existente) return { jaExistia: true, prUrl: '' };
+
+  const item = {
+    id_interno: payload.id_interno,
+    title: payload.title,
+    date: payload.date,
+    categoria: payload.categoria,
+    instituicao: payload.instituicao,
+    local: payload.local,
+    texto: payload.texto,
+    autor_exibicao: payload.autor_exibicao,
+    status: payload.status,
+    resposta: payload.resposta,
+    resposta_data: payload.resposta_data,
+    destaque: payload.destaque,
+    publicado: false,
+  };
+  const atualizado = { ...manifesto, items: [item, ...manifesto.items] };
+  const conteudo = `${JSON.stringify(atualizado, null, 2)}\n`;
+  const slug = payload.id_interno.toLowerCase().replace(/[^a-z0-9._-]+/g, '-');
+  const ramo = `automacao/fala-ouvidor/${slug}-${Date.now()}`;
+
+  requisicaoGitHub_('/git/refs', {
+    method: 'post',
+    codigos: [201],
+    payload: { ref: `refs/heads/${ramo}`, sha: baseSha },
+  });
+
+  requisicaoGitHub_('/contents/conteudo/manifestacoes.json', {
+    method: 'put',
+    codigos: [200, 201],
+    payload: {
+      message: `[skip netlify] Importa rascunho Fala Ouvidor ${payload.id_interno}`,
+      content: Utilities.base64Encode(Utilities.newBlob(conteudo, 'application/json').getBytes()),
+      branch: ramo,
+      sha: arquivo.sha,
+    },
+  });
+
+  const pull = requisicaoGitHub_('/pulls', {
+    method: 'post',
+    codigos: [201],
+    payload: {
+      title: `[skip netlify] Importa rascunho Fala Ouvidor ${payload.id_interno}`,
+      head: ramo,
+      base: 'main',
+      body: 'Rascunho público já moderado, importado como oculto. Nenhum dado privado do formulário integra este pull request.',
+    },
+  }).dados;
+
+  for (let tentativa = 0; tentativa < 12; tentativa += 1) {
+    const fusao = requisicaoGitHub_(`/pulls/${pull.number}/merge`, {
+      method: 'put',
+      codigos: [200, 405, 409],
+      payload: {
+        merge_method: 'merge',
+        commit_title: `[skip netlify] Importa rascunho Fala Ouvidor ${payload.id_interno} (#${pull.number})`,
+        commit_message: 'Versão pública moderada; entrada mantida oculta até a conferência final no Decap.',
+      },
+    });
+    if (fusao.codigo === 200 && fusao.dados.merged === true) {
+      try {
+        requisicaoGitHub_(`/git/refs/heads/${ramo}`, { method: 'delete', codigos: [204] });
+      } catch (erro) {
+        // A limpeza do ramo temporário é desejável, mas não impede a moderação.
+      }
+      return { jaExistia: false, prUrl: pull.html_url };
+    }
+    Utilities.sleep(2500);
+  }
+
+  throw new Error(`O rascunho foi preparado, mas o PR ${pull.html_url} precisa ser incorporado manualmente.`);
 }
 
-function aguardarRascunhoNoGitHub_(idInterno) {
+function requisicaoGitHub_(caminho, opcoes) {
   const token = PropertiesService.getUserProperties().getProperty('FALA_OUVIDOR_GITHUB_TOKEN');
-  for (let tentativa = 0; tentativa < 12; tentativa += 1) {
-    Utilities.sleep(3000);
-    const resposta = UrlFetchApp.fetch(
-      `https://api.github.com/repos/${FALA_OUVIDOR.repositorio}/contents/conteudo/manifestacoes.json?ref=main&t=${Date.now()}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28',
-        },
-        muteHttpExceptions: true,
-      },
-    );
-    if (resposta.getResponseCode() !== 200) continue;
-    const arquivo = JSON.parse(resposta.getContentText());
-    const bytes = Utilities.base64Decode(String(arquivo.content || '').replace(/\s/g, ''));
-    const manifesto = JSON.parse(Utilities.newBlob(bytes).getDataAsString());
-    if ((manifesto.items || []).some((item) => item.id_interno === idInterno && item.publicado === false)) {
-      return true;
+  if (!token) throw new Error('Configure primeiro a credencial GitHub pelo menu Fala Ouvidor.');
+
+  const ajustes = opcoes || {};
+  const parametros = {
+    method: ajustes.method || 'get',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+    muteHttpExceptions: true,
+  };
+  if (Object.prototype.hasOwnProperty.call(ajustes, 'payload')) {
+    parametros.contentType = 'application/json';
+    parametros.payload = JSON.stringify(ajustes.payload);
+  }
+
+  const resposta = UrlFetchApp.fetch(
+    `https://api.github.com/repos/${FALA_OUVIDOR.repositorio}${caminho}`,
+    parametros,
+  );
+  const codigo = resposta.getResponseCode();
+  const texto = resposta.getContentText();
+  let dados = {};
+  if (texto) {
+    try {
+      dados = JSON.parse(texto);
+    } catch (erro) {
+      dados = { message: texto };
     }
   }
-  return false;
+
+  const codigos = ajustes.codigos || [200];
+  if (!codigos.includes(codigo)) {
+    throw new Error(`O GitHub recusou a operação (${codigo}): ${dados.message || 'resposta inesperada'}.`);
+  }
+  return { codigo, dados };
 }
 
 function criarRascunhoRespostaPrivada() {
@@ -487,4 +559,3 @@ function escaparHtml_(valor) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
-
