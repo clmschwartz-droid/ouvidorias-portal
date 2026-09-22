@@ -181,7 +181,12 @@
       download: true
     }) : '';
     const buttons = `${downloadButton}${relatedButtons}`;
-    const icon = item.tipo === 'Carta' ? 'file-signature' : (item.tipo === 'Moção' ? 'scroll-text' : 'globe');
+    const documentKind = item.categoria || item.tipo || '';
+    const icon = documentKind === 'Carta'
+      ? 'file-signature'
+      : (documentKind === 'Moção'
+          ? 'scroll-text'
+          : (documentKind === 'Documentos históricos' ? 'landmark' : 'globe'));
     return `<article class="p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
       <div class="flex items-start gap-3">
         ${file ? `<a href="${file}" class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0 hover:bg-indigo-200 transition" aria-label="Abrir ${esc(item.title)} na mesma aba"><i data-lucide="${icon}" class="w-5 h-5"></i></a>` : `<div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0"><i data-lucide="${icon}" class="w-5 h-5"></i></div>`}
@@ -203,7 +208,7 @@
 
     const ordered = [...visiveis].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
     const recentes = ordered.filter((item) => item.recente === true);
-    const internacionais = ordered.filter((item) => item.categoria === 'Documentos internacionais' && item.recente !== true);
+    const internacionais = ordered.filter((item) => item.categoria === 'Documentos internacionais');
 
     const recentSection = document.getElementById('documentos-recentes-section');
     const recentGrid = document.getElementById('documentos-recentes-grid');
@@ -215,6 +220,31 @@
     const intHost = document.getElementById('documentos-internacionais-dinamicos');
     if (intHost && internacionais.length) {
       intHost.innerHTML = internacionais.map(docCard).join('');
+    }
+
+    const categoryHost = document.getElementById('documentos-categorias-dinamicas');
+    if (categoryHost) {
+      const categories = [
+        { key: 'Carta', label: 'Cartas' },
+        { key: 'Moção', label: 'Moções' },
+        { key: 'Documentos históricos', label: 'Documentos históricos' },
+        { key: 'Outro', label: 'Outros documentos' }
+      ];
+      const knownCategories = new Set(categories.map((category) => category.key).concat('Documentos internacionais'));
+      const groups = categories.map((category) => {
+        const categoryItems = ordered.filter((item) => {
+          const itemCategory = String(item.categoria || '').trim();
+          if (category.key === 'Outro') return !knownCategories.has(itemCategory) || itemCategory === 'Outro';
+          return itemCategory === category.key;
+        });
+        if (!categoryItems.length) return '';
+        return `<section class="document-category-group" data-document-category="${esc(category.key)}">
+          <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 px-1">${esc(category.label)}</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">${categoryItems.map(docCard).join('')}</div>
+        </section>`;
+      }).join('');
+      categoryHost.innerHTML = groups;
+      categoryHost.classList.toggle('hidden', !groups);
     }
   }
 
@@ -312,31 +342,53 @@
     updateVideoFullscreenControls();
   }
 
+  function multimediaCard(item) {
+    const url = safeUrl(item.url);
+    const image = safeUrl(item.imagem);
+    const isVideo = String(item.tipo || '').toLocaleLowerCase('pt-BR') === 'vídeo';
+    const embed = isVideo ? videoEmbedUrl(item.embed_url || item.url) : '';
+    const meta = [item.plataforma, item.duracao, datePt(item.date)].filter(Boolean).map(esc).join(' · ');
+    const embeddedMedia = embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950" data-video-shell data-video-title="${esc(item.title)}">${image ? `<button type="button" class="absolute inset-0 w-full h-full flex items-center justify-center group text-left" data-video-embed="${safeUrl(embed)}" data-video-title="${esc(item.title)}" aria-label="Reproduzir ${esc(item.title)}"><img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover"><span class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition" aria-hidden="true"></span><span class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/95 bg-black/55 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</span><span class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition" aria-hidden="true"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></span></button>` : videoFrame(embed, item.title)}${videoFullscreenButton(item.title)}</div>` : '';
+    return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+      ${item.destaque ? '<div class="px-4 py-2 text-white text-[10px] font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">Conteúdo em destaque</div>' : ''}
+      ${embeddedMedia || (url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Acessar ${esc(item.title)}">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}${image ? '<div class="absolute inset-0 bg-black/20"></div>' : ''}<div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="${isVideo ? 'video' : 'external-link'}" class="w-3.5 h-3.5"></i>${esc(item.plataforma || item.tipo || 'Multimídia')}</div><div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="${isVideo ? 'play' : 'arrow-up-right'}" class="w-8 h-8${isVideo ? ' ml-1' : ''}" style="color:#3d7f8c;"></i></div></a>` : `<div class="aspect-video relative flex items-center justify-center overflow-hidden" style="background:#142d31;">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : '<i data-lucide="image" class="w-10 h-10 text-white/70"></i>'}</div>`)}
+      <div class="p-5">
+        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:#e8f2f4;color:#3d7f8c">${esc(item.tipo || 'Vídeo')}</span>
+        <h3 class="font-bold text-slate-800 mt-2 leading-snug">${esc(item.title)}</h3>
+        ${meta ? `<p class="text-[11px] text-slate-400 mt-1">${meta}</p>` : ''}
+        ${item.descricao ? `<p class="text-xs text-slate-500 mt-2 leading-relaxed">${esc(item.descricao)}</p>` : ''}
+        ${item.fonte ? `<p class="text-[11px] text-slate-400 mt-2">Fonte: ${esc(item.fonte)}</p>` : ''}
+        ${url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="inline-flex items-center gap-2 text-xs font-semibold mt-4 hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-4 h-4"></i>${esc(item.link_label || (isVideo ? 'Abrir página oficial' : 'Acessar conteúdo'))}</a>` : ''}
+      </div>
+    </article>`;
+  }
+
   function renderMultimidia(items) {
     const host = document.getElementById('multimidia-dinamica');
     const visiveis = items.filter((item) => item && item.publicado !== false);
     if (!host || !visiveis.length) return;
     const ordered = [...visiveis].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
 
-    host.innerHTML = ordered.map((item) => {
-      const url = safeUrl(item.url);
-      const image = safeUrl(item.imagem);
-      const isVideo = String(item.tipo || '').toLocaleLowerCase('pt-BR') === 'vídeo';
-      const embed = isVideo ? videoEmbedUrl(item.embed_url || item.url) : '';
-      const meta = [item.plataforma, item.duracao, datePt(item.date)].filter(Boolean).map(esc).join(' · ');
-      const embeddedMedia = embed ? `<div class="aspect-video relative overflow-hidden bg-slate-950" data-video-shell data-video-title="${esc(item.title)}">${image ? `<button type="button" class="absolute inset-0 w-full h-full flex items-center justify-center group text-left" data-video-embed="${safeUrl(embed)}" data-video-title="${esc(item.title)}" aria-label="Reproduzir ${esc(item.title)}"><img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover"><span class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition" aria-hidden="true"></span><span class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/95 bg-black/55 px-2 py-1 rounded"><i data-lucide="video" class="w-3.5 h-3.5"></i>${esc(item.plataforma || 'Vídeo')}</span><span class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition" aria-hidden="true"><i data-lucide="play" class="w-8 h-8 ml-1" style="color:#3d7f8c;"></i></span></button>` : videoFrame(embed, item.title)}${videoFullscreenButton(item.title)}</div>` : '';
-      return `<article class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        ${item.destaque ? '<div class="px-4 py-2 text-white text-[10px] font-bold uppercase tracking-wider" style="background-color:#4B9DAB;">Conteúdo em destaque</div>' : ''}
-        ${embeddedMedia || (url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="aspect-video relative flex items-center justify-center group overflow-hidden" style="background:#142d31;" aria-label="Acessar ${esc(item.title)}">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : ''}${image ? '<div class="absolute inset-0 bg-black/20"></div>' : ''}<div class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/90 bg-black/45 px-2 py-1 rounded"><i data-lucide="${isVideo ? 'video' : 'external-link'}" class="w-3.5 h-3.5"></i>${esc(item.plataforma || item.tipo || 'Multimídia')}</div><div class="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition"><i data-lucide="${isVideo ? 'play' : 'arrow-up-right'}" class="w-8 h-8${isVideo ? ' ml-1' : ''}" style="color:#3d7f8c;"></i></div></a>` : `<div class="aspect-video relative flex items-center justify-center overflow-hidden" style="background:#142d31;">${image ? `<img src="${image}" alt="${esc(item.imagem_alt || '')}" class="absolute inset-0 w-full h-full object-cover">` : '<i data-lucide="image" class="w-10 h-10 text-white/70"></i>'}</div>`)}
-        <div class="p-5">
-          <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:#e8f2f4;color:#3d7f8c">${esc(item.tipo || 'Vídeo')}</span>
-          <h3 class="font-bold text-slate-800 mt-2 leading-snug">${esc(item.title)}</h3>
-          ${meta ? `<p class="text-[11px] text-slate-400 mt-1">${meta}</p>` : ''}
-          ${item.descricao ? `<p class="text-xs text-slate-500 mt-2 leading-relaxed">${esc(item.descricao)}</p>` : ''}
-          ${item.fonte ? `<p class="text-[11px] text-slate-400 mt-2">Fonte: ${esc(item.fonte)}</p>` : ''}
-          ${url ? `<a href="${url}"${newTabAttrs(item.nova_aba)} class="inline-flex items-center gap-2 text-xs font-semibold mt-4 hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-4 h-4"></i>${esc(item.link_label || (isVideo ? 'Abrir página oficial' : 'Acessar conteúdo'))}</a>` : ''}
-        </div>
-      </article>`;
+    const mediaGroups = [
+      { type: 'Vídeo', label: 'Vídeos' },
+      { type: 'Podcast', label: 'Podcasts' },
+      { type: 'Entrevista', label: 'Entrevistas' },
+      { type: 'Áudio', label: 'Áudios' },
+      { type: 'Galeria de fotos', label: 'Galerias de fotos' },
+      { type: 'Outro', label: 'Outros conteúdos' }
+    ];
+    const knownTypes = new Set(mediaGroups.map((group) => group.type));
+    host.innerHTML = mediaGroups.map((group) => {
+      const groupItems = ordered.filter((item) => {
+        const itemType = String(item.tipo || '').trim();
+        if (group.type === 'Outro') return !knownTypes.has(itemType) || itemType === 'Outro';
+        return itemType === group.type;
+      });
+      if (!groupItems.length) return '';
+      return `<section class="multimedia-category-group" data-multimedia-category="${esc(group.type)}">
+        <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 px-1">${esc(group.label)}</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">${groupItems.map(multimediaCard).join('')}</div>
+      </section>`;
     }).join('');
 
     host.querySelectorAll('[data-video-embed]').forEach((button) => {
@@ -405,8 +457,10 @@
 
     const badge = document.getElementById('multimidia-em-construcao');
     const placeholders = document.querySelectorAll('.multimidia-placeholder');
+    const placeholderGrid = document.getElementById('multimidia-grid');
     if (badge) badge.classList.add('hidden');
     placeholders.forEach((el) => el.classList.add('hidden'));
+    if (placeholderGrid) placeholderGrid.classList.add('hidden');
   }
 
   function renderManifestacoes(items) {
@@ -460,20 +514,33 @@
 
     if (!integrantes.length) return;
 
-    host.innerHTML = integrantes.map((item) => {
-      const link = safeUrl(item.link);
-      return `<article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-        <div class="flex items-start gap-3">
-          <div class="shrink-0 rounded-lg bg-teal-50 p-2.5" style="color:#3d7f8c"><i data-lucide="user-round-check" class="w-5 h-5"></i></div>
-          <div class="min-w-0">
-            <h3 class="font-bold text-slate-800">${esc(item.nome)}</h3>
-            ${item.entidade ? `<p class="mt-1 text-sm font-medium" style="color:#3d7f8c">${esc(item.entidade)}</p>` : ''}
-            ${item.funcao ? `<p class="mt-1 text-xs text-slate-500">${esc(item.funcao)}</p>` : ''}
-            ${item.bio ? `<p class="mt-3 text-sm leading-relaxed text-slate-600">${esc(item.bio)}</p>` : ''}
-            ${link ? `<a href="${link}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-3.5 h-3.5"></i>Saiba mais</a>` : ''}
+    const councilGroups = [
+      { key: 'Conselheiros', icon: 'user-round-check' },
+      { key: 'Entidades', icon: 'building-2' },
+      { key: 'Coordenação e projeto editorial do portal', icon: 'pen-line' }
+    ];
+    host.innerHTML = councilGroups.map((group) => {
+      const groupItems = integrantes.filter((item) => (item.grupo || 'Conselheiros') === group.key);
+      if (!groupItems.length) return '';
+      const cards = groupItems.map((item) => {
+        const link = safeUrl(item.link);
+        return `<article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-lg bg-teal-50 p-2.5" style="color:#3d7f8c"><i data-lucide="${group.icon}" class="w-5 h-5"></i></div>
+            <div class="min-w-0">
+              <h4 class="font-bold text-slate-800">${esc(item.nome)}</h4>
+              ${item.entidade ? `<p class="mt-1 text-sm font-medium" style="color:#3d7f8c">${esc(item.entidade)}</p>` : ''}
+              ${item.funcao ? `<p class="mt-1 text-xs text-slate-500">${esc(item.funcao)}</p>` : ''}
+              ${item.bio ? `<p class="mt-3 text-sm leading-relaxed text-slate-600">${esc(item.bio)}</p>` : ''}
+              ${link ? `<a href="${link}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-3.5 h-3.5"></i>Saiba mais</a>` : ''}
+            </div>
           </div>
-        </div>
-      </article>`;
+        </article>`;
+      }).join('');
+      return `<section class="md:col-span-2">
+        <h3 class="mb-3 px-1 text-sm font-bold uppercase tracking-wider text-slate-500">${esc(group.key)}</h3>
+        <div class="grid gap-4 md:grid-cols-2">${cards}</div>
+      </section>`;
     }).join('');
 
     nav.classList.remove('hidden');

@@ -1,3 +1,43 @@
 {
-  "items": []
+  "items": [
+    {
+      "grupo": "Conselheiros",
+      "nome": "Cristina Ayoub Riche",
+      "funcao": "Presidenta do Fórum Nacional de Ouvidorias Universitárias e de Hospitais de Ensino (FNOUH)",
+      "ordem": 1,
+      "ativo": true
+    },
+    {
+      "grupo": "Conselheiros",
+      "nome": "Diego de Oliveira Silva",
+      "funcao": "Diretor-Geral da Escola Nacional da Defensoria Pública da União",
+      "ordem": 2,
+      "ativo": true
+    },
+    {
+      "grupo": "Conselheiros",
+      "nome": "Manoel Eduardo Alves Camargo e Gomes",
+      "funcao": "Vice-Presidente do ILO",
+      "ordem": 3,
+      "ativo": true
+    },
+    {
+      "grupo": "Entidades",
+      "nome": "Instituto Brasileiro Pró-Cidadania",
+      "ordem": 4,
+      "ativo": true
+    },
+    {
+      "grupo": "Entidades",
+      "nome": "ILO — Instituto Latinoamericano del Ombudsman/Defensorías del Pueblo",
+      "ordem": 5,
+      "ativo": true
+    },
+    {
+      "grupo": "Coordenação e projeto editorial do portal",
+      "nome": "Christian Schwartz",
+      "ordem": 6,
+      "ativo": true
+    }
+  ]
 }
