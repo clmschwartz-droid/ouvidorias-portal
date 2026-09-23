@@ -62,10 +62,10 @@ function instalarAutomacao() {
     .onFormSubmit()
     .create();
 
-  SpreadsheetApp.getUi().alert(
-    'Automação instalada',
+  planilha.toast(
     `As novas manifestações entrarão automaticamente na fila e gerarão aviso para ${FALA_OUVIDOR.emailAvisos}.`,
-    SpreadsheetApp.getUi().ButtonSet.OK,
+    'Automação instalada',
+    8,
   );
 }
 
