@@ -1,48 +1,48 @@
 {
   "items": [
     {
-      "id_interno": "FO-20260924-010",
-      "title": "teste ponta a ponta correção",
-      "date": "2026-09-24",
-      "categoria": "Prejuízo ao funcionamento de ouvidoria",
-      "instituicao": "Ouvidor-geral",
+      "resposta": "Olá",
+      "destaque": false,
+      "texto": "Teste\nteste",
+      "publicado": true,
+      "resposta_data": "2026-09-24",
       "local": "GO",
-      "texto": "Nonada\nNada Nonono",
+      "instituicao": "Ouvidor-geral",
+      "date": "2026-09-24",
       "autor_exibicao": "M. J.",
       "status": "Em acompanhamento",
-      "resposta": "",
-      "resposta_data": "",
-      "destaque": false,
-      "publicado": false
+      "categoria": "Prejuízo ao funcionamento de ouvidoria",
+      "title": "teste ponta a ponta correção",
+      "id_interno": "FO-20260924-010"
     },
     {
-      "id_interno": "FO-20260923-005",
-      "title": "Teste correção",
-      "date": "2026-09-23",
-      "categoria": "Sugestão ou atualização",
-      "instituicao": "Escritório",
-      "local": "PR",
+      "resposta": "",
+      "destaque": false,
       "texto": "Nada",
+      "publicado": false,
+      "resposta_data": "",
+      "local": "PR",
+      "instituicao": "Escritório",
+      "date": "2026-09-23",
       "autor_exibicao": "Identidade preservada",
       "status": "Em acompanhamento",
-      "resposta": "",
-      "resposta_data": "",
-      "destaque": false,
-      "publicado": false
+      "categoria": "Sugestão ou atualização",
+      "title": "Teste correção",
+      "id_interno": "FO-20260923-005"
     },
     {
-      "title": "Teste técnico do fluxo Fala Ouvidor",
-      "date": "2026-09-22",
-      "categoria": "Outro",
-      "instituicao": "Portal das Ouvidorias Públicas do Brasil",
-      "local": "Teste técnico",
+      "resposta": "",
+      "destaque": false,
       "texto": "Esta é uma manifestação inteiramente fictícia, criada exclusivamente para validar o fluxo de moderação e publicação do portal.",
+      "publicado": false,
+      "resposta_data": "",
+      "local": "Teste técnico",
+      "instituicao": "Portal das Ouvidorias Públicas do Brasil",
+      "date": "2026-09-22",
       "autor_exibicao": "Identidade preservada",
       "status": "Relato publicado",
-      "resposta": "",
-      "resposta_data": "",
-      "destaque": false,
-      "publicado": false
+      "categoria": "Outro",
+      "title": "Teste técnico do fluxo Fala Ouvidor"
     }
   ]
 }
