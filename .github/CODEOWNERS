@@ -1,0 +1,11 @@
+# Código, configuração e automação exigem revisão do responsável pelo portal.
+# Os arquivos de conteúdo em conteudo/ seguem o fluxo editorial do Decap.
+/.github/ @clmschwartz-droid
+/admin/ @clmschwartz-droid
+/automacao/ @clmschwartz-droid
+*.html @clmschwartz-droid
+*.js @clmschwartz-droid
+*.css @clmschwartz-droid
+*.yml @clmschwartz-droid
+*.yaml @clmschwartz-droid
+/CNAME @clmschwartz-droid
