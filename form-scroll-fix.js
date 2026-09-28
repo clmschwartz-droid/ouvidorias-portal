@@ -3,24 +3,31 @@
  * etapa ou mostra a confirmação de envio. O conteúdo do iframe pertence ao
  * Google e não é acessado; o script reage apenas ao evento de carregamento.
  */
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
   const main = document.getElementById('main-content');
   const shells = document.querySelectorAll('[data-google-form-shell]');
   if (!main || !shells.length) return;
+
+  // O evento load da janela só ocorre depois do carregamento inicial de todos
+  // os iframes. Assim, qualquer load posterior de um formulário corresponde a
+  // uma mudança provocada pela pessoa (próxima etapa, envio ou nova resposta),
+  // mesmo quando o load inicial do iframe aconteceu antes deste script rodar.
+  let portalReady = document.readyState === 'complete';
+  window.addEventListener('load', () => {
+    portalReady = true;
+  }, { once: true });
 
   shells.forEach((shell) => {
     const section = shell.closest('.section-content');
     const iframe = shell.querySelector('[data-google-form-frame]');
     if (!section || !iframe) return;
 
-    let loads = 0;
+    let responseVisible = false;
 
     iframe.addEventListener('load', () => {
       // O carregamento inicial não deve deslocar quem estiver em outra seção.
-      loads += 1;
-      if (loads === 1) {
-        return;
-      }
+      // Não contamos eventos: o primeiro load observado pode já ser o envio.
+      if (!portalReady) return;
       if (section.classList.contains('hidden')) return;
 
       // O Fala Ouvidor tem uma única página. Após o envio, o Google mostra
@@ -28,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // deixaria centenas de pixels brancos abaixo da mensagem. O link nativo
       // "Enviar outra resposta" provoca o carregamento seguinte e restaura a altura.
       if (section.id === 'fala-ouvidor') {
-        shell.classList.toggle('form-response-view', loads % 2 === 0);
+        responseVisible = !responseVisible;
+        shell.classList.toggle('form-response-view', responseVisible);
       }
 
       // Aguarda o Google montar a etapa seguinte ou a mensagem de confirmação.
@@ -44,4 +52,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 120);
     });
   });
-});
+})();
