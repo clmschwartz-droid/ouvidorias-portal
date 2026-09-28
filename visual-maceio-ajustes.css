@@ -116,6 +116,12 @@ html.portal-video-lock body {
   overscroll-behavior: contain;
 }
 
+/* A confirmação de envio do Fala Ouvidor ocupa muito menos espaço que as
+   perguntas. Evita a grande faixa branca que sobrava sob o rodapé do Google. */
+.fala-ouvidor-form-shell.form-response-view {
+  height: clamp(21rem, 43dvh, 25rem);
+}
+
 /* iPad e tablets: a janela acompanha melhor as duas orientações. */
 @media (min-width: 768px) and (max-width: 1180px) {
   .inscreva-se-form-shell,
@@ -130,6 +136,10 @@ html.portal-video-lock body {
   .inscreva-se-form-shell,
   .fala-ouvidor-form-shell {
     height: clamp(34rem, 70dvh, 44rem);
+  }
+
+  .fala-ouvidor-form-shell.form-response-view {
+    height: clamp(23rem, 53dvh, 27rem);
   }
 }
 

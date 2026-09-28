@@ -13,21 +13,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const iframe = shell.querySelector('[data-google-form-frame]');
     if (!section || !iframe) return;
 
-    let firstLoad = true;
+    let loads = 0;
 
     iframe.addEventListener('load', () => {
       // O carregamento inicial não deve deslocar quem estiver em outra seção.
-      if (firstLoad) {
-        firstLoad = false;
+      loads += 1;
+      if (loads === 1) {
         return;
       }
       if (section.classList.contains('hidden')) return;
 
+      // O Fala Ouvidor tem uma única página. Após o envio, o Google mostra
+      // uma confirmação curta dentro do iframe; a altura do formulário inteiro
+      // deixaria centenas de pixels brancos abaixo da mensagem. O link nativo
+      // "Enviar outra resposta" provoca o carregamento seguinte e restaura a altura.
+      if (section.id === 'fala-ouvidor') {
+        shell.classList.toggle('form-response-view', loads % 2 === 0);
+      }
+
       // Aguarda o Google montar a etapa seguinte ou a mensagem de confirmação.
       window.setTimeout(() => {
         const mainRect = main.getBoundingClientRect();
-        const shellRect = shell.getBoundingClientRect();
-        const target = main.scrollTop + shellRect.top - mainRect.top - 12;
+        const showFullSection = section.id === 'fala-ouvidor'
+          && shell.classList.contains('form-response-view')
+          && window.innerWidth >= 768;
+        const anchor = showFullSection ? section : shell;
+        const target = main.scrollTop + anchor.getBoundingClientRect().top - mainRect.top - 12;
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         main.scrollTo({ top: Math.max(0, target), behavior: reducedMotion ? 'auto' : 'smooth' });
       }, 120);
