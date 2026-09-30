@@ -97,23 +97,23 @@ collections:
               - { label: "Descrição", name: "descricao", widget: "text", required: false }
               - { label: "Fonte ou instituição", name: "fonte", widget: "string", required: false }
               - { label: "Exibir também em Documentos recentes", name: "recente", widget: "boolean", required: false, default: false, hint: "Esta é apenas uma vitrine adicional. O documento será publicado em sua rubrica mesmo que esta opção fique desativada." }
-              - label: "PDF ou arquivo"
+              - label: "PDF ou arquivo preservado no portal (opcional)"
                 name: "arquivo"
                 widget: "file"
                 required: false
                 media_folder: "/documentos"
                 public_folder: "/documentos"
-              - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar documento" }
-              - label: "Links oficiais"
+                hint: "Ao enviar um arquivo, o título passará a abri-lo em nova aba e o portal criará automaticamente o botão de download."
+              - { label: "Texto do botão de download (opcional)", name: "arquivo_label", widget: "string", required: false, default: "Baixar documento" }
+              - label: "Links externos complementares (opcional)"
                 name: "links"
                 widget: "list"
                 required: false
                 summary: "{{fields.label}}"
+                hint: "Não repita aqui o PDF enviado acima. Use apenas para uma página oficial, fonte institucional ou material relacionado. Todos os links abrirão em nova aba."
                 fields:
                   - { label: "Texto do link", name: "label", widget: "string" }
                   - { label: "URL", name: "url", widget: "string" }
-                  - { label: "Abrir em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
-                  - { label: "Fazer download ao clicar", name: "download", widget: "boolean", required: false, default: false }
 
   - name: "multimidia"
     label: "Multimídia"
