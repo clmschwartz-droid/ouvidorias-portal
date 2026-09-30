@@ -139,6 +139,26 @@
           "label": "Ouvidoria do SUS: uma inovação social, caminho para a integridade"
         }
       ]
+    },
+    {
+      "arquivo_label": "Baixar documento",
+      "publicado": true,
+      "descricao": "Relatório Simplifique! 2021 da Ouvidoria-Geral da União (OGU) é um documento que analisa as solicitações de desburocratização enviadas por cidadãos via plataforma Fala.BR ao Poder Executivo Federal.",
+      "recente": true,
+      "arquivo": "/documentos/ogu-relatorio-simplifique-2021.pdf",
+      "date": "2022-08-01",
+      "categoria": "Outro",
+      "tipo": "Relatório",
+      "fonte": "Controladoria-Geral da União",
+      "title": "Ouvidoria-Geral da União: Relatório Simplifique! 2021",
+      "links": [
+        {
+          "nova_aba": true,
+          "download": false,
+          "url": "https://basedeconhecimento.cgu.gov.br/server/api/core/bitstreams/725a01b4-0ee3-4ea9-bbe0-fc2278f28b95/content",
+          "label": "Ouvidoria-Geral da União: Relatório Simplifique! 2021"
+        }
+      ]
     }
   ]
 }
