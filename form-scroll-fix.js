@@ -23,12 +23,28 @@
     if (!section || !iframe) return;
 
     let responseVisible = false;
+    let userInteracted = false;
+
+    // O Google pode recarregar internamente o iframe logo após a abertura,
+    // inclusive depois do evento load da página principal. Esse carregamento
+    // técnico não é uma confirmação de envio. Só reagimos a um load depois de
+    // a pessoa efetivamente focar o formulário incorporado.
+    const markInteraction = () => {
+      userInteracted = true;
+    };
+    iframe.addEventListener('focus', markInteraction);
+    window.addEventListener('blur', () => {
+      window.setTimeout(() => {
+        if (document.activeElement === iframe) markInteraction();
+      }, 0);
+    });
 
     iframe.addEventListener('load', () => {
       // O carregamento inicial não deve deslocar quem estiver em outra seção.
       // Não contamos eventos: o primeiro load observado pode já ser o envio.
       if (!portalReady) return;
       if (section.classList.contains('hidden')) return;
+      if (!userInteracted) return;
 
       // O Fala Ouvidor tem uma única página. Após o envio, o Google mostra
       // uma confirmação curta dentro do iframe; a altura do formulário inteiro
