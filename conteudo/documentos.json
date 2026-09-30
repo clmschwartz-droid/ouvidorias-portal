@@ -130,15 +130,7 @@
       "categoria": "Outro",
       "tipo": "Publicação Institucional",
       "fonte": "Ministério da Saúde",
-      "title": "Ouvidoria do SUS: Uma inovação social, caminho para a integridade",
-      "links": [
-        {
-          "nova_aba": true,
-          "download": false,
-          "url": "file:///C:/Users/ferna/Downloads/Livro-digital-final-Ouvidoria-SUS-inovac%CC%A7a%CC%83o-social---8-abr-25%20(1).pdf",
-          "label": "Ouvidoria do SUS: uma inovação social, caminho para a integridade"
-        }
-      ]
+      "title": "Ouvidoria do SUS: Uma inovação social, caminho para a integridade"
     },
     {
       "arquivo_label": "Baixar documento",
@@ -155,8 +147,8 @@
         {
           "nova_aba": true,
           "download": false,
-          "url": "https://basedeconhecimento.cgu.gov.br/server/api/core/bitstreams/725a01b4-0ee3-4ea9-bbe0-fc2278f28b95/content",
-          "label": "Ouvidoria-Geral da União: Relatório Simplifique! 2021"
+          "url": "https://www.gov.br/ouvidorias/pt-br/central-de-conteudos/relatorios/acervo/relatorios-de-ouvidoria",
+          "label": "Ver no acervo oficial da CGU"
         }
       ]
     }

@@ -83,9 +83,9 @@
       return actionButton({
         label: link.label || 'Acessar',
         url: link.url,
-        icon: link.icon || (link.download === true ? 'file-down' : 'external-link'),
-        newTab: link.nova_aba !== false,
-        download: link.download === true
+        icon: link.icon || 'external-link',
+        newTab: true,
+        download: false
       });
     }).join('');
   }
@@ -189,13 +189,12 @@
           : (documentKind === 'Documentos históricos' ? 'landmark' : 'globe'));
     return `<article class="p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
       <div class="flex items-start gap-3">
-        ${file ? `<a href="${file}" class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0 hover:bg-indigo-200 transition" aria-label="Abrir ${esc(item.title)} na mesma aba"><i data-lucide="${icon}" class="w-5 h-5"></i></a>` : `<div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0"><i data-lucide="${icon}" class="w-5 h-5"></i></div>`}
+        <div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg shrink-0" aria-hidden="true"><i data-lucide="${icon}" class="w-5 h-5"></i></div>
         <div class="min-w-0 flex-1">
-          <h4 class="font-bold text-slate-800 text-sm">${file ? `<a href="${file}" class="hover:underline">${esc(item.title)}</a>` : esc(item.title)}</h4>
+          <h4 class="font-bold text-slate-800 text-sm">${file ? `<a href="${file}" target="_blank" rel="noopener" class="hover:underline">${esc(item.title)}</a>` : esc(item.title)}</h4>
           ${item.date ? `<p class="text-[11px] text-slate-400 mt-1">${datePt(item.date)}</p>` : ''}
           ${item.descricao ? `<p class="text-xs text-slate-500 mt-2 leading-relaxed">${esc(item.descricao)}</p>` : ''}
           ${item.fonte ? `<p class="text-[11px] text-slate-400 mt-2">${esc(item.fonte)}</p>` : ''}
-          ${file ? `<a href="${file}" class="inline-flex items-center gap-1.5 text-[11px] font-semibold mt-3 hover:underline" style="color:#3d7f8c"><i data-lucide="eye" class="w-3.5 h-3.5"></i>Abrir no navegador</a>` : ''}
           ${buttons ? `<div class="flex flex-wrap gap-2 mt-3">${buttons}</div>` : ''}
         </div>
       </div>
@@ -207,7 +206,11 @@
     if (!visiveis.length) return;
 
     const ordered = [...visiveis].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
-    const recentes = ordered.filter((item) => item.recente === true);
+    // “Recentes” é uma vitrine das inclusões mais novas no portal, não dos
+    // documentos historicamente mais novos. O Decap acrescenta novos itens ao
+    // fim da lista; a inversão os coloca no topo. Nas rubricas, continua valendo
+    // a ordenação pela data do próprio documento.
+    const recentes = visiveis.filter((item) => item.recente === true).reverse();
     const internacionais = ordered.filter((item) => item.categoria === 'Documentos internacionais');
 
     const recentSection = document.getElementById('documentos-recentes-section');
