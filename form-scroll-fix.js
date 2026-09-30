@@ -24,18 +24,32 @@
 
     let responseVisible = false;
     let userInteracted = false;
+    let pointerOverIframe = false;
+    let keyboardNavigation = false;
 
     // O Google pode recarregar internamente o iframe logo após a abertura,
     // inclusive depois do evento load da página principal. Esse carregamento
     // técnico não é uma confirmação de envio. Só reagimos a um load depois de
-    // a pessoa efetivamente focar o formulário incorporado.
+    // interação deliberada por ponteiro ou navegação por teclado.
     const markInteraction = () => {
       userInteracted = true;
     };
-    iframe.addEventListener('focus', markInteraction);
+    iframe.addEventListener('pointerenter', () => {
+      pointerOverIframe = true;
+    });
+    iframe.addEventListener('pointerleave', () => {
+      pointerOverIframe = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      keyboardNavigation = event.key === 'Tab';
+    }, true);
+    iframe.addEventListener('focus', () => {
+      if (keyboardNavigation) markInteraction();
+      keyboardNavigation = false;
+    });
     window.addEventListener('blur', () => {
       window.setTimeout(() => {
-        if (document.activeElement === iframe) markInteraction();
+        if (document.activeElement === iframe && pointerOverIframe) markInteraction();
       }, 0);
     });
 
