@@ -117,6 +117,9 @@
             <button onclick="navigate('home')" class="nav-link active text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="home">
                 <i data-lucide="home" class="w-5 h-5"></i> <span class="hidden md:inline">Início</span>
             </button>
+            <button id="conselho-curador-nav" onclick="navigate('conselho-curador')" class="nav-link hidden text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="conselho-curador">
+                <i data-lucide="badge-check" class="w-5 h-5"></i> <span class="hidden md:inline">Conselho Curador</span>
+            </button>
             <button onclick="navigate('noticias')" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="noticias">
                 <i data-lucide="megaphone" class="w-5 h-5"></i> <span class="hidden md:inline">Notícias e Cursos</span>
             </button>
@@ -173,9 +176,6 @@
 
             <button onclick="navigate('quem-somos')" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="quem-somos">
                 <i data-lucide="info" class="w-5 h-5"></i> <span class="hidden md:inline">Camargo e Gomes Advogados</span>
-            </button>
-            <button id="conselho-curador-nav" onclick="navigate('conselho-curador')" class="nav-link hidden text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="conselho-curador">
-                <i data-lucide="badge-check" class="w-5 h-5"></i> <span class="hidden md:inline">Conselho Curador</span>
             </button>
         </div>
         
@@ -569,6 +569,13 @@
                         <p class="text-xs text-slate-500">Organização da Rede Nacional de Ouvidorias.</p>
                     </div>
                 </a>
+                <a href="https://basedeconhecimento.cgu.gov.br/handle/1/18642" target="_blank" rel="noopener" class="flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md transition group">
+                    <div class="bg-amber-100 text-amber-600 p-3 rounded-lg group-hover:bg-amber-600 group-hover:text-white transition shrink-0"><i data-lucide="file-text" class="w-5 h-5"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Portaria Normativa CGU nº 116/2024</h4>
+                        <p class="text-xs text-slate-500">Estabelece orientações para o exercício das competências das unidades do SisOuv.</p>
+                    </div>
+                </a>
             </div>
 
             <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 px-1">Antecedentes históricos</h3>
@@ -756,6 +763,13 @@
                         <p class="text-xs text-slate-500 mt-0.5">Órgão central do Sistema de Ouvidoria do Executivo federal; coordena a Rede Nacional de Ouvidorias e a plataforma Fala.BR.</p>
                     </div>
                 </a>
+                <a href="https://www.cnmp.mp.br/portal/todas-as-ouvidorias" target="_blank" rel="noopener" class="flex items-start gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md transition group">
+                    <div class="p-3 rounded-lg text-white shrink-0" style="background-color:#4B9DAB"><i data-lucide="users" class="w-5 h-5"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm leading-snug">Ouvidorias do Ministério Público — CNMP</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Diretório nacional das ouvidorias dos Ministérios Públicos estaduais, do CNMP, MPF, MPT e MPM.</p>
+                    </div>
+                </a>
                 <a href="https://www.procidadania.org.br/" target="_blank" rel="noopener" class="flex items-start gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md transition group">
                     <div class="p-3 rounded-lg text-white shrink-0" style="background-color:#4B9DAB"><i data-lucide="users" class="w-5 h-5"></i></div>
                     <div>
@@ -775,6 +789,13 @@
                     <div>
                         <h4 class="font-bold text-slate-800 text-sm leading-snug">ANADEP — Associação Nacional das Defensoras e Defensores Públicos</h4>
                         <p class="text-xs text-slate-500 mt-0.5">Representação nacional da Defensoria Pública, onde estão as ouvidorias externas.</p>
+                    </div>
+                </a>
+                <a href="https://cnodp.org.br/" target="_blank" rel="noopener" class="flex items-start gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md transition group">
+                    <div class="p-3 rounded-lg text-white shrink-0" style="background-color:#4B9DAB"><i data-lucide="users" class="w-5 h-5"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm leading-snug">CNODP — Conselho Nacional das Ouvidorias das Defensorias Públicas</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Articula as ouvidorias externas das Defensorias Públicas, fortalecendo participação social, direitos humanos e acesso à justiça.</p>
                     </div>
                 </a>
                 <a href="https://www.atricon.org.br/" target="_blank" rel="noopener" class="flex items-start gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md transition group">
@@ -1097,7 +1118,7 @@
                     <summary class="cursor-pointer p-5 flex justify-between items-center outline-none select-none">
                         <span class="font-bold text-slate-800 flex items-center gap-2.5">
                             <i data-lucide="newspaper" class="w-5 h-5 text-emerald-600"></i> Artigos e periódicos
-                            <span class="text-xs font-normal text-slate-400">(217)</span>
+                            <span class="text-xs font-normal text-slate-400">(219)</span>
                         </span>
                         <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
                     </summary>
@@ -1117,6 +1138,7 @@
                             <li class="pl-4 -indent-4">ACOSTA-ALVARADO, Paola Andrea. Desafíos de la Defensoría del Pueblo en Argentina, Colombia y Ecuador. <strong>Cuestiones Constitucionales: Revista Mexicana de Derecho Constitucional</strong>, n. 49, p. 37-67, jul./dez. 2023. DOI: 10.22201/iij.24484881e.2023.49.18578.</li>
                             <li class="pl-4 -indent-4">ADAMOLEKUN, L. The Nigeria Ombudsman Experience. International Review of Administrative Sciences, v. 50, p. 227, 1984.</li>
                             <li class="pl-4 -indent-4">AFONSO, Carolina Campos; BARCELOS, Marília Barbosa de. Panorama das ouvidorias do Judiciário à luz da Resolução 432 do Conselho Nacional de Justiça. Revista Científica da Associação Brasileira de Ouvidores/Ombudsman, ano 7, n. 6, p. 75-90, 2023.</li>
+                            <li class="pl-4 -indent-4">ALVES, Luciane Fatima; PANTALEÃO, Carlos Henrique Zanelato; BEZERRA, Renata Camacho; PEREIRA, Eliane Nascimento. <strong>A atuação da ouvidoria na gestão estratégica e participativa das instituições públicas: uma revisão sistemática</strong>. Revista Multidisciplinar do Nordeste Mineiro, v. 14, 2023. <a href="https://remunom.ojsbr.com/multidisciplinar/article/view/2029" target="_blank" rel="noopener" class="font-semibold hover:underline" style="color:#3d7f8c">Acessar artigo</a>.</li>
                             <li class="pl-4 -indent-4">AMANKWA, H. A.; OMAR, K. I. Buttressing Constitutional Protection of Fundamental Rights in Developing Nations: The Ombudsman Commission of Papua New Guinea - A New Hybrid. Melanesian Law Journal, v. 18, p. 74, 1990.</li>
                             <li class="pl-4 -indent-4">AMARAL, B. Recent Developments in Western Europe: Portugal. In: CAIDEN, G. E. (ed.). International Handbook of the Ombudsman: Country Surveys. v. 2. Westport: Greenwood Press, 1983. p. 345.</li>
                             <li class="pl-4 -indent-4">ANDERSON, K. D. The Ombudsman as an Administrative Remedy. Occasional Paper n. 41. Edmonton: International Ombudsman Institute.</li>
@@ -1204,6 +1226,7 @@
                             <li class="pl-4 -indent-4">GADLIN, H. The Ombudsman: What&#x27;s in a Name? Negotiation Journal, v. 16, n. 1, p. 37, 2000.</li>
                             <li class="pl-4 -indent-4">GAGNON, Y. Canada&#x27;s Language Ombudsman. Occasional Paper n. 3. Edmonton: IOI, 1979.</li>
                             <li class="pl-4 -indent-4">GALLO, Carlos Alberto Provenciano. O Procurador do Povo na Suécia. <strong>Diário do Congresso Nacional</strong>, Brasília, n. 14, p. 1405, 21 mar. 1985.</li>
+                            <li class="pl-4 -indent-4">GAMBOGI, Luís Carlos Balbino. <strong>Ouvidorias públicas: entre a tecnoburocracia patrimonial e a democracia</strong>. Revista EJEF, Belo Horizonte, v. 1, n. 2, 2024. DOI: 10.70982/rejef.v1i3.34. <a href="https://revistaejef.tjmg.jus.br/index.php/revista-ejef/article/view/34" target="_blank" rel="noopener" class="font-semibold hover:underline" style="color:#3d7f8c">Acessar artigo</a>.</li>
                             <li class="pl-4 -indent-4">GAMMELTOFT-HANSEN, H. Administrative Law in the Future. In: GAMMELTOFT-HANSEN, H.; AXMARK, F. (eds.). The Danish Ombudsman. Copenhagen: Djof Publishing, 1995. p. 133.</li>
                             <li class="pl-4 -indent-4">GAMMELTOFT-HANSEN, Hans. &quot;The Ombudsman: Origins and Development in the Scandinavian Context.&quot; In: EMMANUEL, P.A.M. (ed.). The Ombudsman: Caribbean and International Perspectives, 1993, p. 184.</li>
                             <li class="pl-4 -indent-4">GANORA, M. F. The Introduction of the Institution of the Ombudsman in Latin America. Occasional Paper n. 47. Edmonton: IOI, 1992.</li>
