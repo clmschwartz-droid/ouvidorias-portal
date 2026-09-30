@@ -133,9 +133,12 @@ html.portal-video-lock body {
 /* Celular: preserva área confortável para o preenchimento sem transformar a
    seção inteira numa página de mais de dois mil pixels. */
 @media (max-width: 767px) {
-  .inscreva-se-form-shell,
-  .fala-ouvidor-form-shell {
+  .inscreva-se-form-shell {
     height: clamp(34rem, 70dvh, 44rem);
+  }
+
+  .fala-ouvidor-form-shell {
+    height: clamp(42rem, 82dvh, 50rem);
   }
 
   .fala-ouvidor-form-shell.form-response-view {
