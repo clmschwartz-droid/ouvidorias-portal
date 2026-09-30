@@ -107,6 +107,13 @@ html.portal-video-lock body {
   background: #fff;
 }
 
+/* O Fala Ouvidor tem mais campos e precisa de uma janela de preenchimento
+   mais alta em desktop. A regra compacta da confirmação, logo abaixo,
+   continua prevalecendo depois do envio. */
+.fala-ouvidor-form-shell {
+  height: clamp(44rem, 82dvh, 58rem);
+}
+
 .inscreva-se-form-frame,
 .fala-ouvidor-form-frame {
   display: block;
@@ -124,9 +131,16 @@ html.portal-video-lock body {
 
 /* iPad e tablets: a janela acompanha melhor as duas orientações. */
 @media (min-width: 768px) and (max-width: 1180px) {
-  .inscreva-se-form-shell,
-  .fala-ouvidor-form-shell {
+  .inscreva-se-form-shell {
     height: clamp(38rem, 72dvh, 50rem);
+  }
+
+  .fala-ouvidor-form-shell {
+    height: clamp(44rem, 82dvh, 58rem);
+  }
+
+  .fala-ouvidor-form-shell.form-response-view {
+    height: clamp(21rem, 43dvh, 25rem);
   }
 }
 
