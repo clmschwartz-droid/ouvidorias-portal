@@ -8,14 +8,11 @@
   const shells = document.querySelectorAll('[data-google-form-shell]');
   if (!main || !shells.length) return;
 
-  // O evento load da janela só ocorre depois do carregamento inicial de todos
-  // os iframes. Assim, qualquer load posterior de um formulário corresponde a
-  // uma mudança provocada pela pessoa (próxima etapa, envio ou nova resposta),
-  // mesmo quando o load inicial do iframe aconteceu antes deste script rodar.
-  let portalReady = document.readyState === 'complete';
-  window.addEventListener('load', () => {
-    portalReady = true;
-  }, { once: true });
+  // O Google Forms pode fazer mais de um carregamento técnico logo depois de
+  // abrir. Só passamos a interpretar novos loads como navegação/envio depois
+  // de oito segundos sem nenhum carregamento do iframe. Isso evita que o Fala
+  // Ouvidor nasça indevidamente com a altura curta da confirmação.
+  const INITIAL_SETTLE_MS = 8000;
 
   shells.forEach((shell) => {
     const section = shell.closest('.section-content');
@@ -23,42 +20,31 @@
     if (!section || !iframe) return;
 
     let responseVisible = false;
-    let userInteracted = false;
-    let pointerOverIframe = false;
-    let keyboardNavigation = false;
+    let initialLoadsSettled = false;
+    let settleTimer;
 
-    // O Google pode recarregar internamente o iframe logo após a abertura,
-    // inclusive depois do evento load da página principal. Esse carregamento
-    // técnico não é uma confirmação de envio. Só reagimos a um load depois de
-    // interação deliberada por ponteiro ou navegação por teclado.
-    const markInteraction = () => {
-      userInteracted = true;
+    const postponeActivation = () => {
+      initialLoadsSettled = false;
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(() => {
+        initialLoadsSettled = true;
+      }, INITIAL_SETTLE_MS);
     };
-    iframe.addEventListener('pointerenter', () => {
-      pointerOverIframe = true;
-    });
-    iframe.addEventListener('pointerleave', () => {
-      pointerOverIframe = false;
-    });
-    document.addEventListener('keydown', (event) => {
-      keyboardNavigation = event.key === 'Tab';
-    }, true);
-    iframe.addEventListener('focus', () => {
-      if (keyboardNavigation) markInteraction();
-      keyboardNavigation = false;
-    });
-    window.addEventListener('blur', () => {
-      window.setTimeout(() => {
-        if (document.activeElement === iframe && pointerOverIframe) markInteraction();
-      }, 0);
-    });
+
+    // Protege também o caso em que o iframe terminou o primeiro carregamento
+    // antes de este script ser executado.
+    postponeActivation();
 
     iframe.addEventListener('load', () => {
+      // Todos os loads agrupados na abertura pertencem à inicialização do
+      // Google Form. Cada um reinicia a janela de estabilização.
+      if (!initialLoadsSettled) {
+        postponeActivation();
+        return;
+      }
+
       // O carregamento inicial não deve deslocar quem estiver em outra seção.
-      // Não contamos eventos: o primeiro load observado pode já ser o envio.
-      if (!portalReady) return;
       if (section.classList.contains('hidden')) return;
-      if (!userInteracted) return;
 
       // O Fala Ouvidor tem uma única página. Após o envio, o Google mostra
       // uma confirmação curta dentro do iframe; a altura do formulário inteiro
