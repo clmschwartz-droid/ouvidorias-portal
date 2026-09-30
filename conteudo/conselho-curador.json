@@ -25,13 +25,13 @@
       "grupo": "Entidades",
       "nome": "Instituto Brasileiro Pró-Cidadania",
       "ordem": 4,
-      "ativo": true
+      "ativo": false
     },
     {
       "grupo": "Entidades",
       "nome": "ILO — Instituto Latinoamericano del Ombudsman/Defensorías del Pueblo",
       "ordem": 5,
-      "ativo": true
+      "ativo": false
     },
     {
       "grupo": "Coordenação e projeto editorial do portal",
