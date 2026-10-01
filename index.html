@@ -1805,6 +1805,27 @@
         function icones(){ try { if (window.lucide) lucide.createIcons(); } catch(e){} }
         icones();
 
+        // O navegador pode restaurar a posição interna de elementos roláveis
+        // após um refresh. O menu principal deve sempre recomeçar no início,
+        // tanto na disposição vertical (desktop/iPad) quanto na horizontal.
+        function resetMainNavScroll() {
+            const nav = document.getElementById('main-nav-scroll');
+            if (!nav) return;
+            const reset = () => {
+                nav.scrollTop = 0;
+                nav.scrollLeft = 0;
+            };
+            reset();
+            window.requestAnimationFrame(() => {
+                reset();
+                window.requestAnimationFrame(reset);
+            });
+            window.setTimeout(reset, 180);
+        }
+        window.addEventListener('pageshow', resetMainNavScroll);
+        window.addEventListener('load', resetMainNavScroll, { once: true });
+        resetMainNavScroll();
+
         // ======= SISTEMA DE NAVEGAÇÃO ÁGIL (SPA) =======
         let mapLoaded = false;
 
