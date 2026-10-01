@@ -636,19 +636,29 @@
   }
 
   async function init() {
-    const [noticias, documentos, multimidia, manifestacoes, conselhoCurador, configuracao] = await Promise.all([
+    // Conselho e configuração são pequenos e controlam um item do menu. Eles
+    // são processados assim que chegam, sem esperar notícias, documentos,
+    // multimídia e manifestações terminarem de carregar.
+    const configuracaoPromise = fetchJson(DATA.configuracao);
+    const conselhoPromise = Promise.all([
+      fetchItems(DATA.conselhoCurador),
+      configuracaoPromise
+    ]).then(([conselhoCurador, configuracao]) => {
+      renderConselhoCurador(conselhoCurador, configuracao.conselho_publicado);
+    });
+
+    const [noticias, documentos, multimidia, manifestacoes, configuracao] = await Promise.all([
       fetchItems(DATA.noticias),
       fetchItems(DATA.documentos),
       fetchItems(DATA.multimidia),
       fetchItems(DATA.manifestacoes),
-      fetchItems(DATA.conselhoCurador),
-      fetchJson(DATA.configuracao)
+      configuracaoPromise
     ]);
     renderNoticias(noticias);
     renderDocumentos(documentos);
     renderMultimidia(multimidia);
     renderManifestacoes(manifestacoes);
-    renderConselhoCurador(conselhoCurador, configuracao.conselho_publicado);
+    await conselhoPromise;
     setupNewsletter(configuracao);
     try { if (window.lucide) window.lucide.createIcons(); } catch (_) {}
   }

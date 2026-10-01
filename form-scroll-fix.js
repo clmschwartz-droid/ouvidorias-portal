@@ -35,6 +35,21 @@
     // antes de este script ser executado.
     postponeActivation();
 
+    // Os formulários são carregados ainda enquanto suas seções estão ocultas.
+    // Ao abrir o Fala Ouvidor muito depois da página inicial, o Google pode
+    // concluir um carregamento tardio e ele não deve ser confundido com envio.
+    // Reiniciamos a estabilização exatamente quando a seção se torna visível.
+    let sectionWasHidden = section.classList.contains('hidden');
+    const sectionObserver = new MutationObserver(() => {
+      const sectionIsHidden = section.classList.contains('hidden');
+      if (sectionWasHidden && !sectionIsHidden && !responseVisible) {
+        shell.classList.remove('form-response-view');
+        postponeActivation();
+      }
+      sectionWasHidden = sectionIsHidden;
+    });
+    sectionObserver.observe(section, { attributes: true, attributeFilter: ['class'] });
+
     iframe.addEventListener('load', () => {
       // Todos os loads agrupados na abertura pertencem à inicialização do
       // Google Form. Cada um reinicia a janela de estabilização.
