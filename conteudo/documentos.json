@@ -136,7 +136,7 @@
       "arquivo_label": "Baixar documento",
       "publicado": true,
       "descricao": "Relatório Simplifique! 2021 da Ouvidoria-Geral da União (OGU) é um documento que analisa as solicitações de desburocratização enviadas por cidadãos via plataforma Fala.BR ao Poder Executivo Federal.",
-      "recente": true,
+      "recente": false,
       "arquivo": "/documentos/ogu-relatorio-simplifique-2021.pdf",
       "date": "2022-08-01",
       "categoria": "Outro",
