@@ -68,7 +68,7 @@
       return value == null || !Number.isFinite(number) ? fallback : Math.max(min, Math.min(max, number));
     };
     const days = bounded(config.popup_intervalo_dias, 30, 1, 365);
-    const seconds = bounded(config.popup_atraso_segundos ?? config.newsletter_atraso_segundos, 8, 0, 60);
+    const seconds = bounded(config.popup_atraso_segundos ?? config.newsletter_atraso_segundos, 3, 0, 60);
     const version = String(config.popup_versao || '1').replace(/[^a-zA-Z0-9_.-]/g, '') || '1';
     const storageKey = `portal-campaign-shown-${campaign}-${version}`;
     const ttl = days * 24 * 60 * 60 * 1000;

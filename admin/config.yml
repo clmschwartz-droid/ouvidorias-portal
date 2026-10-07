@@ -226,7 +226,7 @@ collections:
           - { label: "Título do convite de inscrição", name: "popup_inscricoes_titulo", widget: "string", default: "Faça parte do Portal das Ouvidorias" }
           - { label: "Texto do convite de inscrição", name: "popup_inscricoes_texto", widget: "text", default: "Cadastre gratuitamente sua ouvidoria e ajude a manter o portal atualizado", hint: "Cadastre gratuitamente recebe destaque quando aparece no início do texto." }
           - { label: "Botão do convite de inscrição", name: "popup_inscricoes_botao", widget: "string", default: "Inscrever minha ouvidoria" }
-          - { label: "Atraso do pop-up (segundos)", name: "popup_atraso_segundos", widget: "number", value_type: "int", min: 0, max: 60, default: 8 }
+          - { label: "Atraso do pop-up (segundos)", name: "popup_atraso_segundos", widget: "number", value_type: "int", min: 0, max: 60, default: 3 }
           - { label: "Intervalo entre exibições (dias)", name: "popup_intervalo_dias", widget: "number", value_type: "int", min: 1, max: 365, default: 30, hint: "Vale no mesmo navegador. O aviso não interrompe Inscreva-se nem Fala Ouvidor." }
           - { label: "Versão da campanha", name: "popup_versao", widget: "string", default: "1", hint: "Altere apenas para reapresentar um convite após uma mudança editorial relevante." }
           - { label: "Título da newsletter", name: "newsletter_titulo", widget: "string", required: false, default: "Acompanhe as novidades do portal" }

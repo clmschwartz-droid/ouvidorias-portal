@@ -81,7 +81,7 @@ A campanha ativa é `inscricoes`, configurada em `conteudo/configuracao.json` e 
 - Título: **Faça parte do Portal das Ouvidorias**.
 - Texto: **Cadastre gratuitamente** sua ouvidoria e ajude a manter o portal atualizado.
 - Botão: **Inscrever minha ouvidoria**, que usa a navegação interna existente para abrir Inscreva-se.
-- Atraso: oito segundos; intervalo: 30 dias no mesmo navegador e versão da campanha, contado desde a abertura.
+- Atraso: três segundos; intervalo: 30 dias no mesmo navegador e versão da campanha, contado desde a abertura.
 - Não exibir enquanto Inscreva-se ou Fala Ouvidor estiver em uso, nem sobre o modal do mapa.
 - Fechamento por X, Agora não, clique fora ou Escape; foco de teclado contido no diálogo.
 - O menu mantém Inscreva-se com texto visível também no celular.
