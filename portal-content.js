@@ -550,89 +550,7 @@
   }
 
   function setupNewsletter(config) {
-    const popup = document.getElementById('newsletter-popup');
-    let nav = document.getElementById('newsletter-nav');
-
-    if (!nav) {
-      const inscricaoNav = document.querySelector('.nav-link[data-target="inscreva-se"]');
-      if (inscricaoNav) {
-        nav = document.createElement('button');
-        nav.id = 'newsletter-nav';
-        nav.type = 'button';
-        nav.dataset.newsletterOpen = '';
-        nav.setAttribute('aria-haspopup', 'dialog');
-        nav.setAttribute('aria-controls', 'newsletter-popup');
-        nav.setAttribute('aria-expanded', 'false');
-        nav.setAttribute('aria-label', 'Assine a newsletter');
-        nav.className = 'nav-link hidden text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0';
-        nav.innerHTML = '<i data-lucide="newspaper" class="w-5 h-5"></i> <span class="hidden md:inline">Newsletter</span>';
-        inscricaoNav.insertAdjacentElement('afterend', nav);
-        if (window.lucide && typeof window.lucide.createIcons === 'function') {
-          window.lucide.createIcons();
-        }
-      }
-    }
-
-    if (!popup || !nav) return;
-
-    const url = rawSafeUrl(config.newsletter_url);
-    const published = config.newsletter_publicada === true;
-    const popupEnabled = config.newsletter_popup_ativo === true
-      || (config.newsletter_popup_ativo == null && config.newsletter_ativa === true);
-    if (!published || !/^https?:\/\//i.test(url)) return;
-
-    const title = popup.querySelector('[data-newsletter-title]');
-    const text = popup.querySelector('[data-newsletter-text]');
-    const link = popup.querySelector('[data-newsletter-link]');
-    const version = String(config.newsletter_versao || '1').replace(/[^a-zA-Z0-9_.-]/g, '') || '1';
-    const storageKey = `portal-newsletter-dismissed-${version}`;
-    let lastFocused = null;
-
-    if (title) title.textContent = config.newsletter_titulo || 'Acompanhe as novidades do portal';
-    if (text) text.textContent = config.newsletter_texto || '';
-    if (link) {
-      link.href = url;
-      link.textContent = config.newsletter_botao || 'Assinar newsletter';
-    }
-
-    const open = (trigger = null) => {
-      lastFocused = trigger instanceof HTMLElement ? trigger : document.activeElement;
-      popup.classList.remove('hidden');
-      popup.setAttribute('aria-hidden', 'false');
-      nav.setAttribute('aria-expanded', 'true');
-      const closeButton = popup.querySelector('[data-newsletter-close]');
-      if (closeButton) window.setTimeout(() => closeButton.focus(), 0);
-    };
-
-    const close = (remember = true) => {
-      popup.classList.add('hidden');
-      popup.setAttribute('aria-hidden', 'true');
-      nav.setAttribute('aria-expanded', 'false');
-      if (remember) {
-        try { window.localStorage.setItem(storageKey, '1'); } catch (_) {}
-      }
-      if (lastFocused instanceof HTMLElement) lastFocused.focus();
-    };
-
-    nav.classList.remove('hidden');
-    nav.addEventListener('click', () => open(nav));
-    popup.querySelectorAll('[data-newsletter-close]').forEach((button) => {
-      button.addEventListener('click', () => close(true));
-    });
-    popup.addEventListener('click', (event) => {
-      if (event.target === popup) close(true);
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !popup.classList.contains('hidden')) close(true);
-    });
-
-    if (!popupEnabled) return;
-    try {
-      if (window.localStorage.getItem(storageKey) === '1') return;
-    } catch (_) {}
-
-    const seconds = Math.max(0, Math.min(60, Number(config.newsletter_atraso_segundos) || 0));
-    window.setTimeout(() => open(null), seconds * 1000);
+    if (window.PortalCampaign) window.PortalCampaign.setup(config);
   }
 
   async function init() {
@@ -669,3 +587,4 @@
     init();
   }
 })();
+

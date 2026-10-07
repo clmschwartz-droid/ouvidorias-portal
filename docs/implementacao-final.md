@@ -74,9 +74,21 @@ Os envios dos Google Forms não podem ser lidos pelo site por serem iframes de o
 
 Após a publicação, abrir o portal em uma janela sem bloqueador de conteúdo e confirmar no painel do GoatCounter o recebimento da primeira visita. Bloqueadores podem impedir a contagem no navegador usado para o teste.
 
-## Newsletter preparada e desativada
+## Pop-up único de campanha
 
-A estrutura do pop-up está pronta, mas nasce invisível. Em **Configuração do portal**, o recurso só aparece quando **Ativar pop-up da newsletter** estiver ligado e uma URL pública válida tiver sido informada. Título, texto, botão, atraso e versão do aviso podem ser alterados no Decap. A versão permite reapresentar o aviso a quem já o dispensou depois de uma mudança editorial relevante.
+A campanha ativa é `inscricoes`, configurada em `conteudo/configuracao.json` e editável no Decap em **Configuração do portal → Publicação e campanhas**. O mesmo aviso será usado futuramente para `newsletter`; `desativada` oculta o recurso.
+
+- Título: **Faça parte do Portal das Ouvidorias**.
+- Texto: **Cadastre gratuitamente** sua ouvidoria e ajude a manter o portal atualizado.
+- Botão: **Inscrever minha ouvidoria**, que usa a navegação interna existente para abrir Inscreva-se.
+- Atraso: oito segundos; intervalo: 30 dias no mesmo navegador e versão da campanha, contado desde a abertura.
+- Não exibir enquanto Inscreva-se ou Fala Ouvidor estiver em uso, nem sobre o modal do mapa.
+- Fechamento por X, Agora não, clique fora ou Escape; foco de teclado contido no diálogo.
+- O menu mantém Inscreva-se com texto visível também no celular.
+
+A newsletter permanece desativada e sem URL pública. No lançamento, informar a URL pública do Substack e selecionar a campanha `newsletter`. A entrada permanente de newsletter é controlada separadamente por **Publicar newsletter no menu**; o acesso ao cadastro permanece. Não criar outro pop-up.
+
+`portal-campaign.js` guarda apenas o instante de exibição em localStorage. Não lê nem escreve respostas de formulário e não altera gatilhos, notificações, moderação, credenciais ou remetentes. Em navegadores que bloqueiam armazenamento, continua funcionando e limita o aviso a uma abertura por carregamento.
 
 ## Itens que dependem de configuração externa
 
@@ -89,3 +101,4 @@ A estrutura do pop-up está pronta, mas nasce invisível. Em **Configuração do
 - eventual serviço de newsletter.
 
 Esses valores não devem ser gravados diretamente em arquivos públicos quando forem secretos.
+
