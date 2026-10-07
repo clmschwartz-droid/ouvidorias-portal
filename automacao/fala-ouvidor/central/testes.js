@@ -18,7 +18,7 @@ function ambiente(producao = false) {
   const estado = {
     props: { CENTRAL_PLANILHA_ID: producao ? ID_REAL : 'COPIA_TESTE', CENTRAL_MODO: producao ? 'PRODUCAO' : 'SIMULACAO' },
     usuario: EMAIL_ADMIN, escritas: 0, chamadas: [], leituras: [], ocupado: false,
-    liberacoes: 0, gatilhos: [], criacoes: 0, pausas: 0, itens: [], ramo: new Set(),
+    liberacoes: 0, gatilhos: [], criacoes: 0, pausas: 0, itens: [], ramo: new Set(), logs: [], planilhasCriadas: 0,
     falharHttp: false, falharMerge: false, alterarDepoisDoEnvio: null,
   };
   if (producao) Object.assign(estado.props, {
@@ -28,7 +28,7 @@ function ambiente(producao = false) {
   function aba(nome) {
     const tabela = { nome, linhas: [Array(29).fill('')], regras: {}, maxColunas: 29 };
     return Object.assign(tabela, {
-      getName: () => nome, getLastRow: () => tabela.linhas.length,
+      getName: () => tabela.nome, setName: (novo) => { tabela.nome = novo; return tabela; }, getLastRow: () => tabela.linhas.length,
       getMaxRows: () => 10, getMaxColumns: () => tabela.maxColunas,
       insertColumnsAfter: (inicio, quantidade) => { estado.escritas++; tabela.maxColunas = inicio + quantidade; },
       getRange: (linha, coluna, numLinhas = 1, numColunas = 1) => {
@@ -42,6 +42,7 @@ function ambiente(producao = false) {
           getValues: () => Array.from({ length: numLinhas }, (_, i) => Array.from({ length: numColunas }, (_, j) => valor(linha + i, coluna + j))),
           getDisplayValues: () => [Array.from({ length: numColunas }, (_, j) => String(valor(linha, coluna + j)))],
           setValue: (v) => escrever(linha, coluna, v),
+          setValues: (valores) => valores.forEach((r, i) => r.forEach((v, j) => escrever(linha + i, coluna + j, v))),
           getDataValidation: () => tabela.regras[coluna] || null,
           setDataValidation: (regra) => { estado.escritas++; tabela.regras[coluna] = regra; },
           setNote: () => { estado.escritas++; },
@@ -55,9 +56,12 @@ function ambiente(producao = false) {
   const planilha = {
     getSheetByName: (nome) => nome === 'Moderação' ? moderacao : nome === respostas.nome ? respostas : null,
     getSpreadsheetTimeZone: () => 'America/Sao_Paulo',
+    getSheets: () => [respostas], getId: () => 'COPIA_TESTE', getUrl: () => 'https://docs.google.com/spreadsheets/d/COPIA_TESTE/edit',
+    insertSheet: () => { moderacao.linhas = [Array(29).fill('')]; moderacao.regras = {}; return moderacao; },
   };
   const regra = (tipo, valores = []) => ({ getCriteriaType: () => tipo, getCriteriaValues: () => [valores] });
   const contexto = {
+    console: { log: (mensagem) => estado.logs.push(mensagem) },
     PropertiesService: {
       getScriptProperties: () => ({ getProperty: (chave) => estado.props[chave] || null, setProperty: (chave, valor) => { estado.props[chave] = valor; } }),
       getUserProperties: () => { throw new Error('Credenciais do operador não podem ser consultadas'); },
@@ -66,7 +70,10 @@ function ambiente(producao = false) {
     SpreadsheetApp: {
       DataValidationCriteria: { VALUE_IN_LIST: 'LISTA', CHECKBOX: 'CHECKBOX' },
       openById: (id) => { estado.leituras.push(id); assert.equal(id, estado.props.CENTRAL_PLANILHA_ID); return planilha; },
-      newDataValidation: () => { const r = { requireCheckbox: () => r, setAllowInvalid: () => r, build: () => regra('CHECKBOX') }; return r; },
+      create: () => { estado.planilhasCriadas++; respostas.linhas = [Array(29).fill('')]; return planilha; },
+      newDataValidation: () => { let tipo = 'CHECKBOX', valores = []; const r = { requireCheckbox: () => r,
+        requireValueInList: (lista) => { tipo = 'LISTA'; valores = lista; return r; },
+        setAllowInvalid: () => r, build: () => regra(tipo, valores) }; return r; },
       newRichTextValue: () => { const r = { setText: (v) => { r.text = v; return r; }, setLinkUrl: (v) => { r.url = v; return r; }, build: () => ({ text: r.text, url: r.url }) }; return r; },
       flush: () => { if (estado.alterarNoFlush) estado.alterarNoFlush(moderacao); },
     },
@@ -110,7 +117,7 @@ function ambiente(producao = false) {
     } },
   };
   vm.createContext(contexto);
-  vm.runInContext(fonte + '\nthis.api = { CENTRAL, COL, CABECALHOS_RESPOSTAS, CABECALHOS_MODERACAO, DECISOES_EDITORIAIS, CATEGORIAS_PUBLICAS, SITUACOES_PUBLICAS, FLUXOS_DECAP, simularPedidosCentrais, processarPedidosCentrais, prepararColunaDePedidosCentral, instalarTemporizadorCentral, pausarEnvioCentral, montarPayloadPublico_ };', contexto);
+  vm.runInContext(fonte + '\nthis.api = { CENTRAL, COL, CABECALHOS_RESPOSTAS, CABECALHOS_MODERACAO, DECISOES_EDITORIAIS, CATEGORIAS_PUBLICAS, SITUACOES_PUBLICAS, FLUXOS_DECAP, prepararTesteInicialCentral, simularPedidosCentrais, processarPedidosCentrais, prepararColunaDePedidosCentral, instalarTemporizadorCentral, pausarEnvioCentral, montarPayloadPublico_ };', contexto);
   const api = contexto.api;
   respostas.linhas[0] = Array.from(api.CABECALHOS_RESPOSTAS);
   moderacao.linhas[0] = [...Array.from(api.CABECALHOS_MODERACAO), api.CENTRAL.cabecalhoPedido];
@@ -137,6 +144,16 @@ for (const proibido of ['GmailApp', 'function onOpen(', 'function instalarAutoma
 let e = ambiente(); e.adicionar();
 igual(e.api.simularPedidosCentrais(), [{ linha: 2, valido: true, id: 'FO-20261007-001' }]);
 igual(e.estado.escritas, 0); igual(e.estado.chamadas.length, 0);
+e = ambiente(); delete e.estado.props.CENTRAL_PLANILHA_ID;
+igual(e.api.prepararTesteInicialCentral(), { id: 'COPIA_TESTE', jaExistia: false });
+igual(e.estado.planilhasCriadas, 1); igual(e.estado.chamadas.length, 0); igual(e.estado.criacoes, 0);
+igual(e.estado.props.CENTRAL_GITHUB_TOKEN, undefined); igual(e.moderacao.linhas[1].length, 29);
+igual(e.api.simularPedidosCentrais().map((item) => item.valido), [true, false]);
+const criacaoAntes = e.estado.escritas; e.api.prepararTesteInicialCentral(); igual(e.estado.planilhasCriadas, 1); igual(e.estado.escritas, criacaoAntes);
+e = ambiente(true); falha(() => e.api.prepararTesteInicialCentral(), 'bloqueada'); igual(e.estado.planilhasCriadas, 0);
+e = ambiente(); e.estado.usuario = 'estagiario@example.com'; falha(() => e.api.prepararTesteInicialCentral(), 'administrativa'); igual(e.estado.planilhasCriadas, 0);
+e = ambiente(); e.estado.props.CENTRAL_PLANILHA_ID = ID_REAL; falha(() => e.api.prepararTesteInicialCentral(), 'cópia'); igual(e.estado.planilhasCriadas, 0);
+e = ambiente(); e.adicionar();
 igual(e.api.processarPedidosCentrais(), { processados: 0, pausado: true });
 igual(e.estado.escritas, 0); igual(e.estado.chamadas.length, 0);
 e.estado.usuario = 'estagiario@example.com'; falha(() => e.api.simularPedidosCentrais(), 'exclusiva');

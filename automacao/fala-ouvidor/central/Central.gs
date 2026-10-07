@@ -521,6 +521,61 @@ const CENTRAL = Object.freeze({
   confirmacao: 'ATIVAR_ENVIO_CENTRAL_OCULTO',
 });
 
+// Configuração inicial única, com dados totalmente fictícios e sem credencial.
+function prepararTesteInicialCentral() {
+  if (Session.getEffectiveUser().getEmail().toLowerCase() !== CENTRAL.administrador) {
+    throw new Error('Use a conta administrativa para criar o teste privado.');
+  }
+  const propriedades = PropertiesService.getScriptProperties();
+  if ((propriedades.getProperty('CENTRAL_MODO') || 'SIMULACAO') !== 'SIMULACAO') {
+    throw new Error('Criação de teste bloqueada fora de SIMULACAO.');
+  }
+  if (propriedades.getProperty('CENTRAL_PLANILHA_ID')) {
+    const config = configuracaoCentral_(false);
+    const aba = filaCentral_(config);
+    validarColunaPedidoCentral_(aba);
+    console.log('Teste já preparado. Execute simularPedidosCentrais.');
+    return { id: config.id, jaExistia: true };
+  }
+  const planilha = SpreadsheetApp.create('Fala Ouvidor — TESTE FICTÍCIO do envio central');
+  const respostas = planilha.getSheets()[0].setName(FALA_OUVIDOR.respostas);
+  const moderacao = planilha.insertSheet(FALA_OUVIDOR.moderacao);
+  if (moderacao.getMaxColumns() < CENTRAL.colunaPedido) {
+    moderacao.insertColumnsAfter(moderacao.getMaxColumns(), CENTRAL.colunaPedido - moderacao.getMaxColumns());
+  }
+  respostas.getRange(1, 1, 1, CABECALHOS_RESPOSTAS.length).setValues([Array.from(CABECALHOS_RESPOSTAS)]);
+  moderacao.getRange(1, 1, 1, CABECALHOS_MODERACAO.length).setValues([Array.from(CABECALHOS_MODERACAO)]);
+  const origem = ['2026-10-07', 'Pessoa Fictícia', 'dados-ficticios@example.com', 'Ouvidoria fictícia', 'PR',
+    'Relato institucional', 'Título fictício original', 'Relato fictício original', 'Identidade preservada',
+    'Confirmações fictícias: dado exclusivo de teste'];
+  respostas.getRange(2, 1, 2, origem.length).setValues([origem, [...origem]]);
+  const linha = ['FO-20261007-002', 'Aprovado para Decap', true, 'Teste de envio central', '2026-10-07',
+    'Relato institucional', 'Ouvidoria fictícia', 'PR', 'Texto público fictício já moderado.', 'Identidade preservada',
+    'Em acompanhamento', '', '', false, 'Aguardando moderação', '', '', 2, '2026-10-07',
+    ...origem.slice(1)];
+  const semConsentimento = [...linha];
+  semConsentimento[0] = 'FO-20261007-003'; semConsentimento[2] = false; semConsentimento[17] = 3;
+  moderacao.getRange(2, 1, 2, COL.confirmacoesOriginais).setValues([linha, semConsentimento]);
+  const quantidade = moderacao.getMaxRows() - 1;
+  for (const [coluna, opcoes] of [[COL.decisao, DECISOES_EDITORIAIS], [COL.categoria, CATEGORIAS_PUBLICAS],
+    [COL.situacao, SITUACOES_PUBLICAS], [COL.fluxo, FLUXOS_DECAP]]) {
+    const regra = SpreadsheetApp.newDataValidation().requireValueInList(Array.from(opcoes), true)
+      .setAllowInvalid(false).build();
+    moderacao.getRange(2, coluna, quantidade, 1).setDataValidation(regra);
+  }
+  for (const coluna of [COL.consentimentos, COL.destaque]) {
+    const regra = SpreadsheetApp.newDataValidation().requireCheckbox().setAllowInvalid(false).build();
+    moderacao.getRange(2, coluna, quantidade, 1).setDataValidation(regra);
+  }
+  propriedades.setProperty('CENTRAL_PLANILHA_ID', planilha.getId());
+  propriedades.setProperty('CENTRAL_MODO', 'SIMULACAO');
+  prepararColunaDePedidosCentral();
+  moderacao.getRange(2, CENTRAL.colunaPedido, 2, 1).setValues([[true], [true]]);
+  console.log('Teste fictício criado: ' + planilha.getUrl());
+  console.log('Nenhum token ou temporizador instalado. Execute simularPedidosCentrais em uma nova execução.');
+  return { id: planilha.getId(), jaExistia: false };
+}
+
 function configuracaoCentral_(permitirProducao) {
   if (Session.getEffectiveUser().getEmail().toLowerCase() !== CENTRAL.administrador) {
     throw new Error('Esta rotina é exclusiva da conta administrativa.');
@@ -639,7 +694,7 @@ function simularPedidosCentrais() {
   const config = configuracaoCentral_(false);
   const aba = filaCentral_(config);
   validarColunaPedidoCentral_(aba);
-  return pedidosCentrais_(aba).map((linha) => {
+  const resultado = pedidosCentrais_(aba).map((linha) => {
     try {
       const pedido = lerPedidoCentral_(aba, linha);
       return { linha, valido: true, id: pedido.payload.id_interno };
@@ -647,6 +702,8 @@ function simularPedidosCentrais() {
       return { linha, valido: false, erro: erroCentralSeguro_(erro) };
     }
   });
+  console.log(JSON.stringify(resultado));
+  return resultado;
 }
 
 // Chamado apenas pelo temporizador do projeto privado. SIMULACAO não faz nada.

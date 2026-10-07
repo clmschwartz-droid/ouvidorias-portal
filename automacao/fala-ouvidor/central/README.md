@@ -24,12 +24,16 @@ A configuração abaixo é feita UMA VEZ pela administração, com manutenção 
 
 ## Primeiro teste no Google, sem qualquer envio externo
 
-1. Criar uma planilha **nova de teste**, privada e sem formulário vinculado, com dados fictícios. Reproduzir as duas abas, os 10/28 cabeçalhos e dropdowns/checkboxes definidos em `../Code.gs`. Não copiar respostas reais nem compartilhar a planilha de teste.
-2. **Não usar os menus antigos numa cópia integral da planilha real:** um script vinculado copiado pode continuar apontando para o ID real. Os testes desta ponte são feitos exclusivamente pelo projeto privado novo.
-3. No projeto privado, cadastrar as propriedades `CENTRAL_PLANILHA_ID` com o ID da planilha fictícia e `CENTRAL_MODO` com `SIMULACAO`. Não cadastrar token nesta etapa.
-4. Executar `prepararColunaDePedidosCentral`, pela conta administrativa. Ela acrescenta somente AC e recusa sobrescrever colunas/dados existentes.
-5. Marcar pedidos fictícios e executar `simularPedidosCentrais`. A rotina apenas lê e valida: não grava células, não acessa GitHub e não instala temporizador.
-6. Conferir casos válidos, consentimento ausente, identificação incompatível, dados privados em campos públicos e pedido sem aprovação.
+Esta etapa pode ser feita inteiramente no navegador habitual da administração; não autentica nem depende do navegador em nuvem.
+
+1. Entrar em [Apps Script](https://script.google.com/home) usando `ouvidoriaspublicasbrasileiras@gmail.com` e criar um **Novo projeto**, chamado **Fala Ouvidor — envio central privado — TESTE**. Não abrir o projeto vinculado à planilha real.
+2. Substituir o código padrão do novo projeto pelo conteúdo de [Central.gs](Central.gs). Em **Configurações do projeto**, habilitar a exibição do manifesto `appsscript.json`; voltar ao editor e substituir o manifesto pelo [arquivo desta pasta](appsscript.json). Salvar ambos.
+3. Selecionar a função **prepararTesteInicialCentral** e executar. A autorização é dada pela própria administração diretamente ao Google. Se a conta exibida não for a administrativa, parar; se houver bloqueio, registrar a mensagem sem expor segredos. Não fornecer senha/código no chat.
+4. Essa função cria uma planilha nova com duas manifestações fictícias, os cabeçalhos/validações atuais e a caixa AC; configura apenas `SIMULACAO`. Não exige token nem instala temporizador. Reexecutá-la não duplica o teste.
+5. Selecionar **simularPedidosCentrais** e executar separadamente. No **Registro de execução**, devem aparecer uma linha com `valido: true` e outra com `valido: false`, bloqueada por falta de consentimento. A função apenas lê e valida; não grava células nem acessa GitHub.
+6. O registro da primeira função mostra o endereço da planilha fictícia. Conferir os casos adicionais na cópia de teste: identificação incompatível, dados privados em campos públicos e pedido sem aprovação.
+
+Não copiar respostas reais nem compartilhar a planilha de teste. **Não usar os menus antigos numa cópia integral da planilha real:** um script vinculado copiado pode continuar apontando para o ID real. Os testes desta ponte são feitos exclusivamente pelo projeto privado novo.
 
 O pacote bloqueia testes contra o ID da planilha real. Os testes locais de envio/PR são totalmente simulados e não substituem a conferência administrativa no Google.
 
