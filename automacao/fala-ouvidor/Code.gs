@@ -134,14 +134,10 @@ const FLUXOS_DECAP = Object.freeze([
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('Fala Ouvidor')
-    .addItem('Instalar ou atualizar automação', 'instalarAutomacao')
-    .addItem('Configurar credencial GitHub', 'abrirConfiguracaoGitHub')
-    .addItem('Verificar configuração', 'verificarConfiguracao')
+    .addItem('Criar rascunho de resposta privada', 'criarRascunhoRespostaPrivada')
+    .addSeparator()
     .addItem('Recuperar manifestações pendentes', 'recuperarManifestacoesPendentes')
     .addItem('Reenviar aviso da linha selecionada', 'reenviarAvisoSelecionado')
-    .addSeparator()
-    .addItem('Enviar linha selecionada ao Decap', 'enviarRascunhoSelecionadoAoDecap')
-    .addItem('Criar rascunho de resposta privada', 'criarRascunhoRespostaPrivada')
     .addToUi();
 }
 
