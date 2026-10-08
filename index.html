@@ -99,6 +99,7 @@
     </style>
     <link rel="stylesheet" href="visual-maceio.css">
     <link rel="stylesheet" href="visual-maceio-ajustes.css">
+    <link rel="stylesheet" href="portal-directory.css?v=20261008-1">
     <meta name="theme-color" content="#111313">
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col md:flex-row h-screen overflow-hidden">
@@ -158,6 +159,9 @@
             
             <button onclick="navigate('mapa')" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0 bg-indigo-50/50" data-target="mapa">
                 <i data-lucide="map" class="w-5 h-5 text-indigo-600"></i> <span class="hidden md:inline font-medium text-indigo-700">Mapa Interativo</span>
+            </button>
+            <button onclick="navigate('ouvidorias-cadastradas')" aria-label="Ouvidorias cadastradas" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="ouvidorias-cadastradas">
+                <i data-lucide="list-checks" class="w-5 h-5"></i> <span>Ouvidorias cadastradas</span>
             </button>
             <button onclick="navigate('entidades')" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="entidades">
                 <i data-lucide="users" class="w-5 h-5"></i> <span class="hidden md:inline">Entidades</span>
@@ -1680,15 +1684,43 @@
             </div>
 </section>
 
+        <!-- ================= SEÇÃO: OUVIDORIAS CADASTRADAS ================= -->
+        <section id="ouvidorias-cadastradas" class="section-content hidden p-6 md:p-10 max-w-6xl mx-auto fade-in" aria-labelledby="directory-title">
+            <div class="rounded-2xl p-8 md:p-10 text-white shadow-lg mb-8" style="background-color:#1c2b2e;">
+                <p class="directory-eyebrow">Rede do portal</p>
+                <h2 id="directory-title" class="text-3xl font-bold mb-3">Ouvidorias cadastradas</h2>
+                <p class="leading-relaxed" style="color:#bcdadf;">Conheça as instituições que já se inscreveram no portal. Consulte os contatos institucionais e encontre ouvidorias por localidade e área de atuação.</p>
+                <button onclick="navigate('inscreva-se')" class="directory-cta">Cadastre gratuitamente sua ouvidoria <span aria-hidden="true">→</span></button>
+            </div>
+            <p class="directory-intro">Esta lista reúne inscrições conferidas pela equipe. Para consultar o levantamento nacional mais amplo, acesse o <button onclick="navigate('mapa')" class="directory-link">Mapa Interativo</button>.</p>
+            <form id="directory-filters" class="directory-filters" role="search" aria-label="Buscar ouvidorias cadastradas">
+                <label class="directory-search">Buscar ouvidoria ou instituição<input id="directory-query" type="search" placeholder="Nome da ouvidoria, órgão ou instituição" autocomplete="off"></label>
+                <label>UF<select id="directory-uf"><option value="">Todas</option></select></label>
+                <label>Município<select id="directory-municipio"><option value="">Todos</option></select></label>
+                <label>Esfera<select id="directory-esfera"><option value="">Todas</option></select></label>
+                <label>Poder / natureza<select id="directory-poder"><option value="">Todos</option></select></label>
+                <button type="reset" class="directory-clear">Limpar filtros</button>
+            </form>
+            <p id="directory-count" class="directory-count" role="status" aria-live="polite">Carregando ouvidorias cadastradas…</p>
+            <div class="directory-columns" aria-hidden="true"><span>Ouvidoria / instituição</span><span>Localidade e atuação</span><span>Contatos oficiais</span></div>
+            <div id="directory-results" class="directory-results"></div>
+            <nav id="directory-pagination" class="directory-pagination" aria-label="Páginas de ouvidorias" hidden>
+                <button id="directory-prev" type="button">Anterior</button><span id="directory-page"></span><button id="directory-next" type="button">Próxima</button>
+            </nav>
+            <p class="directory-footnote">São divulgados apenas dados institucionais conferidos, sem contatos pessoais dos ouvidores. Encontrou uma informação desatualizada? <a href="mailto:ouvidorias@camargoegomes.com?subject=Corre%C3%A7%C3%A3o%20no%20diret%C3%B3rio%20de%20ouvidorias">Solicite uma correção</a>.</p>
+            <noscript>Ative o JavaScript para consultar a lista de ouvidorias cadastradas.</noscript>
+        </section>
+
         <!-- ================= SEÇÃO: INSCREVA-SE ================= -->
         <section id="inscreva-se" class="section-content hidden p-6 md:p-10 max-w-3xl mx-auto fade-in">
             <div class="rounded-2xl p-8 md:p-10 text-white shadow-lg mb-8" style="background-color:#1c2b2e;">
                 <h2 class="text-3xl font-bold mb-3">Inscreva-se</h2>
                 <p class="leading-relaxed" style="color:#bcdadf;">
-                    Um convite às ouvidorias brasileiras: cadastre a sua e ajude a manter o portal atualizado. <strong class="font-bold text-white">A inscrição é gratuita</strong> e muito importante para que as melhores informações e dados continuem chegando até você.
+                    Um convite às ouvidorias brasileiras: cadastre a sua e ajude a manter o portal atualizado. <strong class="font-bold text-white">A inscrição é gratuita</strong> e muito importante para que os melhores dados e informações continuem chegando até você – sempre sem custo algum.
                 </p>
             </div>
 
+            <button onclick="navigate('ouvidorias-cadastradas')" class="directory-link mb-6">Conheça as ouvidorias cadastradas <span aria-hidden="true">→</span></button>
             <div class="inscreva-se-form-shell bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden" data-google-form-shell>
                 <iframe
                     src="https://docs.google.com/forms/d/e/1FAIpQLScZoFlHK_97TXU0NkarQ13KvBS7uIY_Lv4-uZx_-3pva_QxpA/viewform?embedded=true"
@@ -2085,7 +2117,9 @@
     <script src="portal-analytics.js"></script>
     <script src="form-scroll-fix.js?v=20261001-1"></script>
     <script src="portal-campaign.js?v=20261007-1"></script>
-    <script src="portal-content.js?v=20261007-1"></script>
+    <script src="portal-content.js?v=20261008-1"></script>
+    <script src="portal-directory.js?v=20261008-1"></script>
     <script src="scroll-cues.js"></script>
 </body>
 </html>
+

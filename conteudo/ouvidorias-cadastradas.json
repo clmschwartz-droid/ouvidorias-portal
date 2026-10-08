@@ -1,0 +1,95 @@
+{
+  "items": [
+    {
+      "id": "OUV-000012",
+      "nome": "Ouvidoria Faccat",
+      "orgao": "Faculdades Integradas de Taquara — FACCAT",
+      "municipio": "Taquara",
+      "uf": "RS",
+      "esfera": "Privada",
+      "poder": "Ensino superior",
+      "site": "https://www2.faccat.br/portal/?q=ouvidoria",
+      "email": "ouvidoria@faccat.br",
+      "telefone": "(51) 3541-6600, ramal 679",
+      "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000011",
+      "nome": "Ouvidoria Seccional do IFPE Campus Paulista",
+      "orgao": "Instituto Federal de Pernambuco — Campus Paulista",
+      "municipio": "Paulista",
+      "uf": "PE",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://portal.ifpe.edu.br/ouvidoria/",
+      "email": "ouvidoria@paulista.ifpe.edu.br",
+      "telefone": "",
+      "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000007",
+      "nome": "Ouvidoria da Secretaria Municipal de Saúde de Niterói",
+      "orgao": "Secretaria Municipal de Saúde de Niterói",
+      "municipio": "Niterói",
+      "uf": "RJ",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://saude.niteroi.rj.gov.br/estrutura-e-competencias/",
+      "email": "ouvidoria@saude.niteroi.rj.gov.br",
+      "telefone": "(21) 96955-7808 (WhatsApp)",
+      "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000010",
+      "nome": "Ouvidoria-Geral da Defensoria Pública do Estado do Rio Grande do Sul",
+      "orgao": "Defensoria Pública do Estado do Rio Grande do Sul",
+      "municipio": "Porto Alegre",
+      "uf": "RS",
+      "esfera": "Estadual",
+      "poder": "Defensoria Pública",
+      "site": "https://www.defensoria.rs.def.br/ouvidoria",
+      "email": "ouvidoria@defensoria.rs.def.br",
+      "telefone": "0800 642 3225",
+      "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000014",
+      "nome": "Ouvidoria-Geral da Sanepar",
+      "orgao": "Companhia de Saneamento do Paraná — Sanepar",
+      "municipio": "Curitiba",
+      "uf": "PR",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.sanepar.com.br/ouvidoria",
+      "email": "ouvidoria@sanepar.com.br",
+      "telefone": "0800 400 0600",
+      "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000013",
+      "nome": "Ouvidoria-Geral da UFRJ",
+      "orgao": "Universidade Federal do Rio de Janeiro",
+      "municipio": "Rio de Janeiro",
+      "uf": "RJ",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://ouvidoria.ufrj.br/",
+      "email": "ouvidoria@reitoria.ufrj.br",
+      "telefone": "(21) 3938-1619",
+      "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000009",
+      "nome": "Ouvilegis — Ouvidoria da Câmara Municipal de Curitiba",
+      "orgao": "Câmara Municipal de Curitiba",
+      "municipio": "Curitiba",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.curitiba.pr.leg.br/institucional/ouvidoria",
+      "email": "ouvidoria@cmc.pr.gov.br",
+      "telefone": "(41) 3350-4903",
+      "atualizado_em": "2026-10-07"
+    }
+  ]
+}

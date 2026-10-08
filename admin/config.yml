@@ -174,11 +174,23 @@ collections:
               - { label: "Local ou UF", name: "local", widget: "string", required: false }
               - { label: "Texto público moderado", name: "texto", widget: "text", hint: "Revise o texto e remova dados pessoais ou alegações que não devam ser publicadas." }
               - { label: "Identificação pública", name: "autor_exibicao", widget: "string", required: false, default: "Identidade preservada", hint: "Use o nome autorizado, iniciais ou “Identidade preservada”." }
-              - { label: "Situação", name: "status", widget: "select", options: ["Relato publicado", "Em acompanhamento", "Resposta recebida", "Encerrado"], required: false, default: "Relato publicado" }
-              - { label: "Resposta ou atualização", name: "resposta", widget: "text", required: false }
-              - { label: "Data da resposta", name: "resposta_data", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
-              - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false }
-              - { label: "Publicado", name: "publicado", widget: "boolean", required: false, default: true, hint: "Desative para retirar temporariamente a manifestação da página sem apagar o registro editorial." }
+              - { label: "Publicado", name: "publicado", widget: "boolean", required: false, default: true, hint: "Ative somente após a revisão final do texto. Desative para retirar a manifestação da página sem apagar o registro editorial." }
+              - label: "Acompanhamento e destaque (opcional)"
+                name: "acompanhamento"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "Abra apenas para publicar uma resposta, atualizar a situação ou destacar o relato. Não é preciso copiar essas informações de volta para a planilha. Respostas privadas continuam no fluxo próprio."
+                fields:
+                  - { label: "Situação pública", name: "status", widget: "select", options: ["Relato publicado", "Em acompanhamento", "Resposta recebida", "Encerrado"], required: false }
+                  - { label: "Resposta ou atualização pública", name: "resposta", widget: "text", required: false }
+                  - { label: "Data da resposta", name: "resposta_data", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+                  - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false }
+              # Compatibilidade com rascunhos preparados pelo fluxo atual.
+              - { name: "status", widget: "hidden", required: false }
+              - { name: "resposta", widget: "hidden", required: false }
+              - { name: "resposta_data", widget: "hidden", required: false }
+              - { name: "destaque", widget: "hidden", required: false }
 
   - name: "conselho_curador"
     label: "Conselho Curador"
@@ -233,4 +245,5 @@ collections:
           - { label: "Texto da newsletter", name: "newsletter_texto", widget: "text", required: false, default: "Receba novas publicações, documentos e atualizações do Portal das Ouvidorias Públicas do Brasil." }
           - { label: "URL para inscrição", name: "newsletter_url", widget: "string", required: false, hint: "Cole a URL pública completa do Substack ou do serviço que vier a ser adotado." }
           - { label: "Texto do botão", name: "newsletter_botao", widget: "string", required: false, default: "Assinar newsletter" }
+
 
