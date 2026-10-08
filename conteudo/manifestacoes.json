@@ -9,11 +9,13 @@
       "local": "PR",
       "texto": "Teste teste Teste teste Teste teste",
       "autor_exibicao": "C. S.",
-      "status": "Em acompanhamento",
-      "resposta": "",
-      "resposta_data": "",
-      "destaque": false,
-      "publicado": false
+      "publicado": false,
+      "acompanhamento": {
+        "status": "Em acompanhamento",
+        "resposta": "",
+        "resposta_data": "",
+        "destaque": false
+      }
     },
     {
       "id_interno": "FO-20260928-014",
@@ -24,11 +26,13 @@
       "local": "PR",
       "texto": "Teste teste Teste teste",
       "autor_exibicao": "C.",
-      "status": "Em acompanhamento",
-      "resposta": "",
-      "resposta_data": "",
-      "destaque": false,
-      "publicado": false
+      "publicado": false,
+      "acompanhamento": {
+        "status": "Em acompanhamento",
+        "resposta": "",
+        "resposta_data": "",
+        "destaque": false
+      }
     },
     {
       "id_interno": "FO-20261007-017",
@@ -39,55 +43,63 @@
       "local": "AL",
       "texto": "teste",
       "autor_exibicao": "T. F.",
-      "status": "Em acompanhamento",
-      "resposta": "",
-      "resposta_data": "",
-      "destaque": false,
-      "publicado": false
+      "publicado": false,
+      "acompanhamento": {
+        "status": "Em acompanhamento",
+        "resposta": "",
+        "resposta_data": "",
+        "destaque": false
+      }
     },
     {
-      "resposta": "Olá",
-      "destaque": false,
       "texto": "Teste\nteste",
       "publicado": false,
-      "resposta_data": "2026-09-24",
       "local": "GO",
       "instituicao": "Ouvidor-geral",
       "date": "2026-09-24",
       "autor_exibicao": "M. J.",
-      "status": "Em acompanhamento",
       "categoria": "Prejuízo ao funcionamento de ouvidoria",
       "title": "teste ponta a ponta correção",
-      "id_interno": "FO-20260924-010"
+      "id_interno": "FO-20260924-010",
+      "acompanhamento": {
+        "status": "Em acompanhamento",
+        "resposta": "Olá",
+        "resposta_data": "2026-09-24",
+        "destaque": false
+      }
     },
     {
-      "resposta": "",
-      "destaque": false,
       "texto": "Nada",
       "publicado": false,
-      "resposta_data": "",
       "local": "PR",
       "instituicao": "Escritório",
       "date": "2026-09-23",
       "autor_exibicao": "Identidade preservada",
-      "status": "Em acompanhamento",
       "categoria": "Sugestão ou atualização",
       "title": "Teste correção",
-      "id_interno": "FO-20260923-005"
+      "id_interno": "FO-20260923-005",
+      "acompanhamento": {
+        "status": "Em acompanhamento",
+        "resposta": "",
+        "resposta_data": "",
+        "destaque": false
+      }
     },
     {
-      "resposta": "",
-      "destaque": false,
       "texto": "Esta é uma manifestação inteiramente fictícia, criada exclusivamente para validar o fluxo de moderação e publicação do portal.",
       "publicado": false,
-      "resposta_data": "",
       "local": "Teste técnico",
       "instituicao": "Portal das Ouvidorias Públicas do Brasil",
       "date": "2026-09-22",
       "autor_exibicao": "Identidade preservada",
-      "status": "Relato publicado",
       "categoria": "Outro",
-      "title": "Teste técnico do fluxo Fala Ouvidor"
+      "title": "Teste técnico do fluxo Fala Ouvidor",
+      "acompanhamento": {
+        "status": "Relato publicado",
+        "resposta": "",
+        "resposta_data": "",
+        "destaque": false
+      }
     }
   ]
 }

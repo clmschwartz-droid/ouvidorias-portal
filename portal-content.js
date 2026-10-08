@@ -466,6 +466,15 @@
     if (placeholderGrid) placeholderGrid.classList.add('hidden');
   }
 
+  function dadosAcompanhamento(item) {
+    const grupo = item.acompanhamento;
+    const dados = {};
+    ['status', 'resposta', 'resposta_data', 'destaque'].forEach((campo) => {
+      dados[campo] = grupo && Object.prototype.hasOwnProperty.call(grupo, campo) ? grupo[campo] : item[campo];
+    });
+    return dados;
+  }
+
   function renderManifestacoes(items) {
     const host = document.getElementById('manifestacoes-publicadas');
     if (!host) return;
@@ -473,7 +482,7 @@
     const publicados = [...items]
       .filter((item) => item && item.publicado !== false && item.title && item.texto)
       .sort((a, b) => {
-        if (Boolean(a.destaque) !== Boolean(b.destaque)) return a.destaque ? -1 : 1;
+        if (Boolean(dadosAcompanhamento(a).destaque) !== Boolean(dadosAcompanhamento(b).destaque)) return dadosAcompanhamento(a).destaque ? -1 : 1;
         return String(b.date || '').localeCompare(String(a.date || ''));
       });
 
@@ -483,18 +492,19 @@
       const local = [item.instituicao, item.local].filter(Boolean).map(esc).join(' · ');
       const meta = [datePt(item.date), local].filter(Boolean).join(' · ');
       const texto = esc(item.texto).replace(/\n/g, '<br>');
-      const resposta = item.resposta ? esc(item.resposta).replace(/\n/g, '<br>') : '';
+      const acompanhamento = dadosAcompanhamento(item);
+      const resposta = acompanhamento.resposta ? esc(acompanhamento.resposta).replace(/\n/g, '<br>') : '';
       return `<article class="rounded-xl border border-slate-200 bg-white p-5 md:p-6 shadow-sm">
         <div class="flex flex-wrap items-center gap-2 mb-3">
           <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded" style="background:#e8f2f4;color:#3d7f8c">${esc(item.categoria || 'Manifestação')}</span>
-          ${item.status ? `<span class="text-[10px] font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">${esc(item.status)}</span>` : ''}
-          ${item.destaque ? '<span class="text-[10px] font-semibold px-2 py-1 rounded bg-amber-50 text-amber-700">Em destaque</span>' : ''}
+          ${acompanhamento.status ? `<span class="text-[10px] font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">${esc(acompanhamento.status)}</span>` : ''}
+          ${acompanhamento.destaque ? '<span class="text-[10px] font-semibold px-2 py-1 rounded bg-amber-50 text-amber-700">Em destaque</span>' : ''}
         </div>
         <h4 class="text-lg font-bold text-slate-800">${esc(item.title)}</h4>
         ${meta ? `<p class="mt-1 text-xs text-slate-500">${meta}</p>` : ''}
         <p class="mt-4 text-sm leading-relaxed text-slate-700">${texto}</p>
         ${item.autor_exibicao ? `<p class="mt-4 text-xs text-slate-500">Identificação: ${esc(item.autor_exibicao)}</p>` : ''}
-        ${resposta ? `<div class="mt-5 rounded-lg border border-teal-100 bg-teal-50 p-4"><p class="text-xs font-bold uppercase tracking-wider mb-2" style="color:#3d7f8c">Resposta ou atualização</p><p class="text-sm leading-relaxed text-slate-700">${resposta}</p>${item.resposta_data ? `<p class="mt-2 text-xs text-slate-500">${datePt(item.resposta_data)}</p>` : ''}</div>` : ''}
+        ${resposta ? `<div class="mt-5 rounded-lg border border-teal-100 bg-teal-50 p-4"><p class="text-xs font-bold uppercase tracking-wider mb-2" style="color:#3d7f8c">Resposta ou atualização</p><p class="text-sm leading-relaxed text-slate-700">${resposta}</p>${acompanhamento.resposta_data ? `<p class="mt-2 text-xs text-slate-500">${datePt(acompanhamento.resposta_data)}</p>` : ''}</div>` : ''}
       </article>`;
     }).join('');
   }
@@ -587,4 +597,5 @@
     init();
   }
 })();
+
 
