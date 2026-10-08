@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "OUV-000007",
+      "nome": "Ouvidoria da Secretaria Municipal de Saúde de Niterói",
+      "orgao": "Secretaria Municipal de Saúde de Niterói",
+      "municipio": "Niterói",
+      "uf": "RJ",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://saude.niteroi.rj.gov.br/estrutura-e-competencias/",
+      "email": "ouvidoria@saude.niteroi.rj.gov.br",
+      "telefone": "(21) 96955-7808 (WhatsApp)",
+      "atualizado_em": "2026-10-07"
+    },
+    {
       "id": "OUV-000012",
       "nome": "Ouvidoria Faccat",
       "orgao": "Faculdades Integradas de Taquara — FACCAT",
@@ -24,19 +37,6 @@
       "site": "https://portal.ifpe.edu.br/ouvidoria/",
       "email": "ouvidoria@paulista.ifpe.edu.br",
       "telefone": "",
-      "atualizado_em": "2026-10-07"
-    },
-    {
-      "id": "OUV-000007",
-      "nome": "Ouvidoria da Secretaria Municipal de Saúde de Niterói",
-      "orgao": "Secretaria Municipal de Saúde de Niterói",
-      "municipio": "Niterói",
-      "uf": "RJ",
-      "esfera": "Municipal",
-      "poder": "Executivo",
-      "site": "https://saude.niteroi.rj.gov.br/estrutura-e-competencias/",
-      "email": "ouvidoria@saude.niteroi.rj.gov.br",
-      "telefone": "(21) 96955-7808 (WhatsApp)",
       "atualizado_em": "2026-10-07"
     },
     {
