@@ -82,7 +82,7 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
 {
   const {state,context}=environment();state.locked=true;context.sincronizarDiretorioCadastradas();equal(state.writes,[]);equal(state.calls,[]);
   for (const bad of ['javascript:alert(1)','https://user:secret@example.com','https://example.com/<script>','http://example.com']) equal(context.diretorioHttps_(bad),'');
-  const valid=row(seed[0]);valid[12]='';throws(()=>context.diretorioPublico_(valid),/fonte oficial/);valid[11]=false;equal(context.diretorioPublico_(valid).email,'');
+  const valid=row(seed[0]);valid[12]='';equal(context.diretorioPublico_(valid).email,seed[0].email);valid[11]=false;equal(context.diretorioPublico_(valid).email,'');
 }
 {
   // Sheets counts FALSE checkbox values as occupied cells through row 1000.
@@ -129,5 +129,13 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   state.rows[1][16]='assinatura-publicada';state.rows[1][4]='';state.notes[1][2]='Nota do operador';context.sincronizarDiretorioCadastradas();
   equal(state.rows[1][4],'');equal(state.notes[1][2],'Nota do operador');
   const invalid=row(seed[0],true,false);invalid[3]='';invalid[5]='';throws(()=>context.diretorioPublico_(invalid),/instituição, UF/);
+}
+{
+  const {state,context}=environment();const declared=row(seed[0],true,true);declared[8]='';declared[12]='';declared[9]='ouvidoria.municipal@gmail.com';
+  state.rows.push(declared);context.sincronizarDiretorioCadastradas();
+  equal(state.rows[1][13],'Publicado');equal(state.remote[0].email,'ouvidoria.municipal@gmail.com');equal(state.remote[0].site,'');
+  declared[9]='nome.sobrenome@gmail.com';throws(()=>context.diretorioPublico_(declared),/contato pessoal/);
+  state.rows[0][11]='Contato conferido';state.rows[0][12]='Fonte dos contatos';context.diretorioFila_({getSheetByName:()=>({getRange:()=>({getDisplayValues:()=>[state.rows[0]],setValues:(values)=>state.rows[0].splice(11,2,...values[0])})})});
+  equal(state.rows[0].slice(11,13),['Divulgar contatos','Fonte dos contatos (opcional)']);
 }
 console.log(`${checks} verificações do diretório passaram.`);
