@@ -8,7 +8,7 @@ const DIRETORIO_PORTAL = Object.freeze({
   repositorio: 'clmschwartz-droid/ouvidorias-portal',
   arquivo: 'conteudo/ouvidorias-cadastradas.json',
   campos: ['id', 'nome', 'orgao', 'municipio', 'uf', 'esfera', 'poder', 'site', 'email', 'telefone'],
-  cabecalhos: ['ID', 'Aprovar publicação', 'Nome da ouvidoria', 'Órgão / instituição', 'Município', 'UF', 'Esfera', 'Poder / natureza', 'Site oficial', 'E-mail institucional público', 'Telefone institucional público', 'Contato conferido', 'Fonte dos contatos', 'Fluxo site', 'Observações internas', 'Linha de origem', 'Assinatura publicada', 'Atualizado em'],
+  cabecalhos: ['ID', 'Aprovar publicação', 'Nome da ouvidoria', 'Órgão / instituição', 'Município', 'UF', 'Esfera', 'Poder / natureza', 'Site oficial', 'E-mail institucional público', 'Telefone institucional público', 'Divulgar contatos', 'Fonte dos contatos (opcional)', 'Fluxo site', 'Observações internas', 'Linha de origem', 'Assinatura publicada', 'Atualizado em'],
   ufs: 'AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'.split(' '),
   esferas: ['Federal', 'Estadual', 'Municipal', 'Privada', 'Outra'],
   poderes: ['Executivo', 'Legislativo', 'Judiciário', 'Ministério Público', 'Defensoria Pública', 'Ensino superior', 'Outra'],
@@ -36,7 +36,9 @@ function diretorioHttps_(value) {
 }
 function diretorioEmail_(value) {
   const s = diretorioTexto_(value).toLowerCase();
-  return /^ouvidoria[a-z0-9._+-]*@[a-z0-9.-]+\.[a-z]{2,}$/i.test(s) && !/@(?:gmail|hotmail|outlook|yahoo|live|icloud)\./i.test(s) ? s : '';
+  // A generic ouvidoria mailbox can be institutional even on a free provider.
+  // Personal mailbox fields from the form are never read or exported.
+  return /^ouvidoria[a-z0-9._+-]*@[a-z0-9.-]+\.[a-z]{2,}$/i.test(s) ? s : '';
 }
 function diretorioTelefone_(value) {
   const s = diretorioTexto_(value);
@@ -55,7 +57,6 @@ function diretorioPublico_(row) {
   if (pendentes.length) throw new Error('Preencha ou confira: ' + pendentes.join(', ') + '.');
   if (diretorioTexto_(row[8]) && !item.site) throw new Error('O site oficial deve ser uma URL https válida.');
   if (row[11] === true) {
-    if (!diretorioHttps_(row[12])) throw new Error('Informe a fonte oficial dos contatos antes de marcar Contato conferido.');
     item.email = diretorioEmail_(row[9]);
     item.telefone = diretorioTelefone_(row[10]);
     if (diretorioTexto_(row[9]) && !item.email) throw new Error('Use apenas endereço institucional genérico da ouvidoria; contato pessoal não pode ser publicado.');
@@ -75,6 +76,11 @@ function diretorioFila_(ss) {
     sheet.hideColumns(16, 2);
   }
   const headers = sheet.getRange(1, 1, 1, 18).getDisplayValues()[0];
+  const anteriores = [...DIRETORIO_PORTAL.cabecalhos]; anteriores[11] = 'Contato conferido'; anteriores[12] = 'Fonte dos contatos';
+  if (JSON.stringify(headers) === JSON.stringify(anteriores)) {
+    sheet.getRange(1,12,1,2).setValues([DIRETORIO_PORTAL.cabecalhos.slice(11,13)]);
+    return sheet;
+  }
   if (JSON.stringify(headers) !== JSON.stringify(DIRETORIO_PORTAL.cabecalhos)) throw new Error('Cabeçalhos da fila foram alterados. Nenhum dado foi publicado.');
   return sheet;
 }
@@ -122,7 +128,7 @@ function diretorioDadosOrigem_(r) {
   return [orgao,municipio,uf,esfera,poder];
 }
 function diretorioNotaOrigem_(linha) {
-  return 'Cadastro completo (todos os campos do formulário): https://docs.google.com/spreadsheets/d/' + DIRETORIO_PORTAL.planilha + '/edit#gid=' + DIRETORIO_PORTAL.respostasGid + '&range=A' + linha + ':U' + linha + '\nDados identificados nas respostas são pré-preenchidos para conferência. Campos ambíguos permanecem vazios. Contatos só são publicados após conferência em fonte oficial.';
+  return 'Cadastro completo (todos os campos do formulário): https://docs.google.com/spreadsheets/d/' + DIRETORIO_PORTAL.planilha + '/edit#gid=' + DIRETORIO_PORTAL.respostasGid + '&range=A' + linha + ':U' + linha + '\nDados identificados nas respostas são pré-preenchidos. Campos ambíguos permanecem vazios. Contatos institucionais informados pela ouvidoria podem ser divulgados sem página web ou fonte externa; marque Divulgar contatos e Aprovar publicação.';
 }
 function diretorioPreparar_(sheet, raw) {
   const expected = ['Timestamp', 'Nome da Ouvidoria', 'Localização Institucional', 'Endereço completo da Ouvidoria', 'E-mail da Ouvidoria', 'Telefone da Ouvidoria', 'Ato de Criação — natureza do ato', 'Ato de Criação — número/identificação'];
@@ -151,7 +157,7 @@ function diretorioPreparar_(sheet, raw) {
       return;
     }
     const duplicate = nomes.has(diretorioNormal_(nome));
-    novas.push([id, false, nome, ...dados, '', diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', 'Confira os dados institucionais e os contatos em fonte oficial. Não copie contatos pessoais do ouvidor.', i + 2, '', '']);
+    novas.push([id, false, nome, ...dados, '', diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', 'Dados fornecidos pela ouvidoria. Revise campos ambíguos; não copie contatos pessoais do ouvidor. Fonte externa é opcional.', i + 2, '', '']);
     ids.add(id); nomes.add(diretorioNormal_(nome));
   });
   if (novas.length) {
