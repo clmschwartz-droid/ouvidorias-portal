@@ -12,7 +12,7 @@
   const url = (s) => {
     try {
       const u = new URL(String(s || ''));
-      return u.protocol === 'https:' && !u.username && !u.password ? u.href : '';
+      return ['http:', 'https:'].includes(u.protocol) && !u.username && !u.password ? u.href : '';
     } catch (_) { return ''; }
   };
   const email = (s) => /^ouvidoria[a-z0-9._+-]*@[a-z0-9.-]+\.[a-z]{2,}$/i.test(String(s || '')) ? s : '';
@@ -33,7 +33,7 @@
     const link = (label, href) => {
       const a = text('a', label);
       a.href = href;
-      if (href.startsWith('https:')) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+      if (/^https?:/.test(href)) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
       return a;
     };
     function card(item) {
