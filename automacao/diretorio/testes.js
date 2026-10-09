@@ -82,4 +82,28 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   for (const bad of ['javascript:alert(1)','https://user:secret@example.com','https://example.com/<script>','http://example.com']) equal(context.diretorioHttps_(bad),'');
   const valid=row(seed[0]);valid[12]='';throws(()=>context.diretorioPublico_(valid),/fonte oficial/);valid[11]=false;equal(context.diretorioPublico_(valid).email,'');
 }
+{
+  // Sheets counts FALSE checkbox values as occupied cells through row 1000.
+  const {state,context}=environment();state.rows.push(...seed.map(x=>row(x)));
+  state.remote=clone(seed).sort((a,b)=>a.nome.localeCompare(b.nome,'pt-BR')||a.id.localeCompare(b.id));const published=clone(state.remote);
+  while(state.rows.length<1000){const blank=Array(18).fill('');blank[1]=false;blank[11]=false;blank[13]='Erro: ID repetido; restaure o identificador original.';state.rows.push(blank);}
+  const untouched=clone(state.rows[999]);
+  state.raw.push(['data','Nova ouvidoria','Executivo','Endereço','ouvidoria@instituicao.gov.br','(11) 99999-9999']);
+  context.sincronizarDiretorioCadastradas();
+  equal(state.rows[8][0],'OUV-000002');equal(state.rows[8][1],false);equal(state.rows[8][13],'Em análise');
+  equal(state.rows[999],untouched);equal(state.rows.length,1000);equal(state.remote,published);equal(state.commits,0);
+  const append=state.writes.find(x=>x.c===1&&x.values[0][0]==='OUV-000002');equal(append.r,9);
+  const count=state.writes.length;context.sincronizarDiretorioCadastradas();equal(state.writes.length,count);
+  state.raw.push(['data','Outra ouvidoria','Executivo','Endereço','','']);context.sincronizarDiretorioCadastradas();equal(state.rows[9][0],'OUV-000003');
+}
+{
+  // Blank internal rows must not receive duplicate-ID errors, even on publication.
+  const {state,context}=environment();const empty=()=>{const r=Array(18).fill('');r[1]=false;r[11]=false;return r;};
+  state.rows.push(row(seed[0]),empty(),empty(),row(seed[1]));
+  context.sincronizarDiretorioCadastradas();equal(state.rows[2][13],'');equal(state.rows[3][13],'');
+  ok(state.rows[1][13]==='Publicado'&&state.rows[4][13]==='Publicado');
+  state.rows[5]=empty();state.rows[5][14]='Rascunho em revisão';state.rows[6]=empty();
+  state.raw.push(['data','Nova ouvidoria','Executivo','Endereço','','']);context.sincronizarDiretorioCadastradas();
+  equal(state.rows[5][14],'Rascunho em revisão');equal(state.rows[6][0],'OUV-000002');
+}
 console.log(`${checks} verificações do diretório passaram.`);

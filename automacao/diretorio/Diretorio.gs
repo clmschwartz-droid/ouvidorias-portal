@@ -78,10 +78,22 @@ function diretorioFila_(ss) {
   if (JSON.stringify(headers) !== JSON.stringify(DIRETORIO_PORTAL.cabecalhos)) throw new Error('Cabeçalhos da fila foram alterados. Nenhum dado foi publicado.');
   return sheet;
 }
+function diretorioTemRegistro_(row) {
+  // Unchecked checkboxes and automatic status cells are not registrations.
+  return row[1] === true || row[11] === true || row.some((value, col) =>
+    ![1, 11, 13, 16, 17].includes(col) && diretorioTexto_(value) !== '');
+}
+function diretorioLinhas_(sheet) {
+  const last = sheet.getLastRow();
+  const rows = last > 1 ? sheet.getRange(2, 1, last - 1, 18).getValues() : [];
+  // Keep internal gaps to preserve physical row numbers; ignore the unused tail.
+  while (rows.length && !diretorioTemRegistro_(rows[rows.length - 1])) rows.pop();
+  return rows;
+}
 function diretorioPreparar_(sheet, raw) {
   const expected = ['Timestamp', 'Nome da Ouvidoria', 'Localização Institucional', 'Endereço completo da Ouvidoria', 'E-mail da Ouvidoria', 'Telefone da Ouvidoria'];
   if (JSON.stringify(raw[0]) !== JSON.stringify(expected)) throw new Error('Cabeçalhos do formulário divergentes; confira antes de importar.');
-  const existing = sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 18).getValues() : [];
+  const existing = diretorioLinhas_(sheet);
   const ids = new Set(existing.map((r) => diretorioTexto_(r[0])));
   const nomes = new Set(existing.map((r) => diretorioNormal_(r[2])));
   const novas = [];
@@ -94,13 +106,13 @@ function diretorioPreparar_(sheet, raw) {
     ids.add(id); nomes.add(diretorioNormal_(nome));
   });
   if (novas.length) {
-    const start = sheet.getLastRow() + 1;
+    const start = existing.length + 2;
     if (start + novas.length - 1 > sheet.getMaxRows()) sheet.insertRowsAfter(sheet.getMaxRows(), start + novas.length - 1 - sheet.getMaxRows());
     // Plain text prevents a malicious form answer from becoming a Sheets formula.
     const safeRows = novas.map((r) => r.map((v) => typeof v === 'string' && /^[=+@-]/.test(v) ? "'" + v : v));
     sheet.getRange(start, 1, novas.length, 18).setValues(safeRows);
   }
-  const n = sheet.getLastRow() - 1;
+  const n = existing.length + novas.length;
   if (n > 0) {
     [2, 12].forEach((col) => sheet.getRange(2, col, n, 1).setDataValidation(SpreadsheetApp.newDataValidation().requireCheckbox().build()));
     [[6,DIRETORIO_PORTAL.ufs],[7,DIRETORIO_PORTAL.esferas],[8,DIRETORIO_PORTAL.poderes]].forEach(([col,values]) => sheet.getRange(2,col,n,1).setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(values,true).setAllowInvalid(false).build()));
@@ -163,16 +175,17 @@ function sincronizarDiretorioCadastradas() {
     diretorioPreparar_(sheet, origem.getRange(1, 1, Math.max(1, origem.getLastRow()), 6).getDisplayValues());
     const file = diretorioLerSite_();
     const previous = new Map(file.items.map((item) => [item.id, item]));
-    const rows = sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 18).getValues() : [];
+    const rows = diretorioLinhas_(sheet);
     const today = Utilities.formatDate(new Date(), 'America/Sao_Paulo', 'yyyy-MM-dd');
     const results = new Map(); const approved = []; const keyCounts = new Map();
     const idCounts = new Map();
-    rows.forEach((row) => { const id = diretorioTexto_(row[0]); idCounts.set(id, (idCounts.get(id) || 0) + 1); });
+    rows.filter(diretorioTemRegistro_).forEach((row) => { const id = diretorioTexto_(row[0]); idCounts.set(id, (idCounts.get(id) || 0) + 1); });
     rows.filter((row) => row[1] === true).forEach((row) => {
       const key = diretorioNormal_([row[2],row[4],row[5]].join('|'));
       keyCounts.set(key, (keyCounts.get(key) || 0) + 1);
     });
     rows.forEach((row) => {
+      if (!diretorioTemRegistro_(row)) return;
       const id = diretorioTexto_(row[0]);
       if (idCounts.get(id) !== 1) { if (previous.has(id) && !approved.some((x) => x.id === id)) approved.push(previous.get(id)); results.set(id, { status: 'Erro: ID repetido; restaure o identificador original.' }); return; }
       if (row[1] !== true) { results.set(id, { status: previous.has(id) ? 'Retirado do diretório' : 'Em análise' }); return; }
@@ -193,12 +206,13 @@ function sincronizarDiretorioCadastradas() {
     approved.sort((a,b) => a.nome.localeCompare(b.nome,'pt-BR') || a.id.localeCompare(b.id));
     if (JSON.stringify(approved) !== JSON.stringify(file.items)) diretorioPublicar_(approved, file);
     // Re-read after publishing: an editor may have sorted or changed rows meanwhile.
-    const fresh = sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 18).getValues() : [];
-    const initial = new Map(rows.map((row) => [diretorioTexto_(row[0]), JSON.stringify(row.slice(0,13))]));
+    const fresh = diretorioLinhas_(sheet);
+    const initial = new Map(rows.filter(diretorioTemRegistro_).map((row) => [diretorioTexto_(row[0]), JSON.stringify(row.slice(0,13))]));
     let statusChanged = false; let signatureChanged = false;
     const statusValues = fresh.map((row) => [row[13]]);
     const signatureValues = fresh.map((row) => [row[16],row[17]]);
     fresh.forEach((row,index) => {
+      if (!diretorioTemRegistro_(row)) return;
       const id = diretorioTexto_(row[0]); const result = results.get(id);
       if (!result || initial.get(id) !== JSON.stringify(row.slice(0,13))) return;
       if (row[13] !== result.status) { statusValues[index] = [result.status]; statusChanged = true; }
