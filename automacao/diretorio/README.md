@@ -4,16 +4,20 @@
 
 A lista pública fica em **Dados → Ouvidorias cadastradas**, com acesso também no Inscreva-se. Ela reúne inscrições conferidas; o Mapa Interativo continua com o levantamento nacional mais amplo.
 
-Na planilha **Respostas — Cadastro de Ouvidorias**, use a aba **Diretório — aprovação**. A sincronização está ativa: inscrições novas são preparadas automaticamente a cada cinco minutos. Os testes são ignorados. Os campos de localização e classificação ficam para conferência, sem inferências a partir de endereços livres.
+Na planilha **Respostas — Cadastro de Ouvidorias**, use a aba **Diretório — aprovação**. A sincronização está ativa: inscrições novas são preparadas automaticamente a cada cinco minutos. Os testes são ignorados. Nome, contatos institucionais e os dados identificáveis de instituição, município, UF, esfera e poder/natureza chegam pré-preenchidos para conferência. A rotina reconhece indicações explícitas nas respostas; campos ambíguos continuam vazios, sem deduzir UF por DDD nem esfera pela cidade. Rascunhos antigos recebem os campos ainda vazios; valores já revisados e registros publicados são preservados.
 
-1. Confira nome da ouvidoria, órgão/instituição, município, UF, esfera e poder/natureza. Preencha o site oficial quando houver.
-2. Se quiser divulgar e-mail e telefone, confira-os em fonte oficial, preencha **Fonte dos contatos** e marque **Contato conferido**. Nunca use o nome, celular ou e-mail pessoal do ouvidor. O e-mail público deve ser um endereço genérico da ouvidoria em domínio institucional. Para publicar a instituição sem e-mail/telefone, deixe **Contato conferido** desmarcado.
+1. Confira nome da ouvidoria, órgão/instituição, município, UF, esfera e poder/natureza. Complete apenas o que não pôde ser identificado. Preencha o site oficial quando houver. A nota na célula do nome contém um link para o cadastro original completo, incluindo todos os campos que não fazem parte da lista pública.
+2. Se quiser divulgar e-mail e telefone institucionais fornecidos pela própria ouvidoria no cadastro, marque **Divulgar contatos**. **Fonte dos contatos (opcional)** pode registrar uma página ou referência, mas não é requisito: não é preciso ter site nem comprovação externa. Nunca use o nome, celular ou e-mail pessoal do ouvidor. O e-mail público deve ser uma caixa genérica da ouvidoria; pode estar em um provedor gratuito, desde que usado pela instituição. Para publicar sem e-mail/telefone, deixe **Divulgar contatos** desmarcado.
 3. Marque **Aprovar publicação** nas linhas conferidas. É possível selecionar várias células dessa coluna e preencher `TRUE` para aprovar um lote. Os dados aprovados chegam ao site no próximo ciclo; a implantação do GitHub Pages pode acrescentar alguns minutos.
 4. **Fluxo site** e **Atualizado em** são automáticos. Corrija a própria fila para atualizar o diretório. Desmarque **Aprovar publicação** para retirar uma instituição da lista. Erros de validação preservam a versão já publicada até a correção.
 
 Sete inscrições reais foram conferidas e incluídas na implantação inicial. Sete envios de teste ficaram fora da lista. Um telefone do IFPE Paulista foi omitido por falta de confirmação; os e-mails públicos da UFRJ e da Sanepar seguem as fontes oficiais atuais. As respostas originais do formulário foram preservadas.
 
 Não ordene nem apague linhas da aba original **Form Responses 1**: o identificador mantém a referência à linha de entrada. Ordene ou filtre apenas **Diretório — aprovação**. Não altere ID ou as colunas técnicas ocultas. A aba de respostas contém dados privados e não deve ser compartilhada publicamente.
+
+São necessárias apenas essas duas abas. **Página1** era uma aba padrão vazia, sem participação na importação ou publicação.
+
+O site informa que os dados são fornecidos pelas ouvidorias e aprovados pela equipe. **Solicite uma correção** aparece antes dos filtros e também ao fim da lista. Solicitações chegam à caixa institucional já usada pelo portal; a equipe corrige a fila, e a sincronização atualiza a publicação.
 
 ## Ativação administrativa — uma única vez
 
@@ -36,6 +40,6 @@ O Fala Ouvidor permanece separado: **planilha de moderação → rascunho oculto
 
 A importação considera a última linha com dados de um cadastro ou rascunho em revisão. Caixas desmarcadas e células de status em linhas vazias não empurram novos registros para o fim da grade e não geram erros de ID repetido. Linhas vazias internas mantêm suas posições; dados e rascunhos do operador são preservados. A correção de registros já importados longe da tabela exige movê-los com seus IDs, aprovações e demais campos intactos, sem copiá-los como cadastros novos.
 
-`Diretorio.gs` lê somente A:F das inscrições e exporta uma lista explícita de campos institucionais. Não lê os contatos pessoais do ouvidor (P:U), não envia e-mails, não cria gatilhos de formulário nem menus. Seu temporizador é idempotente e usa o mesmo bloqueio do projeto para não concorrer com o processamento do Fala Ouvidor. Publica apenas `conteudo/ouvidorias-cadastradas.json`, por PR, e só confirma o status após leitura do arquivo incorporado.
+`Diretorio.gs` lê somente A:H das inscrições (identificação, localização, contatos institucionais e ato de criação) e exporta uma lista explícita de campos institucionais. Não lê os contatos pessoais do ouvidor (P:U), não envia e-mails, não cria gatilhos de formulário nem menus. Seu temporizador é idempotente e usa o mesmo bloqueio do projeto para não concorrer com o processamento do Fala Ouvidor. Publica apenas `conteudo/ouvidorias-cadastradas.json`, por PR, e só confirma o status após leitura do arquivo incorporado. A mensagem de erro lista precisamente quais campos precisam ser completados ou conferidos.
 
 Execute `node automacao/diretorio/testes.js` para verificar importação, aprovação em lote, contatos, rejeição de duplicidades, atualizações, retirada, idempotência e proteção contra edição simultânea. Execute também os testes existentes do Fala Ouvidor ao alterar a configuração editorial.
