@@ -9,7 +9,7 @@ const DIRETORIO_PORTAL = Object.freeze({
   arquivo: 'conteudo/ouvidorias-cadastradas.json',
   orientacao: 'Dados fornecidos pela ouvidoria. Revise campos ambíguos; não copie contatos pessoais do ouvidor. Fonte externa é opcional.',
   campos: ['id', 'nome', 'orgao', 'municipio', 'uf', 'esfera', 'poder', 'site', 'email', 'telefone'],
-  cabecalhos: ['ID', 'Aprovar publicação', 'Nome da ouvidoria', 'Órgão / instituição', 'Município', 'UF', 'Esfera', 'Poder / natureza', 'Site oficial', 'E-mail institucional público', 'Telefone institucional público', 'Divulgar contatos', 'Fonte dos contatos (opcional)', 'Fluxo site', 'Observações internas', 'Linha de origem', 'Assinatura publicada', 'Atualizado em'],
+  cabecalhos: ['ID', 'Aprovar publicação', 'Nome da ouvidoria', 'Órgão / instituição', 'Município', 'UF', 'Esfera', 'Poder / natureza', 'Site da ouvidoria', 'E-mail institucional público', 'Telefone institucional público', 'Divulgar contatos', 'Fonte dos contatos (opcional)', 'Fluxo site', 'Observações internas', 'Linha de origem', 'Assinatura publicada', 'Atualizado em'],
   ufs: 'AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'.split(' '),
   esferas: ['Federal', 'Estadual', 'Municipal', 'Privada', 'Outra'],
   poderes: ['Executivo', 'Legislativo', 'Judiciário', 'Ministério Público', 'Defensoria Pública', 'Ensino superior', 'Outra'],
@@ -33,7 +33,7 @@ function diretorioTexto_(value) { return String(value == null ? '' : value).trim
 function diretorioNormal_(value) { return diretorioTexto_(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' '); }
 function diretorioHttps_(value) {
   const s = diretorioTexto_(value);
-  return /^https:\/\/[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?(?::443)?(?:[/?#][^\s<>"\\]*)?$/i.test(s) ? s : '';
+  return /^https?:\/\/[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?(?::(?:80|443))?(?:[/?#][^\s<>"\\]*)?$/i.test(s) ? s : '';
 }
 function diretorioEmail_(value) {
   const s = diretorioTexto_(value).toLowerCase();
@@ -56,7 +56,7 @@ function diretorioPublico_(row) {
   if (!/^OUV-\d{6,}$/.test(item.id)) throw new Error('Restaure o ID original do cadastro.');
   const pendentes = [['nome da ouvidoria',!!item.nome],['instituição',!!item.orgao],['município',!!item.municipio],['UF',DIRETORIO_PORTAL.ufs.includes(item.uf)],['esfera',DIRETORIO_PORTAL.esferas.includes(item.esfera)],['poder / natureza',DIRETORIO_PORTAL.poderes.includes(item.poder)]].filter((campo) => !campo[1]).map((campo) => campo[0]);
   if (pendentes.length) throw new Error('Preencha ou confira: ' + pendentes.join(', ') + '.');
-  if (diretorioTexto_(row[8]) && !item.site) throw new Error('O site oficial deve ser uma URL https válida.');
+  if (diretorioTexto_(row[8]) && !item.site) throw new Error('O Site da ouvidoria deve ser um endereço http ou https válido.');
   if (row[11] === true) {
     item.email = diretorioEmail_(row[9]);
     item.telefone = diretorioTelefone_(row[10]);
@@ -77,12 +77,13 @@ function diretorioFila_(ss) {
     sheet.hideColumns(16, 2);
   }
   const headers = sheet.getRange(1, 1, 1, 18).getDisplayValues()[0];
-  const anteriores = [...DIRETORIO_PORTAL.cabecalhos]; anteriores[11] = 'Contato conferido'; anteriores[12] = 'Fonte dos contatos';
-  if (JSON.stringify(headers) === JSON.stringify(anteriores)) {
-    sheet.getRange(1,12,1,2).setValues([DIRETORIO_PORTAL.cabecalhos.slice(11,13)]);
-    return sheet;
+  const migrated = [...headers];
+  if (migrated[8] === 'Site oficial') migrated[8] = 'Site da ouvidoria';
+  if (migrated[11] === 'Contato conferido' && migrated[12] === 'Fonte dos contatos') {
+    migrated[11] = 'Divulgar contatos'; migrated[12] = 'Fonte dos contatos (opcional)';
   }
-  if (JSON.stringify(headers) !== JSON.stringify(DIRETORIO_PORTAL.cabecalhos)) throw new Error('Cabeçalhos da fila foram alterados. Nenhum dado foi publicado.');
+  if (JSON.stringify(migrated) !== JSON.stringify(DIRETORIO_PORTAL.cabecalhos)) throw new Error('Cabeçalhos da fila foram alterados. Nenhum dado foi publicado.');
+  if (JSON.stringify(headers) !== JSON.stringify(migrated)) sheet.getRange(1,1,1,18).setValues([migrated]);
   return sheet;
 }
 function diretorioTemRegistro_(row) {
@@ -98,7 +99,7 @@ function diretorioLinhas_(sheet) {
   return rows;
 }
 function diretorioDadosOrigem_(r) {
-  // Only institutional answers A:H are read. Never infer a state from a phone DDD,
+  // Only institutional answers are read. Never infer a state from a phone DDD,
   // or silently replace information already reviewed by an operator.
   const nome = diretorioTexto_(r[1]); const local = diretorioNormal_(r[2]);
   const endereco = diretorioTexto_(r[3]);
@@ -129,11 +130,26 @@ function diretorioDadosOrigem_(r) {
   return [orgao,municipio,uf,esfera,poder];
 }
 function diretorioNotaOrigem_(linha) {
-  return 'Cadastro completo (todos os campos do formulário): https://docs.google.com/spreadsheets/d/' + DIRETORIO_PORTAL.planilha + '/edit#gid=' + DIRETORIO_PORTAL.respostasGid + '&range=A' + linha + ':U' + linha + '\nDados identificados nas respostas são pré-preenchidos. Campos ambíguos permanecem vazios. Contatos institucionais informados pela ouvidoria podem ser divulgados sem página web ou fonte externa; marque Divulgar contatos e Aprovar publicação.';
+  return 'Cadastro completo (todos os campos do formulário): https://docs.google.com/spreadsheets/d/' + DIRETORIO_PORTAL.planilha + '/edit#gid=' + DIRETORIO_PORTAL.respostasGid + '&range=A' + linha + ':V' + linha + '\nDados identificados nas respostas são pré-preenchidos. Campos ambíguos permanecem vazios. Site e contatos institucionais informados pela ouvidoria podem ser divulgados sem conferência externa. Site é opcional; marque Divulgar contatos para e-mail/telefone e Aprovar publicação.';
+}
+function diretorioRespostas_(origem) {
+  const n = Math.max(1, origem.getLastRow());
+  const raw = origem.getRange(1,1,n,8).getDisplayValues();
+  // Locate the new field by its header: Google Forms may move its response
+  // column. Read that column alone, never personal contact answer columns.
+  const headers = origem.getRange(1,1,1,origem.getLastColumn()).getDisplayValues()[0];
+  const sites = headers.map((header,index) => header === 'Site da ouvidoria' ? index : -1).filter((index) => index >= 0);
+  if (sites.length > 1) throw new Error('Há mais de uma coluna Site da ouvidoria; confira o formulário.');
+  if (sites.length === 1) {
+    const values = origem.getRange(1,sites[0]+1,n,1).getDisplayValues();
+    raw.forEach((row,index) => row.push(values[index][0]));
+  }
+  return raw;
 }
 function diretorioPreparar_(sheet, raw) {
   const expected = ['Timestamp', 'Nome da Ouvidoria', 'Localização Institucional', 'Endereço completo da Ouvidoria', 'E-mail da Ouvidoria', 'Telefone da Ouvidoria', 'Ato de Criação — natureza do ato', 'Ato de Criação — número/identificação'];
-  if (JSON.stringify(raw[0]) !== JSON.stringify(expected)) throw new Error('Cabeçalhos do formulário divergentes; confira antes de importar.');
+  const validHeader = JSON.stringify(raw[0]) === JSON.stringify(expected) || JSON.stringify(raw[0]) === JSON.stringify([...expected,'Site da ouvidoria']);
+  if (!validHeader) throw new Error('Cabeçalhos do formulário divergentes; confira antes de importar.');
   const existing = diretorioLinhas_(sheet);
   const ids = new Set(existing.map((r) => diretorioTexto_(r[0])));
   const nomes = new Set(existing.map((r) => diretorioNormal_(r[2])));
@@ -158,11 +174,13 @@ function diretorioPreparar_(sheet, raw) {
         dados.forEach((value,col) => {
           if (value && !diretorioTexto_(fresh[col + 3])) sheet.getRange(index + 2,col + 4).setValue(/^[=+@-]/.test(value) ? "'" + value : value);
         });
+        const site = diretorioTexto_(r[8]);
+        if (site && !diretorioTexto_(fresh[8])) sheet.getRange(index + 2,9).setValue(/^[=+@-]/.test(site) ? "'" + site : site);
       }
       return;
     }
     const duplicate = nomes.has(diretorioNormal_(nome));
-    novas.push([id, false, nome, ...dados, '', diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', DIRETORIO_PORTAL.orientacao, i + 2, '', '']);
+    novas.push([id, false, nome, ...dados, diretorioTexto_(r[8]), diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', DIRETORIO_PORTAL.orientacao, i + 2, '', '']);
     ids.add(id); nomes.add(diretorioNormal_(nome));
   });
   if (novas.length) {
@@ -239,7 +257,7 @@ function sincronizarDiretorioCadastradas() {
     sheet = diretorioFila_(ss);
     const origem = ss.getSheetByName(DIRETORIO_PORTAL.respostas);
     if (!origem) throw new Error('Aba de respostas não encontrada.');
-    diretorioPreparar_(sheet, origem.getRange(1, 1, Math.max(1, origem.getLastRow()), 8).getDisplayValues());
+    diretorioPreparar_(sheet, diretorioRespostas_(origem));
     const file = diretorioLerSite_();
     const previous = new Map(file.items.map((item) => [item.id, item]));
     const rows = diretorioLinhas_(sheet);
