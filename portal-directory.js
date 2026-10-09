@@ -15,8 +15,7 @@
       return u.protocol === 'https:' && !u.username && !u.password ? u.href : '';
     } catch (_) { return ''; }
   };
-  const email = (s) => /^ouvidoria[a-z0-9._+-]*@[a-z0-9.-]+\.[a-z]{2,}$/i.test(String(s || '')) &&
-    !/@(?:gmail|hotmail|outlook|yahoo|live|icloud)\./i.test(s) ? s : '';
+  const email = (s) => /^ouvidoria[a-z0-9._+-]*@[a-z0-9.-]+\.[a-z]{2,}$/i.test(String(s || '')) ? s : '';
 
   async function init() {
     const host = document.getElementById('directory-results');
@@ -43,7 +42,7 @@
       identity.append(text('h3', item.nome));
       if (item.orgao && item.orgao !== item.nome) identity.append(text('p', item.orgao));
       if (/^\d{4}-\d{2}-\d{2}$/.test(item.atualizado_em || '')) {
-        identity.append(text('p', 'Conferido em ' + item.atualizado_em.split('-').reverse().join('/'), 'directory-date'));
+        identity.append(text('p', 'Atualizado em ' + item.atualizado_em.split('-').reverse().join('/'), 'directory-date'));
       }
       const scope = text('div', '', 'directory-scope');
       scope.append(text('p', item.municipio + ' / ' + item.uf));
@@ -59,7 +58,7 @@
           contacts.append(link(item.telefone, 'tel:' + (digits.startsWith('0800') ? digits : '+55' + digits)));
         } else contacts.append(text('p', item.telefone));
       }
-      if (!contacts.childElementCount) contacts.append(text('p', 'Contato em conferência'));
+      if (!contacts.childElementCount) contacts.append(text('p', 'Contato não divulgado'));
       article.append(identity, scope, contacts);
       return article;
     }
