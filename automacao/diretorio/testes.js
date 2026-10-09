@@ -12,12 +12,14 @@ function ok(value) { checks++; assert.ok(value); }
 function equal(a,b) { checks++; assert.deepEqual(clone(a),clone(b)); }
 function throws(fn,regex) { checks++; assert.throws(fn,regex); }
 function environment() {
-  const state = { rows:[], raw:[], remote:[], writes:[], calls:[], commits:0, locked:false, fail:false, afterPublish:null, triggers:[], user:'ouvidoriaspublicasbrasileiras@gmail.com' };
+  const state = { rows:[], raw:[], notes:[], remote:[], writes:[], calls:[], commits:0, locked:false, fail:false, afterPublish:null, triggers:[], user:'ouvidoriaspublicasbrasileiras@gmail.com' };
   const range = (r,c,n=1,m=1) => ({
     getValues: () => clone(state.rows.slice(r-1,r-1+n).map(row => Array.from({length:m},(_,i) => row[c-1+i] ?? ''))),
     getDisplayValues: () => clone(state.rows.slice(r-1,r-1+n).map(row => Array.from({length:m},(_,i) => String(row[c-1+i] ?? '')))),
     setValues: (values) => { state.writes.push({r,c,values:clone(values)}); values.forEach((row,i) => { state.rows[r-1+i] ||= Array(18).fill(''); row.forEach((v,j)=>state.rows[r-1+i][c-1+j]=v); }); },
     setValue: (v) => range(r,c).setValues([[v]]),
+    getNotes: () => Array.from({length:n},(_,i) => Array.from({length:m},(_,j) => state.notes[r-1+i]?.[c-1+j] || '')),
+    setNotes: (values) => { state.writes.push({r,c,notes:clone(values)}); values.forEach((row,i) => {state.notes[r-1+i] ||= [];row.forEach((v,j)=>state.notes[r-1+i][c-1+j]=v);}); },
     setDataValidation: () => {},
   });
   const sheet = { getLastRow: () => state.rows.length, getRange:range, getMaxRows:()=>1000 };
@@ -25,7 +27,7 @@ function environment() {
   const context = { console:{log:()=>{},error:()=>{}}, Session:{getEffectiveUser:()=>({getEmail:()=>state.user})}, PropertiesService:{getScriptProperties:()=>({getProperty:()=> 'github_pat_FICTICIO'})}, SpreadsheetApp:{openById:()=>({getSheetByName:(name)=>name==='Form Responses 1'?{getLastRow:()=>state.raw.length,getRange:()=>({getDisplayValues:()=>clone(state.raw)})}:sheet}),newDataValidation:()=>validation}, LockService:{getScriptLock:()=>({tryLock:()=>!state.locked,releaseLock:()=>{state.released=true;}})}, Utilities:{formatDate:()=> '2026-10-08', DigestAlgorithm:{SHA_256:1},Charset:{UTF_8:1}, computeDigest:(_type,value)=>[...crypto.createHash('sha256').update(value).digest()].map(x=>x>127?x-256:x),getUuid:()=> 'id-ficticio',base64Encode:(s)=>Buffer.from(s).toString('base64'),base64Decode:(s)=>Buffer.from(s,'base64'),newBlob:(bytes)=>({getDataAsString:()=>Buffer.from(bytes).toString()})}, ScriptApp:{getProjectTriggers:()=>state.triggers.map(x=>({getHandlerFunction:()=>x})),newTrigger:(handler)=>({timeBased:()=>({everyMinutes:(minutes)=>({create:()=>state.triggers.push(handler)})})})} };
   vm.createContext(context); vm.runInContext(source,context);
   state.rows=[vm.runInContext('Array.from(DIRETORIO_PORTAL.cabecalhos)',context)];
-  state.raw=[['Timestamp','Nome da Ouvidoria','Localização Institucional','Endereço completo da Ouvidoria','E-mail da Ouvidoria','Telefone da Ouvidoria']];
+  state.raw=[['Timestamp','Nome da Ouvidoria','Localização Institucional','Endereço completo da Ouvidoria','E-mail da Ouvidoria','Telefone da Ouvidoria','Ato de Criação — natureza do ato','Ato de Criação — número/identificação']];
   const liveRead=context.diretorioLerSite_,livePublish=context.diretorioPublicar_;
   context.diretorioLerSite_=()=>({sha:'sha-'+state.commits,items:clone(state.remote)});
   context.diretorioPublicar_=(items)=>{state.calls.push(clone(items)); if(state.fail)throw new Error('Falha de rede');state.remote=clone(items);state.commits++;if(state.afterPublish)state.afterPublish();return items;};
@@ -105,5 +107,27 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   state.rows[5]=empty();state.rows[5][14]='Rascunho em revisão';state.rows[6]=empty();
   state.raw.push(['data','Nova ouvidoria','Executivo','Endereço','','']);context.sincronizarDiretorioCadastradas();
   equal(state.rows[5][14],'Rascunho em revisão');equal(state.rows[6][0],'OUV-000002');
+}
+{
+  const {state,context}=environment();
+  const original=['data','Ouvidoria Geral do Município de Terra Boa','Poder Executivo','Rua Presidente Tancredo Almeida Neves, nº 240','ouvidoria@terraboa.pr.gov.br','(44) 3641-8037','Lei','Lei 1.721/2022 Terra Boa / PR'];
+  equal(context.diretorioDadosOrigem_(original),['Prefeitura Municipal de Terra Boa','Terra Boa','PR','Municipal','Executivo']);
+  const mallet=['data','Ouvidoria-geral do Município de Mallet','Poder Executivo','Rua XV de Novembro - Sul, nº 28 - SE, Centro, Mallet-PR.','ouvidoriamunicipal@mallet.pr.gov.br','0800 542 1204','Lei','Lei nº 1445/2021'];
+  equal(context.diretorioDadosOrigem_(mallet),['Prefeitura Municipal de Mallet','Mallet','PR','Municipal','Executivo']);
+  const dipso=['data','DIPSO - Divisão de Participação Social e Ouvidoria','Poder Executivo','Rua Guilherme Weiss, 320 - cep: 83323-200 - Estância Pinhais - Pinhais-PR','ouvidoria.saude@pinhais.pr.gov.br','41 99216-2095','Decreto','Decreto Municipal 409/2017'];
+  equal(context.diretorioDadosOrigem_(dipso),['','Pinhais','PR','Municipal','Executivo']);
+  const conflict=clone(mallet);conflict[4]='ouvidoria@instituicao.rs.gov.br';equal(context.diretorioDadosOrigem_(conflict)[2],'');
+  const unclear=['data','Ouvidoria desconhecida','Poder Executivo','Rua Paraná, 100, Centro','ouvidoria@instituicao.gov.br','(41) 1111-1111'];
+  equal(context.diretorioDadosOrigem_(unclear).slice(1,4),['','','']);
+  state.raw.push(original);context.sincronizarDiretorioCadastradas();
+  equal(state.rows[1].slice(3,8),['Prefeitura Municipal de Terra Boa','Terra Boa','PR','Municipal','Executivo']);
+  equal(state.rows[1][1],false);equal(state.rows[1][11],false);equal(state.remote,[]);
+  ok(state.notes[1][2].includes('gid=1817621009&range=A2:U2'));
+  state.rows[1][3]='Instituição revisada';state.rows[1][4]='';context.sincronizarDiretorioCadastradas();
+  equal(state.rows[1][3],'Instituição revisada');equal(state.rows[1][4],'Terra Boa');
+  const before=state.writes.length;context.sincronizarDiretorioCadastradas();equal(state.writes.length,before);
+  state.rows[1][16]='assinatura-publicada';state.rows[1][4]='';state.notes[1][2]='Nota do operador';context.sincronizarDiretorioCadastradas();
+  equal(state.rows[1][4],'');equal(state.notes[1][2],'Nota do operador');
+  const invalid=row(seed[0],true,false);invalid[3]='';invalid[5]='';throws(()=>context.diretorioPublico_(invalid),/instituição, UF/);
 }
 console.log(`${checks} verificações do diretório passaram.`);
