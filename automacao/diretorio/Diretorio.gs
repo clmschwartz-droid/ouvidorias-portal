@@ -4,7 +4,7 @@
  */
 const DIRETORIO_PORTAL = Object.freeze({
   planilha: '1_AVcWgVnQla7JhRf8nb2KnEV5EsSSt4-y8pVRCcTTRo',
-  respostas: 'Form Responses 1', fila: 'Diretório — aprovação',
+  respostas: 'Form Responses 1', respostasGid: 1817621009, fila: 'Diretório — aprovação',
   repositorio: 'clmschwartz-droid/ouvidorias-portal',
   arquivo: 'conteudo/ouvidorias-cadastradas.json',
   campos: ['id', 'nome', 'orgao', 'municipio', 'uf', 'esfera', 'poder', 'site', 'email', 'telefone'],
@@ -50,9 +50,9 @@ function diretorioAssinatura_(item) {
 }
 function diretorioPublico_(row) {
   const item = { id: diretorioTexto_(row[0]), nome: diretorioTexto_(row[2]), orgao: diretorioTexto_(row[3]), municipio: diretorioTexto_(row[4]), uf: diretorioTexto_(row[5]).toUpperCase(), esfera: diretorioTexto_(row[6]), poder: diretorioTexto_(row[7]), site: diretorioHttps_(row[8]), email: '', telefone: '' };
-  if (!/^OUV-\d{6,}$/.test(item.id) || !item.nome || !item.orgao || !item.municipio || !DIRETORIO_PORTAL.ufs.includes(item.uf) || !DIRETORIO_PORTAL.esferas.includes(item.esfera) || !DIRETORIO_PORTAL.poderes.includes(item.poder)) {
-    throw new Error('Confira nome, instituição, município, UF, esfera e poder / natureza.');
-  }
+  if (!/^OUV-\d{6,}$/.test(item.id)) throw new Error('Restaure o ID original do cadastro.');
+  const pendentes = [['nome da ouvidoria',!!item.nome],['instituição',!!item.orgao],['município',!!item.municipio],['UF',DIRETORIO_PORTAL.ufs.includes(item.uf)],['esfera',DIRETORIO_PORTAL.esferas.includes(item.esfera)],['poder / natureza',DIRETORIO_PORTAL.poderes.includes(item.poder)]].filter((campo) => !campo[1]).map((campo) => campo[0]);
+  if (pendentes.length) throw new Error('Preencha ou confira: ' + pendentes.join(', ') + '.');
   if (diretorioTexto_(row[8]) && !item.site) throw new Error('O site oficial deve ser uma URL https válida.');
   if (row[11] === true) {
     if (!diretorioHttps_(row[12])) throw new Error('Informe a fonte oficial dos contatos antes de marcar Contato conferido.');
@@ -90,8 +90,42 @@ function diretorioLinhas_(sheet) {
   while (rows.length && !diretorioTemRegistro_(rows[rows.length - 1])) rows.pop();
   return rows;
 }
+function diretorioDadosOrigem_(r) {
+  // Only institutional answers A:H are read. Never infer a state from a phone DDD,
+  // or silently replace information already reviewed by an operator.
+  const nome = diretorioTexto_(r[1]); const local = diretorioNormal_(r[2]);
+  const endereco = diretorioTexto_(r[3]);
+  const email = diretorioEmail_(r[4]);
+  const ufEmail = email.match(/\.([a-z]{2})\.gov\.br$/i);
+  // Ignore compass labels such as "nº 28 - SE"; the suffix of the address is
+  // the municipality/UF pair, not an earlier street or building identifier.
+  const paresUf = [...endereco.matchAll(/[-/–—]\s*([A-Z]{2})\s*(?:[.,]|$|[-–—]\s*CEP\b)/gi)];
+  const finalUf = paresUf.length ? paresUf[paresUf.length - 1] : null;
+  const ufs = [ufEmail && ufEmail[1].toUpperCase(), finalUf && finalUf[1].toUpperCase()].filter((uf) => DIRETORIO_PORTAL.ufs.includes(uf));
+  const uf = new Set(ufs).size === 1 ? ufs[0] : '';
+  const cidadeNome = nome.match(/(?:município|municipio|municipal)\s+de\s+([^/(),]+?)(?:\s*[-–—]\s*[A-Z]{2})?\s*$/i);
+  let municipio = cidadeNome ? cidadeNome[1].trim() : '';
+  if (!municipio && finalUf) {
+    const cidade = endereco.slice(0, finalUf.index).split(/[,\n–—]|\s+-\s+/).pop().trim();
+    if (/^[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ\s'’-]+$/.test(cidade) && !/\b(?:rua|avenida|bairro|centro|rodovia|estrada|cep)\b/i.test(cidade)) municipio = cidade;
+  }
+  const classificacao = diretorioNormal_([nome,r[2],r[6],r[7]].join(' '));
+  let esfera = /\b(?:municipal|municipio)\b/.test(classificacao) ? 'Municipal' : /\bfederal\b/.test(classificacao) ? 'Federal' : /\b(?:estadual|estado de|estado do)\b/.test(classificacao) ? 'Estadual' : /\bprivad[ao]\b/.test(classificacao) ? 'Privada' : '';
+  const poder = DIRETORIO_PORTAL.poderes.find((p) => local === diretorioNormal_(p) || local === 'poder ' + diretorioNormal_(p)) || '';
+  let orgao = '';
+  if (cidadeNome && esfera === 'Municipal' && municipio && ['Executivo','Legislativo'].includes(poder)) {
+    orgao = (poder === 'Executivo' ? 'Prefeitura Municipal de ' : 'Câmara Municipal de ') + municipio;
+  } else {
+    const instituicao = nome.replace(/^ouvidoria(?:[-\s]+(?:geral|seccional))?\s+(?:(?:do|da|de)\s+)?/i, '').trim();
+    if (instituicao !== nome && instituicao && !/^(?:geral|municipal|central)$/i.test(instituicao)) orgao = instituicao;
+  }
+  return [orgao,municipio,uf,esfera,poder];
+}
+function diretorioNotaOrigem_(linha) {
+  return 'Cadastro completo (todos os campos do formulário): https://docs.google.com/spreadsheets/d/' + DIRETORIO_PORTAL.planilha + '/edit#gid=' + DIRETORIO_PORTAL.respostasGid + '&range=A' + linha + ':U' + linha + '\nDados identificados nas respostas são pré-preenchidos para conferência. Campos ambíguos permanecem vazios. Contatos só são publicados após conferência em fonte oficial.';
+}
 function diretorioPreparar_(sheet, raw) {
-  const expected = ['Timestamp', 'Nome da Ouvidoria', 'Localização Institucional', 'Endereço completo da Ouvidoria', 'E-mail da Ouvidoria', 'Telefone da Ouvidoria'];
+  const expected = ['Timestamp', 'Nome da Ouvidoria', 'Localização Institucional', 'Endereço completo da Ouvidoria', 'E-mail da Ouvidoria', 'Telefone da Ouvidoria', 'Ato de Criação — natureza do ato', 'Ato de Criação — número/identificação'];
   if (JSON.stringify(raw[0]) !== JSON.stringify(expected)) throw new Error('Cabeçalhos do formulário divergentes; confira antes de importar.');
   const existing = diretorioLinhas_(sheet);
   const ids = new Set(existing.map((r) => diretorioTexto_(r[0])));
@@ -100,9 +134,24 @@ function diretorioPreparar_(sheet, raw) {
   raw.slice(1).forEach((r, i) => {
     const nome = diretorioTexto_(r[1]);
     const id = 'OUV-' + String(i + 2).padStart(6, '0');
-    if (!nome || /^(teste|test)\b/i.test(diretorioNormal_(nome)) || ids.has(id)) return;
+    if (!nome || /^(teste|test)\b/i.test(diretorioNormal_(nome))) return;
+    const dados = diretorioDadosOrigem_(r);
+    if (ids.has(id)) {
+      const index = existing.findIndex((row) => diretorioTexto_(row[0]) === id);
+      if (index < 0 || existing.filter((row) => diretorioTexto_(row[0]) === id).length !== 1) return;
+      // Previously published rows are reviewed records, including intentionally
+      // empty cells. Preserve them, and fill only still-empty fields in drafts.
+      if (!diretorioTexto_(existing[index][16])) {
+        const fresh = sheet.getRange(index + 2,1,1,18).getValues()[0];
+        if (diretorioTexto_(fresh[0]) !== id) return;
+        dados.forEach((value,col) => {
+          if (value && !diretorioTexto_(fresh[col + 3])) sheet.getRange(index + 2,col + 4).setValue(/^[=+@-]/.test(value) ? "'" + value : value);
+        });
+      }
+      return;
+    }
     const duplicate = nomes.has(diretorioNormal_(nome));
-    novas.push([id, false, nome, '', '', '', '', '', '', diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', 'Confira os dados institucionais e os contatos em fonte oficial. Não copie contatos pessoais do ouvidor.', i + 2, '', '']);
+    novas.push([id, false, nome, ...dados, '', diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', 'Confira os dados institucionais e os contatos em fonte oficial. Não copie contatos pessoais do ouvidor.', i + 2, '', '']);
     ids.add(id); nomes.add(diretorioNormal_(nome));
   });
   if (novas.length) {
@@ -116,6 +165,13 @@ function diretorioPreparar_(sheet, raw) {
   if (n > 0) {
     [2, 12].forEach((col) => sheet.getRange(2, col, n, 1).setDataValidation(SpreadsheetApp.newDataValidation().requireCheckbox().build()));
     [[6,DIRETORIO_PORTAL.ufs],[7,DIRETORIO_PORTAL.esferas],[8,DIRETORIO_PORTAL.poderes]].forEach(([col,values]) => sheet.getRange(2,col,n,1).setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(values,true).setAllowInvalid(false).build()));
+    const rows = sheet.getRange(2,1,n,18).getValues();
+    const notes = sheet.getRange(2,3,n,1).getNotes(); let changed = false;
+    rows.forEach((row,index) => {
+      const id = diretorioTexto_(row[0]); const linha = Number(row[15]);
+      if (!notes[index][0] && /^OUV-\d{6,}$/.test(id) && linha >= 2 && id === 'OUV-' + String(linha).padStart(6,'0')) { notes[index][0] = diretorioNotaOrigem_(linha); changed = true; }
+    });
+    if (changed) sheet.getRange(2,3,n,1).setNotes(notes);
   }
 }
 
@@ -172,7 +228,7 @@ function sincronizarDiretorioCadastradas() {
     sheet = diretorioFila_(ss);
     const origem = ss.getSheetByName(DIRETORIO_PORTAL.respostas);
     if (!origem) throw new Error('Aba de respostas não encontrada.');
-    diretorioPreparar_(sheet, origem.getRange(1, 1, Math.max(1, origem.getLastRow()), 6).getDisplayValues());
+    diretorioPreparar_(sheet, origem.getRange(1, 1, Math.max(1, origem.getLastRow()), 8).getDisplayValues());
     const file = diretorioLerSite_();
     const previous = new Map(file.items.map((item) => [item.id, item]));
     const rows = diretorioLinhas_(sheet);
