@@ -27,6 +27,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000016",
+      "nome": "Ouvidoria Geral do Município de Terra Boa",
+      "orgao": "Prefeitura Municipal de Terra Boa",
+      "municipio": "Terra Boa",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://terraboa.pr.gov.br/ouvidoria/",
+      "email": "ouvidoria@terraboa.pr.gov.br",
+      "telefone": "(44) 98456-8330",
+      "atualizado_em": "2026-10-08"
+    },
+    {
       "id": "OUV-000011",
       "nome": "Ouvidoria Seccional do IFPE Campus Paulista",
       "orgao": "Instituto Federal de Pernambuco — Campus Paulista",
