@@ -4,7 +4,7 @@
 
 A lista pública fica em **Dados → Ouvidorias cadastradas**, com acesso também no Inscreva-se. Ela reúne inscrições conferidas; o Mapa Interativo continua com o levantamento nacional mais amplo.
 
-Na planilha **Respostas — Cadastro de Ouvidorias**, use a aba **Diretório — aprovação**. Após a ativação administrativa abaixo, inscrições novas são preparadas automaticamente a cada cinco minutos. Os testes são ignorados. Os campos de localização e classificação ficam para conferência, sem inferências a partir de endereços livres.
+Na planilha **Respostas — Cadastro de Ouvidorias**, use a aba **Diretório — aprovação**. A sincronização está ativa: inscrições novas são preparadas automaticamente a cada cinco minutos. Os testes são ignorados. Os campos de localização e classificação ficam para conferência, sem inferências a partir de endereços livres.
 
 1. Confira nome da ouvidoria, órgão/instituição, município, UF, esfera e poder/natureza. Preencha o site oficial quando houver.
 2. Se quiser divulgar e-mail e telefone, confira-os em fonte oficial, preencha **Fonte dos contatos** e marque **Contato conferido**. Nunca use o nome, celular ou e-mail pessoal do ouvidor. O e-mail público deve ser um endereço genérico da ouvidoria em domínio institucional. Para publicar a instituição sem e-mail/telefone, deixe **Contato conferido** desmarcado.
@@ -17,9 +17,9 @@ Não ordene nem apague linhas da aba original **Form Responses 1**: o identifica
 
 ## Ativação administrativa — uma única vez
 
-O módulo está pronto, mas a instalação no projeto privado precisa ser concluída pela conta titular. Não foi ativado por uma implantação do site.
+A ativação inicial foi concluída pela conta titular. O roteiro abaixo serve para reinstalação; a implantação do site, sozinha, não instala nem atualiza o Apps Script.
 
-1. Na conta **ouvidoriaspublicasbrasileiras@gmail.com**, abra o **mesmo projeto administrativo privado** que já processa os pedidos de envio do Fala Ouvidor. Não é o projeto vinculado à planilha nem um projeto novo. Ele contém `Central.gs`, `Processador.gs` e a configuração administrativa já usada.
+1. Na conta **ouvidoriaspublicasbrasileiras@gmail.com**, abra o **mesmo projeto administrativo privado** que já processa os pedidos de envio do Fala Ouvidor. Não é o projeto vinculado à planilha nem um projeto novo. O arquivo `Código.gs` reúne o processamento central e sua configuração administrativa.
 2. Ao lado de **Arquivos**, clique em **+ → Script**, dê o nome **Diretorio** e cole o conteúdo de [Diretorio.gs](Diretorio.gs). Salve. Não apague nem substitua nenhum arquivo existente. Não precisa baixar ou alterar `appsscript.json`.
 3. No seletor de funções ao lado de **Executar**, selecione **ativarDiretorioCadastradas** e clique em **Executar**. Essa função instala somente o temporizador do diretório e reaproveita a credencial administrativa existente. Nenhum estagiário configura token.
 4. Confira o registro **“Diretório ativado: importação e publicação a cada cinco minutos”** e, em **Acionadores**, o temporizador **sincronizarDiretorioCadastradas**. Não remova os acionadores do Fala Ouvidor.
@@ -33,6 +33,8 @@ A delegação do Gmail não concede acesso ao Drive/Sheets. O estagiário usa su
 O Fala Ouvidor permanece separado: **planilha de moderação → rascunho oculto → revisão final no Decap**. Respostas privadas permanecem no fluxo próprio. No Decap, acompanhamento, resposta pública, data e destaque ficam em **Acompanhamento e destaque (opcional)**, recolhido por padrão. Não há cópia manual de volta para a planilha.
 
 ## Escopo técnico e verificação
+
+A importação considera a última linha com dados de um cadastro ou rascunho em revisão. Caixas desmarcadas e células de status em linhas vazias não empurram novos registros para o fim da grade e não geram erros de ID repetido. Linhas vazias internas mantêm suas posições; dados e rascunhos do operador são preservados. A correção de registros já importados longe da tabela exige movê-los com seus IDs, aprovações e demais campos intactos, sem copiá-los como cadastros novos.
 
 `Diretorio.gs` lê somente A:F das inscrições e exporta uma lista explícita de campos institucionais. Não lê os contatos pessoais do ouvidor (P:U), não envia e-mails, não cria gatilhos de formulário nem menus. Seu temporizador é idempotente e usa o mesmo bloqueio do projeto para não concorrer com o processamento do Fala Ouvidor. Publica apenas `conteudo/ouvidorias-cadastradas.json`, por PR, e só confirma o status após leitura do arquivo incorporado.
 
