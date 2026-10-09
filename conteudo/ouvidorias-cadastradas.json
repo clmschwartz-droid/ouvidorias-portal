@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "OUV-000019",
+      "nome": "DIPSO - Divisão de Participação Social e Ouvidoria",
+      "orgao": "Secretaria Municipal de Saúde de Pinhais",
+      "municipio": "Pinhais",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://atendenet.pinhais.pr.gov.br/cidadao/pagina/ouvidoria-da-saude",
+      "email": "ouvidoria.saude@pinhais.pr.gov.br",
+      "telefone": "41 99216-2095",
+      "atualizado_em": "2026-10-09"
+    },
+    {
       "id": "OUV-000007",
       "nome": "Ouvidoria da Secretaria Municipal de Saúde de Niterói",
       "orgao": "Secretaria Municipal de Saúde de Niterói",
@@ -40,6 +53,19 @@
       "atualizado_em": "2026-10-08"
     },
     {
+      "id": "OUV-000020",
+      "nome": "Ouvidoria Municipal de Mangueirinha",
+      "orgao": "Prefeitura Municipal de Mangueirinha",
+      "municipio": "Mangueirinha",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://esic2.portyx.com.br/ouvidoria/?codeDB=257",
+      "email": "ouvidoria@mangueirinha.pr.gov.br",
+      "telefone": "4632438030",
+      "atualizado_em": "2026-10-09"
+    },
+    {
       "id": "OUV-000011",
       "nome": "Ouvidoria Seccional do IFPE Campus Paulista",
       "orgao": "Instituto Federal de Pernambuco — Campus Paulista",
@@ -51,6 +77,19 @@
       "email": "ouvidoria@paulista.ifpe.edu.br",
       "telefone": "",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000017",
+      "nome": "OUVIDORIA TECPAR",
+      "orgao": "Instituto de Tecnologia do Paraná — Tecpar",
+      "municipio": "Curitiba",
+      "uf": "PR",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.tecpar.br/Ouvidoria",
+      "email": "ouvidoria@tecpar.br",
+      "telefone": "4133163004",
+      "atualizado_em": "2026-10-09"
     },
     {
       "id": "OUV-000010",
@@ -90,6 +129,19 @@
       "email": "ouvidoria@reitoria.ufrj.br",
       "telefone": "(21) 3938-1619",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000018",
+      "nome": "Ouvidoria-geral do Município de Mallet",
+      "orgao": "Prefeitura Municipal de Mallet",
+      "municipio": "Mallet",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://mallet.pr.gov.br/pagina/410_Ouvidoria-Municipal.html",
+      "email": "ouvidoriamunicipal@mallet.pr.gov.br",
+      "telefone": "0800 542 1204",
+      "atualizado_em": "2026-10-09"
     },
     {
       "id": "OUV-000009",
