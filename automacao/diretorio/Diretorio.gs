@@ -7,6 +7,7 @@ const DIRETORIO_PORTAL = Object.freeze({
   respostas: 'Form Responses 1', respostasGid: 1817621009, fila: 'Diretório — aprovação',
   repositorio: 'clmschwartz-droid/ouvidorias-portal',
   arquivo: 'conteudo/ouvidorias-cadastradas.json',
+  orientacao: 'Dados fornecidos pela ouvidoria. Revise campos ambíguos; não copie contatos pessoais do ouvidor. Fonte externa é opcional.',
   campos: ['id', 'nome', 'orgao', 'municipio', 'uf', 'esfera', 'poder', 'site', 'email', 'telefone'],
   cabecalhos: ['ID', 'Aprovar publicação', 'Nome da ouvidoria', 'Órgão / instituição', 'Município', 'UF', 'Esfera', 'Poder / natureza', 'Site oficial', 'E-mail institucional público', 'Telefone institucional público', 'Divulgar contatos', 'Fonte dos contatos (opcional)', 'Fluxo site', 'Observações internas', 'Linha de origem', 'Assinatura publicada', 'Atualizado em'],
   ufs: 'AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'.split(' '),
@@ -145,6 +146,10 @@ function diretorioPreparar_(sheet, raw) {
     if (ids.has(id)) {
       const index = existing.findIndex((row) => diretorioTexto_(row[0]) === id);
       if (index < 0 || existing.filter((row) => diretorioTexto_(row[0]) === id).length !== 1) return;
+      if (existing[index][14] === 'Confira os dados institucionais e os contatos em fonte oficial. Não copie contatos pessoais do ouvidor.') {
+        const atual = sheet.getRange(index + 2,1,1,18).getValues()[0];
+        if (diretorioTexto_(atual[0]) === id && atual[14] === existing[index][14]) sheet.getRange(index + 2,15).setValue(DIRETORIO_PORTAL.orientacao);
+      }
       // Previously published rows are reviewed records, including intentionally
       // empty cells. Preserve them, and fill only still-empty fields in drafts.
       if (!diretorioTexto_(existing[index][16])) {
@@ -157,7 +162,7 @@ function diretorioPreparar_(sheet, raw) {
       return;
     }
     const duplicate = nomes.has(diretorioNormal_(nome));
-    novas.push([id, false, nome, ...dados, '', diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', 'Dados fornecidos pela ouvidoria. Revise campos ambíguos; não copie contatos pessoais do ouvidor. Fonte externa é opcional.', i + 2, '', '']);
+    novas.push([id, false, nome, ...dados, '', diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', DIRETORIO_PORTAL.orientacao, i + 2, '', '']);
     ids.add(id); nomes.add(diretorioNormal_(nome));
   });
   if (novas.length) {
