@@ -7,7 +7,7 @@ A lista pública fica em **Dados → Ouvidorias cadastradas**, com acesso també
 Na planilha **Respostas — Cadastro de Ouvidorias**, use a aba **Diretório — aprovação**. A sincronização está ativa: inscrições novas são preparadas automaticamente a cada cinco minutos. Os testes são ignorados. Nome, contatos institucionais e os dados identificáveis de instituição, município, UF, esfera e poder/natureza chegam pré-preenchidos para conferência. A rotina reconhece indicações explícitas nas respostas; campos ambíguos continuam vazios, sem deduzir UF por DDD nem esfera pela cidade. Rascunhos antigos recebem os campos ainda vazios; valores já revisados e registros publicados são preservados.
 
 1. Confira nome da ouvidoria, órgão/instituição, município, UF, esfera e poder/natureza. Complete apenas o que não pôde ser identificado. Preencha o site oficial quando houver. A nota na célula do nome contém um link para o cadastro original completo, incluindo todos os campos que não fazem parte da lista pública.
-2. Se quiser divulgar e-mail e telefone, confira-os em fonte oficial, preencha **Fonte dos contatos** e marque **Contato conferido**. Nunca use o nome, celular ou e-mail pessoal do ouvidor. O e-mail público deve ser um endereço genérico da ouvidoria em domínio institucional. Para publicar a instituição sem e-mail/telefone, deixe **Contato conferido** desmarcado.
+2. Se quiser divulgar e-mail e telefone institucionais fornecidos pela própria ouvidoria no cadastro, marque **Divulgar contatos**. **Fonte dos contatos (opcional)** pode registrar uma página ou referência, mas não é requisito: não é preciso ter site nem comprovação externa. Nunca use o nome, celular ou e-mail pessoal do ouvidor. O e-mail público deve ser uma caixa genérica da ouvidoria; pode estar em um provedor gratuito, desde que usado pela instituição. Para publicar sem e-mail/telefone, deixe **Divulgar contatos** desmarcado.
 3. Marque **Aprovar publicação** nas linhas conferidas. É possível selecionar várias células dessa coluna e preencher `TRUE` para aprovar um lote. Os dados aprovados chegam ao site no próximo ciclo; a implantação do GitHub Pages pode acrescentar alguns minutos.
 4. **Fluxo site** e **Atualizado em** são automáticos. Corrija a própria fila para atualizar o diretório. Desmarque **Aprovar publicação** para retirar uma instituição da lista. Erros de validação preservam a versão já publicada até a correção.
 
@@ -16,6 +16,8 @@ Sete inscrições reais foram conferidas e incluídas na implantação inicial. 
 Não ordene nem apague linhas da aba original **Form Responses 1**: o identificador mantém a referência à linha de entrada. Ordene ou filtre apenas **Diretório — aprovação**. Não altere ID ou as colunas técnicas ocultas. A aba de respostas contém dados privados e não deve ser compartilhada publicamente.
 
 São necessárias apenas essas duas abas. **Página1** era uma aba padrão vazia, sem participação na importação ou publicação.
+
+O site informa que os dados são fornecidos pelas ouvidorias e aprovados pela equipe. **Solicite uma correção** aparece antes dos filtros e também ao fim da lista. Solicitações chegam à caixa institucional já usada pelo portal; a equipe corrige a fila, e a sincronização atualiza a publicação.
 
 ## Ativação administrativa — uma única vez
 
