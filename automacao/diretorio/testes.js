@@ -24,7 +24,7 @@ function environment() {
   });
   const sheet = { getLastRow: () => state.rows.length, getRange:range, getMaxRows:()=>1000 };
   const validation = { requireCheckbox:()=>validation,requireValueInList:()=>validation,setAllowInvalid:()=>validation,build:()=>({}) };
-  const context = { console:{log:()=>{},error:()=>{}}, Session:{getEffectiveUser:()=>({getEmail:()=>state.user})}, PropertiesService:{getScriptProperties:()=>({getProperty:()=> 'github_pat_FICTICIO'})}, SpreadsheetApp:{openById:()=>({getSheetByName:(name)=>name==='Form Responses 1'?{getLastRow:()=>state.raw.length,getRange:()=>({getDisplayValues:()=>clone(state.raw)})}:sheet}),newDataValidation:()=>validation}, LockService:{getScriptLock:()=>({tryLock:()=>!state.locked,releaseLock:()=>{state.released=true;}})}, Utilities:{formatDate:()=> '2026-10-08', DigestAlgorithm:{SHA_256:1},Charset:{UTF_8:1}, computeDigest:(_type,value)=>[...crypto.createHash('sha256').update(value).digest()].map(x=>x>127?x-256:x),getUuid:()=> 'id-ficticio',base64Encode:(s)=>Buffer.from(s).toString('base64'),base64Decode:(s)=>Buffer.from(s,'base64'),newBlob:(bytes)=>({getDataAsString:()=>Buffer.from(bytes).toString()})}, ScriptApp:{getProjectTriggers:()=>state.triggers.map(x=>({getHandlerFunction:()=>x})),newTrigger:(handler)=>({timeBased:()=>({everyMinutes:(minutes)=>({create:()=>state.triggers.push(handler)})})})} };
+  const context = { console:{log:()=>{},error:()=>{}}, Session:{getEffectiveUser:()=>({getEmail:()=>state.user})}, PropertiesService:{getScriptProperties:()=>({getProperty:()=> 'github_pat_FICTICIO'})}, SpreadsheetApp:{openById:()=>({getSheetByName:(name)=>name==='Form Responses 1'?{getLastRow:()=>state.raw.length,getLastColumn:()=>Math.max(...state.raw.map(r=>r.length)),getRange:(r,c,n=1,m=1)=>({getDisplayValues:()=>clone(state.raw.slice(r-1,r-1+n).map(row=>Array.from({length:m},(_,i)=>String(row[c-1+i]??''))))})}:sheet}),newDataValidation:()=>validation}, LockService:{getScriptLock:()=>({tryLock:()=>!state.locked,releaseLock:()=>{state.released=true;}})}, Utilities:{formatDate:()=> '2026-10-08', DigestAlgorithm:{SHA_256:1},Charset:{UTF_8:1}, computeDigest:(_type,value)=>[...crypto.createHash('sha256').update(value).digest()].map(x=>x>127?x-256:x),getUuid:()=> 'id-ficticio',base64Encode:(s)=>Buffer.from(s).toString('base64'),base64Decode:(s)=>Buffer.from(s,'base64'),newBlob:(bytes)=>({getDataAsString:()=>Buffer.from(bytes).toString()})}, ScriptApp:{getProjectTriggers:()=>state.triggers.map(x=>({getHandlerFunction:()=>x})),newTrigger:(handler)=>({timeBased:()=>({everyMinutes:(minutes)=>({create:()=>state.triggers.push(handler)})})})} };
   vm.createContext(context); vm.runInContext(source,context);
   state.rows=[vm.runInContext('Array.from(DIRETORIO_PORTAL.cabecalhos)',context)];
   state.raw=[['Timestamp','Nome da Ouvidoria','Localização Institucional','Endereço completo da Ouvidoria','E-mail da Ouvidoria','Telefone da Ouvidoria','Ato de Criação — natureza do ato','Ato de Criação — número/identificação']];
@@ -81,7 +81,7 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
 }
 {
   const {state,context}=environment();state.locked=true;context.sincronizarDiretorioCadastradas();equal(state.writes,[]);equal(state.calls,[]);
-  for (const bad of ['javascript:alert(1)','https://user:secret@example.com','https://example.com/<script>','http://example.com']) equal(context.diretorioHttps_(bad),'');
+  for (const bad of ['javascript:alert(1)','https://user:secret@example.com','https://example.com/<script>']) equal(context.diretorioHttps_(bad),'');
   const valid=row(seed[0]);valid[12]='';equal(context.diretorioPublico_(valid).email,seed[0].email);valid[11]=false;equal(context.diretorioPublico_(valid).email,'');
 }
 {
@@ -122,7 +122,7 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   state.raw.push(original);context.sincronizarDiretorioCadastradas();
   equal(state.rows[1].slice(3,8),['Prefeitura Municipal de Terra Boa','Terra Boa','PR','Municipal','Executivo']);
   equal(state.rows[1][1],false);equal(state.rows[1][11],false);equal(state.remote,[]);
-  ok(state.notes[1][2].includes('gid=1817621009&range=A2:U2'));
+  ok(state.notes[1][2].includes('gid=1817621009&range=A2:V2'));
   state.rows[1][3]='Instituição revisada';state.rows[1][4]='';context.sincronizarDiretorioCadastradas();
   equal(state.rows[1][3],'Instituição revisada');equal(state.rows[1][4],'Terra Boa');
   const before=state.writes.length;context.sincronizarDiretorioCadastradas();equal(state.writes.length,before);
@@ -135,7 +135,33 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   state.rows.push(declared);context.sincronizarDiretorioCadastradas();
   equal(state.rows[1][13],'Publicado');equal(state.remote[0].email,'ouvidoria.municipal@gmail.com');equal(state.remote[0].site,'');
   declared[9]='nome.sobrenome@gmail.com';throws(()=>context.diretorioPublico_(declared),/contato pessoal/);
-  state.rows[0][11]='Contato conferido';state.rows[0][12]='Fonte dos contatos';context.diretorioFila_({getSheetByName:()=>({getRange:()=>({getDisplayValues:()=>[state.rows[0]],setValues:(values)=>state.rows[0].splice(11,2,...values[0])})})});
+  state.rows[0][11]='Contato conferido';state.rows[0][12]='Fonte dos contatos';context.diretorioFila_({getSheetByName:()=>({getRange:()=>({getDisplayValues:()=>[state.rows[0]],setValues:(values)=>state.rows[0]=values[0]})})});
   equal(state.rows[0].slice(11,13),['Divulgar contatos','Fonte dos contatos (opcional)']);
 }
+
+{
+  // The site field can live outside A:H; personal answers must never be read.
+  const {state,context}=environment();const headers=[...state.raw[0]];
+  headers.push('Nome do Ouvidor','Telefone do Ouvidor','E-mail do Ouvidor','Site da ouvidoria');
+  const original=['data','Ouvidoria Municipal de Testópolis','Poder Executivo','Testópolis / PR','ouvidoria@gmail.com','(41) 1111-2222','Lei','Lei Municipal 1'];
+  const full=[...original,'Nome PRIVADO','Telefone PRIVADO','email PRIVADO','http://ouvidoria.example.org/pagina'];
+  state.raw=[headers,full];const reads=[];
+  const origem={getLastRow:()=>2,getLastColumn:()=>12,getRange:(r,c,n,m)=>({getDisplayValues:()=>{reads.push({r,c,n,m});return state.raw.slice(r-1,r-1+n).map(row=>row.slice(c-1,c-1+m));}})};
+  const raw=context.diretorioRespostas_(origem);
+  equal(raw[0],[...headers.slice(0,8),'Site da ouvidoria']);equal(raw[1],[...original,full[11]]);
+  ok(reads.filter(x=>x.n>1).every(x=>(x.c===1&&x.m===8)||(x.c===12&&x.m===1)));
+  ok(!JSON.stringify(raw).includes('PRIVADO'));context.diretorioPreparar_({getLastRow:()=>state.rows.length,getRange:context.SpreadsheetApp.openById().getSheetByName('fila').getRange,getMaxRows:()=>1000},raw);
+  equal(state.rows[1][8],full[11]);equal(state.rows[1][1],false);equal(state.rows[1][11],false);
+  equal(context.diretorioPublico_(state.rows[1]).site,full[11]);
+  state.rows[1][8]='https://complemento-anterior.example.org';context.sincronizarDiretorioCadastradas();equal(state.rows[1][8],'https://complemento-anterior.example.org');
+  state.rows[1][8]='';context.sincronizarDiretorioCadastradas();equal(state.rows[1][8],full[11]);
+  state.rows[1][16]='publicado';state.rows[1][8]='';context.sincronizarDiretorioCadastradas();equal(state.rows[1][8],'');
+  state.raw[0].push('Site da ouvidoria');throws(()=>context.diretorioRespostas_({...origem,getLastColumn:()=>13}),/mais de uma coluna/);
+}
+{
+  const {state,context}=environment();state.rows[0][8]='Site oficial';context.sincronizarDiretorioCadastradas();equal(state.rows[0][8],'Site da ouvidoria');
+  const declared=row(seed[0]);declared[8]='http://example.org/ouvidoria';equal(context.diretorioPublico_(declared).site,declared[8]);
+  declared[8]='javascript:alert(1)';throws(()=>context.diretorioPublico_(declared),/http ou https válido/);
+}
+
 console.log(`${checks} verificações do diretório passaram.`);
