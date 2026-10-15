@@ -54,7 +54,10 @@ function diretorioAssinatura_(item) {
 function diretorioPublico_(row) {
   const item = { id: diretorioTexto_(row[0]), nome: diretorioTexto_(row[2]), orgao: diretorioTexto_(row[3]), municipio: diretorioTexto_(row[4]), uf: diretorioTexto_(row[5]).toUpperCase(), esfera: diretorioTexto_(row[6]), poder: diretorioTexto_(row[7]), site: diretorioHttps_(row[8]), email: '', telefone: '' };
   if (!/^OUV-\d{6,}$/.test(item.id)) throw new Error('Restaure o ID original do cadastro.');
-  const pendentes = [['nome da ouvidoria',!!item.nome],['instituição',!!item.orgao],['município',!!item.municipio],['UF',DIRETORIO_PORTAL.ufs.includes(item.uf)],['esfera',DIRETORIO_PORTAL.esferas.includes(item.esfera)],['poder / natureza',DIRETORIO_PORTAL.poderes.includes(item.poder)]].filter((campo) => !campo[1]).map((campo) => campo[0]);
+  // A complete administrative classification is useful, but never a prerequisite.
+  // A contact may remain private when Divulgar contatos is unchecked.
+  const contato = item.site || diretorioEmail_(row[9]) || diretorioTelefone_(row[10]);
+  const pendentes = [['nome da ouvidoria',!!item.nome],['ao menos um contato institucional válido (site, e-mail ou telefone)',!!contato],['UF',!item.uf || DIRETORIO_PORTAL.ufs.includes(item.uf)],['esfera',!item.esfera || DIRETORIO_PORTAL.esferas.includes(item.esfera)],['poder / natureza',!item.poder || DIRETORIO_PORTAL.poderes.includes(item.poder)]].filter((campo) => !campo[1]).map((campo) => campo[0]);
   if (pendentes.length) throw new Error('Preencha ou confira: ' + pendentes.join(', ') + '.');
   if (diretorioTexto_(row[8]) && !item.site) throw new Error('O Site da ouvidoria deve ser um endereço http ou https válido.');
   if (row[11] === true) {
