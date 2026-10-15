@@ -14,6 +14,19 @@
       "atualizado_em": "2026-10-09"
     },
     {
+      "id": "OUV-000021",
+      "nome": "Ouvidoria - AGEPAR Agência Reguladora do Paraná",
+      "orgao": "- AGEPAR Agência Reguladora do Paraná",
+      "municipio": "",
+      "uf": "PR",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.agepar.pr.gov.br/Pagina/Ouvidoria-Agepar",
+      "email": "ouvidoriaagepar@agepar.pr.gov.br",
+      "telefone": "41 3210 4823",
+      "atualizado_em": "2026-10-14"
+    },
+    {
       "id": "OUV-000007",
       "nome": "Ouvidoria da Secretaria Municipal de Saúde de Niterói",
       "orgao": "Secretaria Municipal de Saúde de Niterói",
@@ -25,6 +38,19 @@
       "email": "ouvidoria@saude.niteroi.rj.gov.br",
       "telefone": "(21) 96955-7808 (WhatsApp)",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000023",
+      "nome": "Ouvidoria do Núcleo de Educação Ivaiporã",
+      "orgao": "Núcleo de Educação Ivaiporã",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "4334725700",
+      "atualizado_em": "2026-10-14"
     },
     {
       "id": "OUV-000012",
@@ -51,6 +77,19 @@
       "email": "ouvidoria@terraboa.pr.gov.br",
       "telefone": "(44) 3641-8037",
       "atualizado_em": "2026-10-08"
+    },
+    {
+      "id": "OUV-000022",
+      "nome": "Ouvidoria Municipal de Guapirama/PR",
+      "orgao": "Municipal de Guapirama/PR",
+      "municipio": "",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.guapirama.pr.gov.br/ouvidoria",
+      "email": "ouvidoria@guapirama.pr.gov.br",
+      "telefone": "(43) 99101-3889",
+      "atualizado_em": "2026-10-14"
     },
     {
       "id": "OUV-000020",
