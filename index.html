@@ -169,9 +169,9 @@
 
             <div class="md:mt-4 mb-1 px-4 text-xs font-bold text-slate-400 uppercase tracking-wider hidden md:block">Participe</div>
 
-            <button onclick="navigate('inscreva-se')" class="nav-link text-left px-4 py-3 rounded-lg transition flex items-center gap-3 shrink-0 text-white font-medium" style="background-color:#4B9DAB;" data-target="inscreva-se">
+            <a href="/inscreva-se/" onclick="navigate('inscreva-se'); return false;" class="nav-link text-left px-4 py-3 rounded-lg transition flex items-center gap-3 shrink-0 text-white font-medium" style="background-color:#4B9DAB;" data-target="inscreva-se">
                 <i data-lucide="mail-plus" class="w-5 h-5"></i> <span>Inscreva-se</span>
-            </button>
+            </a>
             <button onclick="navigate('fala-ouvidor')" class="nav-link text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition flex items-center gap-3 shrink-0" data-target="fala-ouvidor">
                 <i data-lucide="message-circle-more" class="w-5 h-5"></i> <span class="hidden md:inline">Fala Ouvidor</span>
             </button>
@@ -1809,7 +1809,7 @@
                 <p class="directory-eyebrow">Rede do portal</p>
                 <h2 id="directory-title" class="text-3xl font-bold mb-3">Ouvidorias cadastradas</h2>
                 <p class="leading-relaxed" style="color:#bcdadf;">Conheça as instituições que já se inscreveram no portal. Consulte os contatos institucionais e encontre ouvidorias por localidade e área de atuação.</p>
-                <button onclick="navigate('inscreva-se')" class="directory-cta">Cadastre gratuitamente sua ouvidoria <span aria-hidden="true">→</span></button>
+                <a href="/inscreva-se/" onclick="navigate('inscreva-se'); return false;" class="directory-cta">Cadastre gratuitamente sua ouvidoria <span aria-hidden="true">→</span></a>
             </div>
             <p class="directory-intro">Esta lista reúne informações fornecidas pelas ouvidorias, com aprovação da equipe. Para consultar o levantamento nacional mais amplo, acesse o <button onclick="navigate('mapa')" class="directory-link">Mapa Interativo</button>.</p>
             <p class="directory-intro">Encontrou uma informação incorreta ou desatualizada? <a class="directory-link" href="mailto:ouvidorias@camargoegomes.com?subject=Corre%C3%A7%C3%A3o%20no%20diret%C3%B3rio%20de%20ouvidorias">Solicite uma correção</a>.</p>
@@ -2232,11 +2232,18 @@
         document.addEventListener('keydown', e=>{ if(e.key==='Escape') mapaFecharModal(); });
         window.addEventListener('resize', ()=>{ if(mapaChart && !document.getElementById('mapa').classList.contains('hidden')) drawRegionsMap(); });
 
+        // Links externos de campanha abrem o formulário sem depender do pop-up.
+        function abrirInscricaoPelaUrl() {
+            if (window.location.hash === '#inscreva-se') navigate('inscreva-se');
+        }
+        window.addEventListener('hashchange', abrirInscricaoPelaUrl);
+        abrirInscricaoPelaUrl();
+
         icones();
     </script>
     <script src="portal-analytics.js"></script>
     <script src="form-scroll-fix.js?v=20261001-1"></script>
-    <script src="portal-campaign.js?v=20261007-1"></script>
+    <script src="portal-campaign.js?v=20261016-1"></script>
     <script src="portal-content.js?v=20261008-1"></script>
     <script src="portal-directory.js?v=20261015-1"></script>
     <script src="scroll-cues.js"></script>
