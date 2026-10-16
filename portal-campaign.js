@@ -54,7 +54,7 @@
       text.textContent = message;
     }
     link.textContent = isSignup ? config.popup_inscricoes_botao || 'Inscrever minha ouvidoria' : config.newsletter_botao || 'Assinar newsletter';
-    link.href = isSignup ? '#inscreva-se' : newsletterUrl;
+    link.href = isSignup ? '/inscreva-se/' : newsletterUrl;
     if (isSignup) {
       link.removeAttribute('target');
       link.removeAttribute('rel');
