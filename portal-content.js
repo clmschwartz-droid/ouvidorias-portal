@@ -156,7 +156,7 @@
           <h3 class="news-card-title text-xl font-bold text-slate-800 mb-1">${esc(item.title)}</h3>
           ${item.subtitulo ? `<p class="news-card-subtitle text-sm text-slate-500 mb-4">${esc(item.subtitulo)}</p>` : ''}
           ${meta ? `<p class="text-xs text-slate-500 mb-4">${meta}</p>` : ''}
-          ${item.texto ? `<p class="text-sm text-slate-600 leading-relaxed mb-4">${esc(item.texto)}</p>` : ''}
+          ${item.texto ? `<p${index === 0 ? ' id="news-featured-text"' : ''} class="news-card-text text-sm text-slate-600 leading-relaxed mb-4${index === 0 ? ' news-text-collapsed' : ''}">${esc(item.texto)}</p>${index === 0 ? '<button type="button" class="news-read-more" aria-expanded="false" aria-controls="news-featured-text" hidden>Leia mais</button>' : ''}` : ''}
           ${item.autor ? `<p class="text-xs text-slate-500${item.fonte ? ' mb-1' : ' mb-4'}">Por ${esc(item.autor)}</p>` : ''}
           ${item.fonte ? `<p class="text-xs text-slate-500 mb-4">Fonte: ${esc(item.fonte)}</p>` : ''}
           ${buttons ? `<div class="news-card-actions flex flex-wrap gap-2 pt-2">${buttons}</div>` : ''}
@@ -169,6 +169,43 @@
     const archiveCards = cards.slice(3);
     host.innerHTML = `<div class="news-cover">${featuredCard}${secondaryCards.length ? `<div class="news-card-rail" data-scroll-cues data-scroll-label="notícias em destaque">${secondaryCards.join('')}</div>` : ''}</div>${archiveCards.length ? `<div class="news-archive-grid" data-scroll-cues data-scroll-label="outras notícias">${archiveCards.join('')}</div>` : ''}`;
 
+    setupNewsReadMore(host);
+  }
+
+  function setupNewsReadMore(host) {
+    const text = host.querySelector('#news-featured-text');
+    const button = host.querySelector('.news-read-more');
+    if (!text || !button) return;
+
+    const update = () => {
+      // A seção começa oculta; o observer também mede quando ela é aberta.
+      if (!text.getClientRects().length) return;
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.hidden = !expanded && text.scrollHeight <= text.clientHeight + 1;
+    };
+
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', String(expanded));
+      button.textContent = expanded ? 'Leia menos' : 'Leia mais';
+      text.classList.toggle('news-text-collapsed', !expanded);
+      // Recolher uma matéria longa mantém o controle visível e o foco no botão.
+      if (!expanded && button.getBoundingClientRect().bottom < 0) {
+        button.scrollIntoView({ block: 'nearest' });
+      }
+      update();
+    });
+
+    if (window.ResizeObserver) {
+      const observer = new ResizeObserver(update);
+      observer.observe(text);
+    } else {
+      window.addEventListener('resize', update);
+      new MutationObserver(update).observe(document.getElementById('noticias'), {
+        attributes: true, attributeFilter: ['class']
+      });
+    }
+    update();
   }
 
   function docCard(item) {
