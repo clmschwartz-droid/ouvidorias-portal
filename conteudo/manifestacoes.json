@@ -16,19 +16,19 @@
       "publicado": false
     },
     {
-      "id_interno": "FO-20261014-018",
-      "title": "Teste",
-      "date": "2026-10-14",
-      "categoria": "Prejuízo ao funcionamento de ouvidoria",
-      "instituicao": "Camargo",
-      "local": "AC",
+      "resposta": "",
+      "destaque": false,
       "texto": "Teste",
+      "publicado": true,
+      "resposta_data": "",
+      "local": "AC",
+      "instituicao": "Camargo",
+      "date": "2026-10-14",
       "autor_exibicao": "C. S.",
       "status": "Em acompanhamento",
-      "resposta": "",
-      "resposta_data": "",
-      "destaque": false,
-      "publicado": false
+      "categoria": "Prejuízo ao funcionamento de ouvidoria",
+      "title": "Teste",
+      "id_interno": "FO-20261014-018"
     },
     {
       "id_interno": "FO-20260928-013",
