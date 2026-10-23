@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "OUV-000024",
+      "nome": "Câmara Municipal de Manhumirim/MG",
+      "orgao": "",
+      "municipio": "Manhumirim",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "",
+      "atualizado_em": "2026-10-23"
+    },
+    {
       "id": "OUV-000019",
       "nome": "DIPSO - Divisão de Participação Social e Ouvidoria",
       "orgao": "Secretaria Municipal de Saúde de Pinhais",
