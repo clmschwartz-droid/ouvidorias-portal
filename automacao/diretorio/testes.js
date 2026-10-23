@@ -128,7 +128,7 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   const before=state.writes.length;context.sincronizarDiretorioCadastradas();equal(state.writes.length,before);
   state.rows[1][16]='assinatura-publicada';state.rows[1][4]='';state.notes[1][2]='Nota do operador';context.sincronizarDiretorioCadastradas();
   equal(state.rows[1][4],'');equal(state.notes[1][2],'Nota do operador');
-  const invalid=row(seed[0],true,false);invalid[3]='';invalid[5]='';throws(()=>context.diretorioPublico_(invalid),/instituição, UF/);
+  const minimal=row(seed[0],true,false);minimal[3]='';minimal[5]='';equal(context.diretorioPublico_(minimal).uf,'');
 }
 {
   const {state,context}=environment();const declared=row(seed[0],true,true);declared[8]='';declared[12]='';declared[9]='ouvidoria.municipal@gmail.com';
@@ -164,4 +164,20 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   declared[8]='javascript:alert(1)';throws(()=>context.diretorioPublico_(declared),/http ou https válido/);
 }
 
+{
+  // Recent approved registrations: no municipality, no sphere, or phone only.
+  const {state,context}=environment();
+  const recent=[
+    {id:'OUV-000021',nome:'Ouvidoria AGEPAR',orgao:'AGEPAR',municipio:'',uf:'PR',esfera:'',poder:'Executivo',site:'https://www.agepar.pr.gov.br/Pagina/Ouvidoria-Agepar',email:'ouvidoriaagepar@agepar.pr.gov.br',telefone:'41 3210 4823'},
+    {id:'OUV-000022',nome:'Ouvidoria Municipal de Guapirama/PR',orgao:'',municipio:'',uf:'PR',esfera:'Municipal',poder:'Executivo',site:'https://www.guapirama.pr.gov.br/ouvidoria',email:'ouvidoria@guapirama.pr.gov.br',telefone:'(43) 99101-3889'},
+    {id:'OUV-000023',nome:'Ouvidoria do Núcleo de Educação Ivaiporã',orgao:'',municipio:'',uf:'',esfera:'Estadual',poder:'Executivo',site:'',email:'',telefone:'4334725700'}
+  ];
+  recent.forEach(item=>state.rows.push(row(item)));context.sincronizarDiretorioCadastradas();
+  equal(state.remote.map(x=>x.id).sort(),recent.map(x=>x.id).sort());ok(state.rows.slice(1).every(r=>r[13]==='Publicado'));
+  const minimal=row(recent[2]);minimal[6]='';minimal[7]='';equal(context.diretorioPublico_(minimal).telefone,'4334725700');
+  minimal[11]=false;equal(context.diretorioPublico_(minimal).telefone,'');
+  minimal[2]='';throws(()=>context.diretorioPublico_(minimal),/nome da ouvidoria/);
+  minimal[2]='Ouvidoria';minimal[10]='';throws(()=>context.diretorioPublico_(minimal),/ao menos um contato institucional/);
+  minimal[10]='4334725700';minimal[5]='XX';throws(()=>context.diretorioPublico_(minimal),/UF/);
+}
 console.log(`${checks} verificações do diretório passaram.`);

@@ -45,8 +45,10 @@
         identity.append(text('p', 'Atualizado em ' + item.atualizado_em.split('-').reverse().join('/'), 'directory-date'));
       }
       const scope = text('div', '', 'directory-scope');
-      scope.append(text('p', item.municipio + ' / ' + item.uf));
-      scope.append(text('p', [item.esfera, item.poder].filter(Boolean).join(' · '), 'directory-nature'));
+      const local = [item.municipio, item.uf].filter(Boolean).join(' / ');
+      const nature = [item.esfera, item.poder].filter(Boolean).join(' · ');
+      if (local) scope.append(text('p', local));
+      if (nature) scope.append(text('p', nature, 'directory-nature'));
       const contacts = text('div', '', 'directory-contacts');
       const site = url(item.site);
       const address = email(item.email);
@@ -109,7 +111,7 @@
       if (!data || !Array.isArray(data.items)) throw new Error('invalid directory');
       const ids = new Set();
       items = data.items.filter((item) => {
-        if (!item || typeof item.nome !== 'string' || !item.nome.trim() || !item.municipio || !/^[A-Z]{2}$/.test(item.uf) || !item.id || ids.has(item.id)) return false;
+        if (!item || typeof item.nome !== 'string' || !item.nome.trim() || (item.uf && !/^[A-Z]{2}$/.test(item.uf)) || !item.id || ids.has(item.id)) return false;
         ids.add(item.id); return true;
       }).sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
       options(); render();
