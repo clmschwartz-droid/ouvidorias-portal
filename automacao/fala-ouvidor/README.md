@@ -7,7 +7,7 @@ Este fluxo mantém as respostas originais no Google e envia ao repositório apen
 1. O Google Forms grava a resposta privada.
 2. O gatilho `aoReceberManifestacao` cria automaticamente uma linha na aba `Moderação`, converte a preferência de identificação (`Identidade preservada`, iniciais ou nome completo) para o padrão público correspondente e envia um aviso para `ouvidoriaspublicasbrasileiras@gmail.com`.
 3. A coluna `Observações internas` registra se o aviso automático foi enviado ou falhou. A pessoa moderadora edita apenas os campos públicos e seleciona `Aprovado para Decap`.
-4. O menu **Fala Ouvidor → Enviar linha selecionada ao Decap** cria e incorpora um pull request protegido no GitHub.
+4. No envio central ativo, selecione **Aprovado para Decap** na coluna B e marque **Solicitar envio central ao Decap** na coluna AC. O temporizador da conta administrativa incorpora o rascunho oculto; não é necessário configurar tokens na conta da pessoa moderadora. O comando do `Code.gs` abaixo é o caminho legado.
 5. Somente os campos públicos moderados entram no pull request; o rascunho recebe `publicado: false` e fica disponível no Decap sem aparecer no portal.
 6. A publicação efetiva continua exigindo a conferência final no Decap.
 
@@ -56,3 +56,28 @@ O teste percorre 567 combinações (7 categorias × 27 UFs × 3 preferências de
 Se uma resposta aparecer na aba `Respostas ao formulário 1`, mas não entrar em `Moderação`, use **Fala Ouvidor → Recuperar manifestações pendentes**. A rotina localiza as respostas pela coluna `Linha da resposta privada`, cria apenas as linhas ausentes e tenta reenviar o aviso por e-mail. Ela não duplica manifestações já processadas e não exige copiar e colar dados privados.
 
 Nunca compartilhe o token GitHub por e-mail, chat ou células da planilha.
+
+## Revisão aberta no Decap e novas manifestações
+
+O Decap edita a lista em `cms/manifestacoes/itens`. Uma revisão dessa lista
+pode continuar aberta enquanto o envio central acrescenta várias entradas à
+`main`. O workflow `fala-ouvidor-decap.yml` sincroniza automaticamente essas
+importações com a revisão aberta. Ele também executa ao salvar essa revisão
+e pode ser reexecutado manualmente no GitHub Actions.
+
+A mesclagem usa o ancestral comum e os IDs das manifestações: preserva textos,
+respostas e chaves de publicação editados no Decap, incorpora novas entradas
+com o estado recebido e mantém exclusões editoriais explícitas. Alterações
+concorrentes no mesmo campo geram erro em vez de sobrescrita. Nesse caso, o
+workflow fica com falha e a administração deve resolver o conflito antes de
+publicar. Se a revisão for salva durante a sincronização, ela será relida.
+
+A rotina nunca publica nem altera `main`, e não cria uma revisão se não houver
+uma aberta. O envio central continua inserindo cada nova manifestação com
+`publicado: false`. Se o painel já estava aberto antes da chegada de uma nova
+manifestação, salve sua edição antes de recarregar o editor para receber a lista
+atualizada. Não deixe alterações ainda não salvas ao recarregar.
+
+Validação adicional: `node automacao/fala-ouvidor/testes-sync.js` testa importações
+acumuladas, edições, publicação manual, conflitos, reexecução, concorrência e
+encerramento de revisão em repositórios Git temporários.
