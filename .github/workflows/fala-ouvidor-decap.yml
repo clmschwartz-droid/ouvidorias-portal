@@ -1,0 +1,32 @@
+name: Sincronizar Fala Ouvidor no Decap
+
+on:
+  push:
+    branches: [main, cms/manifestacoes/itens]
+    paths:
+      - conteudo/manifestacoes.json
+      - automacao/fala-ouvidor/sync-decap.js
+      - .github/workflows/fala-ouvidor-decap.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fala-ouvidor-decap-sync
+  cancel-in-progress: false
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node automacao/fala-ouvidor/testes-sync.js
+      - run: node automacao/fala-ouvidor/sync-decap.js
