@@ -6,8 +6,19 @@ body > nav > div:first-child img {
   height: 66px !important;
 }
 body > nav > div:first-child h1 {
-  font-size: .95rem !important;
-  line-height: 1.15 !important;
+  font-size: 1.25rem !important;
+  line-height: 1.1 !important;
+  font-weight: 750 !important;
+}
+body > nav > div:first-child h1 .portal-brand-kicker {
+  display: block;
+  margin-bottom: .15rem;
+  color: #c7dfe3;
+  font-size: .85rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
 /* Retirar a marca da Camargo e Gomes da seção Quem Somos */
@@ -259,8 +270,8 @@ html.portal-video-lock body {
     height: 59px !important;
   }
   body > nav > div:first-child h1 {
-    font-size: .88rem !important;
-    line-height: 1.12 !important;
+    font-size: 1.3rem !important;
+    line-height: 1.1 !important;
   }
   #noticias .seminario-maceio-banner {
     border-radius: 14px;
