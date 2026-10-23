@@ -2,6 +2,20 @@
 
 Este documento registra os limites técnicos e os testes necessários para concluir o portal sem expor dados pessoais ou segredos no repositório público.
 
+## Nome oficial
+
+Use **Portal das Ouvidorias Brasileiras** em títulos, créditos e assinaturas.
+As expressões “ouvidorias públicas brasileiras” em textos históricos,
+bibliografia e descrições do objeto de pesquisa não são nomes da marca.
+Domínios, endereços de e-mail, IDs e integrações conservam os valores atuais.
+
+Os títulos internos dos dois Google Forms são geridos no próprio Google:
+**Cadastro de Ouvidoria — Portal das Ouvidorias Brasileiras** e
+**Fala Ouvidor — Portal das Ouvidorias Brasileiras**. A atualização do código
+do site não altera esses títulos. As assinaturas no `Code.gs` foram alinhadas
+ao nome oficial, mas a cópia já instalada no Google Apps Script também precisa
+receber essa revisão textual para que os e-mails usem a nova assinatura.
+
 ## Administração pelo Decap
 
 Endereço editorial canônico:
@@ -78,7 +92,7 @@ Após a publicação, abrir o portal em uma janela sem bloqueador de conteúdo e
 
 A campanha ativa é `inscricoes`, configurada em `conteudo/configuracao.json` e editável no Decap em **Configuração do portal → Publicação e campanhas**. O mesmo aviso será usado futuramente para `newsletter`; `desativada` oculta o recurso.
 
-- Título: **Faça parte do Portal das Ouvidorias**.
+- Título: **Faça parte do Portal das Ouvidorias Brasileiras**.
 - Texto: **Cadastre gratuitamente** sua ouvidoria e ajude a manter o portal atualizado.
 - Botão: **Inscrever minha ouvidoria**, que usa a navegação interna existente para abrir Inscreva-se.
 - Atraso: três segundos; intervalo: 30 dias no mesmo navegador e versão da campanha, contado desde a abertura.

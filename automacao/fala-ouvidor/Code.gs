@@ -426,7 +426,7 @@ function notificarNovaManifestacao_(linha) {
     MailApp.sendEmail({
       to: FALA_OUVIDOR.emailAvisos,
       subject: `[Fala Ouvidor] Nova manifestação — ${id}`,
-      name: 'Portal das Ouvidorias Públicas do Brasil',
+      name: 'Portal das Ouvidorias Brasileiras',
       body: [
         `Nova manifestação recebida: ${id}`,
         `Título: ${titulo}`,
@@ -806,17 +806,17 @@ function criarRascunhoRespostaPrivada() {
     [
       nome ? `Olá, ${nome},` : 'Olá,',
       '',
-      'Recebemos sua manifestação enviada ao Portal das Ouvidorias Públicas do Brasil.',
+      'Recebemos sua manifestação enviada ao Portal das Ouvidorias Brasileiras.',
       '',
       '[Escreva aqui a resposta privada.]',
       '',
       'Atenciosamente,',
-      'Portal das Ouvidorias Públicas do Brasil',
+      'Portal das Ouvidorias Brasileiras',
     ].join('\n'),
     {
       from: FALA_OUVIDOR.emailRespostas,
       replyTo: FALA_OUVIDOR.emailRespostas,
-      name: 'Portal das Ouvidorias Públicas do Brasil',
+      name: 'Portal das Ouvidorias Brasileiras',
     },
   );
 
