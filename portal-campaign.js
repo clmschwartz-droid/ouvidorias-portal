@@ -41,7 +41,7 @@
 
     const isSignup = campaign === 'inscricoes';
     title.textContent = isSignup
-      ? config.popup_inscricoes_titulo || 'Faça parte do Portal das Ouvidorias'
+      ? config.popup_inscricoes_titulo || 'Faça parte do Portal das Ouvidorias Brasileiras'
       : config.newsletter_titulo || 'Acompanhe as novidades do portal';
     const message = isSignup ? config.popup_inscricoes_texto || DEFAULT_TEXT : config.newsletter_texto || '';
     text.textContent = '';

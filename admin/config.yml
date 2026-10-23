@@ -21,56 +21,59 @@ slug:
 collections:
   - name: "noticias"
     label: "Notícias e Cursos"
-    label_singular: "Notícia, curso ou evento"
-    folder: "_data/noticias"
-    create: true
-    extension: "json"
-    format: "json"
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "{{date}} — {{title}}"
-    sortable_fields: ["date", "title", "tipo"]
-    fields:
-      - { label: "Tipo", name: "tipo", widget: "select", options: ["Notícia", "Artigo", "Curso", "Evento"] }
-      - { label: "Título", name: "title", widget: "string" }
-      - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", hint: "Data editorial da matéria: define a ordem na página e não muda ao salvar ou republicar." }
-      - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true, hint: "Para retirar do site sem excluir: desative, salve e publique esta alteração. Salvar como rascunho ou mover para revisão não altera a versão que já está no ar." }
-      - { label: "Subtítulo ou linha fina", name: "subtitulo", widget: "string", required: false }
-      - { label: "Texto", name: "texto", widget: "text", required: false }
-      - { label: "Autor ou autora", name: "autor", widget: "string", required: false }
-      - { label: "Veículo ou organizador", name: "fonte", widget: "string", required: false }
-      - { label: "Local", name: "local", widget: "string", required: false }
-      - { label: "Link externo principal", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
-      - { label: "Texto do link externo principal", name: "link_label", widget: "string", required: false, default: "Acessar fonte" }
-      - { label: "Abrir link principal em nova aba", name: "link_nova_aba", widget: "boolean", required: false, default: true }
-      - label: "Links relacionados"
-        name: "links"
-        widget: "list"
-        required: false
-        summary: "{{fields.label}}"
-        hint: "Use para documentos ou páginas complementares relacionados à notícia."
+    files:
+      - name: "itens"
+        label: "Itens publicados"
+        file: "conteudo/noticias.json"
+        format: "json"
         fields:
-          - { label: "Texto do link", name: "label", widget: "string" }
-          - { label: "URL ou caminho", name: "url", widget: "string" }
-          - { label: "Abrir em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
-          - { label: "Fazer download ao clicar", name: "download", widget: "boolean", required: false, default: false, hint: "Ative para PDFs e outros arquivos que devem ser baixados diretamente." }
-      - label: "Imagem ou banner"
-        name: "imagem"
-        widget: "image"
-        required: false
-        media_folder: "/noticias"
-        public_folder: "/noticias"
-        hint: "Padrão recomendado: 1200 × 630 px (proporção aproximada 1,9:1), JPG/PNG/WebP, preferencialmente até 800 KB. O portal preserva a proporção da imagem e não faz corte automático."
-      - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false, hint: "Descreva objetivamente o conteúdo essencial da imagem para acessibilidade." }
-      - { label: "Legenda da imagem", name: "imagem_legenda", widget: "string", required: false }
-      - label: "PDF ou arquivo principal"
-        name: "arquivo"
-        widget: "file"
-        required: false
-        media_folder: "/documentos"
-        public_folder: "/documentos"
-      - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar arquivo" }
-      - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false, hint: "O destaque e sua faixa são únicos. Se houver marcações antigas, prevalece a matéria visível marcada com a data mais recente. As anteriores perdem a faixa e seguem na ordem de suas datas. Sem marcações, a mais recente assume o destaque." }
-      - { label: "Identificador técnico substituído", name: "substitui", widget: "hidden", required: false, default: "" }
+          - label: "Notícias, cursos e eventos"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            hint: "Para retirar um item temporariamente, desative “Exibir no portal”. Use o X somente quando a exclusão permanente for realmente desejada."
+            fields:
+              - { label: "Tipo", name: "tipo", widget: "select", options: ["Notícia", "Artigo", "Curso", "Evento"] }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true, hint: "Desative para ocultar sem excluir; o conteúdo e os arquivos permanecem preservados." }
+              - { label: "Subtítulo ou linha fina", name: "subtitulo", widget: "string", required: false }
+              - { label: "Texto", name: "texto", widget: "text", required: false }
+              - { label: "Autor ou autora", name: "autor", widget: "string", required: false }
+              - { label: "Veículo ou organizador", name: "fonte", widget: "string", required: false }
+              - { label: "Local", name: "local", widget: "string", required: false }
+              - { label: "Link externo principal", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
+              - { label: "Texto do link externo principal", name: "link_label", widget: "string", required: false, default: "Acessar fonte" }
+              - { label: "Abrir link principal em nova aba", name: "link_nova_aba", widget: "boolean", required: false, default: true }
+              - label: "Links relacionados"
+                name: "links"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                hint: "Use para documentos ou páginas complementares relacionados à notícia."
+                fields:
+                  - { label: "Texto do link", name: "label", widget: "string" }
+                  - { label: "URL ou caminho", name: "url", widget: "string" }
+                  - { label: "Abrir em nova aba", name: "nova_aba", widget: "boolean", required: false, default: true }
+                  - { label: "Fazer download ao clicar", name: "download", widget: "boolean", required: false, default: false, hint: "Ative para PDFs e outros arquivos que devem ser baixados diretamente." }
+              - label: "Imagem ou banner"
+                name: "imagem"
+                widget: "image"
+                required: false
+                media_folder: "/noticias"
+                public_folder: "/noticias"
+                hint: "Padrão recomendado: 1200 × 630 px (proporção aproximada 1,9:1), JPG/PNG/WebP, preferencialmente até 800 KB. O portal preserva a proporção da imagem e não faz corte automático."
+              - { label: "Texto alternativo da imagem", name: "imagem_alt", widget: "string", required: false, hint: "Descreva objetivamente o conteúdo essencial da imagem para acessibilidade." }
+              - { label: "Legenda da imagem", name: "imagem_legenda", widget: "string", required: false }
+              - label: "PDF ou arquivo principal"
+                name: "arquivo"
+                widget: "file"
+                required: false
+                media_folder: "/documentos"
+                public_folder: "/documentos"
+              - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar arquivo" }
+              - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false, hint: "Use em um único item por vez: ele ocupará o card principal da capa. Se nenhum item estiver marcado, a notícia mais recente assumirá automaticamente o destaque." }
+              - { label: "Identificador técnico substituído", name: "substitui", widget: "hidden", required: false, default: "" }
 
   - name: "documentos"
     label: "Documentos"
@@ -111,32 +114,6 @@ collections:
                 fields:
                   - { label: "Texto do link", name: "label", widget: "string" }
                   - { label: "URL", name: "url", widget: "string" }
-
-  - name: "bibliografia"
-    label: "Bibliografia"
-    files:
-      - name: "itens"
-        label: "Outros textos integrais e novidades do acervo"
-        file: "conteudo/bibliografia.json"
-        format: "json"
-        fields:
-          - label: "Referências com texto integral"
-            name: "items"
-            widget: "list"
-            summary: "{{fields.title}}"
-            hint: "As referências permanecem na Bibliografia. O destaque Novo no acervo usa a data de inclusão, sem alterar o ano da obra, e termina automaticamente na data definida."
-            fields:
-              - { label: "Título", name: "title", widget: "string" }
-              - { label: "Referência bibliográfica completa", name: "referencia", widget: "text" }
-              - { label: "Contexto da publicação", name: "contexto", widget: "text", required: false }
-              - { label: "Autor ou autora do capítulo em foco", name: "autor_capitulo", widget: "string", required: false }
-              - { label: "Título do capítulo", name: "capitulo", widget: "text", required: false }
-              - { label: "Páginas impressas do capítulo", name: "paginas", widget: "string", required: false }
-              - { label: "Página inicial do capítulo no PDF", name: "pagina_pdf", widget: "number", value_type: "int", min: 1, required: false, hint: "Número da página no leitor de PDF; pode diferir da numeração impressa." }
-              - { label: "PDF integral", name: "arquivo", widget: "file", media_folder: "/textos-integrais", public_folder: "/textos-integrais" }
-              - { label: "Incluído no acervo em", name: "incluido_em", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
-              - { label: "Destacar até", name: "destaque_ate", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false, hint: "Opcional. O destaque aparece somente na Bibliografia, até o fim desta data no horário de Brasília. A referência e o PDF continuam disponíveis depois." }
-              - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true }
 
   - name: "multimidia"
     label: "Multimídia"
@@ -235,8 +212,7 @@ collections:
               - { label: "Entidade", name: "entidade", widget: "string", required: false }
               - { label: "Função ou vínculo", name: "funcao", widget: "string", required: false }
               - { label: "Nota biográfica", name: "bio", widget: "text", required: false }
-              - { label: "Link institucional ou material de apresentação", name: "link", widget: "string", required: false, hint: "URL completa começando por https:// ou caminho de um arquivo do portal, como /documentos/arquivo.pdf." }
-              - { label: "Texto do link", name: "link_label", widget: "string", required: false, hint: "Ex.: Conheça o trabalho da conselheira (PDF). Se ficar vazio, aparece Saiba mais." }
+              - { label: "Link institucional", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
               - { label: "Ordem de exibição", name: "ordem", widget: "number", value_type: "int", min: 1, required: false }
               - { label: "Exibir no portal", name: "ativo", widget: "boolean", required: false, default: true }
 
