@@ -270,11 +270,11 @@ html.portal-video-lock body {
     height: 74px !important;
   }
   body > nav > div:first-child h1 {
-    font-size: clamp(1.65rem, 7vw, 1.9rem) !important;
+    font-size: 1.5rem !important;
     line-height: 1.1 !important;
   }
   body > nav > div:first-child h1 .portal-brand-kicker {
-    font-size: 1rem;
+    font-size: .9rem;
   }
   #noticias .seminario-maceio-banner {
     border-radius: 14px;
