@@ -582,7 +582,7 @@
               ${item.entidade ? `<p class="mt-1 text-sm font-medium" style="color:#3d7f8c">${esc(item.entidade)}</p>` : ''}
               ${item.funcao ? `<p class="mt-1 text-xs text-slate-500">${esc(item.funcao)}</p>` : ''}
               ${item.bio ? `<p class="mt-3 text-sm leading-relaxed text-slate-600">${esc(item.bio)}</p>` : ''}
-              ${link ? `<a href="${link}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-3.5 h-3.5"></i>Saiba mais</a>` : ''}
+              ${link ? `<a href="${link}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold hover:underline" style="color:#3d7f8c"><i data-lucide="external-link" class="w-3.5 h-3.5 shrink-0"></i>${esc(item.link_label || 'Saiba mais')}</a>` : ''}
             </div>
           </div>
         </article>`;

@@ -212,7 +212,8 @@ collections:
               - { label: "Entidade", name: "entidade", widget: "string", required: false }
               - { label: "Função ou vínculo", name: "funcao", widget: "string", required: false }
               - { label: "Nota biográfica", name: "bio", widget: "text", required: false }
-              - { label: "Link institucional", name: "link", widget: "string", required: false, hint: "URL completa, começando por https://" }
+              - { label: "Link institucional ou material de apresentação", name: "link", widget: "string", required: false, hint: "URL completa começando por https:// ou caminho de um arquivo do portal, como /documentos/arquivo.pdf." }
+              - { label: "Texto do link", name: "link_label", widget: "string", required: false, hint: "Ex.: Conheça o trabalho da conselheira (PDF). Se ficar vazio, aparece Saiba mais." }
               - { label: "Ordem de exibição", name: "ordem", widget: "number", value_type: "int", min: 1, required: false }
               - { label: "Exibir no portal", name: "ativo", widget: "boolean", required: false, default: true }
 
