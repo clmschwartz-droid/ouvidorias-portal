@@ -141,6 +141,33 @@
       ],
       "link": "https://www.ombudsassociation.org/15-october-2026-seminar",
       "imagem_alt": "Banner dos Seminários da International Ombuds Association (IOA), com a frase “Exceptional Ombuds Training from Your Home or Office” e o texto “IOA Live & Recorded Seminars”."
+    },
+    {
+      "substitui": "",
+      "destaque": false,
+      "texto": "A Rede Europeia de Provedores de Justiça (ENO, na sigla em inglês) completou 30 anos e marcou a data com a apresentação de um relatório comemorativo ao Parlamento Europeu, em Estrasburgo, na terça-feira (20/10). O documento foi entregue pela Provedora de Justiça Europeia, Teresa Anjinho, na presença da presidente do Parlamento, Roberta Metsola. Criada em 1996, a rede reúne mais de 95 gabinetes em 36 países europeus, entre provedores nacionais e regionais, além do próprio Provedor de Justiça Europeu e da Comissão de Petições do Parlamento Europeu.\n\nA razão de ser da rede é prática. Como grande parte do direito da União Europeia é aplicada por autoridades nacionais ou regionais, o Provedor de Justiça Europeu não pode intervir quando o problema envolve um órgão local, já que sua competência se limita às instituições da própria União.\n\nA ENO preenche essa lacuna: reclamações dirigidas ao órgão errado são encaminhadas ao homólogo competente, e os provedores nacionais podem enviar consultas ao gabinete europeu quando um caso exige a interpretação do direito da UE. Entre os exemplos citados estão o de um estudante que precisa de seguro de saúde ao mudar de país e o de um familiar não europeu de um cidadão da UE com dúvidas sobre o direito de residência.\nO relatório destaca ainda duas investigações conjuntas lançadas neste ano, uma sobre o sistema de alerta de segurança alimentar da UE e outra sobre a aplicação da legislação climática pelas administrações nacionais, esta última liderada pelo Provedor esloveno. Inclui também um Código de Boas Práticas sobre o uso de tecnologia, inclusive inteligência artificial, elaborado sob a liderança dos gabinetes da República Tcheca, da Estônia e da Finlândia. Para Anjinho, os ganhos de eficiência não podem comprometer a transparência, a privacidade nem a igualdade de tratamento.",
+      "arquivo_label": "",
+      "publicado": true,
+      "imagem_legenda": "Relatório comemorativo dos 30 anos da ENO, apresentado em 20 de outubro de 2026.",
+      "local": "Estrasburgo, França",
+      "date": "2026-10-26",
+      "link_label": "Leia o discurso no site do Provedor de Justiça Europeu",
+      "link_nova_aba": true,
+      "imagem": "/noticias/relatorio-europeu-sobre-inteligencia-artificial.png",
+      "tipo": "Notícia",
+      "fonte": "Rede Europeia de Provedores de Justiça (ENO)",
+      "title": "Rede Europeia de Provedores de Justiça (ENO) completa 30 anos e reafirma o papel das ouvidorias",
+      "subtitulo": "Relatório apresentado em Estrasburgo por Teresa Anjinho, Provedora de Justiça Europeia, destaca a cooperação entre provedores e traz um código de boas práticas para o uso de inteligência artificial.",
+      "links": [
+        {
+          "nova_aba": true,
+          "download": false,
+          "url": "https://eno.ombudsman.europa.eu/",
+          "label": "Conheça a Rede Europeia de Provedores de Justiça"
+        }
+      ],
+      "link": "https://www.ombudsman.europa.eu/pt/speech/pt/235415",
+      "imagem_alt": "Banner azul com o logotipo do Provedor de Justiça Europeu e a bandeira da União Europeia, ao lado do título da notícia e de uma foto de exemplares do relatório dos 30 anos da Rede Europeia de Provedores de Justiça."
     }
   ]
 }
