@@ -36,6 +36,14 @@ O mesmo princípio vale para manifestações públicas e integrantes do Conselho
 
 Antes do merge final, testar em cada uma das três coleções o ciclo completo: ocultar um item, salvar como rascunho, conferir o Deploy Preview, publicar, reexibir o item e confirmar que nenhum arquivo ou metadado foi perdido.
 
+Desde 27/10/2026, **Notícias e Cursos** usa entradas individuais em
+`_data/noticias/`, para que publicar uma matéria não publique outra que
+esteja em revisão. O JSON entregue ao portal conserva o endereço e o
+formato anteriores, sendo reunido pelo build Jekyll já usado no Pages.
+Para retirar uma notícia, é necessário desativar **Exibir no portal**,
+salvar e **publicar a alteração**; rascunho/revisão não desfaz a publicação
+anterior. Consulte `automacao/noticias/README.md` para operação e testes.
+
 Enquanto a autenticação dedicada ao endereço oficial não for concluída, a configuração existente deve permanecer intacta. A troca do provedor exige uma URL de autenticação e uma credencial OAuth válidas; não deve ser simulada com valores provisórios na versão pública.
 
 ## Fala Ouvidor: separação entre conteúdo privado e público
