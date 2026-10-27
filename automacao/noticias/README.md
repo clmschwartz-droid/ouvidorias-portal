@@ -20,6 +20,21 @@ Voltar uma edição para rascunho ou revisão não retira a versão que já foi
 publicada: esses estados controlam as alterações pendentes. Isso vale também
 para a opção de visibilidade; apenas salvar a mudança não altera o site.
 
+## Destaque e ordem das matérias
+
+Há apenas um destaque principal e uma faixa “em destaque”. Ao publicar uma
+matéria mais recente marcada como destaque, ela assume a posição principal;
+as marcações antigas não mantêm faixas nas demais matérias. Se mais de uma
+estiver marcada, vale a visível com a data editorial mais recente. Sem
+marcações, a matéria visível mais recente ocupa o destaque automaticamente.
+
+As demais matérias seguem a ordem decrescente de **Data**. Salvar, revisar
+ou republicar sem alterar essa data não promove a matéria na página. Retirar
+uma marcação de destaque também não altera sua data nem seu conteúdo.
+As marcações antigas permanecem como preferências de reserva: se o destaque
+vigente for ocultado, a próxima matéria marcada assume; não é necessário
+editar ou publicar outras matérias para trocar o destaque por uma mais nova.
+
 ## Entrega pública e testes
 
 O portal continua consumindo `conteudo/noticias.json`, com o mesmo formato

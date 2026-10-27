@@ -32,7 +32,7 @@ collections:
     fields:
       - { label: "Tipo", name: "tipo", widget: "select", options: ["Notícia", "Artigo", "Curso", "Evento"] }
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Data", name: "date", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", hint: "Data editorial da matéria: define a ordem na página e não muda ao salvar ou republicar." }
       - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true, hint: "Para retirar do site sem excluir: desative, salve e publique esta alteração. Salvar como rascunho ou mover para revisão não altera a versão que já está no ar." }
       - { label: "Subtítulo ou linha fina", name: "subtitulo", widget: "string", required: false }
       - { label: "Texto", name: "texto", widget: "text", required: false }
@@ -69,7 +69,7 @@ collections:
         media_folder: "/documentos"
         public_folder: "/documentos"
       - { label: "Texto do botão de download", name: "arquivo_label", widget: "string", required: false, default: "Baixar arquivo" }
-      - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false, hint: "Use em um único item por vez: ele ocupará o card principal da capa. Se nenhum item estiver marcado, a notícia mais recente assumirá automaticamente o destaque." }
+      - { label: "Exibir como destaque", name: "destaque", widget: "boolean", required: false, default: false, hint: "O destaque e sua faixa são únicos. Se houver marcações antigas, prevalece a matéria visível marcada com a data mais recente. As anteriores perdem a faixa e seguem na ordem de suas datas. Sem marcações, a mais recente assume o destaque." }
       - { label: "Identificador técnico substituído", name: "substitui", widget: "hidden", required: false, default: "" }
 
   - name: "documentos"

@@ -55,6 +55,29 @@ async function main() {
   }
   console.log('OK: configuração por matéria; dados válidos; renderização e visibilidade.');
 
+  const titles = (html) => [...html.matchAll(/<h3 class="news-card-title[^\"]*">(.*?)<\/h3>/g)].map((match) => match[1]);
+  const highlights = (html) => [...html.matchAll(/<article\b[\s\S]*?<\/article>/g)]
+    .filter(([card]) => card.includes(' em destaque</div>')).map(([card]) => titles(card)[0]);
+  const old = { title: 'Relatório antigo', date: '2026-09-22', publicado: true, destaque: true };
+  const middle = { title: 'Evento intermediário', date: '2026-10-19', publicado: true, destaque: true };
+  const recent = { title: 'Plantão recente', date: '2026-10-27', publicado: true, destaque: true };
+  const hidden = { title: 'Notícia oculta', date: '2026-10-28', publicado: false, destaque: true };
+  const several = await render([old, hidden, recent, middle]);
+  assert.deepEqual(highlights(several), [recent.title], 'Marcações antigas não podem gerar várias faixas.');
+  assert.deepEqual(titles(several), [recent.title, middle.title, old.title]);
+  const republished = await render([{ ...old, destaque: false }, middle, recent, hidden]);
+  assert.deepEqual(titles(republished), titles(several), 'Retirar destaque antigo e republicar não muda a ordem por data.');
+  assert.deepEqual(highlights(republished), [recent.title]);
+  const prior = await render([old, { ...recent, destaque: false }]);
+  assert.deepEqual(highlights(prior), [old.title]);
+  const replacement = await render([old, recent]);
+  assert.deepEqual(highlights(replacement), [recent.title], 'Novo destaque mais recente substitui o chapéu anterior sozinho.');
+  const automatic = await render([{ ...old, destaque: false }, { ...recent, destaque: false }]);
+  assert.deepEqual(highlights(automatic), [recent.title]);
+  assert.deepEqual(highlights(await render([old, { ...recent, publicado: false }])), [old.title]);
+  assert.deepEqual(old, { title: 'Relatório antigo', date: '2026-09-22', publicado: true, destaque: true }, 'Renderizar não deve alterar os dados editoriais.');
+  console.log('OK: destaque único, troca automática do chapéu, reserva, ocultação e republicação sem reordenar.');
+
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'noticias-editorial-'));
   try {
     const git = (...args) => execFileSync('git', args, { cwd: directory, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
