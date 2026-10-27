@@ -1,0 +1,40 @@
+name: Validar publicações independentes de notícias
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '_data/noticias/**'
+      - 'conteudo/noticias.json'
+      - 'admin/config.yml'
+      - 'portal-content.js'
+      - 'automacao/noticias/**'
+      - '.github/workflows/noticias-editorial.yml'
+  push:
+    branches: [main]
+    paths:
+      - '_data/noticias/**'
+      - 'conteudo/noticias.json'
+      - 'admin/config.yml'
+      - 'portal-content.js'
+      - 'automacao/noticias/**'
+      - '.github/workflows/noticias-editorial.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  noticias:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node automacao/noticias/testes.js
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - run: node automacao/noticias/testes.js --site _site
