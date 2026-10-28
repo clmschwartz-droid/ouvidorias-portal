@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "OUV-000029",
+      "nome": "Câmara Municipal de Luiz Alves/SC",
+      "orgao": "",
+      "municipio": "Luiz Alves",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "4733771336",
+      "atualizado_em": "2026-10-28"
+    },
+    {
       "id": "OUV-000024",
       "nome": "Câmara Municipal de Manhumirim/MG",
       "orgao": "",
@@ -40,6 +53,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000030",
+      "nome": "OGSUS/SESAU/RR",
+      "orgao": "",
+      "municipio": "",
+      "uf": "RR",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@saude.rr.gov.br",
+      "telefone": "95-98410-6188",
+      "atualizado_em": "2026-10-28"
+    },
+    {
       "id": "OUV-000021",
       "nome": "Ouvidoria - AGEPAR Agência Reguladora do Paraná",
       "orgao": "- AGEPAR Agência Reguladora do Paraná",
@@ -51,6 +77,19 @@
       "email": "ouvidoriaagepar@agepar.pr.gov.br",
       "telefone": "41 3210 4823",
       "atualizado_em": "2026-10-14"
+    },
+    {
+      "id": "OUV-000031",
+      "nome": "OUVIDORIA DA CÂMARA MUNICIPAL DE JI- PARANÁ",
+      "orgao": "Câmara Municipal de JI- PARANÁ",
+      "municipio": "JI- PARANÁ",
+      "uf": "RO",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@jiparana.ro.leg.br",
+      "telefone": "69-9-9394-1300",
+      "atualizado_em": "2026-10-28"
     },
     {
       "id": "OUV-000007",
@@ -92,6 +131,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000033",
+      "nome": "Ouvidoria Geral do Município de Garopaba",
+      "orgao": "Prefeitura Municipal de Garopaba",
+      "municipio": "Garopaba",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://garopaba.atende.net/",
+      "email": "ouvidoria@garopaba.sc.gov.br",
+      "telefone": "48 32548107",
+      "atualizado_em": "2026-10-28"
+    },
+    {
       "id": "OUV-000016",
       "nome": "Ouvidoria Geral do Município de Terra Boa",
       "orgao": "Prefeitura Municipal de Terra Boa",
@@ -103,6 +155,19 @@
       "email": "ouvidoria@terraboa.pr.gov.br",
       "telefone": "(44) 3641-8037",
       "atualizado_em": "2026-10-08"
+    },
+    {
+      "id": "OUV-000032",
+      "nome": "Ouvidoria Municipal de Domingos Martins",
+      "orgao": "Prefeitura Municipal de Domingos Martins",
+      "municipio": "Domingos Martins",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.domingosmartins.es.gov.br/ouvidoria",
+      "email": "",
+      "telefone": "27936181999",
+      "atualizado_em": "2026-10-28"
     },
     {
       "id": "OUV-000022",
@@ -129,6 +194,19 @@
       "email": "ouvidoria@mangueirinha.pr.gov.br",
       "telefone": "4632438030",
       "atualizado_em": "2026-10-09"
+    },
+    {
+      "id": "OUV-000028",
+      "nome": "Ouvidoria Municipal de Tamandaré",
+      "orgao": "Prefeitura Municipal de Tamandaré",
+      "municipio": "Tamandaré",
+      "uf": "PE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://transparencia.tamandare.pe.gov.br/app/pe/tamandare/1/ouvidoria-municipal",
+      "email": "ouvidoria@tamandare.pe.gov.br",
+      "telefone": "81 983740217",
+      "atualizado_em": "2026-10-28"
     },
     {
       "id": "OUV-000011",
