@@ -105,6 +105,32 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000038",
+      "nome": "Ouvidoria do Ministério do Planejamento e Orçamento (OUV/MPO)",
+      "orgao": "Ministério do Planejamento e Orçamento (OUV/MPO)",
+      "municipio": "Brasília",
+      "uf": "DF",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.gov.br/planejamento/pt-br/acesso-a-informacao/participacao-social/ouvidoria",
+      "email": "ouvidoria.mpo@planejamento.gov.br",
+      "telefone": "(61) 2020-5113",
+      "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000034",
+      "nome": "Ouvidoria do Município de Manoel Urbano",
+      "orgao": "Prefeitura Municipal de Manoel Urbano",
+      "municipio": "Manoel Urbano",
+      "uf": "AC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@manoelurbano.ac.gov.br",
+      "telefone": "6899604-2520",
+      "atualizado_em": "2026-10-28"
+    },
+    {
       "id": "OUV-000023",
       "nome": "Ouvidoria do Núcleo de Educação Ivaiporã",
       "orgao": "Núcleo de Educação Ivaiporã",
@@ -183,6 +209,19 @@
       "atualizado_em": "2026-10-14"
     },
     {
+      "id": "OUV-000035",
+      "nome": "Ouvidoria Municipal de Itapiranga/SC",
+      "orgao": "Municipal de Itapiranga/SC",
+      "municipio": "",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://itapiranga.atende.net/#!/tipo/pagina/valor/144",
+      "email": "ouvidoria@itapiranga.sc.gov.br",
+      "telefone": "4936787757",
+      "atualizado_em": "2026-10-28"
+    },
+    {
       "id": "OUV-000020",
       "nome": "Ouvidoria Municipal de Mangueirinha",
       "orgao": "Prefeitura Municipal de Mangueirinha",
@@ -194,6 +233,19 @@
       "email": "ouvidoria@mangueirinha.pr.gov.br",
       "telefone": "4632438030",
       "atualizado_em": "2026-10-09"
+    },
+    {
+      "id": "OUV-000036",
+      "nome": "Ouvidoria Municipal de Paraíso das Águas",
+      "orgao": "Prefeitura Municipal de Paraíso das Águas",
+      "municipio": "Paraíso das Águas",
+      "uf": "MS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://paraisodasaguas.ms.gov.br/site/",
+      "email": "ouvidoria@paraisodasaguas.ms.gov.br",
+      "telefone": "(67) 9 9685-7712",
+      "atualizado_em": "2026-10-28"
     },
     {
       "id": "OUV-000028",
