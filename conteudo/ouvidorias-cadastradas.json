@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "OUV-000045",
+      "nome": "Câmara Municipal de Cristiano Otoni",
+      "orgao": "Câmara Municipal de Cristiano Otoni",
+      "municipio": "Cristiano Otoni",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.cristianootoni.mg.leg.br/ouvidoria",
+      "email": "",
+      "telefone": "(31) 3682 0010",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000029",
       "nome": "Câmara Municipal de Luiz Alves/SC",
       "orgao": "",
@@ -196,6 +209,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000047",
+      "nome": "Ouvidoria Geral do  Município de Itapeva",
+      "orgao": "Prefeitura Municipal de Itapeva",
+      "municipio": "Itapeva",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://ouvidoria.etransparencia.com.br/itapeva.sp/wpstartpagenew.aspx",
+      "email": "ouvidoria_geral@itapeva.sp.gov.br",
+      "telefone": "(80)0000-4673",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000033",
       "nome": "Ouvidoria Geral do Município de Garopaba",
       "orgao": "Prefeitura Municipal de Garopaba",
@@ -378,6 +404,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000046",
+      "nome": "Ouvidoria-Geral de Crateús",
+      "orgao": "Crateús",
+      "municipio": "Crateús",
+      "uf": "CE",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.crateus.ce.gov.br/ouvidoria",
+      "email": "ouvidoria@crateus.ce.gov.br",
+      "telefone": "(80)0033-0792",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000018",
       "nome": "Ouvidoria-geral do Município de Mallet",
       "orgao": "Prefeitura Municipal de Mallet",
@@ -402,6 +441,19 @@
       "email": "ouvidoria@cmc.pr.gov.br",
       "telefone": "(41) 3350-4903",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000048",
+      "nome": "Prefeitura Municipal de Conceição do Mato Dentro",
+      "orgao": "Prefeitura Municipal de Conceição do Mato Dentro",
+      "municipio": "Conceição do Mato Dentro",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://cmd.cr2site.com/",
+      "email": "ouvidoria@cmd.mg.gov.br",
+      "telefone": "(31) 3868-2848",
+      "atualizado_em": "2026-10-29"
     }
   ]
 }
