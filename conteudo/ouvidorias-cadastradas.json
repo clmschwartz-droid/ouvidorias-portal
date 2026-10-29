@@ -495,6 +495,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000057",
+      "nome": "Ouvidoria-geral da Universidade do Estado do Rio de Janeiro",
+      "orgao": "Universidade do Estado do Rio de Janeiro",
+      "municipio": "Rio de Janeiro",
+      "uf": "RJ",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.ouvidoria.uerj.br/",
+      "email": "ouvidoria@uerj.br",
+      "telefone": "21 2334-0224",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000046",
       "nome": "Ouvidoria-Geral de Crateús",
       "orgao": "Crateús",
@@ -505,6 +518,19 @@
       "site": "https://www.crateus.ce.gov.br/ouvidoria",
       "email": "ouvidoria@crateus.ce.gov.br",
       "telefone": "(80)0033-0792",
+      "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000058",
+      "nome": "OUVIDORIA-GERAL DE POLÍCIA DO ESTADO DE MATO GROSSO",
+      "orgao": "POLÍCIA DO ESTADO DE MATO GROSSO",
+      "municipio": "CUIABÁ",
+      "uf": "MT",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.sesp.mt.gov.br/apresentacao1",
+      "email": "ouvidoriadepolicia@sesp.mt.gov.br",
+      "telefone": "(65) 98145-0554",
       "atualizado_em": "2026-10-29"
     },
     {
