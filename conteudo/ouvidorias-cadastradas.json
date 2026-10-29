@@ -118,6 +118,45 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000063",
+      "nome": "Ouvidoria da Defensoria Pública de Pernambuco",
+      "orgao": "Defensoria Pública de Pernambuco",
+      "municipio": "Recife",
+      "uf": "PE",
+      "esfera": "",
+      "poder": "Judiciário",
+      "site": "",
+      "email": "ouvidoriaexternadppe@gmail.com",
+      "telefone": "81 984929333",
+      "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000042",
+      "nome": "Ouvidoria da Prefeitura Municipal de Rio Crespo",
+      "orgao": "Prefeitura Municipal de Rio Crespo",
+      "municipio": "Rio Crespo",
+      "uf": "RO",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://transparencia.riocrespo.ro.gov.br/novo/EXECUTIVO/acesso-a-informacao/2026/44/eouv?perPage=10&page=1",
+      "email": "ouvidoria@riocrespo.ro.gov.br",
+      "telefone": "",
+      "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000044",
+      "nome": "Ouvidoria da Prefeitura Municipal de São Felipe D´Oeste",
+      "orgao": "Prefeitura Municipal de São Felipe D´Oeste",
+      "municipio": "São Felipe D´Oeste",
+      "uf": "RO",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.saofelipe.ro.gov.br/",
+      "email": "ouvidoria@saofelipe.ro.gov.br",
+      "telefone": "(69 )34451057",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000007",
       "nome": "Ouvidoria da Secretaria Municipal de Saúde de Niterói",
       "orgao": "Secretaria Municipal de Saúde de Niterói",
