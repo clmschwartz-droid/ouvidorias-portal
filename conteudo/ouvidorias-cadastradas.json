@@ -131,6 +131,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000055",
+      "nome": "Ouvidoria da Universidade Federal do Delta do Parnaíba",
+      "orgao": "Universidade Federal do Delta do Parnaíba",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://ufdpar.edu.br/ufdpar/paginas/ouvidoria",
+      "email": "ouvidoria@ufdpar.edu.br",
+      "telefone": "(86) 99488-7967",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000038",
       "nome": "Ouvidoria do Ministério do Planejamento e Orçamento (OUV/MPO)",
       "orgao": "Ministério do Planejamento e Orçamento (OUV/MPO)",
@@ -183,6 +196,19 @@
       "atualizado_em": "2026-10-14"
     },
     {
+      "id": "OUV-000049",
+      "nome": "Ouvidoria e Transparência Geral da Secretaria de Estado de Saúde do Rio de Janeiro",
+      "orgao": "e Transparência Geral da Secretaria de Estado de Saúde do Rio de Janeiro",
+      "municipio": "",
+      "uf": "RJ",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.saude.rj.gov.br/ouvidoria",
+      "email": "ouvidoria@saude.rj.gov.br",
+      "telefone": "(80)0025-5525",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000012",
       "nome": "Ouvidoria Faccat",
       "orgao": "Faculdades Integradas de Taquara — FACCAT",
@@ -194,6 +220,19 @@
       "email": "ouvidoria@faccat.br",
       "telefone": "(51) 3541-6600, ramal 679",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000053",
+      "nome": "Ouvidoria Geral da Câmara de Vereadores de Candeias Bahia",
+      "orgao": "Câmara de vereadores de Candeias Bahia",
+      "municipio": "Candeias",
+      "uf": "BA",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "(71) 3190-3987",
+      "atualizado_em": "2026-10-29"
     },
     {
       "id": "OUV-000040",
@@ -219,6 +258,19 @@
       "site": "https://ouvidoria.etransparencia.com.br/itapeva.sp/wpstartpagenew.aspx",
       "email": "ouvidoria_geral@itapeva.sp.gov.br",
       "telefone": "(80)0000-4673",
+      "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000054",
+      "nome": "Ouvidoria Geral do Município",
+      "orgao": "Município",
+      "municipio": "Timon",
+      "uf": "MA",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://falabr.cgu.gov.br/web/",
+      "email": "ouvidoria@timon.ma.gov.br",
+      "telefone": "(86)2222-5055",
       "atualizado_em": "2026-10-29"
     },
     {
@@ -287,6 +339,19 @@
       "atualizado_em": "2026-10-14"
     },
     {
+      "id": "OUV-000050",
+      "nome": "Ouvidoria Municipal de Guaxupé",
+      "orgao": "Prefeitura Municipal de Guaxupé",
+      "municipio": "Guaxupé",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoriamunicipal@guaxupe.mg.gov.br",
+      "telefone": "(35) 3551-5566",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000035",
       "nome": "Ouvidoria Municipal de Itapiranga/SC",
       "orgao": "Municipal de Itapiranga/SC",
@@ -324,6 +389,19 @@
       "email": "ouvidoria@paraisodasaguas.ms.gov.br",
       "telefone": "(67) 9 9685-7712",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000051",
+      "nome": "Ouvidoria Municipal de Sorriso - MT",
+      "orgao": "Prefeitura Municipal de Sorriso",
+      "municipio": "Sorriso",
+      "uf": "MT",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://ouvidoria.sorriso.mt.gov.br/#informacao",
+      "email": "ouvidoria@sorriso.mt.gov.br",
+      "telefone": "(80)0000-4723",
+      "atualizado_em": "2026-10-29"
     },
     {
       "id": "OUV-000028",
@@ -376,6 +454,19 @@
       "email": "ouvidoria@defensoria.rs.def.br",
       "telefone": "0800 642 3225",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000052",
+      "nome": "OUVIDORIA-GERAL DA POLÍCIA CIVIL DO ESTADO DE MATO GROSSO DO SUL",
+      "orgao": "POLÍCIA CIVIL DO ESTADO DE MATO GROSSO DO SUL",
+      "municipio": "",
+      "uf": "MS",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.pc.ms.gov.br/unidade-administrativa/ouvidoria-da-policia-civil/",
+      "email": "ouvidoria.dgpc@pc.ms.gov.br",
+      "telefone": "(67)3318-7955",
+      "atualizado_em": "2026-10-29"
     },
     {
       "id": "OUV-000014",
