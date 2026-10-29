@@ -209,6 +209,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000041",
+      "nome": "Ouvidoria Geral do Município de Itatiba",
+      "orgao": "Prefeitura Municipal de Itatiba",
+      "municipio": "Itatiba",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.itatiba.sp.gov.br/secretarias/governo/ouvidoria-municipal/ouvidoria-municipal",
+      "email": "ouvidoria@ouvidoria.itatiba.sp.gov.br",
+      "telefone": "(11) 4524-1756",
+      "atualizado_em": "2026-10-29"
+    },
+    {
       "id": "OUV-000016",
       "nome": "Ouvidoria Geral do Município de Terra Boa",
       "orgao": "Prefeitura Municipal de Terra Boa",
