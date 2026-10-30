@@ -300,6 +300,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000060",
+      "nome": "Ouvidoria Geral - UFT",
+      "orgao": "- UFT",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.uft.edu.br/ouvidoria",
+      "email": "ouvidoria@mail.uft.edu.br",
+      "telefone": "(63) 3229-4100",
+      "atualizado_em": "2026-10-30"
+    },
+    {
       "id": "OUV-000053",
       "nome": "Ouvidoria Geral da Câmara de Vereadores de Candeias Bahia",
       "orgao": "Câmara de vereadores de Candeias Bahia",
@@ -414,6 +427,32 @@
       "site": "https://falabr.cgu.gov.br/v2/",
       "email": "",
       "telefone": "5433381244",
+      "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000056",
+      "nome": "Ouvidoria Geral Municipal",
+      "orgao": "",
+      "municipio": "Alta Foresta",
+      "uf": "MT",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.gp.srv.br/ouvidoria/altafloresta/#/portal/1/home",
+      "email": "ouvidoria@altafloresta.mt.gov.br",
+      "telefone": "6635123105",
+      "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000059",
+      "nome": "OUVIDORIA MUNICIPAL",
+      "orgao": "",
+      "municipio": "CONCEIÇÃO DO CASTELO",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.conceicaodocastelo.es.gov.br/e-ouv",
+      "email": "ouvidoria@conceicaodocastelo.es.gov.br",
+      "telefone": "28 3547 1101",
       "atualizado_em": "2026-10-30"
     },
     {
@@ -688,6 +727,19 @@
       "email": "ouvidoria@cmc.pr.gov.br",
       "telefone": "(41) 3350-4903",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000061",
+      "nome": "Prefeitura Municipal",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoriaceuazul@gmail.com",
+      "telefone": "45 31211002",
+      "atualizado_em": "2026-10-30"
     },
     {
       "id": "OUV-000048",
