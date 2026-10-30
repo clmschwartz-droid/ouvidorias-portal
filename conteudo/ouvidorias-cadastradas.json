@@ -40,6 +40,32 @@
       "atualizado_em": "2026-10-23"
     },
     {
+      "id": "OUV-000062",
+      "nome": "Câmara Municipal de Vereadores de Botuverá",
+      "orgao": "Câmara Municipal de Vereadores de Botuverá",
+      "municipio": "Vereadores de Botuverá",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://falabr.cgu.gov.br/v2/?uf=SC&municipio=Botuver%C3%A1",
+      "email": "",
+      "telefone": "47 3359-1223",
+      "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000069",
+      "nome": "Conselho Regional de Biologia - 1ª Região (SP, MT, MS)",
+      "orgao": "",
+      "municipio": "",
+      "uf": "SP",
+      "esfera": "",
+      "poder": "",
+      "site": "https://www.crbio01.gov.br/falabr",
+      "email": "",
+      "telefone": "(11) 3884-1489",
+      "atualizado_em": "2026-10-30"
+    },
+    {
       "id": "OUV-000019",
       "nome": "DIPSO - Divisão de Participação Social e Ouvidoria",
       "orgao": "Secretaria Municipal de Saúde de Pinhais",
@@ -129,6 +155,19 @@
       "email": "ouvidoriaexternadppe@gmail.com",
       "telefone": "81 984929333",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000067",
+      "nome": "Ouvidoria da Prefeitura de Iconha/ES",
+      "orgao": "Prefeitura de Iconha/ES",
+      "municipio": "Iconha",
+      "uf": "ES",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@iconha.es.gov.br",
+      "telefone": "28 3537 1011",
+      "atualizado_em": "2026-10-30"
     },
     {
       "id": "OUV-000042",
@@ -274,6 +313,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000064",
+      "nome": "Ouvidoria Geral da Prefeitura Municipal de Descalvado",
+      "orgao": "Prefeitura Municipal de Descalvado",
+      "municipio": "Descalvado",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.descalvado.sp.gov.br/portal-do-cidadao/acesso-a-informacao",
+      "email": "ouvidoria@descalvado.sp.gov.br",
+      "telefone": "(19) 3583-9300",
+      "atualizado_em": "2026-10-30"
+    },
+    {
       "id": "OUV-000040",
       "nome": "Ouvidoria Geral dde Pinhais",
       "orgao": "dde Pinhais",
@@ -350,6 +402,19 @@
       "email": "ouvidoria@terraboa.pr.gov.br",
       "telefone": "(44) 3641-8037",
       "atualizado_em": "2026-10-08"
+    },
+    {
+      "id": "OUV-000065",
+      "nome": "Ouvidoria Geral do Município de Victor Graeff",
+      "orgao": "Prefeitura Municipal de Victor Graeff",
+      "municipio": "Victor Graeff",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://falabr.cgu.gov.br/v2/",
+      "email": "",
+      "telefone": "5433381244",
+      "atualizado_em": "2026-10-30"
     },
     {
       "id": "OUV-000032",
@@ -456,6 +521,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000066",
+      "nome": "OUVIDORIA NORTELANDIA",
+      "orgao": "NORTELANDIA",
+      "municipio": "NORTELANDIA",
+      "uf": "MT",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://ouvidoria.nortelandia.mt.gov.br/",
+      "email": "",
+      "telefone": "65 3346-1411",
+      "atualizado_em": "2026-10-30"
+    },
+    {
       "id": "OUV-000011",
       "nome": "Ouvidoria Seccional do IFPE Campus Paulista",
       "orgao": "Instituto Federal de Pernambuco — Campus Paulista",
@@ -519,6 +597,19 @@
       "email": "ouvidoria@sanepar.com.br",
       "telefone": "0800 400 0600",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000068",
+      "nome": "Ouvidoria-Geral da UFMT",
+      "orgao": "UFMT",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.ufmt.br/unidade/ouvidoria",
+      "email": "ouvidoria@ufmt.br",
+      "telefone": "(65)3313-7210",
+      "atualizado_em": "2026-10-30"
     },
     {
       "id": "OUV-000013",
