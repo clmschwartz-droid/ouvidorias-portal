@@ -365,6 +365,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000070",
+      "nome": "Ouvidoria Geral do Estado de Roraima",
+      "orgao": "Estado de Roraima",
+      "municipio": "",
+      "uf": "RR",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "http://www.ouvidoria.rr.gov.br",
+      "email": "ouvidoriageral@ouvidoria.rr.gov.br",
+      "telefone": "(95) 98402-3685",
+      "atualizado_em": "2026-10-30"
+    },
+    {
       "id": "OUV-000054",
       "nome": "Ouvidoria Geral do Município",
       "orgao": "Município",
