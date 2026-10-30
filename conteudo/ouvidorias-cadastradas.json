@@ -456,6 +456,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000039",
+      "nome": "Ouvidoria Municipal",
+      "orgao": "",
+      "municipio": "Patos",
+      "uf": "PB",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.patos.pb.gov.br/ouvidoria-br",
+      "email": "ouvidoria@patos.pb.gov.br",
+      "telefone": "(83) 99384-8128",
+      "atualizado_em": "2026-10-30"
+    },
+    {
       "id": "OUV-000059",
       "nome": "OUVIDORIA MUNICIPAL",
       "orgao": "",
@@ -778,6 +791,19 @@
       "site": "https://www.itaitinga.ce.gov.br/",
       "email": "ouvidoria@itaitinga.ce.gov.br",
       "telefone": "85992012776",
+      "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000043",
+      "nome": "Secretaria Municipal de Educação",
+      "orgao": "Prefeitura Municipal de Educação",
+      "municipio": "Educação",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@sme.pmf.sc.gov.br",
+      "telefone": "(48) 3261-0666",
       "atualizado_em": "2026-10-30"
     }
   ]
