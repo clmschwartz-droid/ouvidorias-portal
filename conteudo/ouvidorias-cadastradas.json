@@ -753,6 +753,19 @@
       "email": "ouvidoria@cmd.mg.gov.br",
       "telefone": "(31) 3868-2848",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000026",
+      "nome": "Secretaria da Controladoria e Ouvidoria Geral",
+      "orgao": "",
+      "municipio": "",
+      "uf": "CE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.itaitinga.ce.gov.br/",
+      "email": "ouvidoria@itaitinga.ce.gov.br",
+      "telefone": "85992012776",
+      "atualizado_em": "2026-10-30"
     }
   ]
 }
