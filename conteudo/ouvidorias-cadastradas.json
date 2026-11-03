@@ -1,19 +1,6 @@
 {
   "items": [
     {
-      "id": "OUV-000078",
-      "nome": "Caio Levy Freitas de Oliveira",
-      "orgao": "",
-      "municipio": "Umirim",
-      "uf": "CE",
-      "esfera": "",
-      "poder": "Executivo",
-      "site": "https://www.umirim.ce.gov.br/ouvidoria",
-      "email": "ouvidoria@umirim.ce.gov.br",
-      "telefone": "85999273992",
-      "atualizado_em": "2026-11-03"
-    },
-    {
       "id": "OUV-000045",
       "nome": "Câmara Municipal de Cristiano Otoni",
       "orgao": "Câmara Municipal de Cristiano Otoni",
@@ -170,6 +157,32 @@
       "atualizado_em": "2026-10-14"
     },
     {
+      "id": "OUV-000088",
+      "nome": "Ouvidoria Anvisa",
+      "orgao": "Anvisa",
+      "municipio": "",
+      "uf": "DF",
+      "esfera": "Federal",
+      "poder": "",
+      "site": "",
+      "email": "ouvidoria@anvisa.gov.br",
+      "telefone": "(61) 3462-5700",
+      "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000085",
+      "nome": "Ouvidoria da Câmara Municipal de Espigão d'Oeste",
+      "orgao": "Câmara Municipal de Espigão d'Oeste",
+      "municipio": "Espigão d'Oeste",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.espigaodoeste.ro.leg.br/institucional/ouvidoria-legislativa",
+      "email": "ouvidoria@espigaodoeste.ro.leg.br",
+      "telefone": "(69) 2211-0005",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000031",
       "nome": "OUVIDORIA DA CÂMARA MUNICIPAL DE JI- PARANÁ",
       "orgao": "Câmara Municipal de JI- PARANÁ",
@@ -274,6 +287,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000082",
+      "nome": "Ouvidoria do IFRO",
+      "orgao": "IFRO",
+      "municipio": "Porto Velho",
+      "uf": "RO",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://portal.ifro.edu.br/ouvidoria-nav",
+      "email": "ouvidoria@ifro.edu.br",
+      "telefone": "69 99266-5080",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000038",
       "nome": "Ouvidoria do Ministério do Planejamento e Orçamento (OUV/MPO)",
       "orgao": "Ministério do Planejamento e Orçamento (OUV/MPO)",
@@ -350,6 +376,19 @@
       "email": "ouvidoria@faccat.br",
       "telefone": "(51) 3541-6600, ramal 679",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000084",
+      "nome": "Ouvidoria Geral - Prefeitura Municipal de Irupi-ES",
+      "orgao": "Prefeitura Municipal de Irupi",
+      "municipio": "Irupi",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.irupi.es.gov.br/ouvidoria",
+      "email": "ouvidoria@irupi.es.gov.br",
+      "telefone": "(28)3548-1101",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000060",
@@ -560,6 +599,32 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000083",
+      "nome": "Ouvidoria Municipal da Prefeitura de Limoeiro/PE",
+      "orgao": "Municipal da Prefeitura de Limoeiro/PE",
+      "municipio": "Limoeiro",
+      "uf": "PE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@limoeiro.pe.gov.br",
+      "telefone": "81996610320",
+      "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000087",
+      "nome": "Ouvidoria Municipal da Prefeitura Municipal de Serrana",
+      "orgao": "Prefeitura Municipal de Serrana",
+      "municipio": "Serrana",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "http://www.serrana.sp.gov.br/ouvidoria/",
+      "email": "ouvidoria@serrana.sp.gov.br",
+      "telefone": "1634892810",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000032",
       "nome": "Ouvidoria Municipal de Domingos Martins",
       "orgao": "Prefeitura Municipal de Domingos Martins",
@@ -625,6 +690,19 @@
       "atualizado_em": "2026-10-09"
     },
     {
+      "id": "OUV-000086",
+      "nome": "Ouvidoria Municipal de Orocó",
+      "orgao": "Prefeitura Municipal de Orocó",
+      "municipio": "Orocó",
+      "uf": "PE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://oroco.pe.gov.br/",
+      "email": "ouvidoria@oroco.pe.gov.br",
+      "telefone": "(87) 3887-1156",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000036",
       "nome": "Ouvidoria Municipal de Paraíso das Águas",
       "orgao": "Prefeitura Municipal de Paraíso das Águas",
@@ -662,6 +740,19 @@
       "email": "ouvidoria@tamandare.pe.gov.br",
       "telefone": "81 983740217",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000079",
+      "nome": "Ouvidoria Municipal Setorial da Saúde de Florianópolis",
+      "orgao": "Municipal Setorial da Saúde de Florianópolis",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "48 32391500",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000066",
