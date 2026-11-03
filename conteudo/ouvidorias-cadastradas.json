@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "OUV-000078",
+      "nome": "Caio Levy Freitas de Oliveira",
+      "orgao": "",
+      "municipio": "Umirim",
+      "uf": "CE",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.umirim.ce.gov.br/ouvidoria",
+      "email": "ouvidoria@umirim.ce.gov.br",
+      "telefone": "85999273992",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000045",
       "nome": "Câmara Municipal de Cristiano Otoni",
       "orgao": "Câmara Municipal de Cristiano Otoni",
@@ -40,6 +53,19 @@
       "atualizado_em": "2026-10-23"
     },
     {
+      "id": "OUV-000073",
+      "nome": "Câmara Municipal de Querência",
+      "orgao": "Câmara Municipal de Querência",
+      "municipio": "Querência",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://falabr.cgu.gov.br/v2/?uf=MT&municipio=Querencia",
+      "email": "ouvidoria@querencia.mt.leg.br",
+      "telefone": "6635291066",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000062",
       "nome": "Câmara Municipal de Vereadores de Botuverá",
       "orgao": "Câmara Municipal de Vereadores de Botuverá",
@@ -77,6 +103,19 @@
       "email": "ouvidoria.saude@pinhais.pr.gov.br",
       "telefone": "41 99216-2095",
       "atualizado_em": "2026-10-09"
+    },
+    {
+      "id": "OUV-000076",
+      "nome": "INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO PIAUÍ - IFPI",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www.ifpi.edu.br/ouvidoria",
+      "email": "ouvidoria@ifpi.edu.br",
+      "telefone": "(86) 3131-1474",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000027",
@@ -220,6 +259,19 @@
       "email": "ouvidoria@ufdpar.edu.br",
       "telefone": "(86) 99488-7967",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000075",
+      "nome": "Ouvidoria do CRMV-RJ",
+      "orgao": "CRMV-RJ",
+      "municipio": "",
+      "uf": "RJ",
+      "esfera": "",
+      "poder": "",
+      "site": "https://www.crmvrj.org.br/falabr/",
+      "email": "ouvidoria@crmvrj.org.br",
+      "telefone": "(21) 2576-7281",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000038",
@@ -391,6 +443,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000077",
+      "nome": "Ouvidoria Geral do Municipio de Cacaulândia/RO",
+      "orgao": "Municipio de Cacaulândia/RO",
+      "municipio": "Cacaulandia",
+      "uf": "RO",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@cacaulandia.ro.gov.br",
+      "telefone": "69 99239-1426",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000033",
       "nome": "Ouvidoria Geral do Município de Garopaba",
       "orgao": "Prefeitura Municipal de Garopaba",
@@ -454,6 +519,19 @@
       "email": "ouvidoria@altafloresta.mt.gov.br",
       "telefone": "6635123105",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000074",
+      "nome": "Ouvidoria Legislativa da Câmara Municipal de Capitólio",
+      "orgao": "Câmara Municipal de Capitólio",
+      "municipio": "Capitólio",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.capitolio.mg.leg.br/servico-de-informacao-ao-cidadao",
+      "email": "ouvidoria@capitolio.mg.leg.br",
+      "telefone": "(37) 3406-0006",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000039",
@@ -599,6 +677,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000071",
+      "nome": "OUVIDORIA REGIONAL ELEITORAL DO TOCANTIINS",
+      "orgao": "REGIONAL ELEITORAL DO TOCANTIINS",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Judiciário",
+      "site": "https://www.tre-to.jus.br/institucional/ouvidoria-regional-eleitoral/ouvidoria-regional-eleitoral",
+      "email": "ouvidoria@tre-to.jus.br",
+      "telefone": "63 3234 9600",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000011",
       "nome": "Ouvidoria Seccional do IFPE Campus Paulista",
       "orgao": "Instituto Federal de Pernambuco — Campus Paulista",
@@ -636,6 +727,19 @@
       "email": "ouvidoria@defensoria.rs.def.br",
       "telefone": "0800 642 3225",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000072",
+      "nome": "Ouvidoria-Geral da Defesa Social da Secretaria de Estado da Segurança Pública e da Defesa Social do Rio Grande do Norte",
+      "orgao": "Defesa Social da Secretaria de Estado da Segurança Pública e da Defesa Social do Rio Grande do Norte",
+      "municipio": "Natal",
+      "uf": "RN",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://ouvidoria.defesasocial.rn.gov.br/",
+      "email": "ouvidoria.sesed@defesasocial.rn.gov.br",
+      "telefone": "(84) 98703-8709",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000052",
