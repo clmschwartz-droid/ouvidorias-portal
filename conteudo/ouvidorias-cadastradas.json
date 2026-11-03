@@ -807,6 +807,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000107",
+      "nome": "Ouvidoria Municipal de Luiz Alves/SC",
+      "orgao": "Municipal de Luiz Alves/SC",
+      "municipio": "Luiz Alves",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://luizalves.atende.net/cidadao/pagina/ouvidoria-municipal",
+      "email": "",
+      "telefone": "",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000020",
       "nome": "Ouvidoria Municipal de Mangueirinha",
       "orgao": "Prefeitura Municipal de Mangueirinha",
@@ -1156,6 +1169,19 @@
       "email": "ouvidoria@itaitinga.ce.gov.br",
       "telefone": "85992012776",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000080",
+      "nome": "Secretaria de Estado da Educação/SEDUC/RO",
+      "orgao": "",
+      "municipio": "",
+      "uf": "RO",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@seduc.ro.gov.br",
+      "telefone": "(69) 3212-8209",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000043",
