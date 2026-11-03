@@ -14,6 +14,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000099",
+      "nome": "CÂMARA MUNICIPAL DE JI- PARANÁ-RONDÔNIA",
+      "orgao": "Câmara Municipal de JI- PARANÁ-RONDÔNIA",
+      "municipio": "JI- PARANÁ-RONDÔNIA",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.jiparana.ro.leg.br/",
+      "email": "ouvidoria@jiparana.ro.leg.br",
+      "telefone": "69-99394-1300",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000029",
       "nome": "Câmara Municipal de Luiz Alves/SC",
       "orgao": "",
@@ -25,6 +38,19 @@
       "email": "",
       "telefone": "4733771336",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000093",
+      "nome": "Câmara Municipal de Machandinho",
+      "orgao": "",
+      "municipio": "",
+      "uf": "RO",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://camarademachadinho.ro.gov.br/ouvidoriacmmdo/",
+      "email": "ouvidoria@camarademachadinho.ro.gov.br",
+      "telefone": "(69) 3581-2561",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000024",
@@ -79,6 +105,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000106",
+      "nome": "CONSELHO REGIONAL DE FARMACIA DO PARANA",
+      "orgao": "",
+      "municipio": "CURITIBA",
+      "uf": "PR",
+      "esfera": "",
+      "poder": "",
+      "site": "",
+      "email": "ouvidoria@crf-pr.org.br",
+      "telefone": "4133630234",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000019",
       "nome": "DIPSO - Divisão de Participação Social e Ouvidoria",
       "orgao": "Secretaria Municipal de Saúde de Pinhais",
@@ -90,6 +129,19 @@
       "email": "ouvidoria.saude@pinhais.pr.gov.br",
       "telefone": "41 99216-2095",
       "atualizado_em": "2026-10-09"
+    },
+    {
+      "id": "OUV-000103",
+      "nome": "DIVISÃO DE PARTICIPAÇÃO SOCIAL E OUVIDORIA",
+      "orgao": "",
+      "municipio": "PINHAIS",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria.saude@pinhais.pr.gov.br",
+      "telefone": "41 99216-2095",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000076",
@@ -167,6 +219,19 @@
       "site": "",
       "email": "ouvidoria@anvisa.gov.br",
       "telefone": "(61) 3462-5700",
+      "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000098",
+      "nome": "Ouvidoria CanoasPrev",
+      "orgao": "CanoasPrev",
+      "municipio": "",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.canoasprev.rs.gov.br/ouvidoria.php",
+      "email": "ouvidoria@canoasprev.rs.gov.br",
+      "telefone": "(51) 3462.8822",
       "atualizado_em": "2026-11-03"
     },
     {
@@ -313,6 +378,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000104",
+      "nome": "Ouvidoria do Ministério do Turismo",
+      "orgao": "Ministério do Turismo",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.gov.br/turismo/pt-br/canais_atendimento/ouvidoria",
+      "email": "ouvidoria@turismo.gov.br",
+      "telefone": "61 2023-7146",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000037",
       "nome": "Ouvidoria do Municipio de Iracemápolis",
       "orgao": "Prefeitura Municipal de Iracemápolis",
@@ -337,6 +415,19 @@
       "email": "ouvidoria@manoelurbano.ac.gov.br",
       "telefone": "6899604-2520",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000097",
+      "nome": "Ouvidoria do Município de União de Minas/MG",
+      "orgao": "Município de União de Minas/MG",
+      "municipio": "União de Minas",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.uniaodeminas.mg.gov.br/transparencia/ouvidoria",
+      "email": "ouvidoria@uniaodeminas.mg.gov.br",
+      "telefone": "(34)3456-1900",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000023",
@@ -415,6 +506,19 @@
       "email": "",
       "telefone": "(71) 3190-3987",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000095",
+      "nome": "Ouvidoria Geral da Estância Turística de Piraju -SP",
+      "orgao": "Estância Turística de Piraju -SP",
+      "municipio": "Piraju",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.estanciadepiraju.sp.gov.br/departamento/departamento-ouvidoria",
+      "email": "ouvidoria@estanciadepiraju.sp.gov.br",
+      "telefone": "14 33059009",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000064",
@@ -807,6 +911,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000096",
+      "nome": "Ouvidoria Rodrigues Alves Acre",
+      "orgao": "Rodrigues Alves Acre",
+      "municipio": "",
+      "uf": "AC",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@rodriguesalves.ac.gov.br",
+      "telefone": "6833421176",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000011",
       "nome": "Ouvidoria Seccional do IFPE Campus Paulista",
       "orgao": "Instituto Federal de Pernambuco — Campus Paulista",
@@ -818,6 +935,19 @@
       "email": "ouvidoria@paulista.ifpe.edu.br",
       "telefone": "",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000101",
+      "nome": "Ouvidoria Secretaria Municipal de Educação",
+      "orgao": "Prefeitura Municipal de Educação",
+      "municipio": "Educação",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.riopreto.sp.gov.br/ouvidoria",
+      "email": "ouvidoria@educacao.riopreto.gov.sp.br",
+      "telefone": "17 32114000",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000017",
@@ -1000,6 +1130,19 @@
       "email": "ouvidoria@cmd.mg.gov.br",
       "telefone": "(31) 3868-2848",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000100",
+      "nome": "Prefeitura Municipal de Iúna - ES",
+      "orgao": "Prefeitura Municipal de Iúna",
+      "municipio": "Iúna",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@iuna.es.gov.br",
+      "telefone": "(28) 99884-3729",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000026",
