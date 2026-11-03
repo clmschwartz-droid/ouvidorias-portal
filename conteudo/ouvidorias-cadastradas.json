@@ -521,6 +521,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000089",
+      "nome": "Ouvidoria Geral do Município de Parintins/AM",
+      "orgao": "Município de Parintins/AM",
+      "municipio": "",
+      "uf": "AM",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@parintins.am.gov.br",
+      "telefone": "9298253-0084",
+      "atualizado_em": "2026-11-03"
+    },
+    {
       "id": "OUV-000016",
       "nome": "Ouvidoria Geral do Município de Terra Boa",
       "orgao": "Prefeitura Municipal de Terra Boa",
@@ -636,6 +649,19 @@
       "email": "",
       "telefone": "27936181999",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000092",
+      "nome": "OUVIDORIA MUNICIPAL DE GAROPABA",
+      "orgao": "Prefeitura Municipal de GAROPABA",
+      "municipio": "GAROPABA",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://garopaba.atende.net/cidadao/pagina/ouvidoria",
+      "email": "ouvidoria@garopaba.sc.gov.br",
+      "telefone": "48 32548107",
+      "atualizado_em": "2026-11-03"
     },
     {
       "id": "OUV-000022",
@@ -1000,6 +1026,19 @@
       "email": "ouvidoria@sme.pmf.sc.gov.br",
       "telefone": "(48) 3261-0666",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000090",
+      "nome": "Serviço Autônomo de Água e Esgoto - Angra dos Reis",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://saaeangra.com.br/ouvidoria",
+      "email": "ouvidoria@saaeangra.com.br",
+      "telefone": "24 3377-6551",
+      "atualizado_em": "2026-11-03"
     }
   ]
 }
