@@ -482,6 +482,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000137",
+      "nome": "OUVIDORIA DE PARANAITA/MT",
+      "orgao": "PARANAITA/MT",
+      "municipio": "",
+      "uf": "MT",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@paranaita.mt.gov.br",
+      "telefone": "66 3563-2717",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000075",
       "nome": "Ouvidoria do CRMV-RJ",
       "orgao": "CRMV-RJ",
@@ -755,6 +768,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000138",
+      "nome": "Ouvidoria Geral do Município",
+      "orgao": "Município",
+      "municipio": "Itupiranga",
+      "uf": "PA",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@itupiranga.pa.gov.br",
+      "telefone": "94-981099827",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000077",
       "nome": "Ouvidoria Geral do Municipio de Cacaulândia/RO",
       "orgao": "Municipio de Cacaulândia/RO",
@@ -844,6 +870,19 @@
       "email": "ouvidoria@altafloresta.mt.gov.br",
       "telefone": "6635123105",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000135",
+      "nome": "OUVIDORIA IPEM/RN",
+      "orgao": "IPEM/RN",
+      "municipio": "NATAL",
+      "uf": "RN",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@ipem.rn.gov.br",
+      "telefone": "84 99802-0364",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000074",
@@ -1091,6 +1130,19 @@
       "email": "ouvidoria@tamandare.pe.gov.br",
       "telefone": "81 983740217",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000139",
+      "nome": "Ouvidoria Municipal do Sistema Único de Saúde da Secretaria Municipal de Saúde de Manaus",
+      "orgao": "Prefeitura Municipal de Saúde de Manaus",
+      "municipio": "Saúde de Manaus",
+      "uf": "AM",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.manaus.am.gov.br/semsa/ouvidoria-municipal-do-sus/",
+      "email": "ouvidoria.sus@manaus.am.gov.br",
+      "telefone": "9298842-6835",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000079",
@@ -1392,6 +1444,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000134",
+      "nome": "Prefeitura Municipal de Westfália",
+      "orgao": "Prefeitura Municipal de Westfália",
+      "municipio": "Westfália",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://westfalia.rs.gov.br/ouvidoria",
+      "email": "ouvidoria@westfalia.rs.gov.br",
+      "telefone": "5137624553",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000026",
       "nome": "Secretaria da Controladoria e Ouvidoria Geral",
       "orgao": "",
@@ -1442,6 +1507,19 @@
       "email": "ouvidoria@saaeangra.com.br",
       "telefone": "24 3377-6551",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000133",
+      "nome": "Universidade Federal do Triângulo Mineiro (UFTM)",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www.uftm.edu.br/ouvidoria",
+      "email": "ouvidoria@uftm.edu.br",
+      "telefone": "3437006166",
+      "atualizado_em": "2026-11-04"
     }
   ]
 }
