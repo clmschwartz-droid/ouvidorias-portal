@@ -846,6 +846,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000157",
+      "nome": "Ouvidoria Geral da Prefeitura de Americana",
+      "orgao": "Prefeitura de Americana",
+      "municipio": "Americana",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.americana.sp.gov.br/americana-index.php?a=ouvidoria",
+      "email": "ouvidoria@americana.sp.gov.br",
+      "telefone": "19 3475-9024",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000064",
       "nome": "Ouvidoria Geral da Prefeitura Municipal de Descalvado",
       "orgao": "Prefeitura Municipal de Descalvado",
