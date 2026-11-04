@@ -1,6 +1,32 @@
 {
   "items": [
     {
+      "id": "OUV-000125",
+      "nome": "Câmara De Piraquara",
+      "orgao": "",
+      "municipio": "",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.piraquara.pr.leg.br/ouvidoria",
+      "email": "ouvidoria@piraquara.pr.leg.br",
+      "telefone": "(41) 3589-8101",
+      "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000122",
+      "nome": "Câmara Municipal de Antônio João MS",
+      "orgao": "Câmara Municipal de Antônio João MS",
+      "municipio": "Antônio João MS",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.antoniojoao.ms.leg.br/ouvidoria",
+      "email": "ouvidoria@cmantoniojoa.gov.ms.br",
+      "telefone": "6720670110",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000045",
       "nome": "Câmara Municipal de Cristiano Otoni",
       "orgao": "Câmara Municipal de Cristiano Otoni",
@@ -77,6 +103,19 @@
       "email": "ouvidoria@querencia.mt.leg.br",
       "telefone": "6635291066",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000119",
+      "nome": "Câmara Municipal de Santa Maria de Jetibá",
+      "orgao": "Câmara Municipal de Santa Maria de Jetibá",
+      "municipio": "Santa Maria de Jetibá",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@santamariadejetiba.es.leg.br",
+      "telefone": "2732631175",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000062",
@@ -222,6 +261,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000116",
+      "nome": "Ouvidoria Atibaia",
+      "orgao": "Atibaia",
+      "municipio": "",
+      "uf": "SP",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.atibaia.sp.gov.br/prefeitura/ouvidoria",
+      "email": "ouvidoria@atibaia.sp.gov.br",
+      "telefone": "(11) 4418-7800",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000098",
       "nome": "Ouvidoria CanoasPrev",
       "orgao": "CanoasPrev",
@@ -245,6 +297,45 @@
       "site": "",
       "email": "ouvidoria.ardpv@portovelho.ro.gov.br",
       "telefone": "6939016331",
+      "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000129",
+      "nome": "Ouvidoria da Câmara Municipal de Brochier",
+      "orgao": "Câmara Municipal de Brochier",
+      "municipio": "Brochier",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camarabrochier.rs.gov.br/ouvidoria",
+      "email": "",
+      "telefone": "51 3697 1701",
+      "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000118",
+      "nome": "Ouvidoria da Câmara Municipal de Brodowski/SP",
+      "orgao": "Câmara Municipal de Brodowski/SP",
+      "municipio": "Brodowski",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camarabrodowski.sp.gov.br/ouvidoria",
+      "email": "ouvidoria@camarabrodowski.sp.gov.br",
+      "telefone": "(16) 3664-8506",
+      "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000132",
+      "nome": "Ouvidoria da Câmara Municipal de Brunópolis SC",
+      "orgao": "Câmara Municipal de Brunópolis SC",
+      "municipio": "Brunópolis SC",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "49 35560054",
       "atualizado_em": "2026-11-04"
     },
     {
@@ -300,6 +391,32 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000114",
+      "nome": "Ouvidoria da Prefeitura Municipal de Maravilha",
+      "orgao": "Prefeitura Municipal de Maravilha",
+      "municipio": "Maravilha",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@maravilha.sc.gov.br",
+      "telefone": "(49)3664-0044",
+      "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000117",
+      "nome": "OUVIDORIA DA PREFEITURA MUNICIPAL DE PORTO ACRE",
+      "orgao": "Prefeitura Municipal de PORTO ACRE",
+      "municipio": "PORTO ACRE",
+      "uf": "AC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.portoacre.ac.gov.br/paginas/ouvidoria",
+      "email": "ouvidoria@portoacre.ac.gov.br",
+      "telefone": "(68) 99921-4338",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000042",
       "nome": "Ouvidoria da Prefeitura Municipal de Rio Crespo",
       "orgao": "Prefeitura Municipal de Rio Crespo",
@@ -324,6 +441,19 @@
       "email": "ouvidoria@saofelipe.ro.gov.br",
       "telefone": "(69 )34451057",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000126",
+      "nome": "Ouvidoria da Prefeitura Municipal de São João Batista/SC",
+      "orgao": "Prefeitura Municipal de São João Batista/SC",
+      "municipio": "",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://sjbatista.sc.gov.br/ouvidoria/",
+      "email": "ouvidoria@sjbatista.sc.gov.br",
+      "telefone": "(48) 2050-0900",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000007",
@@ -404,6 +534,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000130",
+      "nome": "Ouvidoria do Ministério Público da Paraíba",
+      "orgao": "Ministério Público da Paraíba",
+      "municipio": "João Pessoa",
+      "uf": "PB",
+      "esfera": "",
+      "poder": "",
+      "site": "",
+      "email": "ouvidoria@mppb.mp.br",
+      "telefone": "83991817355",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000037",
       "nome": "Ouvidoria do Municipio de Iracemápolis",
       "orgao": "Prefeitura Municipal de Iracemápolis",
@@ -415,6 +558,19 @@
       "email": "ouvidoria@iracemapolis.sp.gov.br",
       "telefone": "(19)99611-9811",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000128",
+      "nome": "Ouvidoria do Municipio de Mafra SC",
+      "orgao": "Prefeitura Municipal de Mafra SC",
+      "municipio": "Mafra SC",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://atendimento.mafra.sc.gov.br/b.php?pg=wp/wp&itd=6&is=15504&iser=01J67ZQYAD155MVG093SJ9CQ5R",
+      "email": "ouvidoria@mafra.sc.gov.br",
+      "telefone": "47992065116",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000034",
@@ -703,6 +859,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000121",
+      "nome": "Ouvidoria Legislativa da Câmara Municipal de Seara",
+      "orgao": "Câmara Municipal de Seara",
+      "municipio": "Seara",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@camaraseara.sc.gov.br",
+      "telefone": "(49) 3452 2255",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000039",
       "nome": "Ouvidoria Municipal",
       "orgao": "",
@@ -753,6 +922,19 @@
       "email": "ouvidoria@serrana.sp.gov.br",
       "telefone": "1634892810",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000123",
+      "nome": "Ouvidoria Municipal de Cristinápolis",
+      "orgao": "Prefeitura Municipal de Cristinápolis",
+      "municipio": "Cristinápolis",
+      "uf": "SE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@cristinapolis.se.gov.br",
+      "telefone": "79991342126",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000032",
@@ -818,6 +1000,19 @@
       "email": "ouvidoria@itapiranga.sc.gov.br",
       "telefone": "4936787757",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000131",
+      "nome": "Ouvidoria Municipal de João Neiva",
+      "orgao": "Prefeitura Municipal de João Neiva",
+      "municipio": "João Neiva",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.joaoneiva.es.gov.br/pagina/ler/2220/ouvidoria-e-e-sic",
+      "email": "ouvidoria@joaoneiva.es.gov.br",
+      "telefone": "(27) 99613-1425",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000107",
@@ -922,6 +1117,19 @@
       "email": "",
       "telefone": "65 3346-1411",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000115",
+      "nome": "Ouvidoria Prefeitura Municipal de Itabaianinha/SE",
+      "orgao": "Prefeitura Municipal de Itabaianinha/SE",
+      "municipio": "Itabaianinha",
+      "uf": "SE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://itabaianinha.se.gov.br/ouvidoria",
+      "email": "ouvidoria@itabaianinha.se.gov.br",
+      "telefone": "(79) 3544-1291",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000071",
@@ -1091,6 +1299,19 @@
       "email": "ouvidoria@crateus.ce.gov.br",
       "telefone": "(80)0033-0792",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000127",
+      "nome": "OUVIDORIA-GERAL DE MADALENA-CE",
+      "orgao": "MADALENA-CE",
+      "municipio": "MADALENA",
+      "uf": "CE",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoriamadalena2019@gmail.com",
+      "telefone": "(88) 9264-2715",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000058",
