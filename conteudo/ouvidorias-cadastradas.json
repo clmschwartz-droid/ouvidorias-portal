@@ -14,6 +14,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000153",
+      "nome": "Câmara de Vereadores",
+      "orgao": "",
+      "municipio": "Novo Horizonte",
+      "uf": "SC",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "49 999981181",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000145",
       "nome": "Câmara Municipal - Major Vieira/SC",
       "orgao": "",
@@ -326,6 +339,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000154",
+      "nome": "Ouvidoria Central de Franca",
+      "orgao": "",
+      "municipio": "Franca",
+      "uf": "SP",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www3.franca.sp.gov.br/noticia/26081/ouvidoria-municipal.html",
+      "email": "ouvidoria@franca.sp.gov.br",
+      "telefone": "1637119574",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000111",
       "nome": "Ouvidoria da Agência de Regulação e Desenvolvimento do Munícipio de Porto Velho",
       "orgao": "Agência de Regulação e Desenvolvimento do Munícipio de Porto Velho",
@@ -388,6 +414,19 @@
       "site": "",
       "email": "",
       "telefone": "49 35560054",
+      "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000155",
+      "nome": "Ouvidoria da Câmara Municipal de Campos de Júlio - MT",
+      "orgao": "Câmara Municipal de Campos de Júlio",
+      "municipio": "Campos de Júlio",
+      "uf": "MT",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camposdejulio.mt.leg.br/transparencia/ouvidoria",
+      "email": "ouvidoriacamaracdjulio@gmail.com",
+      "telefone": "(65) 3387-1117",
       "atualizado_em": "2026-11-04"
     },
     {
@@ -714,6 +753,19 @@
       "email": "",
       "telefone": "4334725700",
       "atualizado_em": "2026-10-14"
+    },
+    {
+      "id": "OUV-000152",
+      "nome": "Ouvidoria do Sistema Penitenciário do Amazonas",
+      "orgao": "Sistema Penitenciário do Amazonas",
+      "municipio": "Manaus",
+      "uf": "AM",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@seap.am.gov.br",
+      "telefone": "(92) 9 9389-0160",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000049",
