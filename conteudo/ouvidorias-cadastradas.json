@@ -14,6 +14,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000145",
+      "nome": "Câmara Municipal - Major Vieira/SC",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "47 36551130",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000122",
       "nome": "Câmara Municipal de Antônio João MS",
       "orgao": "Câmara Municipal de Antônio João MS",
@@ -24,6 +37,19 @@
       "site": "https://www.antoniojoao.ms.leg.br/ouvidoria",
       "email": "ouvidoria@cmantoniojoa.gov.ms.br",
       "telefone": "6720670110",
+      "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000142",
+      "nome": "Câmara Municipal de Baixo Guandu",
+      "orgao": "Câmara Municipal de Baixo Guandu",
+      "municipio": "Baixo Guandu",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@baixoguandu.es.leg.br",
+      "telefone": "(27) 2180-2001",
       "atualizado_em": "2026-11-04"
     },
     {
@@ -51,6 +77,19 @@
       "email": "ouvidoria@jiparana.ro.leg.br",
       "telefone": "69-99394-1300",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000146",
+      "nome": "Câmara Municipal de Lontras - SC",
+      "orgao": "Câmara Municipal de Lontras",
+      "municipio": "Lontras",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.lontras.sc.leg.br/ouvidoria",
+      "email": "",
+      "telefone": "(47) 3523-0314",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000029",
@@ -300,6 +339,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000147",
+      "nome": "Ouvidoria da Agência Reguladora de Serviços Públicos do Rio Grande do Norte – ARSEP/RN.",
+      "orgao": "Agência Reguladora de Serviços Públicos do Rio Grande do Norte – ARSEP/RN.",
+      "municipio": "Natal",
+      "uf": "RN",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.arsep.rn.gov.br/",
+      "email": "",
+      "telefone": "(84) 98832-8927",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000129",
       "nome": "Ouvidoria da Câmara Municipal de Brochier",
       "orgao": "Câmara Municipal de Brochier",
@@ -365,6 +417,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000148",
+      "nome": "OUVIDORIA DA CÂMARA MUNICIPAL DE TOMAR DO GERU",
+      "orgao": "Câmara Municipal de TOMAR DO GERU",
+      "municipio": "TOMAR DO GERU",
+      "uf": "SE",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "79996058875",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000063",
       "nome": "Ouvidoria da Defensoria Pública de Pernambuco",
       "orgao": "Defensoria Pública de Pernambuco",
@@ -378,6 +443,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000149",
+      "nome": "Ouvidoria da Educação Municipal",
+      "orgao": "Educação Municipal",
+      "municipio": "Contagem",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://portal.contagem.mg.gov.br/portal/secretarias-paginas/228/ouvidoria/",
+      "email": "",
+      "telefone": "(31) 3519-9924",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000067",
       "nome": "Ouvidoria da Prefeitura de Iconha/ES",
       "orgao": "Prefeitura de Iconha/ES",
@@ -389,6 +467,19 @@
       "email": "ouvidoria@iconha.es.gov.br",
       "telefone": "28 3537 1011",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000150",
+      "nome": "OUVIDORIA DA PREFEITURA MUNICIPAL DE CAMPOS DO JORDÃO",
+      "orgao": "Prefeitura Municipal de CAMPOS DO JORDÃO",
+      "municipio": "CAMPOS DO JORDÃO",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://gpmodcamposdojordao.presconinformatica.com.br/gpmodcjd/f?p=205:100110:::::P0_ENTIDADE:3",
+      "email": "ouvidoria@camposdojordao.sp.gov.br",
+      "telefone": "(12) 3668-5550",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000114",
@@ -807,6 +898,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000144",
+      "nome": "Ouvidoria Geral do Município de Guarujá",
+      "orgao": "Município",
+      "municipio": "Guarujá",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.guaruja.sp.gov.br/ouvidoria",
+      "email": "ouvidoria@prefeitura.guaruja.sp.gov.br",
+      "telefone": "(13)33087080",
+      "atualizado_em": "2026-11-04"
+    },
+    {
       "id": "OUV-000041",
       "nome": "Ouvidoria Geral do Município de Itatiba",
       "orgao": "Prefeitura Municipal de Itatiba",
@@ -895,6 +999,19 @@
       "site": "",
       "email": "ouvidoria@ipem.rn.gov.br",
       "telefone": "84 99802-0364",
+      "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000143",
+      "nome": "Ouvidoria Judicial do Tribunal Regional Eleitoral do Pará",
+      "orgao": "Judicial do Tribunal Regional Eleitoral do Pará",
+      "municipio": "Belém",
+      "uf": "PA",
+      "esfera": "",
+      "poder": "Judiciário",
+      "site": "https://www.tre-pa.jus.br/institucional/ouvidoria",
+      "email": "ouvidoria@tre-pa.jus.br",
+      "telefone": "91 3346-8034",
       "atualizado_em": "2026-11-04"
     },
     {
@@ -1429,6 +1546,19 @@
       "email": "ouvidoriaceuazul@gmail.com",
       "telefone": "45 31211002",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000151",
+      "nome": "Prefeitura Municipal - Coqueiros do Sul/RS",
+      "orgao": "",
+      "municipio": "Coqueiros do Sul",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "55 54 3329-7732",
+      "atualizado_em": "2026-11-04"
     },
     {
       "id": "OUV-000048",
