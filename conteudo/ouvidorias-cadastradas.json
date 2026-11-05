@@ -226,13 +226,13 @@
       "nome": "DIVISÃO DE PARTICIPAÇÃO SOCIAL E OUVIDORIA",
       "orgao": "",
       "municipio": "PINHAIS",
-      "uf": "PR",
+      "uf": "",
       "esfera": "Municipal",
       "poder": "Executivo",
       "site": "",
       "email": "ouvidoria.saude@pinhais.pr.gov.br",
       "telefone": "41 99216-2095",
-      "atualizado_em": "2026-11-03"
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000076",
@@ -667,14 +667,14 @@
       "id": "OUV-000104",
       "nome": "Ouvidoria do Ministério do Turismo",
       "orgao": "Ministério do Turismo",
-      "municipio": "",
-      "uf": "",
-      "esfera": "",
+      "municipio": "Brasília",
+      "uf": "DF",
+      "esfera": "Federal",
       "poder": "Executivo",
       "site": "https://www.gov.br/turismo/pt-br/canais_atendimento/ouvidoria",
       "email": "ouvidoria@turismo.gov.br",
       "telefone": "61 2023-7146",
-      "atualizado_em": "2026-11-03"
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000130",
@@ -1002,6 +1002,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000159",
+      "nome": "Ouvidoria Geral do Município de Piratininga",
+      "orgao": "Prefeitura Municipal de Piratininga",
+      "municipio": "Piratininga",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.piratininga.sp.gov.br/pagina/25/ouvidoria",
+      "email": "ouvidoria@piratininga.sp.gov.br",
+      "telefone": "(14) 32659530",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000016",
       "nome": "Ouvidoria Geral do Município de Terra Boa",
       "orgao": "Prefeitura Municipal de Terra Boa",
@@ -1052,6 +1065,19 @@
       "email": "ouvidoria@abaete.mg.gov.br",
       "telefone": "(37)3541-4148",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000158",
+      "nome": "Ouvidoria IMBel",
+      "orgao": "IMBel",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.imbel.gov.br/ouvidoria",
+      "email": "ouvidoria@imbel.gov.br",
+      "telefone": "(61) 3415-4546",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000135",
