@@ -27,6 +27,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000198",
+      "nome": "Câmara de Vereadores de Sertânia-PE",
+      "orgao": "",
+      "municipio": "Sertânia",
+      "uf": "PE",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@sertania.pe.leg.br",
+      "telefone": "87988086156",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000145",
       "nome": "Câmara Municipal - Major Vieira/SC",
       "orgao": "",
@@ -209,6 +222,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000197",
+      "nome": "Camara Municipal de Vereadores de Angelina",
+      "orgao": "Câmara Municipal de Vereadores",
+      "municipio": "Angelina",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://camaraangelina.sc.gov.br/",
+      "email": "",
+      "telefone": "48 32741402",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000062",
       "nome": "Câmara Municipal de Vereadores de Botuverá",
       "orgao": "Câmara Municipal de Vereadores de Botuverá",
@@ -220,6 +246,19 @@
       "email": "",
       "telefone": "47 3359-1223",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000209",
+      "nome": "Câmara Municipal de Xanxerê",
+      "orgao": "Câmara Municipal de Xanxerê",
+      "municipio": "Xanxerê",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camaraxanxere.sc.gov.br/ouvidoria",
+      "email": "",
+      "telefone": "(49) 3430-0648",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000160",
@@ -246,6 +285,19 @@
       "email": "",
       "telefone": "(11) 3884-1489",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000214",
+      "nome": "Conselho Regional de Farmácia de Sergipe",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Federal",
+      "poder": "",
+      "site": "",
+      "email": "",
+      "telefone": "(79) 98127-3359",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000106",
@@ -298,6 +350,19 @@
       "email": "ouvidoria@ifpi.edu.br",
       "telefone": "(86) 3131-1474",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000206",
+      "nome": "Município de Cordilheira Alta",
+      "orgao": "Prefeitura Municipal de Cordilheira Alta",
+      "municipio": "Cordilheira Alta",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@pmcordi.sc.gov.br",
+      "telefone": "(49)33589114",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000027",
@@ -456,6 +521,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000210",
+      "nome": "OUVIDORIA CASA CIVIL ACRE",
+      "orgao": "CASA CIVIL ACRE",
+      "municipio": "Rio Branco",
+      "uf": "AC",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "(68) 3215-2878",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000154",
       "nome": "Ouvidoria Central de Franca",
       "orgao": "",
@@ -493,6 +571,19 @@
       "email": "",
       "telefone": "(84) 98832-8927",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000212",
+      "nome": "Ouvidoria da Câmara de Apucarana",
+      "orgao": "Câmara de Apucarana",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "https://www.apucarana.pr.leg.br",
+      "email": "ouvidoria@apucarana.pr.leg.br",
+      "telefone": "4334207000",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000129",
@@ -768,6 +859,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000204",
+      "nome": "Ouvidoria da Superintendencia Estadual de Habitação - SUHAB",
+      "orgao": "Superintendencia Estadual de Habitação - SUHAB",
+      "municipio": "Manaus",
+      "uf": "AM",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.suhab.am.gov.br/ouvidoria/",
+      "email": "ouvidoria@suhab.am.gov.br",
+      "telefone": "92992293492",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000162",
       "nome": "Ouvidoria da UFFS",
       "orgao": "UFFS",
@@ -898,6 +1002,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000199",
+      "nome": "Ouvidoria do Município de Guarulhos",
+      "orgao": "Prefeitura Municipal de Guarulhos",
+      "municipio": "Guarulhos",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.guarulhos.sp.gov.br/ouvidoria-do-municipio",
+      "email": "ouvidoria@guarulhos.sp.gov.br",
+      "telefone": "80 00551715",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000037",
       "nome": "Ouvidoria do Municipio de Iracemápolis",
       "orgao": "Prefeitura Municipal de Iracemápolis",
@@ -909,6 +1026,19 @@
       "email": "ouvidoria@iracemapolis.sp.gov.br",
       "telefone": "(19)99611-9811",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000215",
+      "nome": "Ouvidoria do Município de Itá SC",
+      "orgao": "Prefeitura Municipal de Itá SC",
+      "municipio": "Itá SC",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@ita.sc.gov.br",
+      "telefone": "49 34589505",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000128",
@@ -935,6 +1065,19 @@
       "email": "ouvidoria@manoelurbano.ac.gov.br",
       "telefone": "6899604-2520",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000205",
+      "nome": "Ouvidoria do Município de Paraíso/SC",
+      "orgao": "Município de Paraíso/SC",
+      "municipio": "Paraíso",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://falabr.cgu.gov.br/v2/",
+      "email": "ouvidoria@paraiso.sc.gov.br",
+      "telefone": "(49) 3627-0077",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000097",
@@ -987,6 +1130,19 @@
       "email": "ouvidoria@seap.am.gov.br",
       "telefone": "(92) 9 9389-0160",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000217",
+      "nome": "Ouvidoria do Tribunal Regional do Trabalho da 8ª Região",
+      "orgao": "Tribunal Regional do Trabalho da 8ª Região",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Judiciário",
+      "site": "https://www.trt8.jus.br/ouvidoria",
+      "email": "ouvidoria@trt8.jus.br",
+      "telefone": "(91) 4008-7250",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000049",
@@ -1351,6 +1507,19 @@
       "email": "ouvidoria@terraboa.pr.gov.br",
       "telefone": "(44) 3641-8037",
       "atualizado_em": "2026-10-08"
+    },
+    {
+      "id": "OUV-000207",
+      "nome": "Ouvidoria Geral do Município de Três Marias",
+      "orgao": "MUNICÍPIO",
+      "municipio": "Três Marias",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.tresmarias.mg.gov.br/ouvidoria",
+      "email": "ouvidoria@tresmarias.mg.gov.br",
+      "telefone": "38 3754-8954",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000065",
@@ -1730,6 +1899,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000216",
+      "nome": "Ouvidoria Parlamentar da Câmara Municipal de Ubá/MG",
+      "orgao": "Parlamentar da Câmara Municipal de Ubá/MG",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.uba.mg.leg.br/transparencia/lai/ouvidoria/",
+      "email": "ouvidoria@uba.mg.leg.br",
+      "telefone": "3235395000",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000185",
       "nome": "Ouvidoria Poder Executivo da Cidade de Ipê",
       "orgao": "- PODER EXECUTIVO",
@@ -1873,6 +2055,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000213",
+      "nome": "OUVIDORIA-GERAL DA UFAL",
+      "orgao": "UFAL",
+      "municipio": "Maceió",
+      "uf": "AL",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://ufal.br/ouvidoria",
+      "email": "ouvidoria@ufal.br",
+      "telefone": "(82) 3214-1908",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000068",
       "nome": "Ouvidoria-Geral da UFMT",
       "orgao": "UFMT",
@@ -1949,6 +2144,19 @@
       "email": "ouvidoriadepolicia@sesp.mt.gov.br",
       "telefone": "(65) 98145-0554",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000200",
+      "nome": "Ouvidoria-Geral do Município de Aracruz/ES",
+      "orgao": "Município de Aracruz/ES",
+      "municipio": "Aracruz",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://aracruz.es.gov.br/secretarias/ouvidoria",
+      "email": "ouvidoria@aracruz.es.gov.br",
+      "telefone": "2732707050",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000018",
@@ -2078,6 +2286,19 @@
       "site": "https://navirai.ms.gov.br/cargo/ouvidoria",
       "email": "ouvidoria@navirai.ms.gov.br",
       "telefone": "(67) (67) 3409-1599",
+      "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000208",
+      "nome": "Prefeitura Municipal de Vargem Bonita",
+      "orgao": "Prefeitura Municipal de Vargem Bonita",
+      "municipio": "Vargem Bonita",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "(49) 3548-3000",
       "atualizado_em": "2026-11-05"
     },
     {
