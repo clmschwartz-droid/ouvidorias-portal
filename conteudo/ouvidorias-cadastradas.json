@@ -183,6 +183,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000160",
+      "nome": "COMPANHIA DOCAS DO PARÁ",
+      "orgao": "",
+      "municipio": "",
+      "uf": "PA",
+      "esfera": "",
+      "poder": "",
+      "site": "https://www.cdp.com.br/",
+      "email": "ouvidoria@cdp.com.br",
+      "telefone": "(91)99243-5709",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000069",
       "nome": "Conselho Regional de Biologia - 1ª Região (SP, MT, MS)",
       "orgao": "",
@@ -597,6 +610,19 @@
       "email": "ouvidoria@saude.niteroi.rj.gov.br",
       "telefone": "(21) 96955-7808 (WhatsApp)",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000162",
+      "nome": "Ouvidoria da UFFS",
+      "orgao": "UFFS",
+      "municipio": "Chapecó",
+      "uf": "SC",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://uffs.edu.br/uffs/ouvidoria/apresentacao#texto",
+      "email": "ouvidoria@uffs.edu.br",
+      "telefone": "(49) 2049 3737",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000055",
@@ -1624,6 +1650,19 @@
       "email": "ouvidoria@cmc.pr.gov.br",
       "telefone": "(41) 3350-4903",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000161",
+      "nome": "Prefeitura de Xangri-lá",
+      "orgao": "",
+      "municipio": "",
+      "uf": "RS",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@xangrila.rs.gov.br",
+      "telefone": "51 98026-7259",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000061",
