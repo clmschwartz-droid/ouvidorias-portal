@@ -66,6 +66,32 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000182",
+      "nome": "Câmara Municipal de Cafelândia",
+      "orgao": "Câmara Municipal de Cafelândia",
+      "municipio": "Cafelândia",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@camaracafelandia.sp.gov.br",
+      "telefone": "(14) 3554-1808",
+      "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000186",
+      "nome": "Câmara Municipal de Careaçu",
+      "orgao": "Câmara Municipal de Careaçu",
+      "municipio": "Careaçu",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@careacu.mg.leg.br",
+      "telefone": "(35) 3452-1212",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000045",
       "nome": "Câmara Municipal de Cristiano Otoni",
       "orgao": "Câmara Municipal de Cristiano Otoni",
@@ -129,6 +155,19 @@
       "email": "ouvidoria@camarademachadinho.ro.gov.br",
       "telefone": "(69) 3581-2561",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000181",
+      "nome": "Câmara Municipal de Manduri/SP",
+      "orgao": "",
+      "municipio": "Manduri",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camaramanduri.sp.gov.br/ouvidoria/",
+      "email": "",
+      "telefone": "(14) 3356-1614",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000024",
@@ -274,6 +313,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000183",
+      "nome": "Municipio de Ponte Serrada",
+      "orgao": "Prefeitura Municipal de Ponte Serrada",
+      "municipio": "Ponte Serrada",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://falabr.cgu.gov.br/v2/",
+      "email": "ouvidoria@ponteserrada.sc.gov.br",
+      "telefone": "4934356017",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000167",
       "nome": "Município de Renascença",
       "orgao": "Prefeitura Municipal de Renascença",
@@ -311,6 +363,19 @@
       "email": "ouvidoriasusces@ses.mt.gov.br",
       "telefone": "(80)0647-1213",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000177",
+      "nome": "Ouvidor Público da Câmara municipal de Antonio Olinto",
+      "orgao": "Câmara Municipal de Antonio Olinto",
+      "municipio": "Antonio Olinto",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.antonioolinto.pr.leg.br/ouvidoria",
+      "email": "ouvidoriacm@antonioolinto.pr.gov.br",
+      "telefone": "42 3533-1517",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000021",
@@ -363,6 +428,19 @@
       "email": "ouvidoria@atibaia.sp.gov.br",
       "telefone": "(11) 4418-7800",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000178",
+      "nome": "Ouvidoria Câmara Municipal de José Boiteux",
+      "orgao": "Câmara Municipal de José Boiteux",
+      "municipio": "José Boiteux",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camarajoseboiteux.sc.gov.br/",
+      "email": "",
+      "telefone": "4733527184",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000098",
@@ -495,6 +573,19 @@
       "atualizado_em": "2026-11-05"
     },
     {
+      "id": "OUV-000179",
+      "nome": "Ouvidoria da Câmara Municipal de Ipiranga do Norte",
+      "orgao": "Câmara Municipal de Ipiranga do Norte",
+      "municipio": "Ipiranga do Norte",
+      "uf": "MT",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.ipirangadonorte.mt.leg.br/ouvidoria-e-acesso-a-informacao-1/ouvidoria-e-acesso-a-informacao",
+      "email": "ouvidoriacm@ipirangadonorte.mt.leg.br",
+      "telefone": "(66) 9 9227-6119",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000031",
       "nome": "OUVIDORIA DA CÂMARA MUNICIPAL DE JI- PARANÁ",
       "orgao": "Câmara Municipal de JI- PARANÁ",
@@ -506,6 +597,19 @@
       "email": "ouvidoria@jiparana.ro.leg.br",
       "telefone": "69-9-9394-1300",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000194",
+      "nome": "Ouvidoria da Câmara Municipal de Sabáudia",
+      "orgao": "Câmara Municipal de Sabáudia",
+      "municipio": "Sabáudia",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://falabr.cgu.gov.br/v2/",
+      "email": "",
+      "telefone": "(43) 3151-1800",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000148",
@@ -716,6 +820,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000187",
+      "nome": "Ouvidoria de Sengés",
+      "orgao": "",
+      "municipio": "",
+      "uf": "PR",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.senges.pr.gov.br/portal/ouvidoria.php",
+      "email": "ouvidoria@senges.pr.gov.br",
+      "telefone": "4335671222",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000075",
       "nome": "Ouvidoria do CRMV-RJ",
       "orgao": "CRMV-RJ",
@@ -898,6 +1015,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000180",
+      "nome": "OUVIDORIA FUHAM",
+      "orgao": "FUHAM",
+      "municipio": "",
+      "uf": "AM",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@fuham.am.gov.br",
+      "telefone": "9236325894",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000084",
       "nome": "Ouvidoria Geral - Prefeitura Municipal de Irupi-ES",
       "orgao": "Prefeitura Municipal de Irupi",
@@ -1002,6 +1132,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000195",
+      "nome": "Ouvidoria Geral de Gloria de Dourados - MS",
+      "orgao": "Gloria de Dourados - MS",
+      "municipio": "",
+      "uf": "MS",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://gloriadedourados.ms.gov.br/p/ouvidoria-geral-do-municipio/",
+      "email": "ouvidoria@gloriadedourados.ms.gov.br",
+      "telefone": "0800 321 0102",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000047",
       "nome": "Ouvidoria Geral do  Município de Itapeva",
       "orgao": "Prefeitura Municipal de Itapeva",
@@ -1028,6 +1171,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000184",
+      "nome": "Ouvidoria Geral do Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina",
+      "orgao": "Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina",
+      "municipio": "Florianópolis",
+      "uf": "SC",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www.ifsc.edu.br/en/ouvidoria",
+      "email": "ouvidoria@ifsc.edu.br",
+      "telefone": "(48) 3877 9082",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000054",
       "nome": "Ouvidoria Geral do Município",
       "orgao": "Município",
@@ -1052,6 +1208,19 @@
       "email": "ouvidoria@itupiranga.pa.gov.br",
       "telefone": "94-981099827",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000191",
+      "nome": "OUVIDORIA GERAL DO MUNICÍPIO DE BARCARENA",
+      "orgao": "Prefeitura Municipal de BARCARENA",
+      "municipio": "BARCARENA",
+      "uf": "PA",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.portalcr2.com.br/ouvidoria/ouvidoria-barcarena",
+      "email": "ouvidoria@barcarena.pa.gov.br",
+      "telefone": "(91) 99154-9597",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000077",
@@ -1142,6 +1311,32 @@
       "site": "https://www.piratininga.sp.gov.br/pagina/25/ouvidoria",
       "email": "ouvidoria@piratininga.sp.gov.br",
       "telefone": "(14) 32659530",
+      "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000196",
+      "nome": "Ouvidoria Geral do Município de Presidente Getúlio",
+      "orgao": "Prefeitura Municipal de Presidente Getúlio",
+      "municipio": "Presidente Getúlio",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://presidentegetulio.atende.net/cidadao/pagina/ouvidoria",
+      "email": "ouvidoria@presidentegetulio.sc.gov.br",
+      "telefone": "47 3352-5500 - Ramal 529",
+      "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000189",
+      "nome": "Ouvidoria Geral do Município de Rio do Sul",
+      "orgao": "MUNICÍPIO",
+      "municipio": "",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@riodosul.sc.gov.br",
+      "telefone": "(47) 3531 1234",
       "atualizado_em": "2026-11-05"
     },
     {
@@ -1535,6 +1730,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000185",
+      "nome": "Ouvidoria Poder Executivo da Cidade de Ipê",
+      "orgao": "- PODER EXECUTIVO",
+      "municipio": "IPÊ",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://pmipe.rs.gov.br/ouvidoria",
+      "email": "ouvidoria@pmipe.rs.gov.br",
+      "telefone": "5432331050",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000115",
       "nome": "Ouvidoria Prefeitura Municipal de Itabaianinha/SE",
       "orgao": "Prefeitura Municipal de Itabaianinha/SE",
@@ -1792,6 +2000,19 @@
       "site": "",
       "email": "ouvidoria@xangrila.rs.gov.br",
       "telefone": "51 98026-7259",
+      "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000188",
+      "nome": "Prefeitura Muncipal de Balneário Barra do Sul",
+      "orgao": "",
+      "municipio": "",
+      "uf": "SC",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://falabr.cgu.gov.br/v2/?uf=SC&municipio=BalnearioBarradoSul",
+      "email": "ouvidoria@balneariobarradosul.sc.gov.br",
+      "telefone": "4734481043",
       "atualizado_em": "2026-11-05"
     },
     {
