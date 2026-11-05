@@ -274,6 +274,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000167",
+      "nome": "Município de Renascença",
+      "orgao": "Prefeitura Municipal de Renascença",
+      "municipio": "Renascença",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://renascenca.oxy.elotech.com.br/governo-digital/servicos/ouvidoria",
+      "email": "ouvidoria2@renascenca.pr.gov.br",
+      "telefone": "46991280345",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000030",
       "nome": "OGSUS/SESAU/RR",
       "orgao": "",
@@ -311,6 +324,19 @@
       "email": "ouvidoriaagepar@agepar.pr.gov.br",
       "telefone": "41 3210 4823",
       "atualizado_em": "2026-10-14"
+    },
+    {
+      "id": "OUV-000176",
+      "nome": "Ouvidoria - Universidade Federal de Rondonópolis",
+      "orgao": "- Universidade Federal de Rondonópolis",
+      "municipio": "Rondonópolis",
+      "uf": "MT",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://ufr.edu.br/ouvidoria/",
+      "email": "ouvidoria@ufr.edu.br",
+      "telefone": "(66) 3410-4114",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000088",
@@ -456,6 +482,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000170",
+      "nome": "Ouvidoria da Câmara Municipal de Ilhabela",
+      "orgao": "Câmara Municipal de Ilhabela",
+      "municipio": "Ilhabela",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camarailhabela.sp.gov.br/ouvidoria.php",
+      "email": "ouvidoria@camarailhabela.sp.gov.br",
+      "telefone": "1238969600",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000031",
       "nome": "OUVIDORIA DA CÂMARA MUNICIPAL DE JI- PARANÁ",
       "orgao": "Câmara Municipal de JI- PARANÁ",
@@ -532,6 +571,19 @@
       "email": "ouvidoria@camposdojordao.sp.gov.br",
       "telefone": "(12) 3668-5550",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000175",
+      "nome": "Ouvidoria da Prefeitura Municipal de Ipueira",
+      "orgao": "Prefeitura Municipal de Ipueira",
+      "municipio": "Ipueira",
+      "uf": "RN",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "http://prefeituradeipueira.ageassessoria.com.br/c/9aba5df8-8495-47d8-b703-be733ebfcb7a",
+      "email": "ouvidoria@ipueira.rn.gov.br",
+      "telefone": "(84) 98697-6422",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000114",
@@ -622,6 +674,19 @@
       "site": "https://uffs.edu.br/uffs/ouvidoria/apresentacao#texto",
       "email": "ouvidoria@uffs.edu.br",
       "telefone": "(49) 2049 3737",
+      "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000171",
+      "nome": "Ouvidoria da UNILAB",
+      "orgao": "UNILAB",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://unilab.edu.br/ouvidoria/",
+      "email": "ouvidoria@unilab.edu.br",
+      "telefone": "(85) 2222-0841",
       "atualizado_em": "2026-11-05"
     },
     {
@@ -781,6 +846,19 @@
       "atualizado_em": "2026-10-14"
     },
     {
+      "id": "OUV-000174",
+      "nome": "OUVIDORIA DO SERVIÇO DE LIMPEZA URBANA DO DISTRITO FEDERAL",
+      "orgao": "SERVIÇO DE LIMPEZA URBANA DO DISTRITO FEDERAL",
+      "municipio": "Brasília",
+      "uf": "DF",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www.slu.df.gov.br/category/ouvidoria/",
+      "email": "ouvidoria@slu.df.gov.br",
+      "telefone": "(61) 3213 0153",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000152",
       "nome": "Ouvidoria do Sistema Penitenciário do Amazonas",
       "orgao": "Sistema Penitenciário do Amazonas",
@@ -898,6 +976,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000168",
+      "nome": "Ouvidoria Geral da Uern",
+      "orgao": "Uern",
+      "municipio": "Mossoró",
+      "uf": "RN",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://portal.uern.br/ouviuern/",
+      "email": "ouvidoria@uern.br",
+      "telefone": "84986493426",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000040",
       "nome": "Ouvidoria Geral dde Pinhais",
       "orgao": "dde Pinhais",
@@ -974,6 +1065,19 @@
       "email": "ouvidoria@cacaulandia.ro.gov.br",
       "telefone": "69 99239-1426",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000173",
+      "nome": "Ouvidoria Geral do Município de Deodápolis”",
+      "orgao": "Prefeitura Municipal de Deodápolis”",
+      "municipio": "Deodápolis”",
+      "uf": "MS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.deodapolis.ms.gov.br/",
+      "email": "ouvidoria@deodapolis.ms.gov.br",
+      "telefone": "(67) 2180-0805",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000033",
@@ -1392,6 +1496,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000163",
+      "nome": "Ouvidoria Municipal São João do Itaperiú",
+      "orgao": "",
+      "municipio": "São João do Itaperiú",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@pmsji.sc.gov.br",
+      "telefone": "(41) 99846-0533",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000079",
       "nome": "Ouvidoria Municipal Setorial da Saúde de Florianópolis",
       "orgao": "Municipal Setorial da Saúde de Florianópolis",
@@ -1652,6 +1769,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000169",
+      "nome": "Prefeitura de Santa Maria de Jetibá",
+      "orgao": "",
+      "municipio": "Santa Maria de Jetibá",
+      "uf": "ES",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://portal.pmsmj.es.gov.br/",
+      "email": "ouvidoria@pmsmj.es.gov.br",
+      "telefone": "0800.000.4845",
+      "atualizado_em": "2026-11-05"
+    },
+    {
       "id": "OUV-000161",
       "nome": "Prefeitura de Xangri-lá",
       "orgao": "",
@@ -1715,6 +1845,19 @@
       "email": "ouvidoria@iuna.es.gov.br",
       "telefone": "(28) 99884-3729",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000172",
+      "nome": "Prefeitura Municipal de Naviraí",
+      "orgao": "Prefeitura Municipal de Naviraí",
+      "municipio": "Naviraí",
+      "uf": "MS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://navirai.ms.gov.br/cargo/ouvidoria",
+      "email": "ouvidoria@navirai.ms.gov.br",
+      "telefone": "(67) (67) 3409-1599",
+      "atualizado_em": "2026-11-05"
     },
     {
       "id": "OUV-000134",
