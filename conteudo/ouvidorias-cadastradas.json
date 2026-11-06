@@ -105,6 +105,19 @@
       "atualizado_em": "2026-11-05"
     },
     {
+      "id": "OUV-000222",
+      "nome": "Câmara Municipal de Conceição do Mato Dentro",
+      "orgao": "Câmara Municipal de Conceição do Mato Dentro",
+      "municipio": "Conceição do Mato Dentro",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@camaracmd.mg.gov.br",
+      "telefone": "31- 3868 2000",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000045",
       "nome": "Câmara Municipal de Cristiano Otoni",
       "orgao": "Câmara Municipal de Cristiano Otoni",
@@ -688,6 +701,19 @@
       "email": "ouvidoria@jiparana.ro.leg.br",
       "telefone": "69-9-9394-1300",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000220",
+      "nome": "Ouvidoria da Câmara Municipal de João Monlevade",
+      "orgao": "Câmara Municipal de João Monlevade",
+      "municipio": "João Monlevade",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoriacmjm@gmail.com",
+      "telefone": "(31) 3859-0742",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000194",
@@ -2365,6 +2391,19 @@
       "email": "ouvidoria@saaeangra.com.br",
       "telefone": "24 3377-6551",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000219",
+      "nome": "Universidade Federal de Itajubá",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://ouvidoria.unifei.edu.br",
+      "email": "ouvidoria@unifei.edu.br",
+      "telefone": "(35)3629-1314",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000133",
