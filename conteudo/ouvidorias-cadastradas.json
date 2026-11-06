@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "OUV-000240",
+      "nome": "Câmara da câmara Municipal de Cuiabá",
+      "orgao": "Câmara Municipal de Cuiabá",
+      "municipio": "Cuiabá",
+      "uf": "MT",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camaracuiaba.mt.gov.br/ouvidoria",
+      "email": "ouvidoria@camaracuiaba.mt.gov.br",
+      "telefone": "65 3617-1571",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000125",
       "nome": "Câmara De Piraquara",
       "orgao": "",
@@ -235,6 +248,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000235",
+      "nome": "Câmara Municipal de Santana do Paraíso",
+      "orgao": "Câmara Municipal de Santana do Paraíso",
+      "municipio": "Santana do Paraíso",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "3132515433",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000197",
       "nome": "Camara Municipal de Vereadores de Angelina",
       "orgao": "Câmara Municipal de Vereadores",
@@ -272,6 +298,19 @@
       "email": "",
       "telefone": "(49) 3430-0648",
       "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000239",
+      "nome": "CGE- PR",
+      "orgao": "",
+      "municipio": "Curitiba",
+      "uf": "PR",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.cge.pr.gov.br/Pagina/Registre-sua-Manifestacao",
+      "email": "ouvidoria@cge.pr.gov.br",
+      "telefone": "0800-041-1113",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000160",
@@ -324,6 +363,19 @@
       "email": "ouvidoria@crf-pr.org.br",
       "telefone": "4133630234",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000238",
+      "nome": "Coordenação de Ouvidoria-Geral de Florianópolis",
+      "orgao": "",
+      "municipio": "Florianópolis",
+      "uf": "SC",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.pmf.sc.gov.br/ouvidoria/index.php",
+      "email": "ouvidoria@floripa.sc.gov.br",
+      "telefone": "8002341777",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000019",
@@ -469,6 +521,19 @@
       "atualizado_em": "2026-10-14"
     },
     {
+      "id": "OUV-000237",
+      "nome": "Ouvidoria - Prefeitura Municipal de Cerejeiras",
+      "orgao": "Prefeitura Municipal de Cerejeiras",
+      "municipio": "Cerejeiras",
+      "uf": "RO",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@cerejeiras.ro.gov.br",
+      "telefone": "(69) 99237-1697",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000176",
       "nome": "Ouvidoria - Universidade Federal de Rondonópolis",
       "orgao": "- Universidade Federal de Rondonópolis",
@@ -506,6 +571,19 @@
       "email": "ouvidoria@atibaia.sp.gov.br",
       "telefone": "(11) 4418-7800",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000227",
+      "nome": "Ouvidoria Câmara Municipal de Alumínio",
+      "orgao": "Câmara Municipal de Alumínio",
+      "municipio": "Alumínio",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camaraaluminio.sp.gov.br/Ouvidoria",
+      "email": "ouvidoria@camaraaluminio.sp.gov.br",
+      "telefone": "(11) 4715-4700",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000178",
@@ -768,6 +846,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000242",
+      "nome": "OUVIDORIA DA GUARDA CIVIL MUNICIPAL DE SAO JOSE DO RIO PRETO",
+      "orgao": "Prefeitura Municipal de SAO JOSE DO RIO PRETO",
+      "municipio": "SAO JOSE DO RIO PRETO",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria.gcm@riopreto.sp.gov.br",
+      "telefone": "173211-6398",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000067",
       "nome": "Ouvidoria da Prefeitura de Iconha/ES",
       "orgao": "Prefeitura de Iconha/ES",
@@ -872,6 +963,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000244",
+      "nome": "Ouvidoria da Prefeitura Municipal de Treze de Maio SC.",
+      "orgao": "Prefeitura Municipal de Treze de Maio SC.",
+      "municipio": "Treze de Maio SC.",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://trezedemaio.sc.gov.br/ouvidoria-2/",
+      "email": "ouvidoria@trezedemaio.sc.gov.br",
+      "telefone": "48 996790898",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000007",
       "nome": "Ouvidoria da Secretaria Municipal de Saúde de Niterói",
       "orgao": "Secretaria Municipal de Saúde de Niterói",
@@ -896,6 +1000,19 @@
       "email": "ouvidoria@suhab.am.gov.br",
       "telefone": "92992293492",
       "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000229",
+      "nome": "Ouvidoria da UFAPE",
+      "orgao": "UFAPE",
+      "municipio": "Garanhuns",
+      "uf": "PE",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://ufape.edu.br/ouvidoria",
+      "email": "ouvidoria@ufape.edu.br",
+      "telefone": "87999214622",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000162",
@@ -987,6 +1104,32 @@
       "email": "ouvidoria@ifro.edu.br",
       "telefone": "69 99266-5080",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000231",
+      "nome": "Ouvidoria do Instituto Federal de Brasília",
+      "orgao": "Instituto Federal de Brasília",
+      "municipio": "Brasília",
+      "uf": "DF",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www.ifb.edu.br/institucional/ouvidoria",
+      "email": "ouvidoria@ifb.edu.br",
+      "telefone": "(61) 2103-2106",
+      "atualizado_em": "2026-11-06"
+    },
+    {
+      "id": "OUV-000226",
+      "nome": "Ouvidoria do Instituto Nacional da Propriedade Intelectual - INPI",
+      "orgao": "Instituto Nacional da Propriedade Intelectual - INPI",
+      "municipio": "Rio de Janeiro",
+      "uf": "RJ",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.gov.br/inpi/pt-br/governanca/ouvidoria",
+      "email": "ouvidoria@inpi.gov.br",
+      "telefone": "(21) 3037-3000",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000038",
@@ -1301,6 +1444,19 @@
       "atualizado_em": "2026-11-05"
     },
     {
+      "id": "OUV-000225",
+      "nome": "Ouvidoria Geral da Universidade Federal do Cariri",
+      "orgao": "Universidade Federal do Cariri",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www.ufca.edu.br/instituicao/administrativo/estrutura-organizacional/orgaos-complementares/ouvidoria/",
+      "email": "ouvidoria@ufca.edu.br",
+      "telefone": "(88) 3221-9485",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000040",
       "nome": "Ouvidoria Geral dde Pinhais",
       "orgao": "dde Pinhais",
@@ -1364,6 +1520,19 @@
       "email": "ouvidoria@ifsc.edu.br",
       "telefone": "(48) 3877 9082",
       "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000224",
+      "nome": "Ouvidoria Geral do Instituto Federal do Sudeste de Minas Gerais",
+      "orgao": "Instituto Federal do Sudeste de Minas Gerais",
+      "municipio": "Juiz de Fora",
+      "uf": "MG",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www.ifsudestemg.edu.br/institucional/ouvidoria",
+      "email": "ouvidoria@ifsudestemg.edu.br",
+      "telefone": "(32)98435-1029",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000054",
@@ -1468,6 +1637,19 @@
       "email": "ouvidoria@ouvidoria.itatiba.sp.gov.br",
       "telefone": "(11) 4524-1756",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000230",
+      "nome": "Ouvidoria Geral do Municipio de Mossoró",
+      "orgao": "Prefeitura Municipal de Mossoró",
+      "municipio": "Mossoró",
+      "uf": "RN",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://prefeiturademossoro.com.br/ouvidoria",
+      "email": "ouvidoria@prefeiturademossoro.com.br",
+      "telefone": "8421426604",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000089",
@@ -1795,6 +1977,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000234",
+      "nome": "Ouvidoria Municipal de Lavras - MG",
+      "orgao": "Prefeitura Municipal de Lavras",
+      "municipio": "Lavras",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@lavras.mg.gov.br",
+      "telefone": "35 3694-4125",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000107",
       "nome": "Ouvidoria Municipal de Luiz Alves/SC",
       "orgao": "Municipal de Luiz Alves/SC",
@@ -1871,6 +2066,19 @@
       "email": "ouvidoria@tamandare.pe.gov.br",
       "telefone": "81 983740217",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000241",
+      "nome": "Ouvidoria Municipal de Videira",
+      "orgao": "Prefeitura Municipal de Videira",
+      "municipio": "Videira",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://videira.atende.net/autoatendimento/servicos/ouvidoria-municipal/detalhar/1",
+      "email": "ouvidoria@videira.sc.gov.br",
+      "telefone": "(49) 3090-2713",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000139",
@@ -2014,6 +2222,19 @@
       "email": "ouvidoria@educacao.riopreto.gov.sp.br",
       "telefone": "17 32114000",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000236",
+      "nome": "Ouvidoria Setorial do Instituto Federal do Triângulo Mineiro - IFTM",
+      "orgao": "Setorial do Instituto Federal do Triângulo Mineiro - IFTM",
+      "municipio": "Uberaba",
+      "uf": "MG",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://iftm.edu.br/ouvidoria/",
+      "email": "ouvidoria@iftm.edu.br",
+      "telefone": "34-33261174",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000017",
@@ -2289,6 +2510,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000228",
+      "nome": "Prefeitura Municipal de Dionísio Cerqueira",
+      "orgao": "Prefeitura Municipal de Dionísio Cerqueira",
+      "municipio": "Dionísio Cerqueira",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "4936446710",
+      "atualizado_em": "2026-11-06"
+    },
+    {
       "id": "OUV-000100",
       "nome": "Prefeitura Municipal de Iúna - ES",
       "orgao": "Prefeitura Municipal de Iúna",
@@ -2313,6 +2547,32 @@
       "email": "ouvidoria@navirai.ms.gov.br",
       "telefone": "(67) (67) 3409-1599",
       "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000232",
+      "nome": "Prefeitura Municipal De São Domingos",
+      "orgao": "Prefeitura Municipal de São Domingos",
+      "municipio": "São Domingos",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@saodomingos.sc.gov.br",
+      "telefone": "49 34430281",
+      "atualizado_em": "2026-11-06"
+    },
+    {
+      "id": "OUV-000245",
+      "nome": "Prefeitura Municipal de Silveiras",
+      "orgao": "Prefeitura Municipal de Silveiras",
+      "municipio": "Silveiras",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@silveiras.sp.gov.br",
+      "telefone": "(12) 31061114",
+      "atualizado_em": "2026-11-06"
     },
     {
       "id": "OUV-000208",
