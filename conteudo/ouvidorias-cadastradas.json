@@ -1288,6 +1288,19 @@
       "atualizado_em": "2026-11-06"
     },
     {
+      "id": "OUV-000233",
+      "nome": "Ouvidoria do IPUB/UFRJ",
+      "orgao": "IPUB/UFRJ",
+      "municipio": "Rio de Janeiro",
+      "uf": "RJ",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.ipub.ufrj.br/ouvidoria-ipub-ufrj/",
+      "email": "ouvidoria@ipub.ufrj.br",
+      "telefone": "(21) 99077-2922",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000266",
       "nome": "Ouvidoria do Ministério da Igualdade Racial",
       "orgao": "Ministério da Igualdade Racial",
@@ -2729,6 +2742,19 @@
       "email": "ouvidoriamunicipal@mallet.pr.gov.br",
       "telefone": "0800 542 1204",
       "atualizado_em": "2026-10-09"
+    },
+    {
+      "id": "OUV-000252",
+      "nome": "OUVILEGIS",
+      "orgao": "",
+      "municipio": "Curitiba",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.cmc.pr.gov.br/atendimento/ouvidoria",
+      "email": "ouvidoria@cmc.pr.gov.br",
+      "telefone": "( 41) 3350 4903",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000009",
