@@ -794,6 +794,19 @@
       "atualizado_em": "2026-11-09"
     },
     {
+      "id": "OUV-000201",
+      "nome": "Ouvidoria da Câmara Municipal de Araguari",
+      "orgao": "Câmara Municipal de Araguari",
+      "municipio": "Araguari",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "http://www.araguari.mg.leg.br/ouvidoria",
+      "email": "ouvidoria@araguari.mg.leg.br",
+      "telefone": "34-3249-1111",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000129",
       "nome": "Ouvidoria da Câmara Municipal de Brochier",
       "orgao": "Câmara Municipal de Brochier",
@@ -1834,6 +1847,19 @@
       "atualizado_em": "2026-11-05"
     },
     {
+      "id": "OUV-000202",
+      "nome": "Ouvidoria Geral do Município de Frei Rogério",
+      "orgao": "Prefeitura Municipal de Frei Rogério",
+      "municipio": "Frei Rogério",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "http://freirogerio.sc.gov.br",
+      "email": "ouvidoria@freirogerio.sc.gv.br",
+      "telefone": "49 989229552",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000033",
       "nome": "Ouvidoria Geral do Município de Garopaba",
       "orgao": "Prefeitura Municipal de Garopaba",
@@ -2248,6 +2274,19 @@
       "email": "ouvidoriamunicipal@guaxupe.mg.gov.br",
       "telefone": "(35) 3551-5566",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000223",
+      "nome": "Ouvidoria Municipal de Inocência MS",
+      "orgao": "Prefeitura Municipal de Inocência MS",
+      "municipio": "Inocência MS",
+      "uf": "MS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.inocencia.ms.gov.br/portal/ouvidoria",
+      "email": "ouvidoria@inocencia.ms.gov.br",
+      "telefone": "(67) 981639021",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000035",
