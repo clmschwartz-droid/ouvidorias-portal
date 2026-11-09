@@ -1002,6 +1002,19 @@
       "atualizado_em": "2026-11-09"
     },
     {
+      "id": "OUV-000136",
+      "nome": "Ouvidoria da Guarda Civil de Castanhal",
+      "orgao": "Guarda Civil de Castanhal",
+      "municipio": "Castanhal",
+      "uf": "PA",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria.guarda@castanhal.pa.gov.br",
+      "telefone": "(91) 3721-7070",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000242",
       "nome": "OUVIDORIA DA GUARDA CIVIL MUNICIPAL DE SAO JOSE DO RIO PRETO",
       "orgao": "Prefeitura Municipal de SAO JOSE DO RIO PRETO",
@@ -2822,6 +2835,19 @@
       "atualizado_em": "2026-11-09"
     },
     {
+      "id": "OUV-000164",
+      "nome": "PREFEITURA DE IVORÁ",
+      "orgao": "",
+      "municipio": "",
+      "uf": "RS",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "http://www.ivor.rs.gov.br",
+      "email": "ouvidoria@ivora.rs.gov.br",
+      "telefone": "(55) 3267 1100",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000169",
       "nome": "Prefeitura de Santa Maria de Jetibá",
       "orgao": "",
@@ -3030,6 +3056,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000193",
+      "nome": "Secretária da controladoria e ouvidoria geral de Itaitinga",
+      "orgao": "",
+      "municipio": "",
+      "uf": "CE",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.itaitinga.ce.gov.br/ouvidoria",
+      "email": "ouvidoria@itaitinga.ce.gov.br",
+      "telefone": "0800101 1170",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000080",
       "nome": "Secretaria de Estado da Educação/SEDUC/RO",
       "orgao": "",
@@ -3092,6 +3131,19 @@
       "site": "https://www.gov.br/ouvidorias/pt-br/falabr",
       "email": "ouvidoria@camarameridiano.sp.gov.br",
       "telefone": "(17) 34751177",
+      "atualizado_em": "2026-11-09"
+    },
+    {
+      "id": "OUV-000156",
+      "nome": "Universidade Federal de Ciências da Saúde de Porto Alegre - UFCSPA",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "http://www.ufcspa.edu.br/ouvidoria",
+      "email": "ouvidoria@ufcspa.edu.br",
+      "telefone": "(51) 3303-8841",
       "atualizado_em": "2026-11-09"
     },
     {
