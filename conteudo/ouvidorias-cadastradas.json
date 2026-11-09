@@ -1,6 +1,32 @@
 {
   "items": [
     {
+      "id": "OUV-000110",
+      "nome": "Biguaçu/SC",
+      "orgao": "",
+      "municipio": "Biguaçu",
+      "uf": "SC",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@bigua.sc.gov.br",
+      "telefone": "(48) 3094-4122",
+      "atualizado_em": "2026-11-09"
+    },
+    {
+      "id": "OUV-000078",
+      "nome": "Caio Levy Freitas de Oliveira",
+      "orgao": "",
+      "municipio": "Umirim",
+      "uf": "CE",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.umirim.ce.gov.br/ouvidoria",
+      "email": "ouvidoria@umirim.ce.gov.br",
+      "telefone": "(85) 999273992",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000240",
       "nome": "Câmara da câmara Municipal de Cuiabá",
       "orgao": "Câmara Municipal de Cuiabá",
@@ -274,6 +300,19 @@
       "atualizado_em": "2026-11-06"
     },
     {
+      "id": "OUV-000109",
+      "nome": "Câmara Municipal de São Joaquim da Barra-SP",
+      "orgao": "Câmara Municipal de São Joaquim da Barra",
+      "municipio": "São Joaquim da Barra",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@camarasaojoaquimdabarra.sp.gov.br",
+      "telefone": "(16) 38100800",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000197",
       "nome": "Camara Municipal de Vereadores de Angelina",
       "orgao": "Câmara Municipal de Vereadores",
@@ -324,6 +363,19 @@
       "email": "ouvidoria@cge.pr.gov.br",
       "telefone": "0800-041-1113",
       "atualizado_em": "2026-11-06"
+    },
+    {
+      "id": "OUV-000081",
+      "nome": "claudia das graças arthur",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://eouve.com.br/#/ouvidoria",
+      "email": "",
+      "telefone": "(19) 38989900",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000160",
@@ -1624,6 +1676,19 @@
       "email": "ouvidoria@timon.ma.gov.br",
       "telefone": "(86)2222-5055",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000108",
+      "nome": "Ouvidoria Geral do Município",
+      "orgao": "Município",
+      "municipio": "",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@pnl.mg.gov.br",
+      "telefone": "(31)3180-5870",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000138",
