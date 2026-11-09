@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "OUV-000265",
+      "nome": "AMAZUL Amazonia Azul Tecnologia de Defesa S/A",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://amazul.marinha.mil.br/canais-de-atendimento#ouvidoria",
+      "email": "ouvidoria@amazul.gov.br",
+      "telefone": "(11) 3206.1741",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000110",
       "nome": "Biguaçu/SC",
       "orgao": "",
@@ -51,6 +64,19 @@
       "email": "ouvidoria@piraquara.pr.leg.br",
       "telefone": "(41) 3589-8101",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000190",
+      "nome": "camara de vereadores",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "(54) 991671539",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000153",
@@ -948,6 +974,19 @@
       "email": "",
       "telefone": "(31) 3519-9924",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000264",
+      "nome": "OUVIDORIA DA EMGEPRON",
+      "orgao": "EMGEPRON",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.emgepron.gov.br/pt-br/ouvidoria",
+      "email": "ouvidoria@emgepron.gov.br",
+      "telefone": "(21) 3907 1772",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000242",
@@ -1912,6 +1951,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000165",
+      "nome": "Ouvidoria Guarda Civil Municipal",
+      "orgao": "Guarda Civil Municipal",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "",
+      "site": "",
+      "email": "ouvidoriagcm.campos.rj@gmail.com",
+      "telefone": "(22) 981730105",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000158",
       "nome": "Ouvidoria IMBel",
       "orgao": "IMBel",
@@ -2052,6 +2104,19 @@
       "site": "",
       "email": "ouvidoria@barroso.mg.gov.br",
       "telefone": "(32)3351-4825",
+      "atualizado_em": "2026-11-09"
+    },
+    {
+      "id": "OUV-000262",
+      "nome": "Ouvidoria Municipal de Calçado - PE",
+      "orgao": "Prefeitura Municipal de Calçado",
+      "municipio": "Calçado",
+      "uf": "PE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "http://calcado.pe.gov.br/",
+      "email": "ouvidoria@calcado.pe.gov.br",
+      "telefone": "87 981268826",
       "atualizado_em": "2026-11-09"
     },
     {
@@ -2898,6 +2963,19 @@
       "email": "ouvidoria@saaeangra.com.br",
       "telefone": "24 3377-6551",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000211",
+      "nome": "Silvia Mara Cabral Goes",
+      "orgao": "",
+      "municipio": "",
+      "uf": "SP",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "https://www.gov.br/ouvidorias/pt-br/falabr",
+      "email": "ouvidoria@camarameridiano.sp.gov.br",
+      "telefone": "(17) 34751177",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000219",
