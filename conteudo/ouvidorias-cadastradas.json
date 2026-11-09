@@ -1522,6 +1522,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000120",
+      "nome": "Ouvidoria do TCEES",
+      "orgao": "TCEES",
+      "municipio": "Vitória",
+      "uf": "ES",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "https://www.tcees.tc.br/ouvidoria/apresentacao/",
+      "email": "ouvidoria@tcees.tc.br",
+      "telefone": "(27) 3334-7600",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000217",
       "nome": "Ouvidoria do Tribunal Regional do Trabalho da 8ª Região",
       "orgao": "Tribunal Regional do Trabalho da 8ª Região",
