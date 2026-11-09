@@ -1223,6 +1223,19 @@
       "atualizado_em": "2026-11-05"
     },
     {
+      "id": "OUV-000218",
+      "nome": "OUVIDORIA DO CORPO DE BOMBEIROS MILITAR DA PARAÍBA",
+      "orgao": "CORPO DE BOMBEIROS MILITAR DA PARAÍBA",
+      "municipio": "João Pessoa",
+      "uf": "PB",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://bombeiros.pb.gov.br/ouvidoria/",
+      "email": "ouvidoria@bombeiros.pb.gov.br",
+      "telefone": "(83) 987603832",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000075",
       "nome": "Ouvidoria do CRMV-RJ",
       "orgao": "CRMV-RJ",
@@ -1585,6 +1598,19 @@
       "email": "ouvidoria@americana.sp.gov.br",
       "telefone": "19 3475-9024",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000221",
+      "nome": "Ouvidoria Geral da Prefeitura de Cachoeiro de Itapemirim",
+      "orgao": "Prefeitura de Cachoeiro de Itapemirim",
+      "municipio": "",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "http://ouvidoria.cachoeiro.es.gov.br",
+      "email": "ouvidoria@cachoeiro.es.gov.br",
+      "telefone": "28 31991667",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000064",
