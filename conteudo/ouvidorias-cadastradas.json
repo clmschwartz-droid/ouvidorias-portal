@@ -1275,6 +1275,19 @@
       "atualizado_em": "2026-11-06"
     },
     {
+      "id": "OUV-000266",
+      "nome": "Ouvidoria do Ministério da Igualdade Racial",
+      "orgao": "Ministério da Igualdade Racial",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "http://www.gov.br/igualdaderacial",
+      "email": "ouvidoria@igualdaderacial.gov.br",
+      "telefone": "(61) 2027-3754",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000038",
       "nome": "Ouvidoria do Ministério do Planejamento e Orçamento (OUV/MPO)",
       "orgao": "Ministério do Planejamento e Orçamento (OUV/MPO)",
@@ -2287,6 +2300,19 @@
       "email": "ouvidoria@paraisodasaguas.ms.gov.br",
       "telefone": "(67) 9 9685-7712",
       "atualizado_em": "2026-10-28"
+    },
+    {
+      "id": "OUV-000256",
+      "nome": "Ouvidoria Municipal de Planalto Alegre",
+      "orgao": "",
+      "municipio": "",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://planaltoalegre.atende.net/cidadao/pagina/ouvidoria",
+      "email": "",
+      "telefone": "(49) 3335-0066",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000051",
