@@ -40,6 +40,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000249",
+      "nome": "CAMARA DE VEREADORES DE NONOAI-RS",
+      "orgao": "",
+      "municipio": "",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@camaranonoai.rs.gov.br",
+      "telefone": "54 3362-1220",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000198",
       "nome": "Câmara de Vereadores de Sertânia-PE",
       "orgao": "",
@@ -469,6 +482,19 @@
       "atualizado_em": "2026-11-05"
     },
     {
+      "id": "OUV-000253",
+      "nome": "Município de Toropi",
+      "orgao": "Prefeitura Municipal de Toropi",
+      "municipio": "Toropi",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://toropi.rs.gov.br/transparencia/ouvidoria",
+      "email": "",
+      "telefone": "(55)981057455",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000030",
       "nome": "OGSUS/SESAU/RR",
       "orgao": "",
@@ -677,6 +703,19 @@
       "atualizado_em": "2026-11-05"
     },
     {
+      "id": "OUV-000261",
+      "nome": "Ouvidoria da Câmara Minicipal de Castanhal",
+      "orgao": "Câmara Minicipal de Castanhal",
+      "municipio": "",
+      "uf": "PA",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@camaradecastanhal.pa.gov.br",
+      "telefone": "(91)992795827",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000129",
       "nome": "Ouvidoria da Câmara Municipal de Brochier",
       "orgao": "Câmara Municipal de Brochier",
@@ -740,6 +779,19 @@
       "email": "ouvidoria@espigaodoeste.ro.leg.br",
       "telefone": "(69) 2211-0005",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000254",
+      "nome": "Ouvidoria da Câmara Municipal de Guimarânia/MG",
+      "orgao": "Câmara Municipal de Guimarânia/MG",
+      "municipio": "Guimarânia",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.cmguimarania.mg.gov.br/transparencia/ouvidoria",
+      "email": "ouvidoria@cmguimarania.mg.gov.br",
+      "telefone": "(34) 3834-1358",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000170",
@@ -1171,6 +1223,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000247",
+      "nome": "Ouvidoria do Ministério Público de Sergipe",
+      "orgao": "Ministério Público de Sergipe",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "",
+      "site": "https://www.mpse.mp.br/portal-ouvidoria/",
+      "email": "ouvidoria@mpse.mp.br",
+      "telefone": "",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000199",
       "nome": "Ouvidoria do Município de Guarulhos",
       "orgao": "Prefeitura Municipal de Guarulhos",
@@ -1442,6 +1507,19 @@
       "email": "ouvidoria@uern.br",
       "telefone": "84986493426",
       "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000248",
+      "nome": "Ouvidoria Geral da Universidade Federal de Juiz de Fora",
+      "orgao": "Universidade Federal de Juiz de Fora",
+      "municipio": "",
+      "uf": "MG",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www2.ufjf.br/ouvidoria/",
+      "email": "ouvidoria@ufjf.br",
+      "telefone": "(32) 2101-3380",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000225",
@@ -1795,6 +1873,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000255",
+      "nome": "OUVIDORIA JUCERR",
+      "orgao": "JUCERR",
+      "municipio": "Boa Vista",
+      "uf": "RR",
+      "esfera": "Estadual",
+      "poder": "",
+      "site": "https://jucerr.rr.gov.br/",
+      "email": "ouvidoria@jucerr.rr.gov.br",
+      "telefone": "(95) 98402-7653",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000143",
       "nome": "Ouvidoria Judicial do Tribunal Regional Eleitoral do Pará",
       "orgao": "Judicial do Tribunal Regional Eleitoral do Pará",
@@ -1884,6 +1975,32 @@
       "email": "ouvidoria@serrana.sp.gov.br",
       "telefone": "1634892810",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000259",
+      "nome": "Ouvidoria Municipal de Barroso",
+      "orgao": "Prefeitura Municipal de Barroso",
+      "municipio": "Barroso",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@barroso.mg.gov.br",
+      "telefone": "(32)3351-4825",
+      "atualizado_em": "2026-11-09"
+    },
+    {
+      "id": "OUV-000250",
+      "nome": "Ouvidoria Municipal de Céu Azul",
+      "orgao": "",
+      "municipio": "Céu Azul",
+      "uf": "PR",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoriaceuazul@gmail.com",
+      "telefone": "(45)  31211002",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000123",
@@ -2380,6 +2497,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000246",
+      "nome": "Ouvidoria-Geral de Nossa Senhora do Socorro",
+      "orgao": "Nossa Senhora do Socorro",
+      "municipio": "",
+      "uf": "SE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@socorro.se.gov.br",
+      "telefone": "(79)99938-5590",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000058",
       "nome": "OUVIDORIA-GERAL DE POLÍCIA DO ESTADO DE MATO GROSSO",
       "orgao": "POLÍCIA DO ESTADO DE MATO GROSSO",
@@ -2430,6 +2560,19 @@
       "email": "ouvidoria@cmc.pr.gov.br",
       "telefone": "(41) 3350-4903",
       "atualizado_em": "2026-10-07"
+    },
+    {
+      "id": "OUV-000258",
+      "nome": "Prefeitura de Batayporâ",
+      "orgao": "",
+      "municipio": "",
+      "uf": "MS",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@xn--bataypor-yza.ms.gov.br",
+      "telefone": "67-3910-0610",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000169",
@@ -2536,6 +2679,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000251",
+      "nome": "Prefeitura Municipal de Mata/RS",
+      "orgao": "",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "(55)2018-1460",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000172",
       "nome": "Prefeitura Municipal de Naviraí",
       "orgao": "Prefeitura Municipal de Naviraí",
@@ -2625,6 +2781,19 @@
       "email": "ouvidoria@seduc.ro.gov.br",
       "telefone": "(69) 3212-8209",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000257",
+      "nome": "Secretaria de Estado de Desenvolvimento Econômico - SEDES-RJ",
+      "orgao": "",
+      "municipio": "Rio de Janeiro",
+      "uf": "RJ",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://www.rj.gov.br/desenvolvimentoeconomico/",
+      "email": "ouvidoria@desenvolvimento.rj.gov.br",
+      "telefone": "(21)28023751",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000043",
