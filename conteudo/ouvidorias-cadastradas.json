@@ -2120,6 +2120,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000113",
+      "nome": "Ouvidoria Legislativa - Câmara Municipal de Nova Mamoré-RO",
+      "orgao": "Câmara Municipal de Nova Mamoré",
+      "municipio": "Nova Mamoré",
+      "uf": "RO",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.novamamore.ro.leg.br/ouv",
+      "email": "ouvidoria@novamamore.ro.leg.br",
+      "telefone": "(69) 3198-0318",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000074",
       "nome": "Ouvidoria Legislativa da Câmara Municipal de Capitólio",
       "orgao": "Câmara Municipal de Capitólio",
@@ -3119,6 +3132,19 @@
       "email": "ouvidoria@sme.pmf.sc.gov.br",
       "telefone": "(48) 3261-0666",
       "atualizado_em": "2026-10-30"
+    },
+    {
+      "id": "OUV-000112",
+      "nome": "secretaria Municipal De Ouvidoria de Articulação Social",
+      "orgao": "Prefeitura Municipal de Ouvidoria de Articulação Social",
+      "municipio": "Ouvidoria de Articulação Social",
+      "uf": "CE",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://amontada.ce.gov.br/ouvidoria.php",
+      "email": "ouvidoriageral@amontada.ce.gov.br",
+      "telefone": "(88) 99903.34.23",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000090",
