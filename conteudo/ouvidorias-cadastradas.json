@@ -937,6 +937,45 @@
       "atualizado_em": "2026-11-06"
     },
     {
+      "id": "OUV-000267",
+      "nome": "Ouvidoria da Câmara Municipal de Juara",
+      "orgao": "Câmara Municipal de Juara",
+      "municipio": "Juara",
+      "uf": "MT",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.juara.mt.leg.br/institucional/noticias/ouvidoria-seu-canal-de-comunicacao-com-o-legislativo",
+      "email": "ouvidoria@juara.mt.leg.br",
+      "telefone": "0800 643 1009",
+      "atualizado_em": "2026-11-09"
+    },
+    {
+      "id": "OUV-000091",
+      "nome": "Ouvidoria da Câmara Municipal de Parintins",
+      "orgao": "Câmara Municipal de Parintins",
+      "municipio": "Parintins",
+      "uf": "AM",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.parintins.am.leg.br/transparencia/ouvidoria",
+      "email": "ouvidoria@parintins.am.leg.br",
+      "telefone": "9299436-6001",
+      "atualizado_em": "2026-11-09"
+    },
+    {
+      "id": "OUV-000141",
+      "nome": "Ouvidoria da Câmara Municipal de Progresso",
+      "orgao": "Câmara Municipal de Progresso",
+      "municipio": "Progresso",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://progresso.rs.leg.br/ouvidoria",
+      "email": "",
+      "telefone": "(51) 980196345",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000194",
       "nome": "Ouvidoria da Câmara Municipal de Sabáudia",
       "orgao": "Câmara Municipal de Sabáudia",
@@ -948,6 +987,19 @@
       "email": "",
       "telefone": "(43) 3151-1800",
       "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000166",
+      "nome": "Ouvidoria da Câmara Municipal de Sertão Santana",
+      "orgao": "Câmara Municipal de Sertão Santana",
+      "municipio": "Sertão Santana",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "(51) 34951186",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000148",
@@ -2560,6 +2612,19 @@
       "email": "ouvidoria@pmipe.rs.gov.br",
       "telefone": "5432331050",
       "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000124",
+      "nome": "Ouvidoria Porto Belo",
+      "orgao": "Prefeitura Municipal de Porto Belo",
+      "municipio": "Porto Belo",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://atendenet.portobelo.sc.gov.br/",
+      "email": "ouvidoria@portobelo.sc.gov.br",
+      "telefone": "(47) 33694111",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000115",
