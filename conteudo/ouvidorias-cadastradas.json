@@ -209,6 +209,19 @@
       "atualizado_em": "2026-10-29"
     },
     {
+      "id": "OUV-000268",
+      "nome": "Câmara Municipal de Ivinhema",
+      "orgao": "Câmara Municipal de Ivinhema",
+      "municipio": "Ivinhema",
+      "uf": "MS",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.camaraivinhema.ms.gov.br/ouvidoria-e-sic/",
+      "email": "ouvidoria@camaraivinhema.ms.gov.br",
+      "telefone": "(67) 3442-5674",
+      "atualizado_em": "2026-11-10"
+    },
+    {
       "id": "OUV-000099",
       "nome": "CÂMARA MUNICIPAL DE JI- PARANÁ-RONDÔNIA",
       "orgao": "Câmara Municipal de JI- PARANÁ-RONDÔNIA",
@@ -285,6 +298,19 @@
       "email": "ouvidoria@manhumirim.mg.leg.br",
       "telefone": "3333413190",
       "atualizado_em": "2026-10-23"
+    },
+    {
+      "id": "OUV-000277",
+      "nome": "Camara Municipal de Matupá-MT",
+      "orgao": "Câmara Municipal de Matupá",
+      "municipio": "Matupá",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://matupa.mt.leg.br/transparencia/ouvidoria",
+      "email": "ouvidoria@matupa.mt.leg.br",
+      "telefone": "(66)999988674",
+      "atualizado_em": "2026-11-10"
     },
     {
       "id": "OUV-000073",
@@ -430,6 +456,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000269",
+      "nome": "Conselho Regional de Farmácia de Minas Gerais",
+      "orgao": "",
+      "municipio": "",
+      "uf": "MG",
+      "esfera": "",
+      "poder": "",
+      "site": "https://portal.crfmg.org.br/ouvidoria",
+      "email": "ouvidoria@crfmg.org.br",
+      "telefone": "(31)32181011",
+      "atualizado_em": "2026-11-10"
+    },
+    {
       "id": "OUV-000214",
       "nome": "Conselho Regional de Farmácia de Sergipe",
       "orgao": "",
@@ -506,6 +545,32 @@
       "email": "ouvidoria@ifpi.edu.br",
       "telefone": "(86) 3131-1474",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000270",
+      "nome": "IPEM-ES",
+      "orgao": "",
+      "municipio": "",
+      "uf": "ES",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@ipem.es.gov.br",
+      "telefone": "(27)36366074",
+      "atualizado_em": "2026-11-10"
+    },
+    {
+      "id": "OUV-000272",
+      "nome": "JUNTA COMERCIAL DO ESTADO DE RONDÔNIA - JUCER",
+      "orgao": "",
+      "municipio": "PORTO VELHO",
+      "uf": "RO",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@jucer.ro.gov.br",
+      "telefone": "(69) 9 9982 2065",
+      "atualizado_em": "2026-11-10"
     },
     {
       "id": "OUV-000206",
@@ -1197,6 +1262,19 @@
       "atualizado_em": "2026-11-06"
     },
     {
+      "id": "OUV-000274",
+      "nome": "OUVIDORIA DA SECRETARIA DA EDUCAÇÃO DO ESTADO DO TOCANTINS",
+      "orgao": "SECRETARIA DA EDUCAÇÃO DO ESTADO DO TOCANTINS",
+      "municipio": "",
+      "uf": "TO",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@seduc.to.gov.br",
+      "telefone": "(63)3027-3720",
+      "atualizado_em": "2026-11-10"
+    },
+    {
       "id": "OUV-000007",
       "nome": "Ouvidoria da Secretaria Municipal de Saúde de Niterói",
       "orgao": "Secretaria Municipal de Saúde de Niterói",
@@ -1351,6 +1429,19 @@
       "email": "ouvidoria@ifb.edu.br",
       "telefone": "(61) 2103-2106",
       "atualizado_em": "2026-11-06"
+    },
+    {
+      "id": "OUV-000275",
+      "nome": "Ouvidoria do Instituto Federal do Tocantins",
+      "orgao": "Instituto Federal do Tocantins",
+      "municipio": "Palmas",
+      "uf": "TO",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://www.ifto.edu.br/ifto/ouvidoria",
+      "email": "ouvidoria@ifto.edu.br",
+      "telefone": "(63) 3229-2261",
+      "atualizado_em": "2026-11-10"
     },
     {
       "id": "OUV-000226",
@@ -1572,6 +1663,19 @@
       "email": "ouvidoria@seap.am.gov.br",
       "telefone": "(92) 9 9389-0160",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000280",
+      "nome": "Ouvidoria do Sistema Penitenciário do Rio Grande do Norte",
+      "orgao": "Sistema Penitenciário do Rio Grande do Norte",
+      "municipio": "Natal",
+      "uf": "RN",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@seap.rn.gov.br",
+      "telefone": "84 98130-5243",
+      "atualizado_em": "2026-11-10"
     },
     {
       "id": "OUV-000120",
@@ -2118,6 +2222,19 @@
       "email": "ouvidoria@abaete.mg.gov.br",
       "telefone": "(37)3541-4148",
       "atualizado_em": "2026-11-04"
+    },
+    {
+      "id": "OUV-000273",
+      "nome": "Ouvidoria Geral Municipal de Ourolandia",
+      "orgao": "",
+      "municipio": "Ourolandia",
+      "uf": "BA",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@ourolandia.ba.gov.br",
+      "telefone": "(74)981380788",
+      "atualizado_em": "2026-11-10"
     },
     {
       "id": "OUV-000165",
@@ -2731,6 +2848,19 @@
       "atualizado_em": "2026-10-09"
     },
     {
+      "id": "OUV-000276",
+      "nome": "Ouvidoria Unisinos (Universidade do Vale do Rio dos Sinos)",
+      "orgao": "Unisinos (Universidade do Vale do Rio dos Sinos)",
+      "municipio": "São Leopoldo",
+      "uf": "RS",
+      "esfera": "",
+      "poder": "Judiciário",
+      "site": "https://www.unisinos.br/fale-conosco/ouvidoria",
+      "email": "ouvidoria@unisinos.br",
+      "telefone": "(51) 3590-8280",
+      "atualizado_em": "2026-11-10"
+    },
+    {
       "id": "OUV-000010",
       "nome": "Ouvidoria-Geral da Defensoria Pública do Estado do Rio Grande do Sul",
       "orgao": "Defensoria Pública do Estado do Rio Grande do Sul",
@@ -3082,6 +3212,19 @@
       "atualizado_em": "2026-11-09"
     },
     {
+      "id": "OUV-000271",
+      "nome": "Prefeitura Municipal de Mariana Pimentel",
+      "orgao": "Câmara Municipal de Mariana Pimentel",
+      "municipio": "Mariana Pimentel",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@marianapimentel.rs.gov.br",
+      "telefone": "(80)00001120",
+      "atualizado_em": "2026-11-10"
+    },
+    {
       "id": "OUV-000251",
       "nome": "Prefeitura Municipal de Mata/RS",
       "orgao": "",
@@ -3160,6 +3303,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000279",
+      "nome": "Prefitura Municipal de Governador Celso Ramos",
+      "orgao": "Prefeitura Municipal de Governador Celso Ramos",
+      "municipio": "Governador Celso Ramos",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@governadorcelsoramos.sc.gov.br",
+      "telefone": "(48)32200126",
+      "atualizado_em": "2026-11-10"
+    },
+    {
       "id": "OUV-000026",
       "nome": "Secretaria da Controladoria e Ouvidoria Geral",
       "orgao": "",
@@ -3236,6 +3392,19 @@
       "email": "ouvidoriageral@amontada.ce.gov.br",
       "telefone": "(88) 99903.34.23",
       "atualizado_em": "2026-11-09"
+    },
+    {
+      "id": "OUV-000278",
+      "nome": "SEPROR",
+      "orgao": "",
+      "municipio": "",
+      "uf": "AM",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.sepror.am.gov.br/ouvidoria/",
+      "email": "ouvidoria@sepror.am.gov.br",
+      "telefone": "(92)992678794",
+      "atualizado_em": "2026-11-10"
     },
     {
       "id": "OUV-000090",
