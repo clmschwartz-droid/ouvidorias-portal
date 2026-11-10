@@ -54,12 +54,19 @@
       const address = email(item.email);
       if (site) contacts.append(link('Site da ouvidoria ↗', site));
       if (address) contacts.append(link(address, 'mailto:' + address));
-      if (item.telefone && /^[\d\s()+.,-]+(?:\s*\(?WhatsApp\)?)?(?:,?\s*ramal\s*\d+)?$/i.test(item.telefone)) {
-        const digits = item.telefone.replace(/\D/g, '');
-        if (!/ramal/i.test(item.telefone) && digits.length >= 10 && digits.length <= 11) {
-          contacts.append(link(item.telefone, 'tel:' + (digits.startsWith('0800') ? digits : '+55' + digits)));
-        } else contacts.append(text('p', item.telefone));
-      }
+      String(item.telefone || '').split(';').map((part) => part.trim()).filter(Boolean).forEach((part) => {
+        const phone = part.match(/^([\d\s()+.,-]+(?:\s*\(?WhatsApp\)?)?)(?:,?\s*ramal\s*(\d+))?$/i);
+        if (!phone) return;
+        const base = phone[1].trim().replace(/,$/, '');
+        const digits = base.replace(/\D/g, '');
+        const local = /^55\d{10,11}$/.test(digits) ? digits.slice(2) : digits;
+        if (!/^\d{10,11}$/.test(local)) { contacts.append(text('p', part)); return; }
+        const a = link(base, 'tel:' + (local.startsWith('0800') ? local : '+55' + local));
+        if (!phone[2]) { contacts.append(a); return; }
+        const withExtension = text('p', '');
+        withExtension.append(a, ' · ramal ' + phone[2]);
+        contacts.append(withExtension);
+      });
       if (!contacts.childElementCount) contacts.append(text('p', 'Contato não divulgado'));
       article.append(identity, scope, contacts);
       return article;
