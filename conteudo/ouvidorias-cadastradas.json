@@ -1730,6 +1730,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000102",
+      "nome": "Ouvidoria Geral de Duque de Caxias",
+      "orgao": "Duque de Caxias",
+      "municipio": "Duque de Caxias",
+      "uf": "RJ",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@duquedecaxias.rj.gov.br",
+      "telefone": "(21) 2652-3835",
+      "atualizado_em": "2026-11-09"
+    },
+    {
       "id": "OUV-000195",
       "nome": "Ouvidoria Geral de Gloria de Dourados - MS",
       "orgao": "Gloria de Dourados - MS",
@@ -2625,6 +2638,19 @@
       "email": "ouvidoria@iftm.edu.br",
       "telefone": "34-33261174",
       "atualizado_em": "2026-11-06"
+    },
+    {
+      "id": "OUV-000105",
+      "nome": "Ouvidoria SUS-SESAP",
+      "orgao": "SUS-SESAP",
+      "municipio": "Natal",
+      "uf": "RN",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoriasus@saude.rn.gov.br",
+      "telefone": "(84) 32326505",
+      "atualizado_em": "2026-11-09"
     },
     {
       "id": "OUV-000017",
