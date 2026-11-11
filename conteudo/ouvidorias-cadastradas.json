@@ -1184,6 +1184,19 @@
       "atualizado_em": "2026-11-11"
     },
     {
+      "id": "OUV-000288",
+      "nome": "Ouvidoria da Polícia Penal - PPES",
+      "orgao": "Polícia Penal - PPES",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://pp.es.gov.br/agenda-de-contatos",
+      "email": "",
+      "telefone": "(27) 99316-7687",
+      "atualizado_em": "2026-11-11"
+    },
+    {
       "id": "OUV-000067",
       "nome": "Ouvidoria da Prefeitura de Iconha/ES",
       "orgao": "Prefeitura de Iconha/ES",
@@ -1713,8 +1726,8 @@
       "poder": "Executivo",
       "site": "",
       "email": "ouvidoria@seap.rn.gov.br",
-      "telefone": "84 98130-5243",
-      "atualizado_em": "2026-11-10"
+      "telefone": "(84)98130-5243",
+      "atualizado_em": "2026-11-11"
     },
     {
       "id": "OUV-000120",
