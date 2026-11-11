@@ -92,6 +92,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000284",
+      "nome": "Câmara de Vereadores de Monte Carlo",
+      "orgao": "",
+      "municipio": "",
+      "uf": "SC",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "(49)92002-7332",
+      "atualizado_em": "2026-11-11"
+    },
+    {
       "id": "OUV-000249",
       "nome": "CAMARA DE VEREADORES DE NONOAI-RS",
       "orgao": "",
@@ -207,6 +220,19 @@
       "email": "",
       "telefone": "(31) 3682 0010",
       "atualizado_em": "2026-10-29"
+    },
+    {
+      "id": "OUV-000283",
+      "nome": "Câmara Municipal de Fernão",
+      "orgao": "Câmara Municipal de Fernão",
+      "municipio": "Fernão",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://informabr.cgu.gov.br/",
+      "email": "ouvidoria@fernao.sp.leg.br",
+      "telefone": "(14)3273-1011",
+      "atualizado_em": "2026-11-11"
     },
     {
       "id": "OUV-000268",
@@ -1704,6 +1730,19 @@
       "atualizado_em": "2026-11-09"
     },
     {
+      "id": "OUV-000287",
+      "nome": "Ouvidoria do Tribunal de Contas do Estado do Amazonas",
+      "orgao": "Tribunal de Contas do Estado do Amazonas",
+      "municipio": "Manaus",
+      "uf": "AM",
+      "esfera": "Estadual",
+      "poder": "",
+      "site": "https://ouvidoria.tce.am.gov.br/",
+      "email": "ouvidoria@tce.am.gov.br",
+      "telefone": "(92) 98815-1000",
+      "atualizado_em": "2026-11-11"
+    },
+    {
       "id": "OUV-000217",
       "nome": "Ouvidoria do Tribunal Regional do Trabalho da 8ª Região",
       "orgao": "Tribunal Regional do Trabalho da 8ª Região",
@@ -2666,6 +2705,19 @@
       "atualizado_em": "2026-11-06"
     },
     {
+      "id": "OUV-000282",
+      "nome": "Ouvidoria Municipal do Município de Muniz Freire-ES",
+      "orgao": "Prefeitura Municipal de Muniz Freire",
+      "municipio": "Muniz Freire",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://webmail.munizfreire.es.gov.br",
+      "email": "ouvidoria@munizfreire.es.gov.br",
+      "telefone": "(28) 99928-6983",
+      "atualizado_em": "2026-11-11"
+    },
+    {
       "id": "OUV-000139",
       "nome": "Ouvidoria Municipal do Sistema Único de Saúde da Secretaria Municipal de Saúde de Manaus",
       "orgao": "Prefeitura Municipal de Saúde de Manaus",
@@ -2820,6 +2872,19 @@
       "email": "ouvidoria@educacao.riopreto.gov.sp.br",
       "telefone": "17 32114000",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000285",
+      "nome": "Ouvidoria Setorial da SETRE",
+      "orgao": "Setorial da SETRE",
+      "municipio": "Teresina",
+      "uf": "PI",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "(86)99409-7223",
+      "atualizado_em": "2026-11-11"
     },
     {
       "id": "OUV-000236",
@@ -3275,6 +3340,19 @@
       "email": "ouvidoria@saodomingos.sc.gov.br",
       "telefone": "49 34430281",
       "atualizado_em": "2026-11-06"
+    },
+    {
+      "id": "OUV-000286",
+      "nome": "Prefeitura Municipal de São Félix do Xingu",
+      "orgao": "Prefeitura Municipal de São Félix do Xingu",
+      "municipio": "São Félix do Xingu",
+      "uf": "PA",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://sfxingu.pa.gov.br/web/pag.php?pg=ouvidoria/ouvidoria",
+      "email": "ouvidoria@sfxingu.pa.gov.br",
+      "telefone": "(94) 8131-8618",
+      "atualizado_em": "2026-11-11"
     },
     {
       "id": "OUV-000245",
