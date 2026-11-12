@@ -1184,6 +1184,19 @@
       "atualizado_em": "2026-11-11"
     },
     {
+      "id": "OUV-000293",
+      "nome": "Ouvidoria da Faculdade de Medicina USP",
+      "orgao": "Faculdade de Medicina USP",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Estadual",
+      "poder": "",
+      "site": "https://www.fm.usp.br/ouvidoria/portal/",
+      "email": "ouvidoria@fm.usp.br",
+      "telefone": "(11)3061-8744",
+      "atualizado_em": "2026-11-12"
+    },
+    {
       "id": "OUV-000136",
       "nome": "Ouvidoria da Guarda Civil de Castanhal",
       "orgao": "Guarda Civil de Castanhal",
