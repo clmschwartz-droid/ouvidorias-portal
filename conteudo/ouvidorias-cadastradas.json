@@ -378,6 +378,19 @@
       "atualizado_em": "2026-11-11"
     },
     {
+      "id": "OUV-000292",
+      "nome": "Câmara Municipal de São João do Ivaí - PR",
+      "orgao": "Câmara Municipal de São João do Ivaí",
+      "municipio": "São João do Ivaí",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@cmsaojoaodoivai.pr.gov.br",
+      "telefone": "(43)3477-2780",
+      "atualizado_em": "2026-11-12"
+    },
+    {
       "id": "OUV-000109",
       "nome": "Câmara Municipal de São Joaquim da Barra-SP",
       "orgao": "Câmara Municipal de São Joaquim da Barra",
@@ -532,6 +545,19 @@
       "email": "ouvidoria@floripa.sc.gov.br",
       "telefone": "(80)0234-1777",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000291",
+      "nome": "DEGASE-RJ",
+      "orgao": "",
+      "municipio": "",
+      "uf": "RJ",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@novodegase.rj.gov.br",
+      "telefone": "(21)2334-6504",
+      "atualizado_em": "2026-11-12"
     },
     {
       "id": "OUV-000019",
@@ -3249,6 +3275,19 @@
       "email": "",
       "telefone": "(55) 54 3329-7732",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000289",
+      "nome": "Prefeitura Municipal de Águas Frias",
+      "orgao": "Prefeitura Municipal de Águas Frias",
+      "municipio": "Águas Frias",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://falabr.cgu.gov.br/v2/?modoOuvidoria=1&ouvidoriaInterna=true",
+      "email": "ouvidoria@aguasfrias.sc.gov.br",
+      "telefone": "(49)3332-0033",
+      "atualizado_em": "2026-11-12"
     },
     {
       "id": "OUV-000048",
