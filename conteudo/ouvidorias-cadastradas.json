@@ -794,6 +794,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000295",
+      "nome": "Ouvidoria Câmara de Vereadores de Pelotas",
+      "orgao": "Câmara de Vereadores de Pelotas",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "https://www.pelotas.rs.leg.br",
+      "email": "ouvidoria@pelotas.rs.leg.br",
+      "telefone": "(53) 3026-1001",
+      "atualizado_em": "2026-11-13"
+    },
+    {
       "id": "OUV-000227",
       "nome": "Ouvidoria Câmara Municipal de Alumínio",
       "orgao": "Câmara Municipal de Alumínio",
@@ -1494,6 +1507,19 @@
       "email": "ouvidoria@crmvrj.org.br",
       "telefone": "(21) 2576-7281",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000294",
+      "nome": "Ouvidoria do IFAM",
+      "orgao": "IFAM",
+      "municipio": "Manaus",
+      "uf": "AM",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://portal.ifam.edu.br/instituicao/ouvidoria/",
+      "email": "ouvidoria@ifam.edu.br",
+      "telefone": "(92)98234-1136",
+      "atualizado_em": "2026-11-13"
     },
     {
       "id": "OUV-000082",
