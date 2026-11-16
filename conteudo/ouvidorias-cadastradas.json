@@ -599,6 +599,19 @@
       "atualizado_em": "2026-11-03"
     },
     {
+      "id": "OUV-000297",
+      "nome": "INSTITUTO FEDERAL DE RORAIMA",
+      "orgao": "",
+      "municipio": "BOA VISTA",
+      "uf": "RR",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@ifrr.edu.br",
+      "telefone": "(95) 3624-1224",
+      "atualizado_em": "2026-11-16"
+    },
+    {
       "id": "OUV-000270",
       "nome": "IPEM-ES",
       "orgao": "",
@@ -1533,6 +1546,19 @@
       "email": "ouvidoria@ifro.edu.br",
       "telefone": "(69) 99266-5080",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000296",
+      "nome": "Ouvidoria do Instituto de Mudanças Climáticas e Regulação de Serviços Ambientais do Estado do Acre (IMC/AC)",
+      "orgao": "Instituto de Mudanças Climáticas e Regulação de Serviços Ambientais do Estado do Acre (IMC/AC)",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "https://imc.ac.gov.br/ouvidoria-do-imc/",
+      "email": "",
+      "telefone": "(68) 9902-2120",
+      "atualizado_em": "2026-11-16"
     },
     {
       "id": "OUV-000231",
@@ -2521,6 +2547,19 @@
       "email": "ouvidoria@serrana.sp.gov.br",
       "telefone": "(16)3489-2810",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000298",
+      "nome": "Ouvidoria Municipal de Almirante Tamandaré do Sul",
+      "orgao": "",
+      "municipio": "Almirante Tamandaré do Sul",
+      "uf": "RS",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://almirantetamandaredosul.rs.gov.br/documentos/ouvidoria",
+      "email": "ouvidoria.ats@tamandaredosul.com.br",
+      "telefone": "(54) 3615-1153",
+      "atualizado_em": "2026-11-16"
     },
     {
       "id": "OUV-000259",
