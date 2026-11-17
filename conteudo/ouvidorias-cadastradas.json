@@ -1210,6 +1210,19 @@
       "atualizado_em": "2026-11-11"
     },
     {
+      "id": "OUV-000300",
+      "nome": "Ouvidoria da Epagri",
+      "orgao": "Epagri",
+      "municipio": "",
+      "uf": "SC",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.epagri.sc.gov.br/ouvidoria/",
+      "email": "ouvidoria@epagri.sc.gov.br",
+      "telefone": "(48) 3665-5012",
+      "atualizado_em": "2026-11-17"
+    },
+    {
       "id": "OUV-000293",
       "nome": "Ouvidoria da Faculdade de Medicina USP",
       "orgao": "Faculdade de Medicina USP",
@@ -2523,6 +2536,19 @@
       "atualizado_em": "2026-11-11"
     },
     {
+      "id": "OUV-000302",
+      "nome": "Ouvidoria Municipal da Prefeitura de Altinópolis",
+      "orgao": "Municipal da Prefeitura de Altinópolis",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.altinopolis.sp.gov.br/ouvidoria/ouvidoria",
+      "email": "",
+      "telefone": "(16) 3665-9519",
+      "atualizado_em": "2026-11-17"
+    },
+    {
       "id": "OUV-000083",
       "nome": "Ouvidoria Municipal da Prefeitura de Limoeiro/PE",
       "orgao": "Municipal da Prefeitura de Limoeiro/PE",
@@ -3041,6 +3067,19 @@
       "email": "ouvidoria@tecpar.br",
       "telefone": "(41)3316-3004",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000301",
+      "nome": "Ouvidoria UFVJM",
+      "orgao": "UFVJM",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://portal.ufvjm.edu.br/ouvidoria",
+      "email": "ouvidoria@ufvjm.edu.br",
+      "telefone": "(38)3532-6816",
+      "atualizado_em": "2026-11-17"
     },
     {
       "id": "OUV-000276",
@@ -3613,6 +3652,19 @@
       "email": "ouvidoriageral@amontada.ce.gov.br",
       "telefone": "(88) 99903.34.23",
       "atualizado_em": "2026-11-09"
+    },
+    {
+      "id": "OUV-000299",
+      "nome": "SEPET",
+      "orgao": "",
+      "municipio": "",
+      "uf": "AM",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@sepet.am.gov.br",
+      "telefone": "(92) 98127-0034",
+      "atualizado_em": "2026-11-17"
     },
     {
       "id": "OUV-000278",
