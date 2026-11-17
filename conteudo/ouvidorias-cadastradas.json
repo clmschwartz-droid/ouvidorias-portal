@@ -3004,6 +3004,19 @@
       "atualizado_em": "2026-10-07"
     },
     {
+      "id": "OUV-000303",
+      "nome": "Ouvidoria Seccional do Instituto Municipal de Planejamento Urbano — IMPLURB",
+      "orgao": "Instituto Municipal de Planejamento Urbano — IMPLURB",
+      "municipio": "Manaus",
+      "uf": "AM",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria.implurb@manaus.am.gov.br",
+      "telefone": "(92) 3625-5340",
+      "atualizado_em": "2026-11-17"
+    },
+    {
       "id": "OUV-000101",
       "nome": "Ouvidoria Secretaria Municipal de Educação",
       "orgao": "Prefeitura Municipal de Educação",
