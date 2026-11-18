@@ -404,6 +404,19 @@
       "atualizado_em": "2026-11-09"
     },
     {
+      "id": "OUV-000306",
+      "nome": "Câmara municipal de Urupá - RO",
+      "orgao": "Câmara Municipal de Urupá",
+      "municipio": "Urupá",
+      "uf": "RO",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://www.urupa.ro.leg.br/",
+      "email": "ouvidoria@urupa.ro.leg.br",
+      "telefone": "(69) 93413-2274",
+      "atualizado_em": "2026-11-18"
+    },
+    {
       "id": "OUV-000197",
       "nome": "Camara Municipal de Vereadores de Angelina",
       "orgao": "Câmara Municipal de Vereadores",
@@ -2003,6 +2016,19 @@
       "atualizado_em": "2026-10-30"
     },
     {
+      "id": "OUV-000305",
+      "nome": "Ouvidoria Geral da Prefeitura Municipal de Upanema",
+      "orgao": "Prefeitura Municipal de Upanema",
+      "municipio": "Upanema",
+      "uf": "RN",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://esic.portyx.com.br/ouvidoria/?codeDB=66",
+      "email": "ouvidoria@upanema.rn.gov.br",
+      "telefone": "(84) 3191-9047",
+      "atualizado_em": "2026-11-18"
+    },
+    {
       "id": "OUV-000168",
       "nome": "Ouvidoria Geral da Uern",
       "orgao": "Uern",
@@ -3028,6 +3054,19 @@
       "email": "ouvidoria@educacao.riopreto.gov.sp.br",
       "telefone": "(17)3211-4000",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000304",
+      "nome": "Ouvidoria Setorial da Polícia Militar do Piauí",
+      "orgao": "Setorial da Polícia Militar do Piauí",
+      "municipio": "",
+      "uf": "PI",
+      "esfera": "Estadual",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@pm.pi.gov.br",
+      "telefone": "(86)99441-2471",
+      "atualizado_em": "2026-11-18"
     },
     {
       "id": "OUV-000285",
