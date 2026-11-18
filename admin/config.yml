@@ -112,6 +112,32 @@ collections:
                   - { label: "Texto do link", name: "label", widget: "string" }
                   - { label: "URL", name: "url", widget: "string" }
 
+  - name: "bibliografia"
+    label: "Bibliografia"
+    files:
+      - name: "itens"
+        label: "Outros textos integrais e novidades do acervo"
+        file: "conteudo/bibliografia.json"
+        format: "json"
+        fields:
+          - label: "Referências com texto integral"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            hint: "As referências permanecem na Bibliografia. O destaque Novo no acervo usa a data de inclusão, sem alterar o ano da obra, e termina automaticamente na data definida."
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Referência bibliográfica completa", name: "referencia", widget: "text" }
+              - { label: "Contexto da publicação", name: "contexto", widget: "text", required: false }
+              - { label: "Autor ou autora do capítulo em foco", name: "autor_capitulo", widget: "string", required: false }
+              - { label: "Título do capítulo", name: "capitulo", widget: "text", required: false }
+              - { label: "Páginas impressas do capítulo", name: "paginas", widget: "string", required: false }
+              - { label: "Página inicial do capítulo no PDF", name: "pagina_pdf", widget: "number", value_type: "int", min: 1, required: false, hint: "Número da página no leitor de PDF; pode diferir da numeração impressa." }
+              - { label: "PDF integral", name: "arquivo", widget: "file", media_folder: "/textos-integrais", public_folder: "/textos-integrais" }
+              - { label: "Incluído no acervo em", name: "incluido_em", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Destacar até", name: "destaque_ate", widget: "datetime", date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false, hint: "Opcional. O destaque aparece somente na Bibliografia, até o fim desta data no horário de Brasília. A referência e o PDF continuam disponíveis depois." }
+              - { label: "Exibir no portal", name: "publicado", widget: "boolean", required: false, default: true }
+
   - name: "multimidia"
     label: "Multimídia"
     files:

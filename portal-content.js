@@ -4,6 +4,7 @@
   const DATA = {
     noticias: 'conteudo/noticias.json',
     documentos: 'conteudo/documentos.json',
+    bibliografia: 'conteudo/bibliografia.json',
     multimidia: 'conteudo/multimidia.json',
     manifestacoes: 'conteudo/manifestacoes.json',
     conselhoCurador: 'conteudo/conselho-curador.json',
@@ -237,6 +238,35 @@
         </div>
       </div>
     </article>`;
+  }
+
+  function renderBibliografia(items) {
+    const host = document.getElementById('bibliografia-textos-grid');
+    const section = document.getElementById('bibliografia-textos-section');
+    const featured = document.getElementById('bibliografia-novidades');
+    if (!host || !section || !featured) return;
+    const visible = items.filter((item) => item && item.publicado !== false);
+    const ordered = [...visible].sort((a, b) => String(b.incluido_em || '').localeCompare(String(a.incluido_em || '')));
+    const card = (item, highlight = false) => `<article class="p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
+      ${highlight ? '<p class="text-xs font-bold uppercase tracking-wider mb-3" style="color:#3d7f8c">Novo no acervo</p>' : ''}
+      <h4 class="font-bold text-slate-800 text-base">${esc(item.title)}</h4>
+      <p class="text-sm text-slate-600 mt-2 leading-relaxed">${esc(item.referencia)}</p>
+      ${item.contexto ? `<p class="text-sm text-slate-500 mt-3 leading-relaxed">${esc(item.contexto)}</p>` : ''}
+      ${item.capitulo ? `<p class="text-sm text-slate-600 mt-3 leading-relaxed"><strong>${esc(item.autor_capitulo)}:</strong> ${esc(item.capitulo)} (p. ${esc(item.paginas)}).</p>` : ''}
+      <div class="flex flex-wrap gap-2 mt-4">${actionButton({ label: 'Ler livro completo (PDF)', url: item.arquivo, icon: 'book-open' })}${item.pagina_pdf ? actionButton({ label: `Ir ao capítulo de ${item.autor_capitulo || 'destaque'}`, url: `${item.arquivo}#page=${Number(item.pagina_pdf)}`, icon: 'file-text' }) : ''}${actionButton({ label: 'Baixar PDF', url: item.arquivo, icon: 'file-down', download: true })}</div>
+    </article>`;
+    host.innerHTML = ordered.map((item) => card(item)).join('');
+    section.classList.toggle('hidden', !ordered.length);
+    const updateHighlights = () => {
+      const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+      const highlights = ordered.filter((item) => /^\d{4}-\d{2}-\d{2}$/.test(item.incluido_em || '') && /^\d{4}-\d{2}-\d{2}$/.test(item.destaque_ate || '') && item.incluido_em <= today && item.destaque_ate >= today);
+      featured.innerHTML = highlights.map((item) => card(item, true)).join('');
+      featured.classList.toggle('hidden', !highlights.length);
+      try { if (window.lucide) window.lucide.createIcons(); } catch (_) {}
+    };
+    updateHighlights();
+    // A expiração também funciona em abas que continuam abertas após a meia-noite.
+    window.setInterval(updateHighlights, 60000);
   }
 
   function renderDocumentos(items) {
@@ -613,15 +643,17 @@
       renderConselhoCurador(conselhoCurador, configuracao.conselho_publicado);
     });
 
-    const [noticias, documentos, multimidia, manifestacoes, configuracao] = await Promise.all([
+    const [noticias, documentos, bibliografia, multimidia, manifestacoes, configuracao] = await Promise.all([
       fetchItems(DATA.noticias),
       fetchItems(DATA.documentos),
+      fetchItems(DATA.bibliografia),
       fetchItems(DATA.multimidia),
       fetchItems(DATA.manifestacoes),
       configuracaoPromise
     ]);
     renderNoticias(noticias);
     renderDocumentos(documentos);
+    renderBibliografia(bibliografia);
     renderMultimidia(multimidia);
     renderManifestacoes(manifestacoes);
     await conselhoPromise;
