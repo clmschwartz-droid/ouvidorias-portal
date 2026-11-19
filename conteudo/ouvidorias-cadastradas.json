@@ -1223,6 +1223,19 @@
       "atualizado_em": "2026-11-11"
     },
     {
+      "id": "OUV-000308",
+      "nome": "Ouvidoria da Empresa de Pesquisa Energética",
+      "orgao": "Empresa de Pesquisa Energética",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://www.epe.gov.br/pt/a-epe/acesso-a-informacao/participacao-social/ouvidoria",
+      "email": "ouvidoria@epe.gov.br",
+      "telefone": "(21)3512-3180",
+      "atualizado_em": "2026-11-19"
+    },
+    {
       "id": "OUV-000300",
       "nome": "Ouvidoria da Epagri",
       "orgao": "Epagri",
@@ -2937,6 +2950,19 @@
       "email": "",
       "telefone": "(65) 3346-1411",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000309",
+      "nome": "Ouvidoria Parlamentar",
+      "orgao": "Parlamentar",
+      "municipio": "Dom Bosco",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://falabr.cgu.gov.br/v2/?uf=MG&municipio=Dom+Bosco",
+      "email": "ouvidoriacamara@dombosco.mg.leg.br",
+      "telefone": "(38)3675 -7134",
+      "atualizado_em": "2026-11-19"
     },
     {
       "id": "OUV-000216",
