@@ -1015,6 +1015,19 @@
       "atualizado_em": "2026-11-11"
     },
     {
+      "id": "OUV-000311",
+      "nome": "Ouvidoria da Câmara Municipal de Cacaulândia/RO",
+      "orgao": "Câmara Municipal de Cacaulândia/RO",
+      "municipio": "",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://camaradecacaulandia.ro.gov.br/",
+      "email": "ouvidoriacmc.cacau@gmail.com",
+      "telefone": "(69)3532-2013",
+      "atualizado_em": "2026-11-23"
+    },
+    {
       "id": "OUV-000155",
       "nome": "Ouvidoria da Câmara Municipal de Campos de Júlio - MT",
       "orgao": "Câmara Municipal de Campos de Júlio",
@@ -1416,6 +1429,19 @@
       "email": "ouvidoria@trezedemaio.sc.gov.br",
       "telefone": "(48) 996790898",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000312",
+      "nome": "Ouvidoria da Saúde de Pinhais",
+      "orgao": "Saúde de Pinhais",
+      "municipio": "Pinhais",
+      "uf": "PR",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://pinhais.atende.net/subportal/ouvidoria",
+      "email": "ouvidoria.saude@pinhais.pr.gov.br",
+      "telefone": "(41)9921-62095",
+      "atualizado_em": "2026-11-23"
     },
     {
       "id": "OUV-000274",
@@ -2835,6 +2861,19 @@
       "atualizado_em": "2026-10-28"
     },
     {
+      "id": "OUV-000310",
+      "nome": "Ouvidoria Municipal de Pitangueiras - SP",
+      "orgao": "Prefeitura Municipal de Pitangueiras",
+      "municipio": "Pitangueiras",
+      "uf": "",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://pitangueiras.sp.gov.br/ouvidoria/",
+      "email": "ouvidoria.pmpitangueiras@gmail.com",
+      "telefone": "(16)3952-9121",
+      "atualizado_em": "2026-11-23"
+    },
+    {
       "id": "OUV-000256",
       "nome": "Ouvidoria Municipal de Planalto Alegre",
       "orgao": "",
@@ -3119,6 +3158,32 @@
       "email": "ouvidoria@iftm.edu.br",
       "telefone": "(34)3326-1174",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000314",
+      "nome": "Ouvidoria Setorial Fundação CECIERJ",
+      "orgao": "Setorial",
+      "municipio": "",
+      "uf": "RJ",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "https://cecierj.edu.br/sobre/ouvidoria/",
+      "email": "ouvidoria@cecierj.edu.br",
+      "telefone": "(21)2334-7434",
+      "atualizado_em": "2026-11-23"
+    },
+    {
+      "id": "OUV-000313",
+      "nome": "Ouvidoria SPA e Maternidade Chapot Prevost",
+      "orgao": "SPA e Maternidade Chapot Prevost",
+      "municipio": "",
+      "uf": "",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoriachapot@gmail.com",
+      "telefone": "(92)99140-5315",
+      "atualizado_em": "2026-11-23"
     },
     {
       "id": "OUV-000105",
