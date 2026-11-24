@@ -170,6 +170,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000316",
+      "nome": "Câmara Municipal de Brunópolis",
+      "orgao": "Câmara Municipal de Brunópolis",
+      "municipio": "Brunópolis",
+      "uf": "SC",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "",
+      "telefone": "(49)3556-0054",
+      "atualizado_em": "2026-11-24"
+    },
+    {
       "id": "OUV-000182",
       "nome": "Câmara Municipal de Cafelândia",
       "orgao": "Câmara Municipal de Cafelândia",
@@ -597,6 +610,19 @@
       "email": "ouvidoria.saude@pinhais.pr.gov.br",
       "telefone": "(41)99216-2095",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000317",
+      "nome": "Instituto Federal de Educação, Ciência e Tecnologia da Bahia (IFBA)",
+      "orgao": "",
+      "municipio": "Salvador",
+      "uf": "BA",
+      "esfera": "Federal",
+      "poder": "Executivo",
+      "site": "https://portal.ifba.edu.br/menu-de-apoio/ouvidoria",
+      "email": "ouvidoria@ifba.edu.br",
+      "telefone": "(71)98800-9900",
+      "atualizado_em": "2026-11-24"
     },
     {
       "id": "OUV-000076",
@@ -1585,6 +1611,19 @@
       "email": "ouvidoria@crmvrj.org.br",
       "telefone": "(21) 2576-7281",
       "atualizado_em": "2026-11-03"
+    },
+    {
+      "id": "OUV-000315",
+      "nome": "Ouvidoria do IF Goiano",
+      "orgao": "IF Goiano",
+      "municipio": "Goiânia",
+      "uf": "GO",
+      "esfera": "",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoria@ifgoiano.edu.br",
+      "telefone": "(62) 3605-3601",
+      "atualizado_em": "2026-11-24"
     },
     {
       "id": "OUV-000294",
