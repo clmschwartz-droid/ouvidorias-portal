@@ -41,9 +41,63 @@ function diretorioEmail_(value) {
   // Personal mailbox fields from the form are never read or exported.
   return /^ouvidoria[a-z0-9._+-]*@[a-z0-9.-]+\.[a-z]{2,}$/i.test(s) ? s : '';
 }
-function diretorioTelefone_(value) {
-  const s = diretorioTexto_(value);
-  return s && /^[\d\s()+.,-]+(?:\s*\(?WhatsApp\)?)?(?:,?\s*ramal\s*\d+)?$/i.test(s) && s.replace(/\D/g, '').length >= 10 && s.replace(/\D/g, '').length <= 17 ? s : '';
+function diretorioTelefones_(value) {
+  const ddds = /^(?:1[1-9]|2[12478]|3[1-578]|4[1-9]|5[1345]|6[1-9]|7[134579]|8[1-9]|9[1-9])$/;
+  const contatos = new Set();
+  const numeros = new Set();
+  const linhas = new Set();
+  const partes = diretorioTexto_(value).split(/[/;|\r\n]+|,(?=(?:[ +().\t-]*\d){7})/).map((p) => p.trim()).filter(Boolean);
+  const invalidos = [];
+  for (const [index, s] of partes.entries()) {
+    const match = s.match(/^(\+?[\d(). \t-]+)(\s*\(?WhatsApp\)?)?(?:[ ,\t]*(?:ramal|ramais|r\.|ext\.)\s*[:.]?\s*(\d{1,6}(?:\s*(?:,|\be\b)\s*\d{1,6})*))?$/i);
+    invalidos.push(index + 1);
+    if (!match) continue;
+    let digits = match[1].replace(/\D/g, '');
+    if (match[1].startsWith('+') && !/^\+\s*55/.test(match[1])) continue;
+    if (/^55\d{10,11}$/.test(digits)) digits = digits.slice(2);
+    else if (match[1].startsWith('+')) continue;
+    let formatado;
+    if (/^0?800\d{7}$/.test(digits)) {
+      digits = digits.padStart(11, '0');
+      formatado = digits.slice(0,4) + ' ' + digits.slice(4,7) + ' ' + digits.slice(7);
+    } else if (ddds.test(digits.slice(0,2)) && /^(?:\d{2}[2-5]\d{7}|\d{2}9\d{8})$/.test(digits)) {
+      formatado = '(' + digits.slice(0,2) + ') ' + digits.slice(2,-4) + '-' + digits.slice(-4);
+    } else continue;
+    invalidos.pop();
+    numeros.add(digits);
+    const label = formatado + (match[2] ? ' (WhatsApp)' : '');
+    const ramais = match[3] ? match[3].match(/\d+/g) : [];
+    if (ramais.length) ramais.forEach((ramal) => {
+      contatos.add(label + ' ramal ' + ramal);
+      linhas.add(digits + ';' + ramal);
+    });
+    else { contatos.add(label); linhas.add(digits); }
+  }
+  return { texto: [...contatos].join('; '), numeros, linhas, invalidos };
+}
+function diretorioIdentidade_(row) {
+  const nome = diretorioNormal_(row[2]).replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+  const generico = /^(?:fala\s*br|ouvidoria(?: geral| municipal| central| institucional)?|camara(?: municipal| de vereadores)?|prefeitura(?: municipal)?)$/.test(nome);
+  const site = diretorioHttps_(row[8]).replace(/^https?:\/\/(?:www\.)?/i, '').replace(/\/$/, '');
+  return {
+    id: diretorioTexto_(row[0]), nome, generico,
+    contexto: row.slice(3,8).map(diretorioNormal_),
+    email: diretorioEmail_(row[9]),
+    site: /^(?:falabr\.cgu\.gov\.br|gov\.br)(?:[/:?#]|$)/i.test(site) ? '' : site,
+    telefones: diretorioTelefones_(row[10]),
+  };
+}
+function diretorioComparar_(a, b) {
+  const mesmoNome = !!a.nome && a.nome === b.nome && !a.generico && !b.generico;
+  const conflito = a.contexto.some((s,i) => s && b.contexto[i] && s !== b.contexto[i]);
+  const orgaoIgual = !!a.contexto[0] && a.contexto[0] === b.contexto[0];
+  const email = !!a.email && a.email === b.email;
+  const site = !!a.site && a.site === b.site;
+  const telefone = [...a.telefones.numeros].some((numero) => b.telefones.numeros.has(numero));
+  const linhaIgual = [...a.telefones.linhas].some((linha) => !linha.startsWith('0800') && b.telefones.linhas.has(linha));
+  const forte = !conflito && ((mesmoNome && (email || site || (orgaoIgual && linhaIgual))) ||
+    (orgaoIgual && email && site && (a.generico || b.generico)));
+  return forte ? 'forte' : (email || site || telefone || (mesmoNome && !conflito)) ? 'aviso' : '';
 }
 function diretorioAssinatura_(item) {
   const publicos = {};
@@ -51,20 +105,32 @@ function diretorioAssinatura_(item) {
   return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, JSON.stringify(publicos), Utilities.Charset.UTF_8)
     .map((b) => ('0' + ((b + 256) % 256).toString(16)).slice(-2)).join('');
 }
-function diretorioPublico_(row) {
+function diretorioPublico_(row, anterior, avisos = [], telefoneOrigem) {
   const item = { id: diretorioTexto_(row[0]), nome: diretorioTexto_(row[2]), orgao: diretorioTexto_(row[3]), municipio: diretorioTexto_(row[4]), uf: diretorioTexto_(row[5]).toUpperCase(), esfera: diretorioTexto_(row[6]), poder: diretorioTexto_(row[7]), site: diretorioHttps_(row[8]), email: '', telefone: '' };
   if (!/^OUV-\d{6,}$/.test(item.id)) throw new Error('Restaure o ID original do cadastro.');
   // A complete administrative classification is useful, but never a prerequisite.
   // A contact may remain private when Divulgar contatos is unchecked.
-  const contato = item.site || diretorioEmail_(row[9]) || diretorioTelefone_(row[10]);
+  const telefoneBruto = diretorioTexto_(row[10]);
+  const telefones = diretorioTelefones_(telefoneBruto);
+  // Do not rewrite a reviewed contact or reveal an untouched original previously omitted.
+  const preservarTelefone = anterior && (telefoneBruto === anterior.telefone || (!anterior.telefone && telefoneBruto === telefoneOrigem));
+  const telefone = preservarTelefone ? anterior.telefone : telefones.texto;
+  const email = diretorioEmail_(row[9]);
+  const contato = item.site || email || telefone;
   const pendentes = [['nome da ouvidoria',!!item.nome],['ao menos um contato institucional válido (site, e-mail ou telefone)',!!contato],['UF',!item.uf || DIRETORIO_PORTAL.ufs.includes(item.uf)],['esfera',!item.esfera || DIRETORIO_PORTAL.esferas.includes(item.esfera)],['poder / natureza',!item.poder || DIRETORIO_PORTAL.poderes.includes(item.poder)]].filter((campo) => !campo[1]).map((campo) => campo[0]);
   if (pendentes.length) throw new Error('Preencha ou confira: ' + pendentes.join(', ') + '.');
-  if (diretorioTexto_(row[8]) && !item.site) throw new Error('O Site da ouvidoria deve ser um endereço http ou https válido.');
+  if (diretorioTexto_(row[8]) && !item.site) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(diretorioTexto_(row[8]))) throw new Error('O Site da ouvidoria deve ser um endereço http ou https válido ou ficar em branco.');
+    avisos.push('Site omitido: foi informado um e-mail. A coluna I pode ser apagada.');
+  }
   if (row[11] === true) {
-    item.email = diretorioEmail_(row[9]);
-    item.telefone = diretorioTelefone_(row[10]);
+    item.email = email;
+    item.telefone = telefone;
     if (diretorioTexto_(row[9]) && !item.email) throw new Error('Use apenas endereço institucional genérico da ouvidoria; contato pessoal não pode ser publicado.');
-    if (diretorioTexto_(row[10]) && !item.telefone) throw new Error('Confira a formatação do telefone institucional.');
+    if (!preservarTelefone && telefone && telefones.invalidos.length) {
+      throw new Error('Confira a coluna K: telefone(s) na posição ' + telefones.invalidos.join(', ') + ' sem formato válido. Corrija ou retire da fila apenas os números que não devem ser divulgados.');
+    }
+    if (!preservarTelefone && telefoneBruto && !telefone) avisos.push('Telefone omitido: confira o número e o DDD. Foi usado outro contato válido.');
   }
   return item;
 }
@@ -155,7 +221,6 @@ function diretorioPreparar_(sheet, raw) {
   if (!validHeader) throw new Error('Cabeçalhos do formulário divergentes; confira antes de importar.');
   const existing = diretorioLinhas_(sheet);
   const ids = new Set(existing.map((r) => diretorioTexto_(r[0])));
-  const nomes = new Set(existing.map((r) => diretorioNormal_(r[2])));
   const novas = [];
   raw.slice(1).forEach((r, i) => {
     const nome = diretorioTexto_(r[1]);
@@ -177,14 +242,13 @@ function diretorioPreparar_(sheet, raw) {
         dados.forEach((value,col) => {
           if (value && !diretorioTexto_(fresh[col + 3])) sheet.getRange(index + 2,col + 4).setValue(/^[=+@-]/.test(value) ? "'" + value : value);
         });
-        const site = diretorioTexto_(r[8]);
-        if (site && !diretorioTexto_(fresh[8])) sheet.getRange(index + 2,9).setValue(/^[=+@-]/.test(site) ? "'" + site : site);
       }
       return;
     }
-    const duplicate = nomes.has(diretorioNormal_(nome));
-    novas.push([id, false, nome, ...dados, diretorioTexto_(r[8]), diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', duplicate ? 'Possível duplicidade' : 'Em análise', DIRETORIO_PORTAL.orientacao, i + 2, '', '']);
-    ids.add(id); nomes.add(diretorioNormal_(nome));
+    const site = diretorioHttps_(r[8]);
+    const orientacao = DIRETORIO_PORTAL.orientacao + (diretorioTexto_(r[8]) && !site ? ' Site original não importado: informe uma URL ou deixe a coluna I em branco.' : '');
+    novas.push([id, false, nome, ...dados, site, diretorioEmail_(r[4]), diretorioTexto_(r[5]), false, '', 'Em análise', orientacao, i + 2, '', '']);
+    ids.add(id);
   });
   if (novas.length) {
     const start = existing.length + 2;
@@ -260,31 +324,35 @@ function sincronizarDiretorioCadastradas() {
     sheet = diretorioFila_(ss);
     const origem = ss.getSheetByName(DIRETORIO_PORTAL.respostas);
     if (!origem) throw new Error('Aba de respostas não encontrada.');
-    diretorioPreparar_(sheet, diretorioRespostas_(origem));
+    const respostas = diretorioRespostas_(origem);
+    diretorioPreparar_(sheet, respostas);
     const file = diretorioLerSite_();
     const previous = new Map(file.items.map((item) => [item.id, item]));
     const rows = diretorioLinhas_(sheet);
     const today = Utilities.formatDate(new Date(), 'America/Sao_Paulo', 'yyyy-MM-dd');
-    const results = new Map(); const approved = []; const keyCounts = new Map();
+    const results = new Map(); const approved = [];
     const idCounts = new Map();
     rows.filter(diretorioTemRegistro_).forEach((row) => { const id = diretorioTexto_(row[0]); idCounts.set(id, (idCounts.get(id) || 0) + 1); });
-    rows.filter((row) => row[1] === true).forEach((row) => {
-      const key = diretorioNormal_([row[2],row[4],row[5]].join('|'));
-      keyCounts.set(key, (keyCounts.get(key) || 0) + 1);
-    });
+    const candidatos = rows.filter((row) => row[1] === true && idCounts.get(diretorioTexto_(row[0])) === 1).map(diretorioIdentidade_);
+    const identidades = new Map(candidatos.map((item) => [item.id, item]));
     rows.forEach((row) => {
       if (!diretorioTemRegistro_(row)) return;
       const id = diretorioTexto_(row[0]);
       if (idCounts.get(id) !== 1) { if (previous.has(id) && !approved.some((x) => x.id === id)) approved.push(previous.get(id)); results.set(id, { status: 'Erro: ID repetido; restaure o identificador original.' }); return; }
       if (row[1] !== true) { results.set(id, { status: previous.has(id) ? 'Retirado do diretório' : 'Em análise' }); return; }
       try {
-        const item = diretorioPublico_(row);
-        const key = diretorioNormal_([item.nome,item.municipio,item.uf].join('|'));
-        if (keyCounts.get(key) > 1) throw new Error('Possível duplicidade: confira antes de aprovar.');
-        const signature = diretorioAssinatura_(item);
         const old = previous.get(id);
+        const avisos = [];
+        const resposta = /^OUV-\d+$/.test(id) ? respostas[Number(id.slice(4)) - 1] : null;
+        const item = diretorioPublico_(row, old, avisos, resposta ? diretorioTexto_(resposta[5]) : undefined);
+        const relacionados = candidatos.filter((x) => x.id !== id)
+          .map((x) => [x.id, diretorioComparar_(identidades.get(id), x)]).filter((x) => x[1]);
+        const fortes = relacionados.filter((x) => x[1] === 'forte').map((x) => x[0]);
+        if (!old && fortes.length) throw new Error('Possível duplicidade com ' + fortes.slice(0,3).join(', ') + '. Confira o cadastro correspondente.');
+        if (relacionados.length) avisos.push('Confira possível coincidência com ' + relacionados.slice(0,3).map((x) => x[0]).join(', ') + '.');
+        const signature = diretorioAssinatura_(item);
         item.atualizado_em = old && diretorioAssinatura_(old) === signature ? old.atualizado_em : today;
-        approved.push(item); results.set(id, { status: 'Publicado', signature: signature, date: item.atualizado_em });
+        approved.push(item); results.set(id, { status: 'Publicado', signature: signature, date: item.atualizado_em, avisos });
       } catch (error) {
         // A validation error must not erase a previously published institution.
         if (previous.has(id)) approved.push(previous.get(id));
@@ -299,16 +367,25 @@ function sincronizarDiretorioCadastradas() {
     let statusChanged = false; let signatureChanged = false;
     const statusValues = fresh.map((row) => [row[13]]);
     const signatureValues = fresh.map((row) => [row[16],row[17]]);
+    const statusRange = fresh.length ? sheet.getRange(2,14,fresh.length,1) : null;
+    const statusNotes = statusRange ? statusRange.getNotes() : [];
+    let notesChanged = false;
     fresh.forEach((row,index) => {
       if (!diretorioTemRegistro_(row)) return;
       const id = diretorioTexto_(row[0]); const result = results.get(id);
       if (!result || initial.get(id) !== JSON.stringify(row.slice(0,13))) return;
       if (row[13] !== result.status) { statusValues[index] = [result.status]; statusChanged = true; }
+      const antes = statusNotes[index][0];
+      const linhas = antes.split('\n').filter((linha) => !linha.startsWith('Diretório — aviso: '));
+      (result.avisos || []).forEach((aviso) => linhas.push('Diretório — aviso: ' + aviso));
+      const nota = linhas.filter(Boolean).join('\n');
+      if (nota !== antes) { statusNotes[index] = [nota]; notesChanged = true; }
       if (result.signature && (row[16] !== result.signature || row[17] !== result.date)) {
         signatureValues[index] = [result.signature,result.date]; signatureChanged = true;
       }
     });
     if (statusChanged) sheet.getRange(2,14,fresh.length,1).setValues(statusValues);
+    if (notesChanged) statusRange.setNotes(statusNotes);
     if (signatureChanged) sheet.getRange(2,17,fresh.length,2).setValues(signatureValues);
   } catch (error) {
     // No credentials, personal form answers or private comments in execution logs.

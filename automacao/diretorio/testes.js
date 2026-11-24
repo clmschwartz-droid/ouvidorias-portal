@@ -5,7 +5,13 @@ const vm = require('node:vm');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
 const source = fs.readFileSync(path.join(__dirname, 'Diretorio.gs'), 'utf8');
-const seed = JSON.parse(fs.readFileSync(path.join(__dirname, '../../conteudo/ouvidorias-cadastradas.json'))).items;
+// Independent of the growing live directory.
+const seed = Array.from({length:7}, (_,i) => ({
+  id: 'OUV-00010' + i, nome: 'Ouvidoria Exemplo ' + i, orgao: 'Instituição Exemplo ' + i,
+  municipio: 'Cidade Exemplo', uf: 'PR', esfera: 'Municipal', poder: 'Executivo',
+  site: 'https://exemplo' + i + '.example.org/ouvidoria', email: 'ouvidoria@exemplo' + i + '.example.org',
+  telefone: '(41) 3333-444' + i, atualizado_em: '2026-10-08',
+}));
 const clone = (x) => JSON.parse(JSON.stringify(x));
 let checks = 0;
 function ok(value) { checks++; assert.ok(value); }
@@ -154,7 +160,7 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   equal(state.rows[1][8],full[11]);equal(state.rows[1][1],false);equal(state.rows[1][11],false);
   equal(context.diretorioPublico_(state.rows[1]).site,full[11]);
   state.rows[1][8]='https://complemento-anterior.example.org';context.sincronizarDiretorioCadastradas();equal(state.rows[1][8],'https://complemento-anterior.example.org');
-  state.rows[1][8]='';context.sincronizarDiretorioCadastradas();equal(state.rows[1][8],full[11]);
+  state.rows[1][8]='';context.sincronizarDiretorioCadastradas();equal(state.rows[1][8],'');
   state.rows[1][16]='publicado';state.rows[1][8]='';context.sincronizarDiretorioCadastradas();equal(state.rows[1][8],'');
   state.raw[0].push('Site da ouvidoria');throws(()=>context.diretorioRespostas_({...origem,getLastColumn:()=>13}),/mais de uma coluna/);
 }
@@ -174,10 +180,66 @@ function row(item, approved=true, contacts=true) { return [item.id,approved,item
   ];
   recent.forEach(item=>state.rows.push(row(item)));context.sincronizarDiretorioCadastradas();
   equal(state.remote.map(x=>x.id).sort(),recent.map(x=>x.id).sort());ok(state.rows.slice(1).every(r=>r[13]==='Publicado'));
-  const minimal=row(recent[2]);minimal[6]='';minimal[7]='';equal(context.diretorioPublico_(minimal).telefone,'4334725700');
+  const minimal=row(recent[2]);minimal[6]='';minimal[7]='';equal(context.diretorioPublico_(minimal).telefone,'(43) 3472-5700');
   minimal[11]=false;equal(context.diretorioPublico_(minimal).telefone,'');
   minimal[2]='';throws(()=>context.diretorioPublico_(minimal),/nome da ouvidoria/);
   minimal[2]='Ouvidoria';minimal[10]='';throws(()=>context.diretorioPublico_(minimal),/ao menos um contato institucional/);
   minimal[10]='4334725700';minimal[5]='XX';throws(()=>context.diretorioPublico_(minimal),/UF/);
+}
+{
+  const {state,context}=environment();
+  for (const [raw,expected] of [
+    ['800 643 1009','0800 643 1009'],
+    ['0800 643 1009','0800 643 1009'],
+    ['+55 (41) 3333-4444, ramal 12','(41) 3333-4444 ramal 12'],
+    ['3333-4444 / (41) 99999-1111 (WhatsApp)','(41) 99999-1111 (WhatsApp)'],
+    ['(41) 3333-4444 / (41) 99999-1111','(41) 3333-4444; (41) 99999-1111'],
+    ['(41) 3333-4444, ramais 12 e 34, 800 643 1009','(41) 3333-4444 ramal 12; (41) 3333-4444 ramal 34; 0800 643 1009'],
+    ['+55 41 3333-4444\n41 3333-4444','(41) 3333-4444'],
+    ['3333-4444 ramal 12',''],
+    ['99999-1111',''],
+    ['+1 415 555 1234',''],
+  ]) equal(context.diretorioTelefones_(raw).texto,expected);
+  const draft=row(seed[0]);draft[8]=draft[9];draft[10]='3333-4444';state.rows.push(draft);
+  context.sincronizarDiretorioCadastradas();
+  equal(state.remote[0].site,'');equal(state.remote[0].telefone,'');
+  equal(state.rows[1][13],'Publicado');ok(state.notes[1][13].includes('Telefone omitido'));
+  const semContato=row(seed[1]);semContato[8]='';semContato[9]='';semContato[10]='3333-4444';
+  throws(()=>context.diretorioPublico_(semContato),/ao menos um contato institucional/);
+  const old={...seed[2],telefone:'800 643 1009'};
+  equal(context.diretorioPublico_(row(old),old).telefone,old.telefone);
+  const multi={...seed[3],telefone:'(41) 3333-4444 ramal 12 / 3333-5555 / 800 643 1009'};
+  state.rows.push(row(multi));context.sincronizarDiretorioCadastradas();
+  equal(state.remote.length,1);ok(state.rows[2][13].includes('posição 2'));
+  state.rows[2][10]='(41) 3333-4444 ramal 12 / 800 643 1009';context.sincronizarDiretorioCadastradas();
+  equal(state.remote[1].telefone,'(41) 3333-4444 ramal 12; 0800 643 1009');
+  state.rows[2][10]='0800 643 1009';context.sincronizarDiretorioCadastradas();
+  equal(state.remote[1].telefone,'0800 643 1009');
+  state.rows[2][11]=false;context.sincronizarDiretorioCadastradas();
+  equal(state.remote[1].telefone,'');
+  const fonte=multi.telefone.replace(' / 3333-5555','');
+  equal(context.diretorioPublico_(row({...old,telefone:fonte}),{...old,telefone:''},[],fonte).telefone,'');
+}
+{
+  const {state,context}=environment();
+  const a={...seed[0],nome:'Fala BR',orgao:'',municipio:'',uf:'',site:'https://falabr.cgu.gov.br/',email:'',telefone:'(41) 3333-4444'};
+  const b={...a,id:seed[1].id,telefone:'(51) 3333-4444'};
+  const c={...seed[2],telefone:'0800 643 1009'};
+  const d={...seed[3],telefone:c.telefone};
+  state.rows.push(row(a),row(b),row(c),row(d));context.sincronizarDiretorioCadastradas();
+  equal(state.remote.length,4);ok(state.rows.slice(1).every(r=>r[13]==='Publicado'));ok(state.notes[3][13].includes(d.id));
+  const duplicate={...c,id:seed[4].id};
+  state.rows.push(row(duplicate));context.sincronizarDiretorioCadastradas();
+  equal(state.remote.length,4);equal(state.rows[3][13],'Publicado');ok(state.rows[5][13].includes('duplicidade com '+c.id));
+  const ident = (telefone) => context.diretorioIdentidade_(row({...seed[0],site:'',email:'',telefone}));
+  equal(context.diretorioComparar_(ident('(41) 3333-4444 ramal 12'),ident('0800 643 1009; (41) 3333-4444 ramal 12')),'forte');
+  equal(context.diretorioComparar_(ident('(41) 3333-4444 ramal 12'),ident('(41) 3333-4444 ramal 34')),'aviso');
+}
+{
+  const {state,context}=environment();
+  state.raw[0].push('Site da ouvidoria');
+  state.raw.push(['data','Ouvidoria Exemplo','Poder Executivo','Cidade / PR','ouvidoria@example.org','','','', 'ouvidoria@example.org']);
+  context.sincronizarDiretorioCadastradas();
+  equal(state.rows[1][8],'');ok(state.rows[1][14].includes('Site original não importado'));
 }
 console.log(`${checks} verificações do diretório passaram.`);
