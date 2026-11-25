@@ -66,6 +66,19 @@
       "atualizado_em": "2026-11-04"
     },
     {
+      "id": "OUV-000321",
+      "nome": "Câmara de Teixeirópolis",
+      "orgao": "",
+      "municipio": "",
+      "uf": "RO",
+      "esfera": "",
+      "poder": "Legislativo",
+      "site": "https://teixeiropolis.ro.leg.br/ouvidoria",
+      "email": "ouvidoria@teixeiropolis.ro.leg.br",
+      "telefone": "(69)9922-62908",
+      "atualizado_em": "2026-11-25"
+    },
+    {
       "id": "OUV-000190",
       "nome": "camara de vereadores",
       "orgao": "",
@@ -2458,6 +2471,19 @@
       "atualizado_em": "2026-11-11"
     },
     {
+      "id": "OUV-000320",
+      "nome": "Ouvidoria Geral do Município de Venda Nova do Imigrante",
+      "orgao": "Município",
+      "municipio": "Prefeitura Municipal de Venda Nova do Imigrante",
+      "uf": "ES",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "",
+      "telefone": "(28) 99905-7214",
+      "atualizado_em": "2026-11-25"
+    },
+    {
       "id": "OUV-000065",
       "nome": "Ouvidoria Geral do Município de Victor Graeff",
       "orgao": "Prefeitura Municipal de Victor Graeff",
@@ -3730,6 +3756,19 @@
       "email": "ouvidoria@silveiras.sp.gov.br",
       "telefone": "(12) 3106.1114",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000322",
+      "nome": "Prefeitura Municipal de Tarumã",
+      "orgao": "Prefeitura Municipal de TARUMÃ SP",
+      "municipio": "TARUMÃ SP",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "https://www.taruma.sp.gov.br/ouvidoria",
+      "email": "ouvidoria@taruma.sp.gov.br",
+      "telefone": "(18)3373-4700",
+      "atualizado_em": "2026-11-25"
     },
     {
       "id": "OUV-000208",
