@@ -274,6 +274,19 @@
       "atualizado_em": "2026-11-10"
     },
     {
+      "id": "OUV-000323",
+      "nome": "Câmara Municipal de Januária/MG",
+      "orgao": "",
+      "municipio": "Januária",
+      "uf": "MG",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "",
+      "email": "ouvidoria@januaria.mg.leg.br",
+      "telefone": "(38) 3620 -0650",
+      "atualizado_em": "2026-11-27"
+    },
+    {
       "id": "OUV-000099",
       "nome": "CÂMARA MUNICIPAL DE JI- PARANÁ-RONDÔNIA",
       "orgao": "Câmara Municipal de JI- PARANÁ-RONDÔNIA",
@@ -896,6 +909,19 @@
       "email": "",
       "telefone": "(47)3352-7184",
       "atualizado_em": "2026-11-11"
+    },
+    {
+      "id": "OUV-000325",
+      "nome": "Ouvidoria Câmara Municipal de Pirapozinho",
+      "orgao": "Câmara Municipal de Pirapozinho",
+      "municipio": "Pirapozinho",
+      "uf": "SP",
+      "esfera": "Municipal",
+      "poder": "Legislativo",
+      "site": "https://camarapirapozinho.sp.gov.br/?pag=T1RjPU9EZz1PVFU9T0dVPU9HST1PVEE9T0dFPU9HRT0=&idmenu=385",
+      "email": "ouvidoria@camarapirapozinho.sp.gov.br",
+      "telefone": "(18) 3289-1555",
+      "atualizado_em": "2026-11-27"
     },
     {
       "id": "OUV-000098",
@@ -1871,6 +1897,19 @@
       "email": "ouvidoria@paraiso.sc.gov.br",
       "telefone": "(49) 3627-0077",
       "atualizado_em": "2026-11-05"
+    },
+    {
+      "id": "OUV-000324",
+      "nome": "Ouvidoria do município de Riachão do Poço",
+      "orgao": "Prefeitura Municipal de Riachão do Poço",
+      "municipio": "Riachão do Poço",
+      "uf": "PB",
+      "esfera": "Municipal",
+      "poder": "Executivo",
+      "site": "",
+      "email": "ouvidoriapmriachaodopoco@gmail.com",
+      "telefone": "(83)98870-3701",
+      "atualizado_em": "2026-11-27"
     },
     {
       "id": "OUV-000097",
